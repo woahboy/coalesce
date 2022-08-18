@@ -1,0 +1,447 @@
+steps:
+  STG_DAILY_14_TOTAL-33:
+    operation:
+      config:
+        insertStrategy: INSERT
+        postSQL: ""
+        preSQL: ""
+        testsEnabled: true
+        truncateBefore: true
+      database: ""
+      dependencies: []
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: 3
+      locationName: TARGET
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 344
+              stepCounter: 33
+            dataType: TIMESTAMP_NTZ(9)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: T
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 334
+                    stepCounter: "28"
+                transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 345
+              stepCounter: 33
+            config: {}
+            dataType: NUMBER
+            description: ""
+            name: city_coord_lat
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 333
+                    stepCounter: "28"
+                transform: '"V":"city"."coord"."lat"::NUMBER'
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 346
+              stepCounter: 33
+            config: {}
+            dataType: NUMBER
+            description: ""
+            name: city_coord_lon
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 333
+                    stepCounter: "28"
+                transform: '"V":"city"."coord"."lon"::NUMBER'
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 347
+              stepCounter: 33
+            config: {}
+            dataType: STRING
+            description: ""
+            name: city_country
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 333
+                    stepCounter: "28"
+                transform: '"V":"city"."country"::STRING'
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 348
+              stepCounter: 33
+            config: {}
+            dataType: NUMBER
+            description: ""
+            name: city_id
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 333
+                    stepCounter: "28"
+                transform: '"V":"city"."id"::NUMBER'
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 349
+              stepCounter: 33
+            config: {}
+            dataType: STRING
+            description: ""
+            name: city_name
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 333
+                    stepCounter: "28"
+                transform: '"V":"city"."name"::STRING'
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 350
+              stepCounter: 33
+            config: {}
+            dataType: NUMBER
+            description: ""
+            name: data_clouds
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 333
+                    stepCounter: "28"
+                transform: '"V_data".value:"clouds"::NUMBER'
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 351
+              stepCounter: 33
+            config: {}
+            dataType: NUMBER
+            description: ""
+            name: data_deg
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 333
+                    stepCounter: "28"
+                transform: '"V_data".value:"deg"::NUMBER'
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 352
+              stepCounter: 33
+            config: {}
+            dataType: NUMBER
+            description: ""
+            name: data_dt
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 333
+                    stepCounter: "28"
+                transform: '"V_data".value:"dt"::NUMBER'
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 353
+              stepCounter: 33
+            config: {}
+            dataType: NUMBER
+            description: ""
+            name: data_humidity
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 333
+                    stepCounter: "28"
+                transform: '"V_data".value:"humidity"::NUMBER'
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 354
+              stepCounter: 33
+            config: {}
+            dataType: NUMBER
+            description: ""
+            name: data_pressure
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 333
+                    stepCounter: "28"
+                transform: '"V_data".value:"pressure"::NUMBER'
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 355
+              stepCounter: 33
+            config: {}
+            dataType: NUMBER
+            description: ""
+            name: data_speed
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 333
+                    stepCounter: "28"
+                transform: '"V_data".value:"speed"::NUMBER'
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 356
+              stepCounter: 33
+            config: {}
+            dataType: NUMBER
+            description: ""
+            name: data_temp_day
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 333
+                    stepCounter: "28"
+                transform: '"V_data".value:"temp"."day"::NUMBER'
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 357
+              stepCounter: 33
+            config: {}
+            dataType: NUMBER
+            description: ""
+            name: data_temp_eve
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 333
+                    stepCounter: "28"
+                transform: '"V_data".value:"temp"."eve"::NUMBER'
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 358
+              stepCounter: 33
+            config: {}
+            dataType: NUMBER
+            description: ""
+            name: data_temp_max
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 333
+                    stepCounter: "28"
+                transform: '"V_data".value:"temp"."max"::NUMBER'
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 359
+              stepCounter: 33
+            config: {}
+            dataType: NUMBER
+            description: ""
+            name: data_temp_min
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 333
+                    stepCounter: "28"
+                transform: '"V_data".value:"temp"."min"::NUMBER'
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 360
+              stepCounter: 33
+            config: {}
+            dataType: NUMBER
+            description: ""
+            name: data_temp_morn
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 333
+                    stepCounter: "28"
+                transform: '"V_data".value:"temp"."morn"::NUMBER'
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 361
+              stepCounter: 33
+            config: {}
+            dataType: NUMBER
+            description: ""
+            name: data_temp_night
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 333
+                    stepCounter: "28"
+                transform: '"V_data".value:"temp"."night"::NUMBER'
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 362
+              stepCounter: 33
+            config: {}
+            dataType: NUMBER
+            description: ""
+            name: data_uvi
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 333
+                    stepCounter: "28"
+                transform: '"V_data".value:"uvi"::NUMBER'
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 363
+              stepCounter: 33
+            config: {}
+            dataType: STRING
+            description: ""
+            name: data_weather_description
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 333
+                    stepCounter: "28"
+                transform: '"V_data_weather".value:"description"::STRING'
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 364
+              stepCounter: 33
+            config: {}
+            dataType: STRING
+            description: ""
+            name: data_weather_icon
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 333
+                    stepCounter: "28"
+                transform: '"V_data_weather".value:"icon"::STRING'
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 365
+              stepCounter: 33
+            config: {}
+            dataType: NUMBER
+            description: ""
+            name: data_weather_id
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 333
+                    stepCounter: "28"
+                transform: '"V_data_weather".value:"id"::NUMBER'
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 366
+              stepCounter: 33
+            config: {}
+            dataType: STRING
+            description: ""
+            name: data_weather_main
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 333
+                    stepCounter: "28"
+                transform: '"V_data_weather".value:"main"::STRING'
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 367
+              stepCounter: 33
+            config: {}
+            dataType: NUMBER
+            description: ""
+            name: time
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 333
+                    stepCounter: "28"
+                transform: '"V":"time"::NUMBER'
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: SOURCE_V
+                nodeName: DAILY_14_TOTAL
+            join:
+              joinCondition: |-
+                FROM {{ ref('SOURCE_V', 'DAILY_14_TOTAL') }} "DAILY_14_TOTAL", 
+                table(flatten("V":"data")) "V_data", 
+                table(flatten("V_data".value:"weather")) "V_data_weather"
+            name: STG_DAILY_14_TOTAL
+            noLinkRefs: []
+      name: STG_DAILY_14_TOTAL
+      overrideSQL: false
+      schema: ""
+      sqlType: Stage
+      type: sql
+    stepCounter: "33"

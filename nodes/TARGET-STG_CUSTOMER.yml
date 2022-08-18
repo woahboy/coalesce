@@ -1,0 +1,154 @@
+steps:
+  STG_CUSTOMER-10:
+    operation:
+      config:
+        insertStrategy: INSERT
+        postSQL: ""
+        preSQL: ""
+        testsEnabled: true
+        truncateBefore: true
+      database: ""
+      dependencies: []
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: 3
+      locationName: TARGET
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 66
+              stepCounter: 10
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_CUSTKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 1
+                    stepCounter: "1"
+                transform: ""
+          - columnReference:
+              columnCounter: 67
+              stepCounter: 10
+            dataType: VARCHAR(25)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2
+                    stepCounter: "1"
+                transform: ""
+          - columnReference:
+              columnCounter: 68
+              stepCounter: 10
+            dataType: VARCHAR(40)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_ADDRESS
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 3
+                    stepCounter: "1"
+                transform: ""
+          - columnReference:
+              columnCounter: 69
+              stepCounter: 10
+            dataType: VARCHAR(40)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_NATIONKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 4
+                    stepCounter: "1"
+                transform: "{{even_odd('\"CUSTOMER\".\"C_NATIONKEY\"')}}"
+          - columnReference:
+              columnCounter: 70
+              stepCounter: 10
+            dataType: VARCHAR(15)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_PHONE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 5
+                    stepCounter: "1"
+                transform: ""
+          - columnReference:
+              columnCounter: 71
+              stepCounter: 10
+            dataType: NUMBER(12,2)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_ACCTBAL
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 6
+                    stepCounter: "1"
+                transform: ""
+          - columnReference:
+              columnCounter: 72
+              stepCounter: 10
+            dataType: VARCHAR(10)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_MKTSEGMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 7
+                    stepCounter: "1"
+                transform: ""
+          - columnReference:
+              columnCounter: 73
+              stepCounter: 10
+            dataType: VARCHAR(117)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_COMMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8
+                    stepCounter: "1"
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - aliases:
+              CUSTOMER: "1"
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: SOURCE
+                nodeName: CUSTOMER
+            join:
+              joinCondition: "FROM {{ ref('SOURCE', 'CUSTOMER') }} \"CUSTOMER\"\r
+
+                WHERE \"C_ACCTBAL\" > 8000"
+            name: STG_CUSTOMER
+            noLinkRefs: []
+      name: STG_CUSTOMER
+      overrideSQL: false
+      schema: ""
+      sqlType: Stage
+      type: sql
+    stepCounter: "10"

@@ -1,0 +1,47 @@
+steps:
+  DAILY_16_TOTAL-29:
+    operation:
+      database: ""
+      dataset: ""
+      locationID: 5
+      locationName: SOURCE_V
+      metadata:
+        columns:
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 335
+              stepCounter: 29
+            config: {}
+            dataType: VARIANT
+            defaultValue: ""
+            description: ""
+            name: V
+            nullable: true
+            primaryKey: false
+            uniqueKey: false
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 336
+              stepCounter: 29
+            config: {}
+            dataType: TIMESTAMP_NTZ(9)
+            defaultValue: ""
+            description: ""
+            name: T
+            nullable: true
+            primaryKey: false
+            uniqueKey: false
+        join:
+          joinCondition: FROM {{ ref('SOURCE_V', 'DAILY_16_TOTAL') }}
+      name: DAILY_16_TOTAL
+      schema: ""
+      sqlType: Source
+      table: DAILY_16_TOTAL
+      type: sourceInput
+    stepCounter: "29"

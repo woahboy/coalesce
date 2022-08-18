@@ -1,0 +1,47 @@
+steps:
+  WEATHER_14_TOTAL-32:
+    operation:
+      database: ""
+      dataset: ""
+      locationID: 5
+      locationName: SOURCE_V
+      metadata:
+        columns:
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 341
+              stepCounter: 32
+            config: {}
+            dataType: VARIANT
+            defaultValue: ""
+            description: ""
+            name: V
+            nullable: true
+            primaryKey: false
+            uniqueKey: false
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 342
+              stepCounter: 32
+            config: {}
+            dataType: TIMESTAMP_NTZ(9)
+            defaultValue: ""
+            description: ""
+            name: T
+            nullable: true
+            primaryKey: false
+            uniqueKey: false
+        join:
+          joinCondition: FROM {{ ref('SOURCE_V', 'WEATHER_14_TOTAL') }}
+      name: WEATHER_14_TOTAL
+      schema: ""
+      sqlType: Source
+      table: WEATHER_14_TOTAL
+      type: sourceInput
+    stepCounter: "32"
