@@ -115,21 +115,7 @@ steps:
               - columnReferences:
                   - columnCounter: 7
                     stepCounter: "1"
-                transform: ""
-          - columnReference:
-              columnCounter: 73
-              stepCounter: 10
-            dataType: VARCHAR(117)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: C_COMMENT
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 8
-                    stepCounter: "1"
-                transform: ""
+                transform: LOWER("CUSTOMER"."C_MKTSEGMENT")
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
