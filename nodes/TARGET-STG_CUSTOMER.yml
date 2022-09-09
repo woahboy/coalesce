@@ -49,7 +49,7 @@ steps:
           - columnReference:
               columnCounter: 68
               stepCounter: 10
-            dataType: VARCHAR(40)
+            dataType: VARCHAR(50)
             description: ""
             hashColumns: []
             hashDetails: null
@@ -59,7 +59,7 @@ steps:
               - columnReferences:
                   - columnCounter: 3
                     stepCounter: "1"
-                transform: ""
+                transform: CONCAT("CUSTOMER"."C_ADDRESS", '{{parameters.accepted_values[0]}}' )
           - columnReference:
               columnCounter: 69
               stepCounter: 10
@@ -101,7 +101,7 @@ steps:
               - columnReferences:
                   - columnCounter: 6
                     stepCounter: "1"
-                transform: ""
+                transform: "{{parameters.my_number}}"
           - columnReference:
               columnCounter: 72
               stepCounter: 10
