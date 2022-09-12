@@ -1,0 +1,29 @@
+pool: default
+
+variables:
+ - name: coalesceCliVersion
+   value: "latest"
+
+schedules:
+- cron: "0 * * * *"
+  displayName: Hourly Refresh
+  branches:
+    include:
+    - main
+
+steps:
+
+- task: DownloadSecureFile@1
+  name: coaConfig
+  displayName: 'Download coa config'
+  inputs:
+    secureFile: 'config'
+
+- task: CmdLine@2
+  inputs:
+    script: |
+      # Install Coalesce CLI tool, if not installed
+      npm list -g | grep "@coalescesoftware/coa@$(coalesceCliVersion)" || npm install -g @coalescesoftware/coa@$(coalesceCliVersion);
+      
+      # Start refresh
+      coa refresh  --config $(coaConfig.secureFilePath);
