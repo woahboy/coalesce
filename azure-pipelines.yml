@@ -21,6 +21,6 @@ steps:
 
 - task: CmdLine@2
   inputs:
-    bash: |
+    script:
       npm list -g | grep "@coalescesoftware/coa@$(coalesceCliVersion)" || npm install -g @coalescesoftware/coa@$(coalesceCliVersion);
       coa refresh  --config $(coaConfig.secureFilePath);
