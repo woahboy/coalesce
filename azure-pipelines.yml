@@ -21,6 +21,7 @@ steps:
 
 - task: CmdLine@2
   inputs:
-    script: 
+    script:
+      export PATH="/opt/homebrew/bin:${PATH}" 
       npm list -g | grep "@coalescesoftware/coa@$(coalesceCliVersion)" || npm install -g @coalescesoftware/coa@$(coalesceCliVersion);
       coa refresh  --config $(coaConfig.secureFilePath);
