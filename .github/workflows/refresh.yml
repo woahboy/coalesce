@@ -22,7 +22,7 @@ jobs:
         node-version: 14
 
     # Fetch coa config secret from GitHub Actions secret repository, then write coa config to a temporary file
-    - run: echo "${{ secrets.COA_CONFIG }}" >> COA_CONFIG
+    - run: echo '${{ secrets.COA_CONFIG }}' >> COA_CONFIG
 
     # Install Coalesce CLI tool, if not installed already
     - run: npm list | grep "@coalescesoftware/coa@${{ env.COA_VERSION }}" || npm install @coalescesoftware/coa@${{ env.COA_VERSION }}
