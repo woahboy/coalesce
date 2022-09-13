@@ -1,0 +1,296 @@
+steps:
+  TC9_TRG_LINEITEM_1-80:
+    operation:
+      config:
+        insertStrategy: INSERT
+        postSQL: |-
+          UPDATE 
+            "COALESCE_DB"."ETL1"."TC9_ETL_BATCH" 
+          SET 
+            END_TIME = current_timestamp(), 
+            JOB_STATUS = 'FINISHED'
+          FROM (
+            WITH 
+              counter (num_rows) AS (
+                SELECT count(*) AS num_rows 
+                FROM "COALESCE_DB"."ETL1"."TC9_ETL_BATCH" 
+                WHERE job_name = 'TC9_SRC_LINEITEM_1_JOB') 
+              select counter.num_rows 
+              from counter) AS ctes
+          WHERE ITERATION = ctes.num_rows
+          AND JOB_NAME = 'TC9_SRC_LINEITEM_1_JOB'
+        preSQL: |-
+          INSERT INTO
+            "COALESCE_DB"."ETL1"."TC9_ETL_BATCH" (
+              "JOB_NAME",
+              "ITERATION",
+              "JOB_STATUS",
+              "START_TIME"
+            )
+          WITH 
+            counter (num_rows) AS (
+                SELECT count(*) + 1 AS num_rows 
+                FROM "COALESCE_DB"."ETL1"."TC9_ETL_BATCH" 
+                WHERE job_name = 'TC9_SRC_LINEITEM_1_JOB')
+          SELECT 
+            'TC9_SRC_LINEITEM_1_JOB', 
+            num_rows, 
+            'STARTED', 
+            CURRENT_TIMESTAMP() 
+            FROM counter
+        testsEnabled: true
+        truncateBefore: true
+      database: ""
+      dependencies: []
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: TARGET
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 706
+              stepCounter: "80"
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: L_ORDERKEY
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 642
+                    stepCounter: "76"
+                transform: ""
+          - columnReference:
+              columnCounter: 707
+              stepCounter: "80"
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: L_PARTKEY
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 643
+                    stepCounter: "76"
+                transform: ""
+          - columnReference:
+              columnCounter: 708
+              stepCounter: "80"
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: L_SUPPKEY
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 644
+                    stepCounter: "76"
+                transform: ""
+          - columnReference:
+              columnCounter: 709
+              stepCounter: "80"
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: L_LINENUMBER
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 645
+                    stepCounter: "76"
+                transform: ""
+          - columnReference:
+              columnCounter: 710
+              stepCounter: "80"
+            dataType: NUMBER(12,2)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: L_QUANTITY
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 646
+                    stepCounter: "76"
+                transform: ""
+          - columnReference:
+              columnCounter: 711
+              stepCounter: "80"
+            dataType: NUMBER(12,2)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: L_EXTENDEDPRICE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 647
+                    stepCounter: "76"
+                transform: ""
+          - columnReference:
+              columnCounter: 712
+              stepCounter: "80"
+            dataType: NUMBER(12,2)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: L_DISCOUNT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 648
+                    stepCounter: "76"
+                transform: ""
+          - columnReference:
+              columnCounter: 713
+              stepCounter: "80"
+            dataType: NUMBER(12,2)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: L_TAX
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 649
+                    stepCounter: "76"
+                transform: ""
+          - columnReference:
+              columnCounter: 714
+              stepCounter: "80"
+            dataType: VARCHAR(1)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: L_RETURNFLAG
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 650
+                    stepCounter: "76"
+                transform: ""
+          - columnReference:
+              columnCounter: 715
+              stepCounter: "80"
+            dataType: VARCHAR(1)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: L_LINESTATUS
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 651
+                    stepCounter: "76"
+                transform: ""
+          - columnReference:
+              columnCounter: 716
+              stepCounter: "80"
+            dataType: DATE
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: L_SHIPDATE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 652
+                    stepCounter: "76"
+                transform: ""
+          - columnReference:
+              columnCounter: 717
+              stepCounter: "80"
+            dataType: DATE
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: L_COMMITDATE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 653
+                    stepCounter: "76"
+                transform: ""
+          - columnReference:
+              columnCounter: 718
+              stepCounter: "80"
+            dataType: DATE
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: L_RECEIPTDATE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 654
+                    stepCounter: "76"
+                transform: ""
+          - columnReference:
+              columnCounter: 719
+              stepCounter: "80"
+            dataType: VARCHAR(25)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: L_SHIPINSTRUCT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 655
+                    stepCounter: "76"
+                transform: ""
+          - columnReference:
+              columnCounter: 720
+              stepCounter: "80"
+            dataType: VARCHAR(10)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: L_SHIPMODE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 656
+                    stepCounter: "76"
+                transform: ""
+          - columnReference:
+              columnCounter: 721
+              stepCounter: "80"
+            dataType: VARCHAR(44)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: L_COMMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 657
+                    stepCounter: "76"
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: SOURCE
+                nodeName: TC9_SRC_LINEITEM_1
+            join:
+              joinCondition: FROM {{ ref('SOURCE', 'TC9_SRC_LINEITEM_1') }}
+                "TC9_SRC_LINEITEM_1"
+            name: TC9_TRG_LINEITEM_1
+            noLinkRefs: []
+      name: TC9_TRG_LINEITEM_1
+      overrideSQL: false
+      schema: ""
+      sqlType: Stage
+      type: sql
+    stepCounter: "80"
