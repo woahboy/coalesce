@@ -24,6 +24,84 @@ macros:
 
       \    CASE WHEN MOD({{ column }}, 2) = 0 THEN 'EVEN' ELSE 'ODD' END\r
 
+      {%- endmacro %}\r
+
+      \r
+
+      {%- macro insert_audit_row() -%}\r
+
+      INSERT INTO\r
+
+      \  \"COALESCE_DB\".\"ETL1\".\"TC9_ETL_BATCH\" (\r
+
+      \    \"JOB_NAME\",\r
+
+      \    \"ITERATION\",\r
+
+      \    \"JOB_STATUS\",\r
+
+      \    \"START_TIME\"\r
+
+      \  )\r
+
+      WITH \r
+
+      \  counter (num_rows) AS (\r
+
+      \      SELECT count(*) + 1 AS num_rows \r
+
+      \      FROM \"COALESCE_DB\".\"ETL1\".\"TC9_ETL_BATCH\"\r
+
+      \      WHERE job_name = '{{node.name}}'||'_JOB')\r
+
+      SELECT \r
+
+      \  '{{node.name}}'||'_JOB', \r
+
+      \  num_rows, \r
+
+      \  'STARTED', \r
+
+      \  CURRENT_TIMESTAMP() \r
+
+      \  FROM counter\r
+
+      {%- endmacro %}\r
+
+      \r
+
+      {%- macro update_audit_row() -%}\r
+
+      UPDATE \r
+
+      \  \"COALESCE_DB\".\"ETL1\".\"TC9_ETL_BATCH\" \r
+
+      SET \r
+
+      \  END_TIME = current_timestamp(), \r
+
+      \  JOB_STATUS = 'FINISHED'\r
+
+      FROM (\r
+
+      \  WITH \r
+
+      \    counter (num_rows) AS (\r
+
+      \      SELECT count(*) AS num_rows \r
+
+      \      FROM \"COALESCE_DB\".\"ETL1\".\"TC9_ETL_BATCH\" \r
+
+      \      WHERE job_name = '{{node.name}}'||'_JOB') \r
+
+      \    select counter.num_rows \r
+
+      \    from counter) AS ctes\r
+
+      WHERE ITERATION = ctes.num_rows\r
+
+      AND JOB_NAME = '{{node.name}}'||'_JOB'\r
+
       {%- endmacro %}"
 packages: {}
 projects: {}
