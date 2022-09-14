@@ -3,41 +3,8 @@ steps:
     operation:
       config:
         insertStrategy: INSERT
-        postSQL: |-
-          UPDATE 
-            "COALESCE_DB"."ETL1"."TC9_ETL_BATCH" 
-          SET 
-            END_TIME = current_timestamp(), 
-            JOB_STATUS = 'FINISHED'
-          FROM (
-            WITH 
-              counter (num_rows) AS (
-                SELECT count(*) AS num_rows 
-                FROM "COALESCE_DB"."ETL1"."TC9_ETL_BATCH" 
-                WHERE job_name = 'TC9_SRC_LINEITEM_2_JOB') 
-              select counter.num_rows 
-              from counter) AS ctes
-          WHERE ITERATION = ctes.num_rows
-          AND JOB_NAME = 'TC9_SRC_LINEITEM_2_JOB'
-        preSQL: |-
-          INSERT INTO
-            "COALESCE_DB"."ETL1"."TC9_ETL_BATCH" (
-              "JOB_NAME",
-              "ITERATION",
-              "JOB_STATUS",
-              "START_TIME"
-            )
-          WITH 
-            counter (num_rows) AS (
-                SELECT count(*) + 1 AS num_rows 
-                FROM "COALESCE_DB"."ETL1"."TC9_ETL_BATCH" 
-                WHERE job_name = 'TC9_SRC_LINEITEM_2_JOB')
-          SELECT 
-            'TC9_SRC_LINEITEM_2_JOB', 
-            num_rows, 
-            'STARTED', 
-            CURRENT_TIMESTAMP() 
-            FROM counter
+        postSQL: "{{update_audit_row()}}"
+        preSQL: "{{insert_audit_row()}}"
         testsEnabled: true
         truncateBefore: true
       database: ""
