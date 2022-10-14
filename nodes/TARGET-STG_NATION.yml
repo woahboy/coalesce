@@ -1,10 +1,12 @@
 steps:
-  PSTG_NATION-250:
+  STG_NATION-302:
     operation:
       config:
+        insertStrategy: INSERT
         postSQL: ""
         preSQL: ""
         testsEnabled: true
+        truncateBefore: true
       database: ""
       dependencies: []
       deployEnabled: true
@@ -17,43 +19,37 @@ steps:
       metadata:
         appliedNodeTests: []
         columns:
-          - acceptedValues:
-              strictMatch: true
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: 3245
-              stepCounter: "250"
-            config: {}
-            dataType: NUMBER(38,0)
-            defaultValue: ""
-            description: ""
-            keyColumnType: None
-            name: PSTG_NATION_KEY
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences: []
-                transform: "12345"
-            systemColumnType: None
-            transform: ""
           - columnReference:
-              columnCounter: 2425
-              stepCounter: "250"
+              columnCounter: 3343
+              stepCounter: "302"
             dataType: NUMBER(38,0)
             description: ""
             hashColumns: []
             hashDetails: null
-            isBusinessKey: true
+            name: PSTG_NATION_KEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 3245
+                    stepCounter: "250"
+                transform: ""
+          - columnReference:
+              columnCounter: 3344
+              stepCounter: "302"
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
             name: N_NATIONKEY
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 2328
-                    stepCounter: "242"
+                  - columnCounter: 2425
+                    stepCounter: "250"
                 transform: ""
           - columnReference:
-              columnCounter: 2426
-              stepCounter: "250"
+              columnCounter: 3345
+              stepCounter: "302"
             dataType: VARCHAR(25)
             description: ""
             hashColumns: []
@@ -62,12 +58,12 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 2329
-                    stepCounter: "242"
+                  - columnCounter: 2426
+                    stepCounter: "250"
                 transform: ""
           - columnReference:
-              columnCounter: 2427
-              stepCounter: "250"
+              columnCounter: 3346
+              stepCounter: "302"
             dataType: NUMBER(38,0)
             description: ""
             hashColumns: []
@@ -76,12 +72,12 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 2330
-                    stepCounter: "242"
+                  - columnCounter: 2427
+                    stepCounter: "250"
                 transform: ""
           - columnReference:
-              columnCounter: 2428
-              stepCounter: "250"
+              columnCounter: 3347
+              stepCounter: "302"
             dataType: VARCHAR(152)
             description: ""
             hashColumns: []
@@ -90,24 +86,8 @@ steps:
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 2331
-                    stepCounter: "242"
-                transform: ""
-          - acceptedValues:
-              strictMatch: false
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: 3397
-              stepCounter: "250"
-            dataType: NUMBER
-            description: ""
-            name: newcol
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 3342
-                    stepCounter: "242"
+                  - columnCounter: 2428
+                    stepCounter: "250"
                 transform: ""
         cteString: ""
         enabledColumnTestIDs: []
@@ -116,14 +96,14 @@ steps:
               customSQL: ""
             dependencies:
               - locationName: TARGET
-                nodeName: V_NATION
+                nodeName: PSTG_NATION
             join:
-              joinCondition: FROM {{ ref('TARGET', 'V_NATION') }} "V_NATION"
-            name: PSTG_NATION
+              joinCondition: FROM {{ ref('TARGET', 'PSTG_NATION') }} "PSTG_NATION"
+            name: STG_NATION
             noLinkRefs: []
-      name: PSTG_NATION
+      name: STG_NATION
       overrideSQL: false
       schema: ""
-      sqlType: persistentStage
+      sqlType: Stage
       type: sql
-    stepCounter: "250"
+    stepCounter: "302"

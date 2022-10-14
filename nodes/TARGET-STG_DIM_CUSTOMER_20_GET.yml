@@ -26,7 +26,7 @@ steps:
             description: ""
             hashColumns: []
             hashDetails: null
-            name: C_CUSTKEY
+            name: c_custkey
             nullable: false
             sourceColumnReferences:
               - columnReferences:
@@ -40,7 +40,7 @@ steps:
             description: ""
             hashColumns: []
             hashDetails: null
-            name: C_NAME
+            name: customername
             nullable: false
             sourceColumnReferences:
               - columnReferences:
@@ -54,137 +54,11 @@ steps:
             description: ""
             hashColumns: []
             hashDetails: null
-            name: C_ADDRESS
+            name: customeraddress
             nullable: false
             sourceColumnReferences:
               - columnReferences:
                   - columnCounter: 3042
-                    stepCounter: "291"
-                transform: ""
-          - columnReference:
-              columnCounter: 3081
-              stepCounter: "292"
-            dataType: NUMBER(38,0)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: C_NATIONKEY
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 3043
-                    stepCounter: "291"
-                transform: ""
-          - columnReference:
-              columnCounter: 3082
-              stepCounter: "292"
-            dataType: VARCHAR(15)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: C_PHONE
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 3044
-                    stepCounter: "291"
-                transform: ""
-          - columnReference:
-              columnCounter: 3083
-              stepCounter: "292"
-            dataType: NUMBER(12,2)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: C_ACCTBAL
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 3045
-                    stepCounter: "291"
-                transform: ""
-          - columnReference:
-              columnCounter: 3084
-              stepCounter: "292"
-            dataType: VARCHAR(10)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: C_MKTSEGMENT
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 3046
-                    stepCounter: "291"
-                transform: ""
-          - columnReference:
-              columnCounter: 3085
-              stepCounter: "292"
-            dataType: VARCHAR(117)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: C_COMMENT
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 3047
-                    stepCounter: "291"
-                transform: ""
-          - columnReference:
-              columnCounter: 3086
-              stepCounter: "292"
-            dataType: NUMBER(38,0)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: R_REGIONKEY
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 3055
-                    stepCounter: "291"
-                transform: ""
-          - columnReference:
-              columnCounter: 3087
-              stepCounter: "292"
-            dataType: VARCHAR(25)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: R_NAME
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 3056
-                    stepCounter: "291"
-                transform: ""
-          - columnReference:
-              columnCounter: 3088
-              stepCounter: "292"
-            dataType: VARCHAR(152)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: R_COMMENT
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 3057
-                    stepCounter: "291"
-                transform: ""
-          - columnReference:
-              columnCounter: 3089
-              stepCounter: "292"
-            dataType: NUMBER(38,0)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: N_NATIONKEY
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 3065
                     stepCounter: "291"
                 transform: ""
           - columnReference:
@@ -194,129 +68,140 @@ steps:
             description: ""
             hashColumns: []
             hashDetails: null
-            name: N_NAME
+            name: customernation
             nullable: false
             sourceColumnReferences:
               - columnReferences:
                   - columnCounter: 3066
                     stepCounter: "291"
-                transform: ""
+                transform: INITCAP("STG_DIM_CUSTOMER_10_GET"."N_NAME")
           - columnReference:
-              columnCounter: 3091
+              columnCounter: 3087
               stepCounter: "292"
-            dataType: NUMBER(38,0)
+            dataType: VARCHAR(25)
             description: ""
             hashColumns: []
             hashDetails: null
-            name: N_REGIONKEY
+            name: customerregion
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 3067
+                  - columnCounter: 3056
+                    stepCounter: "291"
+                transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 3378
+              stepCounter: "292"
+            config: {}
+            dataType: VARCHAR(152)
+            defaultValue: ""
+            description: ""
+            keyColumnType: None
+            name: customerregionnation
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 0
+                    stepCounter: "0"
+                transform: INITCAP("STG_DIM_CUSTOMER_10_GET"."R_NAME" || ' - ' || "STG_DIM_CUSTOMER_10_GET"."N_NAME")
+            systemColumnType: None
+            transform: ""
+          - columnReference:
+              columnCounter: 3082
+              stepCounter: "292"
+            dataType: VARCHAR(15)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: customerphone
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 3044
                     stepCounter: "291"
                 transform: ""
           - columnReference:
-              columnCounter: 3092
+              columnCounter: 3084
+              stepCounter: "292"
+            dataType: VARCHAR(10)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: customersegment
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 3046
+                    stepCounter: "291"
+                transform: ""
+          - columnReference:
+              columnCounter: 3083
+              stepCounter: "292"
+            dataType: NUMBER(12,2)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: customeracctbal
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 3045
+                    stepCounter: "291"
+                transform: ""
+          - columnReference:
+              columnCounter: 3085
+              stepCounter: "292"
+            dataType: VARCHAR(117)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: customercomment
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 3047
+                    stepCounter: "291"
+                transform: ""
+          - columnReference:
+              columnCounter: 3088
               stepCounter: "292"
             dataType: VARCHAR(152)
             description: ""
             hashColumns: []
             hashDetails: null
-            name: N_COMMENT
+            name: r_comment
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 3068
+                  - columnCounter: 3057
                     stepCounter: "291"
                 transform: ""
-          - columnReference:
-              columnCounter: 3093
+          - acceptedValues:
+              strictMatch: false
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 3399
               stepCounter: "292"
             dataType: NUMBER
             description: ""
-            hashColumns: []
-            hashDetails: null
-            name: SYSTEM_VERSION
+            name: newcol
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 3069
-                    stepCounter: "291"
-                transform: ""
-          - columnReference:
-              columnCounter: 3094
-              stepCounter: "292"
-            dataType: VARCHAR
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: SYSTEM_CURRENT_FLAG
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 3070
-                    stepCounter: "291"
-                transform: ""
-          - columnReference:
-              columnCounter: 3095
-              stepCounter: "292"
-            dataType: TIMESTAMP
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: SYSTEM_START_DATE
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 3071
-                    stepCounter: "291"
-                transform: ""
-          - columnReference:
-              columnCounter: 3096
-              stepCounter: "292"
-            dataType: TIMESTAMP
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: SYSTEM_END_DATE
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 3072
-                    stepCounter: "291"
-                transform: ""
-          - columnReference:
-              columnCounter: 3097
-              stepCounter: "292"
-            dataType: TIMESTAMP
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: SYSTEM_CREATE_DATE
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 3073
-                    stepCounter: "291"
-                transform: ""
-          - columnReference:
-              columnCounter: 3098
-              stepCounter: "292"
-            dataType: TIMESTAMP
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: SYSTEM_UPDATE_DATE
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 3074
+                  - columnCounter: 3398
                     stepCounter: "291"
                 transform: ""
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
-          - customSQL:
+          - aliases:
+              STG_DIM_CUSTOMER_10_GET: "291"
+            customSQL:
               customSQL: ""
             dependencies:
               - locationName: TARGET

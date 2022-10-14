@@ -107,7 +107,7 @@ projects: {}
 stepTypes:
   StepType-13:
     id: "13"
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: null
       error: null
@@ -319,7 +319,7 @@ stepTypes:
     version: 1
   StepType-14:
     id: "14"
-    isDisabled: true
+    isDisabled: false
     metadata:
       defaultStorageLocation: null
       error: null
@@ -330,43 +330,10 @@ stepTypes:
         plural: Dimensions
 
         config:
-        - groupName: Options
+        - groupName: Super Simple Settings 😁
           items:
-          - type: materializationSelector
-            isRequired: true
-            default: table
-            options:
-            - table
-            - view
-
-          - type: multisourceToggle
-            enableIf: "{% if node.materializationType == 'table' %} true {% else %} false {% endif %}"
-
           - type: businessKeyColumns
             isRequired: true
-
-          - type: changeTrackingColumns
-            isRequired: false
-
-          - type: overrideSQLToggle
-            enableIf: "{% if node.materializationType == 'view' %} true {% else %} false {% endif %}"
-
-          - displayName: Enable Tests
-            attributeName: testsEnabled
-            type: toggleButton
-            default: true
-            
-          - displayName: Pre-SQL
-            attributeName: preSQL
-            type: textBox
-            syntax: sql
-            isRequired: false
-
-          - displayName: Post-SQL
-            attributeName: postSQL
-            type: textBox
-            syntax: sql
-            isRequired: false
 
         systemColumns:
         - displayName: '{{NODE_NAME}}_KEY'
@@ -762,7 +729,7 @@ stepTypes:
             		{% endfor %}
             	{% endfor %}
             {% endif %}
-    name: Copy of Dimension
+    name: Simple Dim
     version: 1
   StepType-15:
     id: "15"
@@ -1611,6 +1578,7 @@ stepTypes:
             - "PARTSUPP"
             - "ORDERS"
             - "LINEITEM"
+            - "my new stage"
             isRequired: true
 
           - displayName: File Pattern
@@ -2606,7 +2574,7 @@ stepTypes:
     version: 1
   StepType-COALESCE-MISC::10:
     id: COALESCE-MISC::10
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: null
       error: null
@@ -3426,7 +3394,7 @@ stepTypes:
     version: 1
   StepType-COALESCE-MISC::8:
     id: COALESCE-MISC::8
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: null
       error: null
@@ -5764,10 +5732,12 @@ subgraphs:
       - "287"
       - "291"
       - "292"
-      - "293"
       - "294"
-      - "298"
-      - "300"
+      - "302"
+      - "301"
+      - "305"
+      - "319"
+      - "320"
   Subgraph-11:
     id: 11
     name: Coalesce Demo
@@ -5775,6 +5745,10 @@ subgraphs:
       - 264
       - 265
       - 266
+      - 304
+      - 306
+      - 307
+      - 308
   Subgraph-4:
     id: 4
     name: ODS TPC-H
