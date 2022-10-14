@@ -1,0 +1,162 @@
+steps:
+  V_ORDERS-243:
+    operation:
+      config:
+        insertStrategy: UNION
+        selectDistinct: false
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: TARGET
+      materializationType: view
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 2334
+              stepCounter: "243"
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: O_ORDERKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2257
+                    stepCounter: "235"
+                transform: ""
+          - columnReference:
+              columnCounter: 2335
+              stepCounter: "243"
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: O_CUSTKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2258
+                    stepCounter: "235"
+                transform: ""
+          - columnReference:
+              columnCounter: 2336
+              stepCounter: "243"
+            dataType: VARCHAR(1)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: O_ORDERSTATUS
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2259
+                    stepCounter: "235"
+                transform: ""
+          - columnReference:
+              columnCounter: 2337
+              stepCounter: "243"
+            dataType: NUMBER(12,2)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: O_TOTALPRICE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2260
+                    stepCounter: "235"
+                transform: ""
+          - columnReference:
+              columnCounter: 2338
+              stepCounter: "243"
+            dataType: DATE
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: O_ORDERDATE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2261
+                    stepCounter: "235"
+                transform: ""
+          - columnReference:
+              columnCounter: 2339
+              stepCounter: "243"
+            dataType: VARCHAR(15)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: O_ORDERPRIORITY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2262
+                    stepCounter: "235"
+                transform: ""
+          - columnReference:
+              columnCounter: 2340
+              stepCounter: "243"
+            dataType: VARCHAR(15)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: O_CLERK
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2263
+                    stepCounter: "235"
+                transform: ""
+          - columnReference:
+              columnCounter: 2341
+              stepCounter: "243"
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: O_SHIPPRIORITY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2264
+                    stepCounter: "235"
+                transform: ""
+          - columnReference:
+              columnCounter: 2342
+              stepCounter: "243"
+            dataType: VARCHAR(79)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: O_COMMENT
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2265
+                    stepCounter: "235"
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: TARGET
+                nodeName: EXT_ORDERS
+            join:
+              joinCondition: FROM {{ ref('TARGET', 'EXT_ORDERS') }} "EXT_ORDERS"
+            name: V_ORDERS
+            noLinkRefs: []
+      name: V_ORDERS
+      overrideSQL: false
+      schema: ""
+      sqlType: View
+      type: sql
+    stepCounter: "243"

@@ -1,0 +1,249 @@
+steps:
+  STG_DIM_ORDER_10_GET-263:
+    operation:
+      config:
+        insertStrategy: INSERT
+        postSQL: ""
+        preSQL: ""
+        testsEnabled: true
+        truncateBefore: true
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: TARGET
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 2571
+              stepCounter: "263"
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: O_ORDERKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2436
+                    stepCounter: "251"
+                transform: ""
+          - columnReference:
+              columnCounter: 2572
+              stepCounter: "263"
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: O_CUSTKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2437
+                    stepCounter: "251"
+                transform: ""
+          - columnReference:
+              columnCounter: 2573
+              stepCounter: "263"
+            dataType: VARCHAR(1)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: O_ORDERSTATUS
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2438
+                    stepCounter: "251"
+                transform: ""
+          - columnReference:
+              columnCounter: 2574
+              stepCounter: "263"
+            dataType: NUMBER(12,2)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: O_TOTALPRICE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2439
+                    stepCounter: "251"
+                transform: ""
+          - columnReference:
+              columnCounter: 2575
+              stepCounter: "263"
+            dataType: DATE
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: O_ORDERDATE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2440
+                    stepCounter: "251"
+                transform: ""
+          - columnReference:
+              columnCounter: 2576
+              stepCounter: "263"
+            dataType: VARCHAR(15)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: O_ORDERPRIORITY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2441
+                    stepCounter: "251"
+                transform: ""
+          - columnReference:
+              columnCounter: 2577
+              stepCounter: "263"
+            dataType: VARCHAR(15)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: O_CLERK
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2442
+                    stepCounter: "251"
+                transform: ""
+          - columnReference:
+              columnCounter: 2578
+              stepCounter: "263"
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: O_SHIPPRIORITY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2443
+                    stepCounter: "251"
+                transform: ""
+          - columnReference:
+              columnCounter: 2579
+              stepCounter: "263"
+            dataType: VARCHAR(79)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: O_COMMENT
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2444
+                    stepCounter: "251"
+                transform: ""
+          - columnReference:
+              columnCounter: 2580
+              stepCounter: "263"
+            dataType: NUMBER
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: SYSTEM_VERSION
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2445
+                    stepCounter: "251"
+                transform: ""
+          - columnReference:
+              columnCounter: 2581
+              stepCounter: "263"
+            dataType: VARCHAR
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: SYSTEM_CURRENT_FLAG
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2446
+                    stepCounter: "251"
+                transform: ""
+          - columnReference:
+              columnCounter: 2582
+              stepCounter: "263"
+            dataType: TIMESTAMP
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: SYSTEM_START_DATE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2447
+                    stepCounter: "251"
+                transform: ""
+          - columnReference:
+              columnCounter: 2583
+              stepCounter: "263"
+            dataType: TIMESTAMP
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: SYSTEM_END_DATE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2448
+                    stepCounter: "251"
+                transform: ""
+          - columnReference:
+              columnCounter: 2584
+              stepCounter: "263"
+            dataType: TIMESTAMP
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: SYSTEM_CREATE_DATE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2449
+                    stepCounter: "251"
+                transform: ""
+          - columnReference:
+              columnCounter: 2585
+              stepCounter: "263"
+            dataType: TIMESTAMP
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: SYSTEM_UPDATE_DATE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2450
+                    stepCounter: "251"
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: TARGET
+                nodeName: PSTG_ORDERS
+            join:
+              joinCondition: FROM {{ ref('TARGET', 'PSTG_ORDERS') }} "PSTG_ORDERS"
+            name: STG_DIM_ORDER_10_GET
+            noLinkRefs: []
+      name: STG_DIM_ORDER_10_GET
+      overrideSQL: false
+      schema: ""
+      sqlType: Stage
+      type: sql
+    stepCounter: "263"

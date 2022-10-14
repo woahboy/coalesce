@@ -1,0 +1,148 @@
+steps:
+  V_CUSTOMER-237:
+    operation:
+      config:
+        insertStrategy: UNION
+        selectDistinct: false
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: TARGET
+      materializationType: view
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 2279
+              stepCounter: "237"
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_CUSTKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 1902
+                    stepCounter: "188"
+                transform: ""
+          - columnReference:
+              columnCounter: 2280
+              stepCounter: "237"
+            dataType: VARCHAR(25)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 1903
+                    stepCounter: "188"
+                transform: ""
+          - columnReference:
+              columnCounter: 2281
+              stepCounter: "237"
+            dataType: VARCHAR(40)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_ADDRESS
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 1904
+                    stepCounter: "188"
+                transform: ""
+          - columnReference:
+              columnCounter: 2282
+              stepCounter: "237"
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_NATIONKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 1905
+                    stepCounter: "188"
+                transform: ""
+          - columnReference:
+              columnCounter: 2283
+              stepCounter: "237"
+            dataType: VARCHAR(15)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_PHONE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 1906
+                    stepCounter: "188"
+                transform: ""
+          - columnReference:
+              columnCounter: 2284
+              stepCounter: "237"
+            dataType: NUMBER(12,2)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_ACCTBAL
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 1907
+                    stepCounter: "188"
+                transform: ""
+          - columnReference:
+              columnCounter: 2285
+              stepCounter: "237"
+            dataType: VARCHAR(10)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_MKTSEGMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 1908
+                    stepCounter: "188"
+                transform: ""
+          - columnReference:
+              columnCounter: 2286
+              stepCounter: "237"
+            dataType: VARCHAR(117)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_COMMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 1909
+                    stepCounter: "188"
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: TARGET
+                nodeName: EXT_CUSTOMER
+            join:
+              joinCondition: FROM {{ ref('TARGET', 'EXT_CUSTOMER') }} "EXT_CUSTOMER"
+            name: V_CUSTOMER
+            noLinkRefs: []
+      name: V_CUSTOMER
+      overrideSQL: false
+      schema: ""
+      sqlType: View
+      type: sql
+    stepCounter: "237"

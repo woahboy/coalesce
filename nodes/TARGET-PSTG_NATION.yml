@@ -1,0 +1,113 @@
+steps:
+  PSTG_NATION-250:
+    operation:
+      config:
+        postSQL: ""
+        preSQL: ""
+        testsEnabled: true
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: TARGET
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 3245
+              stepCounter: "250"
+            config: {}
+            dataType: NUMBER(38,0)
+            defaultValue: ""
+            description: ""
+            keyColumnType: None
+            name: PSTG_NATION_KEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: "12345"
+            systemColumnType: None
+            transform: ""
+          - columnReference:
+              columnCounter: 2425
+              stepCounter: "250"
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            isBusinessKey: true
+            name: N_NATIONKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2328
+                    stepCounter: "242"
+                transform: ""
+          - columnReference:
+              columnCounter: 2426
+              stepCounter: "250"
+            dataType: VARCHAR(25)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: N_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2329
+                    stepCounter: "242"
+                transform: ""
+          - columnReference:
+              columnCounter: 2427
+              stepCounter: "250"
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: N_REGIONKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2330
+                    stepCounter: "242"
+                transform: ""
+          - columnReference:
+              columnCounter: 2428
+              stepCounter: "250"
+            dataType: VARCHAR(152)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: N_COMMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2331
+                    stepCounter: "242"
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: TARGET
+                nodeName: V_NATION
+            join:
+              joinCondition: FROM {{ ref('TARGET', 'V_NATION') }} "V_NATION"
+            name: PSTG_NATION
+            noLinkRefs: []
+      name: PSTG_NATION
+      overrideSQL: false
+      schema: ""
+      sqlType: persistentStage
+      type: sql
+    stepCounter: "250"
