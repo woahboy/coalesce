@@ -1,10 +1,10 @@
 steps:
-  STG_LINEITEM-323:
+  STG_LINEITEM-336:
     operation:
       config:
         insertStrategy: INSERT
-        postSQL: ""
-        preSQL: ""
+        postSQL: "{{update_audit_row()}}"
+        preSQL: "{{insert_audit_row()}}"
         testsEnabled: true
         truncateBefore: true
       database: ""
@@ -17,26 +17,13 @@ steps:
       locationName: TARGET
       materializationType: table
       metadata:
-        appliedNodeTests:
-          - continueOnFailure: true
-            description: ""
-            name: Unique Order Key
-            runOrder: Before
-            templateString: |-
-              SELECT
-                "L_ORDERKEY",
-                COUNT(*)
-              FROM
-                "JUSTIN_EDW"."DEV_EDW"."STG_LINEITEM"
-              GROUP BY
-                "L_ORDERKEY"
-              HAVING
-                COUNT(*) > 1
+        appliedNodeTests: []
         columns:
-          - appliedColumnTests: {}
+          - appliedColumnTests:
+              hasNull: true
             columnReference:
-              columnCounter: 3569
-              stepCounter: "323"
+              columnCounter: 3777
+              stepCounter: "336"
             dataType: NUMBER(38,0)
             description: ""
             hashColumns: []
@@ -45,13 +32,14 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 802
-                    stepCounter: "86"
+                  - columnCounter: 3713
+                    stepCounter: "332"
                 transform: ""
-          - appliedColumnTests: {}
+          - appliedColumnTests:
+              hasNull: true
             columnReference:
-              columnCounter: 3570
-              stepCounter: "323"
+              columnCounter: 3778
+              stepCounter: "336"
             dataType: NUMBER(38,0)
             description: ""
             hashColumns: []
@@ -60,13 +48,14 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 803
-                    stepCounter: "86"
+                  - columnCounter: 3714
+                    stepCounter: "332"
                 transform: ""
-          - appliedColumnTests: {}
+          - appliedColumnTests:
+              hasNull: true
             columnReference:
-              columnCounter: 3571
-              stepCounter: "323"
+              columnCounter: 3779
+              stepCounter: "336"
             dataType: NUMBER(38,0)
             description: ""
             hashColumns: []
@@ -75,13 +64,14 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 804
-                    stepCounter: "86"
+                  - columnCounter: 3715
+                    stepCounter: "332"
                 transform: ""
-          - appliedColumnTests: {}
+          - appliedColumnTests:
+              hasNull: false
             columnReference:
-              columnCounter: 3572
-              stepCounter: "323"
+              columnCounter: 3780
+              stepCounter: "336"
             dataType: NUMBER(38,0)
             description: ""
             hashColumns: []
@@ -90,13 +80,14 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 805
-                    stepCounter: "86"
+                  - columnCounter: 3716
+                    stepCounter: "332"
                 transform: ""
-          - appliedColumnTests: {}
+          - appliedColumnTests:
+              hasNull: false
             columnReference:
-              columnCounter: 3573
-              stepCounter: "323"
+              columnCounter: 3781
+              stepCounter: "336"
             dataType: NUMBER(12,2)
             description: ""
             hashColumns: []
@@ -105,13 +96,14 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 806
-                    stepCounter: "86"
+                  - columnCounter: 3717
+                    stepCounter: "332"
                 transform: ""
-          - appliedColumnTests: {}
+          - appliedColumnTests:
+              hasNull: false
             columnReference:
-              columnCounter: 3574
-              stepCounter: "323"
+              columnCounter: 3782
+              stepCounter: "336"
             dataType: NUMBER(12,2)
             description: ""
             hashColumns: []
@@ -120,13 +112,14 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 807
-                    stepCounter: "86"
+                  - columnCounter: 3718
+                    stepCounter: "332"
                 transform: ""
-          - appliedColumnTests: {}
+          - appliedColumnTests:
+              hasNull: false
             columnReference:
-              columnCounter: 3575
-              stepCounter: "323"
+              columnCounter: 3783
+              stepCounter: "336"
             dataType: NUMBER(12,2)
             description: ""
             hashColumns: []
@@ -135,13 +128,14 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 808
-                    stepCounter: "86"
+                  - columnCounter: 3719
+                    stepCounter: "332"
                 transform: ""
-          - appliedColumnTests: {}
+          - appliedColumnTests:
+              hasNull: false
             columnReference:
-              columnCounter: 3576
-              stepCounter: "323"
+              columnCounter: 3784
+              stepCounter: "336"
             dataType: NUMBER(12,2)
             description: ""
             hashColumns: []
@@ -150,13 +144,14 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 809
-                    stepCounter: "86"
+                  - columnCounter: 3720
+                    stepCounter: "332"
                 transform: ""
-          - appliedColumnTests: {}
+          - appliedColumnTests:
+              hasNull: false
             columnReference:
-              columnCounter: 3577
-              stepCounter: "323"
+              columnCounter: 3785
+              stepCounter: "336"
             dataType: VARCHAR(1)
             description: ""
             hashColumns: []
@@ -165,13 +160,14 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 810
-                    stepCounter: "86"
+                  - columnCounter: 3721
+                    stepCounter: "332"
                 transform: ""
-          - appliedColumnTests: {}
+          - appliedColumnTests:
+              hasNull: false
             columnReference:
-              columnCounter: 3578
-              stepCounter: "323"
+              columnCounter: 3786
+              stepCounter: "336"
             dataType: VARCHAR(1)
             description: ""
             hashColumns: []
@@ -180,13 +176,14 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 811
-                    stepCounter: "86"
+                  - columnCounter: 3722
+                    stepCounter: "332"
                 transform: ""
-          - appliedColumnTests: {}
+          - appliedColumnTests:
+              hasNull: false
             columnReference:
-              columnCounter: 3579
-              stepCounter: "323"
+              columnCounter: 3787
+              stepCounter: "336"
             dataType: DATE
             description: ""
             hashColumns: []
@@ -195,13 +192,14 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 812
-                    stepCounter: "86"
+                  - columnCounter: 3723
+                    stepCounter: "332"
                 transform: ""
-          - appliedColumnTests: {}
+          - appliedColumnTests:
+              hasNull: false
             columnReference:
-              columnCounter: 3580
-              stepCounter: "323"
+              columnCounter: 3788
+              stepCounter: "336"
             dataType: DATE
             description: ""
             hashColumns: []
@@ -210,13 +208,14 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 813
-                    stepCounter: "86"
+                  - columnCounter: 3724
+                    stepCounter: "332"
                 transform: ""
-          - appliedColumnTests: {}
+          - appliedColumnTests:
+              hasNull: false
             columnReference:
-              columnCounter: 3581
-              stepCounter: "323"
+              columnCounter: 3789
+              stepCounter: "336"
             dataType: DATE
             description: ""
             hashColumns: []
@@ -225,13 +224,14 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 814
-                    stepCounter: "86"
+                  - columnCounter: 3725
+                    stepCounter: "332"
                 transform: ""
-          - appliedColumnTests: {}
+          - appliedColumnTests:
+              hasNull: false
             columnReference:
-              columnCounter: 3582
-              stepCounter: "323"
+              columnCounter: 3790
+              stepCounter: "336"
             dataType: VARCHAR(25)
             description: ""
             hashColumns: []
@@ -240,13 +240,14 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 815
-                    stepCounter: "86"
+                  - columnCounter: 3726
+                    stepCounter: "332"
                 transform: ""
-          - appliedColumnTests: {}
+          - appliedColumnTests:
+              hasNull: false
             columnReference:
-              columnCounter: 3583
-              stepCounter: "323"
+              columnCounter: 3791
+              stepCounter: "336"
             dataType: VARCHAR(10)
             description: ""
             hashColumns: []
@@ -255,13 +256,14 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 816
-                    stepCounter: "86"
+                  - columnCounter: 3727
+                    stepCounter: "332"
                 transform: ""
-          - appliedColumnTests: {}
+          - appliedColumnTests:
+              hasNull: false
             columnReference:
-              columnCounter: 3584
-              stepCounter: "323"
+              columnCounter: 3792
+              stepCounter: "336"
             dataType: VARCHAR(44)
             description: ""
             hashColumns: []
@@ -270,23 +272,20 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 817
-                    stepCounter: "86"
+                  - columnCounter: 3728
+                    stepCounter: "332"
                 transform: ""
         cteString: ""
-        enabledColumnTestIDs: []
+        enabledColumnTestIDs:
+          - hasNull
         sourceMapping:
-          - aliases:
-              LINEITEM: "86"
-            customSQL:
+          - customSQL:
               customSQL: ""
             dependencies:
               - locationName: SOURCE
                 nodeName: LINEITEM
             join:
-              joinCondition: |+
-                FROM {{ ref('SOURCE', 'LINEITEM') }} "LINEITEM"
-
+              joinCondition: FROM {{ ref('SOURCE', 'LINEITEM') }} "LINEITEM"
             name: STG_LINEITEM
             noLinkRefs: []
       name: STG_LINEITEM
@@ -294,4 +293,4 @@ steps:
       schema: ""
       sqlType: Stage
       type: sql
-    stepCounter: "323"
+    stepCounter: "336"
