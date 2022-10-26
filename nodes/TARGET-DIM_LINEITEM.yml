@@ -15,7 +15,21 @@ steps:
       locationName: TARGET
       materializationType: table
       metadata:
-        appliedNodeTests: []
+        appliedNodeTests:
+          - continueOnFailure: true
+            description: ""
+            name: Test
+            runOrder: Before
+            templateString: |-
+              SELECT
+                "DIM_LINEITEM_KEY",
+                COUNT(*)
+              FROM
+                "JUSTIN_EDW"."DEV_EDW"."STG_LINEITEM"
+              GROUP BY
+                "DIM_LINEITEM_KEY"
+              HAVING
+                COUNT(*) > 1
         columns:
           - acceptedValues:
               strictMatch: true
