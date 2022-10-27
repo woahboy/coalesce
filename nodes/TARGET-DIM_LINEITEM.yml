@@ -15,21 +15,7 @@ steps:
       locationName: TARGET
       materializationType: table
       metadata:
-        appliedNodeTests:
-          - continueOnFailure: true
-            description: ""
-            name: Test
-            runOrder: Before
-            templateString: |-
-              SELECT
-                "DIM_LINEITEM_KEY",
-                COUNT(*)
-              FROM
-                "JUSTIN_EDW"."DEV_EDW"."STG_LINEITEM"
-              GROUP BY
-                "DIM_LINEITEM_KEY"
-              HAVING
-                COUNT(*) > 1
+        appliedNodeTests: []
         columns:
           - acceptedValues:
               strictMatch: true
@@ -439,6 +425,6 @@ steps:
       name: DIM_LINEITEM
       overrideSQL: false
       schema: ""
-      sqlType: "19"
+      sqlType: Dimension
       type: sql
     stepCounter: "340"
