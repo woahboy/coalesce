@@ -1514,6 +1514,62 @@ stepTypes:
                 
     name: Copy of Fact
     version: 1
+  StepType-22:
+    id: "22"
+    isDisabled: false
+    metadata:
+      defaultStorageLocation: TARGET
+      error: null
+      nodeMetadataSpec: |-
+        capitalized: CDC Stream
+        short: "STR"
+        tagColor: lavender
+        plural: CDC Streams
+
+        config:
+        - groupName: Options
+          items:
+            - type: toggleButton
+              attributeName: appendOnly
+              displayName: Append Only
+              default: false
+            - type: toggleButton
+              attributeName: initialRows
+              displayName: Show Initial Rows
+              default: false
+
+        systemColumns:
+        - displayName: "METADATA$ACTION"
+          transform: "METADATA$ACTION"
+          dataType: STRING
+          placement: end
+          attributeName: isStreamMetadataAction
+          description: Indicates the DML operation (INSERT, DELETE) recorded.
+        - displayName: "METADATA$ISUPDATE"
+          transform: "METADATA$ISUPDATE"
+          dataType: STRING
+          placement: end
+          attributeName: isStreamMetadataIsUpdate
+          description: Indicates whether the operation was part of an UPDATE statement.
+        - displayName: "METADATA$ROW_ID"
+          transform: "METADATA$ROW_ID"
+          dataType: STRING
+          placement: end
+          attributeName: isStreamMetadataRowId
+          description: Specifies the unique and immutable ID for the row, which can be used to track changes to specific rows over time.
+      templates:
+        create:
+          templateString: |-
+            {{ stage('Create Stream') }}
+            CREATE OR REPLACE STREAM {{ ref_no_link(node.location.name, node.name) }}
+            ON TABLE {{ ref(sources[0].dependencies[0].node.location.name, sources[0].dependencies[0].node.name) }}
+            APPEND_ONLY = {%- if config.appendOnly %} TRUE {% else %} FALSE {% endif %}
+            SHOW_INITIAL_ROWS ={%- if config.initialRows %} TRUE {% else %} FALSE {% endif %}
+            COMMENT = 'CDC Stream on {{ ref(node.location.name, sources[0].dependencies[0].node.name) }}'
+        run:
+          templateString: n/a
+    name: CDC Stream
+    version: 1
   StepType-4:
     id: "4"
     isDisabled: false
@@ -3256,7 +3312,7 @@ stepTypes:
     id: COALESCE-MISC::7
     isDisabled: false
     metadata:
-      defaultStorageLocation: null
+      defaultStorageLocation: TARGET
       error: null
       nodeMetadataSpec: |-
         capitalized: CDC Table
