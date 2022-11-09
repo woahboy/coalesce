@@ -15,7 +15,12 @@ steps:
       locationName: TARGET
       materializationType: table
       metadata:
-        appliedNodeTests: []
+        appliedNodeTests:
+          - continueOnFailure: true
+            description: ""
+            name: Test
+            runOrder: After
+            templateString: ""
         columns:
           - acceptedValues:
               strictMatch: true
@@ -413,7 +418,9 @@ steps:
         enabledColumnTestIDs:
           - isDistinct
         sourceMapping:
-          - customSQL:
+          - aliases:
+              STG_LINEITEM: "336"
+            customSQL:
               customSQL: ""
             dependencies:
               - locationName: TARGET
