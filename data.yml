@@ -1603,14 +1603,14 @@ stepTypes:
           description: Specifies the unique and immutable ID for the row, which can be used to track changes to specific rows over time.
       templates:
         create:
-          templateString: |-
+          templateString: |
             {% if currentState != undefined and desiredState == undefined %}
 
                 {{ stage('Drop Stream') }}
                 DROP STREAM IF EXISTS {{ ref_no_link(currentState.node.location.name, currentState.node.name) }}
 
             {% else %}
-                
+
                 {{ stage('Create Stream') }}
 
             CREATE OR REPLACE STREAM {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }}
