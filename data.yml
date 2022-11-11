@@ -1604,12 +1604,22 @@ stepTypes:
       templates:
         create:
           templateString: |-
-            {{ stage('Create Stream') }}
-            CREATE OR REPLACE STREAM {{ ref_no_link(node.location.name, node.name) }}
-            ON TABLE {{ ref(sources[0].dependencies[0].node.location.name, sources[0].dependencies[0].node.name) }}
-            APPEND_ONLY = {%- if config.appendOnly %} TRUE {% else %} FALSE {% endif %}
-            SHOW_INITIAL_ROWS ={%- if config.initialRows %} TRUE {% else %} FALSE {% endif %}
-            COMMENT = 'CDC Stream on {{ ref(node.location.name, sources[0].dependencies[0].node.name) }}'
+            {% if currentState != undefined and desiredState == undefined %}
+
+                {{ stage('Drop Stream') }}
+                DROP STREAM IF EXISTS {{ ref_no_link(currentState.node.location.name, currentState.node.name) }}
+
+            {% else %}
+                
+                {{ stage('Create Stream') }}
+
+            CREATE OR REPLACE STREAM {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }}
+            ON TABLE {{ ref(desiredState.sources[0].dependencies[0].node.location.name, desiredState.sources[0].dependencies[0].node.name) }}
+            APPEND_ONLY = {%- if desiredState.config.appendOnly %} TRUE {% else %} FALSE {% endif %}
+            SHOW_INITIAL_ROWS ={%- if desiredState.config.initialRows %} TRUE {% else %} FALSE {% endif %}
+            COMMENT = 'CDC Stream on {{ ref(desiredState.node.location.name, desiredState.sources[0].dependencies[0].node.name) }}'
+
+            {% endif %}
         run:
           templateString: n/a
     name: CDC Stream
