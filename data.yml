@@ -1624,6 +1624,187 @@ stepTypes:
           templateString: n/a
     name: CDC Stream
     version: 1
+  StepType-23:
+    id: "23"
+    isDisabled: false
+    metadata:
+      defaultStorageLocation: null
+      error: null
+      nodeMetadataSpec: |-
+        capitalized: New Type
+        short: NEW
+        tagColor: gray
+        plural: New Types
+      templates:
+        create:
+          templateString: ""
+        run:
+          templateString: |-
+            {% if node.materializationType == 'table' %}
+
+                {% if config.preSQL %}
+
+                    {{ stage('Pre-SQL') }}
+
+                    {{ config.preSQL }}
+
+                {% endif %}
+
+             
+
+                {{ stage('Insert New Rows') }}
+
+             
+
+                
+
+                DECLARE
+
+                max_landed_at timestamp;
+
+             
+            {% if node.materializationType == 'table' %}
+
+                {% if config.preSQL %}
+
+                    {{ stage('Pre-SQL') }}
+
+                    {{ config.preSQL }}
+
+                {% endif %}
+
+             
+
+                {{ stage('Insert New Rows') }}
+
+             
+
+                
+
+                DECLARE
+
+                max_landed_at timestamp;
+
+             
+
+                max_landed_at :=   (SELECT
+
+                                    IFNULL(MAX("LANDED_AT"),CAST('01-Jan-1800' AS TIMESTAMP))
+
+                                    FROM {{ ref_no_link(node.location.name, node.name) }});
+
+                
+
+             
+
+                INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
+
+                (
+
+                    {% for col in columns %}
+
+                        {{col.name}}
+
+                        {%- if not loop.last -%}, {% endif %}
+
+                    {% endfor %}    
+
+                )
+
+             
+
+                    {% for source in sources %}
+
+                        SELECT DISTINCT
+
+                        {% for col in source.columns %}
+
+                        {{ get_source_transform(col) }} AS "{{ col.name }}"
+
+                        {%- if not loop.last -%}    ,{% endif %}            
+
+                        {% endfor %}
+
+                        {{ source.join }}
+
+                
+
+                    {% endfor %};
+
+
+
+
+                {% if config.postSQL %}
+
+                    {{ stage('Post-SQL') }}
+
+                    {{ config.postSQL }}
+
+                {% endif %}
+
+             
+
+            {% endif %}
+                max_landed_at :=   (SELECT
+
+                                    IFNULL(MAX("LANDED_AT"),CAST('01-Jan-1800' AS TIMESTAMP))
+
+                                    FROM {{ ref_no_link(node.location.name, node.name) }});
+
+                
+
+             
+
+                INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
+
+                (
+
+                    {% for col in columns %}
+
+                        {{col.name}}
+
+                        {%- if not loop.last -%}, {% endif %}
+
+                    {% endfor %}    
+
+                )
+
+             
+
+                    {% for source in sources %}
+
+                        SELECT DISTINCT
+
+                        {% for col in source.columns %}
+
+                        {{ get_source_transform(col) }} AS "{{ col.name }}"
+
+                        {%- if not loop.last -%}    ,{% endif %}            
+
+                        {% endfor %}
+
+                        {{ source.join }}
+
+                
+
+                    {% endfor %};
+
+
+
+
+                {% if config.postSQL %}
+
+                    {{ stage('Post-SQL') }}
+
+                    {{ config.postSQL }}
+
+                {% endif %}
+
+             
+
+            {% endif %}
+    name: Non-Historized Link
+    version: 1
   StepType-4:
     id: "4"
     isDisabled: false
