@@ -30,7 +30,7 @@ macros:
       {%- macro even_odd(column) -%}
           CASE WHEN MOD({{ column }}, 2) = 0 THEN 'EVEN' ELSE 'ODD' END
       {%- endmacro %}
-      
+
       {%- macro insert_audit_row() -%}
       INSERT INTO
         "JUSTIN_EDW"."DEV_EDW"."ETL_BATCH" (
@@ -51,7 +51,7 @@ macros:
         CURRENT_TIMESTAMP() 
         FROM counter
       {%- endmacro %}
-      
+
       {%- macro update_audit_row() -%}
       UPDATE 
         "JUSTIN_EDW"."DEV_EDW"."ETL_BATCH" 
