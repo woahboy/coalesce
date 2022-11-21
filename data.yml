@@ -1581,8 +1581,6 @@ stepTypes:
         tagColor: gray
         plural: Streams
 
-        deployStrategy: advanced
-
         config:
         - groupName: "Pre/Post SQL"
           items:
@@ -1606,19 +1604,9 @@ stepTypes:
       templates:
         create:
           templateString: |-
-            {% if currentState != undefined and desiredState == undefined %}
-
-                {{ stage('Drop Stream') }}
-                DROP STREAM IF EXISTS {{ ref_no_link(currentState.node.location.name, currentState.node.name) }}
-
-            {% else %}
-
-            {{ stage('Create Stream') }}  
-            CREATE OR REPLACE STREAM 
-                {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }} 
-                ON TABLE {{ ref(desiredState.sources[0].dependencies[0].node.location.name, desiredState.sources[0].dependencies[0].node.name) }}
-
-            {% endif %}
+            CREATE OR REPLACE STREAM
+                {{ ref(node.location.name, node.name) }}
+                ON TABLE {{ ref(sources[0].dependencies[0].node.location.name, sources[0].dependencies[0].node.name) }}
         run:
           templateString: ""
     name: STREAM
