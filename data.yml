@@ -30,7 +30,7 @@ macros:
       {%- macro even_odd(column) -%}
           CASE WHEN MOD({{ column }}, 2) = 0 THEN 'EVEN' ELSE 'ODD' END
       {%- endmacro %}
-      
+
       {%- macro insert_audit_row() -%}
       INSERT INTO
         "JUSTIN_EDW"."DEV_EDW"."ETL_BATCH" (
@@ -51,7 +51,7 @@ macros:
         CURRENT_TIMESTAMP() 
         FROM counter
       {%- endmacro %}
-      
+
       {%- macro update_audit_row() -%}
       UPDATE 
         "JUSTIN_EDW"."DEV_EDW"."ETL_BATCH" 
@@ -132,6 +132,19 @@ packages:
     version: https://github.com/Coalesce-Software-Inc/packages.git#misc_nodes
     versionInfo:
       commit: 615c2a31a28562637cbdb9b4c8dcab699fe7589a
+  COALESCE-PACKAGES:
+    addedBy: Gn35Qy5tl9UFow74JhiUnncXrPq2
+    createdAt:
+      nanoseconds: 656000000
+      seconds: 1669060019
+    id: COALESCE-PACKAGES
+    manifest:
+      macros: {}
+      stepTypes: {}
+    status: added
+    version: https://github.com/Coalesce-Software-Inc/packages.git#develop
+    versionInfo:
+      commit: d74e6df0671d4cc9d7e68ba8d69233b206ff8cb1
 projects: {}
 stepTypes:
   StepType-17:
@@ -870,7 +883,7 @@ stepTypes:
     version: 1
   StepType-20:
     id: "20"
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: null
       error: null
@@ -1556,9 +1569,53 @@ stepTypes:
                 
     name: Copy of Fact
     version: 1
+  StepType-24:
+    id: "24"
+    isDisabled: false
+    metadata:
+      defaultStorageLocation: TARGET
+      error: null
+      nodeMetadataSpec: |-
+        capitalized: Stream
+        short: STREAM
+        tagColor: gray
+        plural: Streams
+
+        config:
+        - groupName: 'Create As'
+          items:  
+          - type: materializationSelector
+            default: stream
+            options: 
+            - stream
+
+        - groupName: "Pre/Post SQL"
+          items: 
+          - displayName: Pre-SQL
+            attributeName: preSQL
+            type: textBox
+            syntax: sql
+            isRequired: false
+
+          - displayName: Post-SQL
+            attributeName: postSQL
+            type: textBox
+            syntax: sql
+            isRequired: false
+      templates:
+        create:
+          templateString: |
+            {{ stage('Create Stream') }}  
+            CREATE OR REPLACE STREAM 
+                {{ ref(node.location.name, node.name) }} 
+                ON TABLE {{ ref(sources[0].dependencies[0].node.location.name, sources[0].dependencies[0].node.name) }}
+        run:
+          templateString: ""
+    name: STREAM
+    version: 1
   StepType-4:
     id: "4"
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: null
       error: null
@@ -1876,7 +1933,7 @@ stepTypes:
     version: 1
   StepType-COALESCE-DATA_VAULT::1:
     id: COALESCE-DATA_VAULT::1
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: null
       error: null
@@ -2005,7 +2062,7 @@ stepTypes:
     version: 1
   StepType-COALESCE-DATA_VAULT::2:
     id: COALESCE-DATA_VAULT::2
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: null
       error: null
@@ -2134,7 +2191,7 @@ stepTypes:
     version: 1
   StepType-COALESCE-DATA_VAULT::3:
     id: COALESCE-DATA_VAULT::3
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: null
       error: null
@@ -2259,7 +2316,7 @@ stepTypes:
     version: 1
   StepType-COALESCE-DATA_VAULT::4:
     id: COALESCE-DATA_VAULT::4
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: null
       error: null
@@ -2384,7 +2441,7 @@ stepTypes:
     version: 1
   StepType-COALESCE-DATA_VAULT::5:
     id: COALESCE-DATA_VAULT::5
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: null
       error: null
@@ -2516,7 +2573,7 @@ stepTypes:
     version: 1
   StepType-COALESCE-DATA_VAULT::6:
     id: COALESCE-DATA_VAULT::6
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: null
       error: null
@@ -2642,7 +2699,7 @@ stepTypes:
     version: 1
   StepType-COALESCE-DATA_VAULT::7:
     id: COALESCE-DATA_VAULT::7
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: null
       error: null
@@ -2719,7 +2776,7 @@ stepTypes:
     version: 1
   StepType-COALESCE-MISC::10:
     id: COALESCE-MISC::10
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: null
       error: null
@@ -3149,7 +3206,7 @@ stepTypes:
     version: 1
   StepType-COALESCE-MISC::2:
     id: COALESCE-MISC::2
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: null
       error: null
@@ -3296,7 +3353,7 @@ stepTypes:
     version: 1
   StepType-COALESCE-MISC::7:
     id: COALESCE-MISC::7
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: null
       error: null
@@ -3536,7 +3593,7 @@ stepTypes:
     version: 1
   StepType-COALESCE-MISC::8:
     id: COALESCE-MISC::8
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: null
       error: null
@@ -3708,7 +3765,7 @@ stepTypes:
     version: 1
   StepType-COALESCE-MISC::9:
     id: COALESCE-MISC::9
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: null
       error: null
