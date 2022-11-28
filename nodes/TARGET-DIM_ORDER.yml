@@ -47,8 +47,8 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 2571
-                    stepCounter: "263"
+                  - columnCounter: 4121
+                    stepCounter: "363"
                 transform: ""
           - columnReference:
               columnCounter: 2960
@@ -62,8 +62,8 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 2572
-                    stepCounter: "263"
+                  - columnCounter: 4122
+                    stepCounter: "363"
                 transform: ""
           - columnReference:
               columnCounter: 2961
@@ -76,8 +76,8 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 2573
-                    stepCounter: "263"
+                  - columnCounter: 4123
+                    stepCounter: "363"
                 transform: ""
           - columnReference:
               columnCounter: 2962
@@ -90,8 +90,8 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 2574
-                    stepCounter: "263"
+                  - columnCounter: 4124
+                    stepCounter: "363"
                 transform: ""
           - columnReference:
               columnCounter: 2963
@@ -104,8 +104,8 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 2575
-                    stepCounter: "263"
+                  - columnCounter: 4125
+                    stepCounter: "363"
                 transform: ""
           - columnReference:
               columnCounter: 2964
@@ -118,8 +118,8 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 2576
-                    stepCounter: "263"
+                  - columnCounter: 4126
+                    stepCounter: "363"
                 transform: ""
           - columnReference:
               columnCounter: 2965
@@ -132,8 +132,8 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 2577
-                    stepCounter: "263"
+                  - columnCounter: 4127
+                    stepCounter: "363"
                 transform: ""
           - columnReference:
               columnCounter: 2966
@@ -146,8 +146,8 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 2578
-                    stepCounter: "263"
+                  - columnCounter: 4128
+                    stepCounter: "363"
                 transform: ""
           - columnReference:
               columnCounter: 2967
@@ -160,8 +160,8 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 2579
-                    stepCounter: "263"
+                  - columnCounter: 4129
+                    stepCounter: "363"
                 transform: ""
           - columnReference:
               columnCounter: 2968
@@ -173,9 +173,7 @@ steps:
             name: SYSTEM_VERSION
             nullable: true
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2580
-                    stepCounter: "263"
+              - columnReferences: []
                 transform: ""
           - columnReference:
               columnCounter: 2969
@@ -187,9 +185,7 @@ steps:
             name: SYSTEM_CURRENT_FLAG
             nullable: true
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2581
-                    stepCounter: "263"
+              - columnReferences: []
                 transform: ""
           - columnReference:
               columnCounter: 2970
@@ -201,10 +197,8 @@ steps:
             name: SYSTEM_START_DATE
             nullable: true
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2582
-                    stepCounter: "263"
-                transform: ""
+              - columnReferences: []
+                transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
           - columnReference:
               columnCounter: 2971
               stepCounter: "286"
@@ -215,10 +209,8 @@ steps:
             name: SYSTEM_END_DATE
             nullable: true
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2583
-                    stepCounter: "263"
-                transform: ""
+              - columnReferences: []
+                transform: CAST('2999-12-31 00:00:00' AS TIMESTAMP)
           - columnReference:
               columnCounter: 2972
               stepCounter: "286"
@@ -229,10 +221,8 @@ steps:
             name: SYSTEM_CREATE_DATE
             nullable: true
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2584
-                    stepCounter: "263"
-                transform: ""
+              - columnReferences: []
+                transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
           - columnReference:
               columnCounter: 2973
               stepCounter: "286"
@@ -243,20 +233,20 @@ steps:
             name: SYSTEM_UPDATE_DATE
             nullable: true
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2585
-                    stepCounter: "263"
-                transform: ""
+              - columnReferences: []
+                transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
-          - customSQL:
+          - aliases:
+              STG_ORDERS: "363"
+            customSQL:
               customSQL: ""
             dependencies:
               - locationName: TARGET
-                nodeName: STG_DIM_ORDER_10_GET
+                nodeName: STG_ORDERS
             join:
-              joinCondition: FROM {{ ref('TARGET', 'STG_DIM_ORDER_10_GET') }} "STG_DIM_ORDER_10_GET"
+              joinCondition: FROM {{ ref('TARGET', 'STG_ORDERS') }} "STG_ORDERS"
             name: DIM_ORDER
             noLinkRefs: []
       name: DIM_ORDER
