@@ -1,5 +1,5 @@
 steps:
-  ORDERS-422:
+  CUSTOMER-432:
     operation:
       database: ""
       dataset: ""
@@ -13,13 +13,13 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 4677
-              stepCounter: 422
+              columnCounter: 4817
+              stepCounter: 432
             config: {}
             dataType: NUMBER(38,0)
             defaultValue: ""
             description: ""
-            name: O_ORDERKEY
+            name: C_CUSTKEY
             nullable: false
             primaryKey: false
             uniqueKey: false
@@ -28,13 +28,43 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 4678
-              stepCounter: 422
+              columnCounter: 4818
+              stepCounter: 432
+            config: {}
+            dataType: VARCHAR(25)
+            defaultValue: ""
+            description: ""
+            name: C_NAME
+            nullable: false
+            primaryKey: false
+            uniqueKey: false
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 4819
+              stepCounter: 432
+            config: {}
+            dataType: VARCHAR(40)
+            defaultValue: ""
+            description: ""
+            name: C_ADDRESS
+            nullable: false
+            primaryKey: false
+            uniqueKey: false
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 4820
+              stepCounter: 432
             config: {}
             dataType: NUMBER(38,0)
             defaultValue: ""
             description: ""
-            name: O_CUSTKEY
+            name: C_NATIONKEY
             nullable: false
             primaryKey: false
             uniqueKey: false
@@ -43,13 +73,13 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 4679
-              stepCounter: 422
+              columnCounter: 4821
+              stepCounter: 432
             config: {}
-            dataType: VARCHAR(1)
+            dataType: VARCHAR(15)
             defaultValue: ""
             description: ""
-            name: O_ORDERSTATUS
+            name: C_PHONE
             nullable: false
             primaryKey: false
             uniqueKey: false
@@ -58,13 +88,13 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 4680
-              stepCounter: 422
+              columnCounter: 4822
+              stepCounter: 432
             config: {}
             dataType: NUMBER(12,2)
             defaultValue: ""
             description: ""
-            name: O_TOTALPRICE
+            name: C_ACCTBAL
             nullable: false
             primaryKey: false
             uniqueKey: false
@@ -73,14 +103,14 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 4681
-              stepCounter: 422
+              columnCounter: 4823
+              stepCounter: 432
             config: {}
-            dataType: DATE
+            dataType: VARCHAR(10)
             defaultValue: ""
             description: ""
-            name: O_ORDERDATE
-            nullable: false
+            name: C_MKTSEGMENT
+            nullable: true
             primaryKey: false
             uniqueKey: false
           - acceptedValues:
@@ -88,66 +118,21 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 4682
-              stepCounter: 422
+              columnCounter: 4824
+              stepCounter: 432
             config: {}
-            dataType: VARCHAR(15)
+            dataType: VARCHAR(117)
             defaultValue: ""
             description: ""
-            name: O_ORDERPRIORITY
-            nullable: false
-            primaryKey: false
-            uniqueKey: false
-          - acceptedValues:
-              strictMatch: true
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: 4683
-              stepCounter: 422
-            config: {}
-            dataType: VARCHAR(15)
-            defaultValue: ""
-            description: ""
-            name: O_CLERK
-            nullable: false
-            primaryKey: false
-            uniqueKey: false
-          - acceptedValues:
-              strictMatch: true
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: 4684
-              stepCounter: 422
-            config: {}
-            dataType: NUMBER(38,0)
-            defaultValue: ""
-            description: ""
-            name: O_SHIPPRIORITY
-            nullable: false
-            primaryKey: false
-            uniqueKey: false
-          - acceptedValues:
-              strictMatch: true
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: 4685
-              stepCounter: 422
-            config: {}
-            dataType: VARCHAR(79)
-            defaultValue: ""
-            description: ""
-            name: O_COMMENT
-            nullable: false
+            name: C_COMMENT
+            nullable: true
             primaryKey: false
             uniqueKey: false
         join:
-          joinCondition: FROM {{ ref('SOURCE', 'ORDERS') }}
-      name: ORDERS
+          joinCondition: FROM {{ ref('SOURCE', 'CUSTOMER') }}
+      name: CUSTOMER
       schema: ""
       sqlType: Source
-      table: ORDERS
+      table: CUSTOMER
       type: sourceInput
-    stepCounter: "422"
+    stepCounter: "432"
