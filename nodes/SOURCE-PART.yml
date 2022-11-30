@@ -1,5 +1,5 @@
 steps:
-  CUSTOMER-432:
+  PART-454:
     operation:
       database: ""
       dataset: ""
@@ -13,13 +13,13 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 4817
-              stepCounter: 432
+              columnCounter: 5059
+              stepCounter: 454
             config: {}
             dataType: NUMBER(38,0)
             defaultValue: ""
             description: ""
-            name: C_CUSTKEY
+            name: P_PARTKEY
             nullable: false
             primaryKey: false
             uniqueKey: false
@@ -28,13 +28,28 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 4818
-              stepCounter: 432
+              columnCounter: 5060
+              stepCounter: 454
+            config: {}
+            dataType: VARCHAR(55)
+            defaultValue: ""
+            description: ""
+            name: P_NAME
+            nullable: false
+            primaryKey: false
+            uniqueKey: false
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 5061
+              stepCounter: 454
             config: {}
             dataType: VARCHAR(25)
             defaultValue: ""
             description: ""
-            name: C_NAME
+            name: P_MFGR
             nullable: false
             primaryKey: false
             uniqueKey: false
@@ -43,74 +58,14 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 4819
-              stepCounter: 432
-            config: {}
-            dataType: VARCHAR(40)
-            defaultValue: ""
-            description: ""
-            name: C_ADDRESS
-            nullable: false
-            primaryKey: false
-            uniqueKey: false
-          - acceptedValues:
-              strictMatch: true
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: 4820
-              stepCounter: 432
-            config: {}
-            dataType: NUMBER(38,0)
-            defaultValue: ""
-            description: ""
-            name: C_NATIONKEY
-            nullable: false
-            primaryKey: false
-            uniqueKey: false
-          - acceptedValues:
-              strictMatch: true
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: 4821
-              stepCounter: 432
-            config: {}
-            dataType: VARCHAR(15)
-            defaultValue: ""
-            description: ""
-            name: C_PHONE
-            nullable: false
-            primaryKey: false
-            uniqueKey: false
-          - acceptedValues:
-              strictMatch: true
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: 4822
-              stepCounter: 432
-            config: {}
-            dataType: NUMBER(12,2)
-            defaultValue: ""
-            description: ""
-            name: C_ACCTBAL
-            nullable: false
-            primaryKey: false
-            uniqueKey: false
-          - acceptedValues:
-              strictMatch: true
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: 4823
-              stepCounter: 432
+              columnCounter: 5062
+              stepCounter: 454
             config: {}
             dataType: VARCHAR(10)
             defaultValue: ""
             description: ""
-            name: C_MKTSEGMENT
-            nullable: true
+            name: P_BRAND
+            nullable: false
             primaryKey: false
             uniqueKey: false
           - acceptedValues:
@@ -118,21 +73,81 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 4824
-              stepCounter: 432
+              columnCounter: 5063
+              stepCounter: 454
             config: {}
-            dataType: VARCHAR(117)
+            dataType: VARCHAR(25)
             defaultValue: ""
             description: ""
-            name: C_COMMENT
+            name: P_TYPE
+            nullable: false
+            primaryKey: false
+            uniqueKey: false
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 5064
+              stepCounter: 454
+            config: {}
+            dataType: NUMBER(38,0)
+            defaultValue: ""
+            description: ""
+            name: P_SIZE
+            nullable: false
+            primaryKey: false
+            uniqueKey: false
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 5065
+              stepCounter: 454
+            config: {}
+            dataType: VARCHAR(10)
+            defaultValue: ""
+            description: ""
+            name: P_CONTAINER
+            nullable: false
+            primaryKey: false
+            uniqueKey: false
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 5066
+              stepCounter: 454
+            config: {}
+            dataType: NUMBER(12,2)
+            defaultValue: ""
+            description: ""
+            name: P_RETAILPRICE
+            nullable: false
+            primaryKey: false
+            uniqueKey: false
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 5067
+              stepCounter: 454
+            config: {}
+            dataType: VARCHAR(23)
+            defaultValue: ""
+            description: ""
+            name: P_COMMENT
             nullable: true
             primaryKey: false
             uniqueKey: false
         join:
-          joinCondition: FROM {{ ref('SOURCE', 'CUSTOMER') }}
-      name: CUSTOMER
+          joinCondition: FROM {{ ref('SOURCE', 'PART') }}
+      name: PART
       schema: ""
       sqlType: Source
-      table: CUSTOMER
+      table: PART
       type: sourceInput
-    stepCounter: "432"
+    stepCounter: "454"

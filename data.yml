@@ -1,24 +1,10 @@
 defaultStorageMapping: TARGET
 jobs:
-  Job-6:
+  Job-9:
     excludeSelector: ""
-    id: 6
-    includeSelector: "+{ location: TARGET name: *DIM*}"
-    name: Old Job
-    steps: []
-    subgraphs: []
-  Job-7:
-    excludeSelector: ""
-    id: 7
-    includeSelector: "+{ location: TARGET name: DIM_CUSTOMER_CUSTOMER }"
-    name: DV Job
-    steps: []
-    subgraphs: []
-  Job-8:
-    excludeSelector: ""
-    id: 8
-    includeSelector: ""
-    name: New Job
+    id: 9
+    includeSelector: "+{ location: TARGET name: DIM_SUPPLIER }"
+    name: DIM SUPPLIER LOAD
     steps: []
     subgraphs: []
 locations:
@@ -5809,17 +5795,26 @@ subgraphs:
       - "302"
       - "301"
       - "305"
-      - "429"
+      - "461"
+      - "462"
   Subgraph-14:
     id: 14
     name: Coalesce Demo
     steps:
-      - "432"
       - "433"
       - "435"
       - "437"
       - "438"
       - "439"
+      - 454
+      - 455
+      - 456
+      - "454"
+      - "455"
+      - "456"
+      - "458"
+      - "459"
+      - "460"
   Subgraph-4:
     id: 4
     name: ODS TPC-H
