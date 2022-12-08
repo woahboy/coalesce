@@ -278,7 +278,6 @@ steps:
               DIM_CUSTOMER: "305"
               DIM_ORDER: "286"
               DIM_PART: "287"
-              DIM_SUPPLIER: "300"
               STG_FCT_ORDERLINES_10_GET: "285"
             customSQL:
               customSQL: ""
@@ -290,9 +289,9 @@ steps:
               - locationName: TARGET
                 nodeName: DIM_PART
               - locationName: TARGET
-                nodeName: DIM_SUPPLIER
-              - locationName: TARGET
                 nodeName: DIM_CUSTOMER
+              - locationName: TARGET
+                nodeName: DIM_SUPPLIER
             join:
               joinCondition: |-
                 FROM {{ ref('TARGET', 'STG_FCT_ORDERLINES_10_GET') }} "STG_FCT_ORDERLINES_10_GET"
