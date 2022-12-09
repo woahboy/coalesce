@@ -17,12 +17,28 @@ steps:
       locationName: TARGET
       materializationType: table
       metadata:
-        appliedNodeTests: []
+        appliedNodeTests:
+          - continueOnFailure: true
+            description: ""
+            name: Test
+            runOrder: After
+            templateString: |-
+              SELECT
+                "EmployeeID",
+                COUNT(*)
+              FROM
+                "JUSTIN_EDW"."DEV_EDW"."STG_EMPLOYEEXML"
+              GROUP BY
+                "EmployeeID"
+              HAVING
+                COUNT(*) > 1
         columns:
           - acceptedValues:
               strictMatch: true
               values: []
-            appliedColumnTests: {}
+            appliedColumnTests:
+              hasNull: false
+              isDistinct: false
             columnReference:
               columnCounter: 5516
               stepCounter: "500"
@@ -43,14 +59,16 @@ steps:
           - acceptedValues:
               strictMatch: true
               values: []
-            appliedColumnTests: {}
+            appliedColumnTests:
+              hasNull: true
+              isDistinct: true
             columnReference:
               columnCounter: 5513
               stepCounter: "500"
             config: {}
             dataType: STRING
             description: ""
-            name: employee_employee-id
+            name: EmployeeID
             nullable: true
             sourceColumnReferences:
               - columnReferences:
@@ -60,14 +78,16 @@ steps:
           - acceptedValues:
               strictMatch: true
               values: []
-            appliedColumnTests: {}
+            appliedColumnTests:
+              hasNull: false
+              isDistinct: false
             columnReference:
               columnCounter: 5514
               stepCounter: "500"
             config: {}
             dataType: STRING
             description: ""
-            name: employee_employee-name
+            name: EmployeeName
             nullable: true
             sourceColumnReferences:
               - columnReferences:
@@ -77,14 +97,37 @@ steps:
           - acceptedValues:
               strictMatch: true
               values: []
-            appliedColumnTests: {}
+            appliedColumnTests:
+              hasNull: false
+              isDistinct: false
+            columnReference:
+              columnCounter: 5624
+              stepCounter: "500"
+            config: {}
+            dataType: STRING
+            defaultValue: ""
+            description: ""
+            hashDetails:
+              hashAlgorithm: SHA1
+            hashedColumns:
+              - columnCounter: 5515
+                stepCounter: "500"
+            name: HashDiff
+            nullable: true
+            sourceColumnReferences: []
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests:
+              hasNull: false
+              isDistinct: false
             columnReference:
               columnCounter: 5515
               stepCounter: "500"
             config: {}
             dataType: STRING
             description: ""
-            name: employee_employee-phones_phone
+            name: PhoneNumber
             nullable: true
             sourceColumnReferences:
               - columnReferences:
@@ -92,7 +135,9 @@ steps:
                     stepCounter: "499"
                 transform: "\"COL2_employee_employee-phones_phone\".value::STRING"
         cteString: ""
-        enabledColumnTestIDs: []
+        enabledColumnTestIDs:
+          - hasNull
+          - isDistinct
         sourceMapping:
           - customSQL:
               customSQL: ""

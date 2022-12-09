@@ -1416,7 +1416,7 @@ stepTypes:
     version: 1
   StepType-30:
     id: "30"
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: null
       error: null
@@ -1579,7 +1579,7 @@ stepTypes:
     version: 1
   StepType-31:
     id: "31"
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: null
       error: null
@@ -2700,6 +2700,12 @@ stepTypes:
             isRequired: false
 
         systemColumns:
+        - displayName: 'MULTI_ACTIVE_SEQ'
+          transform: 'SEQ_{{NODE_NAME}}.nextval'
+          dataType: NUMBER
+          placement: end
+          attributeName: isSeqNo
+
         - displayName: "LOAD_DATE"
           transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
           dataType: TIMESTAMP
@@ -2738,13 +2744,17 @@ stepTypes:
             	{{ config.preSQL }}
             {% endif %}
 
+            {{ stage('Create Sequence') }}
+
+                CREATE SEQUENCE IF NOT EXISTS {{ ref_no_link(node.location.name, 'SEQ_' + node.name) }}
+
             {{ stage('Insert New Rows') }}
             INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
             WITH "SAT_CURR_ROWS" AS (
             	/* get current rows from satellite */
             	{% for col in columns if col.isHubHash or col.isChangeHash or col.isMAAttrib %}
             		{%- if loop.first -%}SELECT {% endif %} 
-            		{{col.name}}
+            		"{{col.name}}"
             		{%- if not loop.last -%}, {% endif %}
             		{%- if loop.last %} 
             			FROM {{ ref_no_link(node.location.name, node.name) }} 
@@ -2771,8 +2781,10 @@ stepTypes:
             			{{ get_source_transform(col) }} = "SAT_CURR_ROWS"."{{ col.name }}"
             		{% endfor %}
             	)
-
             	{% endfor %}
+
+            {{ stage('Drop Sequence') }}
+                DROP SEQUENCE IF EXISTS {{ ref_no_link(node.location.name, 'SEQ_' + node.name) }}
 
             {% if config.postSQL %}
             	{{ stage('Post-SQL') }}
