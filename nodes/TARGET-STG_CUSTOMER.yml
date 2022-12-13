@@ -1,5 +1,5 @@
 steps:
-  STG_CUSTOMER-518:
+  STG_CUSTOMER-546:
     operation:
       config:
         insertStrategy: INSERT
@@ -20,8 +20,8 @@ steps:
         appliedNodeTests: []
         columns:
           - columnReference:
-              columnCounter: 5665
-              stepCounter: "518"
+              columnCounter: 5842
+              stepCounter: "546"
             dataType: NUMBER(38,0)
             description: ""
             hashColumns: []
@@ -30,12 +30,12 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 5657
-                    stepCounter: "517"
+                  - columnCounter: 5809
+                    stepCounter: "542"
                 transform: ""
           - columnReference:
-              columnCounter: 5666
-              stepCounter: "518"
+              columnCounter: 5843
+              stepCounter: "546"
             dataType: VARCHAR(25)
             description: ""
             hashColumns: []
@@ -44,12 +44,12 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 5658
-                    stepCounter: "517"
+                  - columnCounter: 5810
+                    stepCounter: "542"
                 transform: ""
           - columnReference:
-              columnCounter: 5667
-              stepCounter: "518"
+              columnCounter: 5844
+              stepCounter: "546"
             dataType: VARCHAR(40)
             description: ""
             hashColumns: []
@@ -58,12 +58,12 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 5659
-                    stepCounter: "517"
+                  - columnCounter: 5811
+                    stepCounter: "542"
                 transform: ""
           - columnReference:
-              columnCounter: 5668
-              stepCounter: "518"
+              columnCounter: 5845
+              stepCounter: "546"
             dataType: NUMBER(38,0)
             description: ""
             hashColumns: []
@@ -72,12 +72,12 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 5660
-                    stepCounter: "517"
+                  - columnCounter: 5812
+                    stepCounter: "542"
                 transform: ""
           - columnReference:
-              columnCounter: 5669
-              stepCounter: "518"
+              columnCounter: 5846
+              stepCounter: "546"
             dataType: VARCHAR(15)
             description: ""
             hashColumns: []
@@ -86,12 +86,12 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 5661
-                    stepCounter: "517"
+                  - columnCounter: 5813
+                    stepCounter: "542"
                 transform: ""
           - columnReference:
-              columnCounter: 5670
-              stepCounter: "518"
+              columnCounter: 5847
+              stepCounter: "546"
             dataType: NUMBER(12,2)
             description: ""
             hashColumns: []
@@ -100,12 +100,12 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 5662
-                    stepCounter: "517"
+                  - columnCounter: 5814
+                    stepCounter: "542"
                 transform: ""
           - columnReference:
-              columnCounter: 5671
-              stepCounter: "518"
+              columnCounter: 5848
+              stepCounter: "546"
             dataType: VARCHAR(10)
             description: ""
             hashColumns: []
@@ -114,12 +114,12 @@ steps:
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 5663
-                    stepCounter: "517"
+                  - columnCounter: 5815
+                    stepCounter: "542"
                 transform: ""
           - columnReference:
-              columnCounter: 5672
-              stepCounter: "518"
+              columnCounter: 5849
+              stepCounter: "546"
             dataType: VARCHAR(117)
             description: ""
             hashColumns: []
@@ -128,23 +128,40 @@ steps:
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 5664
-                    stepCounter: "517"
+                  - columnCounter: 5816
+                    stepCounter: "542"
                 transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 5850
+              stepCounter: "546"
+            config: {}
+            dataType: VARCHAR(50)
+            defaultValue: ""
+            description: ""
+            keyColumnType: None
+            name: RecordSource
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 0
+                    stepCounter: "0"
+                transform: "'{{this}}'"
+            systemColumnType: None
+            transform: ""
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
-          - aliases: {}
-            customSQL:
+          - customSQL:
               customSQL: ""
             dependencies:
               - locationName: SOURCE-1
                 nodeName: CUSTOMER
             join:
-              joinCondition: |-
-                FROM {{ parameters.database }}.{{ parameters.schema }}."CUSTOMER"
-
-                --  {{ ref('SOURCE-1', 'CUSTOMER') }} "CUSTOMER"
+              joinCondition: FROM {{ ref('SOURCE-1', 'CUSTOMER') }} "CUSTOMER"
             name: STG_CUSTOMER
             noLinkRefs: []
       name: STG_CUSTOMER
@@ -152,4 +169,4 @@ steps:
       schema: ""
       sqlType: Stage
       type: sql
-    stepCounter: "518"
+    stepCounter: "546"

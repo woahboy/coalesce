@@ -1,5 +1,5 @@
 steps:
-  SAT_MA_EMPLOYEEXML-541:
+  SAT_MA_EMPLOYEEXML1-544:
     operation:
       config:
         postSQL: ""
@@ -17,8 +17,8 @@ steps:
         appliedNodeTests: []
         columns:
           - columnReference:
-              columnCounter: 5800
-              stepCounter: "541"
+              columnCounter: 5825
+              stepCounter: "544"
             config:
               isHubHash: true
             dataType: STRING
@@ -32,20 +32,80 @@ steps:
                   - columnCounter: 5798
                     stepCounter: "540"
                 transform: ""
+          - columnReference:
+              columnCounter: 5826
+              stepCounter: "544"
+            dataType: NUMBER
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: EmployeeID
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 5795
+                    stepCounter: "540"
+                transform: ""
+          - columnReference:
+              columnCounter: 5827
+              stepCounter: "544"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: Name
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 5796
+                    stepCounter: "540"
+                transform: ""
+          - columnReference:
+              columnCounter: 5828
+              stepCounter: "544"
+            config:
+              isChangeHash: true
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: HashDiff
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 5799
+                    stepCounter: "540"
+                transform: ""
+          - columnReference:
+              columnCounter: 5829
+              stepCounter: "544"
+            config:
+              isMAAttrib: true
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: PhoneNumber
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 5797
+                    stepCounter: "540"
+                transform: ""
           - acceptedValues:
               strictMatch: true
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 5805
-              stepCounter: "541"
+              columnCounter: 5830
+              stepCounter: "544"
             config: {}
             dataType: NUMBER
             defaultValue: ""
             description: ""
             hashColumns: []
             isSeqNo: true
-            name: PhoneSeq
+            name: SAT_MA_EMPLOYEEXML1Seq
             nullable: true
             sourceColumnReferences:
               - columnReferences: []
@@ -55,8 +115,8 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 5806
-              stepCounter: "541"
+              columnCounter: 5831
+              stepCounter: "544"
             config: {}
             dataType: TIMESTAMP
             defaultValue: ""
@@ -73,29 +133,8 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 5808
-              stepCounter: "541"
-            config: {}
-            dataType: TIMESTAMP
-            defaultValue: ""
-            description: ""
-            keyColumnType: None
-            name: LoadEndDate
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 0
-                    stepCounter: "0"
-                transform: ""
-            systemColumnType: None
-            transform: ""
-          - acceptedValues:
-              strictMatch: true
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: 5807
-              stepCounter: "541"
+              columnCounter: 5832
+              stepCounter: "544"
             config: {}
             dataType: VARCHAR
             defaultValue: ""
@@ -107,57 +146,21 @@ steps:
             sourceColumnReferences:
               - columnReferences: []
                 transform: "'Employee.xml'"
-          - columnReference:
-              columnCounter: 5803
-              stepCounter: "541"
-            config:
-              isChangeHash: true
-            dataType: STRING
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: HashDiff
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 5799
-                    stepCounter: "540"
-                transform: ""
-          - columnReference:
-              columnCounter: 5804
-              stepCounter: "541"
-            config:
-              isMAAttrib: true
-            dataType: STRING
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: PhoneNumber
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 5797
-                    stepCounter: "540"
-                transform: ""
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
-          - aliases:
-              STG_EMPLOYEEXML: "540"
-            customSQL:
+          - customSQL:
               customSQL: ""
             dependencies:
               - locationName: TARGET
                 nodeName: STG_EMPLOYEEXML
             join:
               joinCondition: FROM {{ ref('TARGET', 'STG_EMPLOYEEXML') }} "STG_EMPLOYEEXML"
-            name: SAT_MA_EMPLOYEEXML
-            noLinkRefs:
-              - locationName: TARGET
-                nodeName: SEQ_SAT_MA_EMPLOYEEXML
-      name: SAT_MA_EMPLOYEEXML
+            name: SAT_MA_EMPLOYEEXML1
+            noLinkRefs: []
+      name: SAT_MA_EMPLOYEEXML1
       overrideSQL: false
       schema: ""
       sqlType: COALESCE-DATA_VAULT::5
       type: sql
-    stepCounter: "541"
+    stepCounter: "544"
