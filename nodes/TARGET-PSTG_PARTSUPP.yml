@@ -10,7 +10,7 @@ steps:
       deployEnabled: true
       description: ""
       isDataVault: false
-      isMultisource: false
+      isMultisource: true
       locationID: ""
       locationName: TARGET
       materializationType: table
@@ -32,6 +32,8 @@ steps:
                   - columnCounter: 2536
                     stepCounter: "260"
                 transform: ""
+              - columnReferences: []
+                transform: ""
           - columnReference:
               columnCounter: 2544
               stepCounter: "261"
@@ -47,6 +49,8 @@ steps:
                   - columnCounter: 2537
                     stepCounter: "260"
                 transform: ""
+              - columnReferences: []
+                transform: ""
           - columnReference:
               columnCounter: 2545
               stepCounter: "261"
@@ -60,6 +64,8 @@ steps:
               - columnReferences:
                   - columnCounter: 2538
                     stepCounter: "260"
+                transform: ""
+              - columnReferences: []
                 transform: ""
           - columnReference:
               columnCounter: 2546
@@ -75,6 +81,8 @@ steps:
                   - columnCounter: 2539
                     stepCounter: "260"
                 transform: ""
+              - columnReferences: []
+                transform: ""
           - columnReference:
               columnCounter: 2547
               stepCounter: "261"
@@ -89,7 +97,8 @@ steps:
                   - columnCounter: 2540
                     stepCounter: "260"
                 transform: ""
-        cteString: ""
+              - columnReferences: []
+                transform: ""
         enabledColumnTestIDs: []
         sourceMapping:
           - customSQL:
@@ -100,6 +109,13 @@ steps:
             join:
               joinCondition: FROM {{ ref('TARGET', 'V_PARTSUPP') }} "V_PARTSUPP"
             name: PSTG_PARTSUPP
+            noLinkRefs: []
+          - customSQL:
+              customSQL: ""
+            dependencies: []
+            join:
+              joinCondition: ""
+            name: NEW_SOURCE
             noLinkRefs: []
       name: PSTG_PARTSUPP
       overrideSQL: false
