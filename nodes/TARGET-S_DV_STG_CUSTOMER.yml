@@ -1,0 +1,232 @@
+steps:
+  S_DV_STG_CUSTOMER-637:
+    operation:
+      config:
+        postSQL: ""
+        preSQL: ""
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: TARGET
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 6761
+              stepCounter: "637"
+            config:
+              isHubHash: true
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: HashKey
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 6758
+                    stepCounter: "636"
+                transform: ""
+          - columnReference:
+              columnCounter: 6762
+              stepCounter: "637"
+            config:
+              isChangeHash: true
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: HashDiff
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 6759
+                    stepCounter: "636"
+                transform: ""
+          - columnReference:
+              columnCounter: 6763
+              stepCounter: "637"
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_CUSTKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 6748
+                    stepCounter: "636"
+                transform: ""
+          - columnReference:
+              columnCounter: 6764
+              stepCounter: "637"
+            dataType: VARCHAR(25)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 6749
+                    stepCounter: "636"
+                transform: ""
+          - columnReference:
+              columnCounter: 6765
+              stepCounter: "637"
+            dataType: VARCHAR(40)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_ADDRESS
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 6750
+                    stepCounter: "636"
+                transform: ""
+          - columnReference:
+              columnCounter: 6766
+              stepCounter: "637"
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_NATIONKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 6751
+                    stepCounter: "636"
+                transform: ""
+          - columnReference:
+              columnCounter: 6767
+              stepCounter: "637"
+            config:
+              isMAAttrib: true
+            dataType: VARCHAR(15)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_PHONE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 6752
+                    stepCounter: "636"
+                transform: ""
+          - columnReference:
+              columnCounter: 6768
+              stepCounter: "637"
+            dataType: NUMBER(12,2)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_ACCTBAL
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 6753
+                    stepCounter: "636"
+                transform: ""
+          - columnReference:
+              columnCounter: 6769
+              stepCounter: "637"
+            dataType: VARCHAR(10)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_MKTSEGMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 6754
+                    stepCounter: "636"
+                transform: ""
+          - columnReference:
+              columnCounter: 6770
+              stepCounter: "637"
+            dataType: VARCHAR(117)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_COMMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 6755
+                    stepCounter: "636"
+                transform: ""
+          - columnReference:
+              columnCounter: 6771
+              stepCounter: "637"
+            config:
+              isDateSelect: true
+            dataType: TIMESTAMP
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: LOADED_AT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 6760
+                    stepCounter: "636"
+                transform: ""
+          - columnReference:
+              columnCounter: 6772
+              stepCounter: "637"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: RecordSource
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 6756
+                    stepCounter: "636"
+                transform: ""
+          - columnReference:
+              columnCounter: 6773
+              stepCounter: "637"
+            config:
+              isBatch: true
+            dataType: TIMESTAMP
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: LoadDate
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 6757
+                    stepCounter: "636"
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - aliases:
+              DV_STG_CUSTOMER: "636"
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: TARGET
+                nodeName: DV_STG_CUSTOMER
+            join:
+              joinCondition: |-
+                FROM {{ ref('TARGET', 'DV_STG_CUSTOMER') }} "DV_STG_CUSTOMER"
+                WHERE "C_CUSTKEY" = 16460
+            name: S_DV_STG_CUSTOMER
+            noLinkRefs: []
+      name: S_DV_STG_CUSTOMER
+      overrideSQL: false
+      schema: ""
+      sqlType: "33"
+      type: sql
+    stepCounter: "637"

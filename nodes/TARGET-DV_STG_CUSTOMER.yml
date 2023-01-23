@@ -19,13 +19,63 @@ steps:
       metadata:
         appliedNodeTests: []
         columns:
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 6758
+              stepCounter: "636"
+            config: {}
+            dataType: STRING
+            defaultValue: ""
+            description: ""
+            hashDetails:
+              hashAlgorithm: SHA1
+            hashedColumns:
+              - columnCounter: 6748
+                stepCounter: "636"
+            name: HashKey
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 6759
+              stepCounter: "636"
+            config: {}
+            dataType: STRING
+            defaultValue: ""
+            description: ""
+            hashDetails:
+              hashAlgorithm: SHA1
+            hashedColumns:
+              - columnCounter: 6749
+                stepCounter: "636"
+              - columnCounter: 6750
+                stepCounter: "636"
+              - columnCounter: 6751
+                stepCounter: "636"
+              - columnCounter: 6752
+                stepCounter: "636"
+              - columnCounter: 6753
+                stepCounter: "636"
+              - columnCounter: 6754
+                stepCounter: "636"
+              - columnCounter: 6755
+                stepCounter: "636"
+            name: HashDiff
+            nullable: true
+            sourceColumnReferences: []
           - columnReference:
               columnCounter: 6748
               stepCounter: "636"
             dataType: NUMBER(38,0)
             description: ""
-            hashColumns: []
-            hashDetails: null
             name: C_CUSTKEY
             nullable: false
             sourceColumnReferences:
@@ -38,8 +88,6 @@ steps:
               stepCounter: "636"
             dataType: VARCHAR(25)
             description: ""
-            hashColumns: []
-            hashDetails: null
             name: C_NAME
             nullable: false
             sourceColumnReferences:
@@ -52,8 +100,6 @@ steps:
               stepCounter: "636"
             dataType: VARCHAR(40)
             description: ""
-            hashColumns: []
-            hashDetails: null
             name: C_ADDRESS
             nullable: false
             sourceColumnReferences:
@@ -66,8 +112,6 @@ steps:
               stepCounter: "636"
             dataType: NUMBER(38,0)
             description: ""
-            hashColumns: []
-            hashDetails: null
             name: C_NATIONKEY
             nullable: false
             sourceColumnReferences:
@@ -80,8 +124,6 @@ steps:
               stepCounter: "636"
             dataType: VARCHAR(15)
             description: ""
-            hashColumns: []
-            hashDetails: null
             name: C_PHONE
             nullable: false
             sourceColumnReferences:
@@ -94,8 +136,6 @@ steps:
               stepCounter: "636"
             dataType: NUMBER(12,2)
             description: ""
-            hashColumns: []
-            hashDetails: null
             name: C_ACCTBAL
             nullable: false
             sourceColumnReferences:
@@ -108,8 +148,6 @@ steps:
               stepCounter: "636"
             dataType: VARCHAR(10)
             description: ""
-            hashColumns: []
-            hashDetails: null
             name: C_MKTSEGMENT
             nullable: true
             sourceColumnReferences:
@@ -122,8 +160,6 @@ steps:
               stepCounter: "636"
             dataType: VARCHAR(117)
             description: ""
-            hashColumns: []
-            hashDetails: null
             name: C_COMMENT
             nullable: true
             sourceColumnReferences:
@@ -136,13 +172,33 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
+              columnCounter: 6760
+              stepCounter: "636"
+            config: {}
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: ""
+            keyColumnType: None
+            name: LOADED_AT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 0
+                    stepCounter: "0"
+                transform: "CURRENT_TIMESTAMP() "
+            systemColumnType: None
+            transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
               columnCounter: 6756
               stepCounter: "636"
             config: {}
             dataType: STRING
             defaultValue: ""
             description: ""
-            hashColumns: []
             isRecordSource: true
             name: RecordSource
             nullable: true
@@ -160,7 +216,6 @@ steps:
             dataType: TIMESTAMP
             defaultValue: ""
             description: ""
-            hashColumns: []
             isSystemLoadDate: true
             name: LoadDate
             nullable: true
