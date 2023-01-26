@@ -2259,15 +2259,51 @@ stepTypes:
       error: null
       nodeMetadataSpec: |-
         capitalized: New Type
-        short: NEW
+        short: LOADSTMT
         tagColor: gray
         plural: New Types
+        config:
+        - groupName: Options
+          items:
+          - displayName: 'Load Statement'
+            attributeName: LoadStmt
+            type: textBox
+            syntax: sql
+            isRequired: true   
+         
+        systemColumns:
+        - displayName: SQL_SEQ
+          transform: ''
+          dataType: NUMBER IDENTITY
+          placement: beginning
+          attributeName: isSurrogateKey
+         
+        - displayName: SYSTEM_START_DATE
+          transform: ''
+          dataType: TIMESTAMP
+          placement: end
+          attributeName: isSystemStartDate
+         
+        - displayName: STEP_NAME
+          transform: ''
+          dataType: VARCHAR
+          placement: end
+          attributeName: isStepName
+         
+        - displayName: SQL_STMT
+          transform: ''
+          dataType: VARCHAR
+          placement: end
+          attributeName: isSQLStmt
       templates:
         create:
           templateString: ""
         run:
-          templateString: ""
-    name: New Type
+          templateString: |-
+            {{ stage('Load Start') }}
+            INSERT INTO {{ ref_no_link(node.location.name, node.name) }} (SYSTEM_START_DATE, STEP_NAME, SQL_STMT)
+            SELECT CURRENT_TIMESTAMP, 'Load Table', '{{ config.LoadStmt }}';
+    name: ACHIEVA_LOADSTMT
     version: 1
   StepType-35:
     id: "35"
