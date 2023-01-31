@@ -10,7 +10,7 @@ jobs:
   Job-5:
     excludeSelector: ""
     id: 5
-    includeSelector: "+{ location: TARGET name: STG_CUSTOMER }"
+    includeSelector: "{ subgraph: \"Basic Subgraph\" }"
     name: Parameterjob
     steps:
       - "340"
@@ -988,7 +988,7 @@ stepTypes:
     version: 1
   StepType-29:
     id: "29"
-    isDisabled: true
+    isDisabled: false
     metadata:
       defaultStorageLocation: TARGET
       error: null
@@ -2392,6 +2392,513 @@ stepTypes:
                 ,{% if config.useCols %}'{{ config.useCols }}'{% else %}NULL{% endif %}
             )
     name: Excel File
+    version: 1
+  StepType-37:
+    id: "37"
+    isDisabled: false
+    metadata:
+      defaultStorageLocation: null
+      error: null
+      nodeMetadataSpec: |-
+        capitalized: Basis View - Reference
+        short: V
+        tagColor: '#e2a5e8'
+        isDisabled: true
+        plural: Views
+
+        config:
+          - groupName: Additional Options
+            items: 
+            - type: materializationSelector
+              options:
+                - view
+              default: view
+              isRequired: true
+
+            - type: overrideSQLToggle
+              isRequired: false
+
+        systemColumns:
+        - displayName: "LOADED_AT"
+          transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+          dataType: TIMESTAMP
+          placement: end
+          attributeName: isSystemCreateDate
+
+        - displayName: "RECORD_SOURCE"
+          transform: "''"
+          dataType: VARCHAR
+          placement: end
+          attributeName: isSystemRecordSource
+
+        - displayName: "SOR_TYPE"
+          transform: "SOURCE_DATABASES.SOURCE_SYSTEM_NAME"
+          dataType: VARCHAR
+          placement: end
+          attributeName: isSystemSorType
+      templates:
+        create:
+          templateString: |-
+            {% if node.override.create.enabled %}
+                
+                {{ node.override.create.script }}
+
+            {% else %}
+                {{ stage('Create View') }}
+
+                {% set alias = namespace(alias_text='') %}
+
+                CREATE OR REPLACE VIEW {{ ref_no_link(node.location.name, node.name) }}
+                (
+                    {% for col in columns %}
+                        "{{ col.name }}"
+                        {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
+                        {%- if not loop.last -%}, {% endif %}
+                    {% endfor %}
+                )
+                {%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
+                AS
+                {% for source in sources %}
+                    SELECT
+                    {% for col in source.columns %}
+
+                        {% if loop.first %}
+                            {% set alias.alias_text = col.sourceColumns[0].node.name %}
+                        {% endif %}
+
+                        {{ get_source_transform(col) }}
+                       
+                        
+                        AS "{{ col.name }}"
+                       {%- if not loop.last -%}, {% endif %}
+                    {% endfor %}
+
+                    {# custom join to include SOR_LABEL column #}
+                    
+                    {{ source.join }}
+
+                    INNER
+                    JOIN "CONFIG"."SOURCE_DATABASES"
+                    ON "SOURCE_DATABASES"."DATABASE_NAME" = "{{ alias.alias_text }}"."SOR_LABEL"
+
+                {% endfor %}
+            {% endif %}
+        run:
+          templateString: ""
+    name: LTCG Basis View
+    version: 1
+  StepType-38:
+    id: "38"
+    isDisabled: false
+    metadata:
+      defaultStorageLocation: null
+      error: null
+      nodeMetadataSpec: |-
+        capitalized: Copy of Dimension
+        short: DIM
+        tagColor: '#1E339A'
+        plural: Dimensions
+
+        config:
+        - groupName: Super Simple Settings 😁
+          items:
+          - type: businessKeyColumns
+            isRequired: true
+
+        systemColumns:
+        - displayName: '{{NODE_NAME}}_KEY'
+          transform: ''
+          dataType: NUMBER
+          placement: beginning
+          attributeName: isSurrogateKey
+
+        - displayName: SYSTEM_VERSION
+          transform: ''
+          dataType: NUMBER
+          placement: end
+          attributeName: isSystemVersion
+
+        - displayName: SYSTEM_CURRENT_FLAG
+          transform: ''
+          dataType: VARCHAR
+          placement: end
+          attributeName: isSystemCurrentFlag
+
+        - displayName: SYSTEM_START_DATE
+          transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+          dataType: TIMESTAMP
+          placement: end
+          attributeName: isSystemStartDate
+
+        - displayName: SYSTEM_END_DATE
+          transform: CAST('2999-12-31 00:00:00' AS TIMESTAMP)
+          dataType: TIMESTAMP
+          placement: end
+          attributeName: isSystemEndDate
+
+        - displayName: SYSTEM_CREATE_DATE
+          transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+          dataType: TIMESTAMP
+          placement: end
+          attributeName: isSystemCreateDate
+
+        - displayName: SYSTEM_UPDATE_DATE
+          transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+          dataType: TIMESTAMP
+          placement: end
+          attributeName: isSystemUpdateDate
+      templates:
+        create:
+          templateString: |
+            {% if node.materializationType == 'table' %}
+            	{{ stage('Create Dimension Table') }}
+
+            	CREATE OR REPLACE TABLE {{ ref_no_link(node.location.name, node.name) }}
+            	(
+            		{% for col in columns %}
+            			"{{ col.name }}" {{ col.dataType }}
+            			{% if col.isSurrogateKey %}
+            		        identity
+            			{% endif %}
+            			{%- if not col.nullable %} NOT NULL
+            				{%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
+            			{% endif %}
+            			{%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
+            			{%- if not loop.last -%}, {% endif %}
+            		{% endfor %}
+            	)
+            	{%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
+
+
+            {% elif node.materializationType == 'view' %}
+            	{{ stage('Create Dimension View') }}
+
+            	CREATE OR REPLACE VIEW {{ ref_no_link(node.location.name, node.name) }}
+            	(
+            		{% for col in columns %}
+            			"{{ col.name }}"
+            			{%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
+            			{%- if not loop.last -%},{% endif %}
+            		{% endfor %}
+            	)
+            	{%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
+            	AS
+            	{% for source in sources %}
+
+            		{% if loop.first %}SELECT {% endif %}
+
+            		{% for col in source.columns %}
+            			{% if col.isSurrogateKey or col.isSystemUpdateDate or col.isSystemCreateDate %}
+                            NULL
+            			{% else %}
+                            {{ get_source_transform(col) }}
+            			{% endif %}
+            			AS "{{ col.name }}"
+            			{%- if not loop.last -%}, {% endif %}
+            		{% endfor %}
+            		{{ source.join }}
+
+            		{% if not loop.last %} UNION ALL {% endif %}
+            	{% endfor %}
+
+            {% endif %}
+        run:
+          templateString: |
+            {% set is_type_2 = columns | selectattr("isChangeTracking") | list | length > 0 %}
+
+                {% for test in node.tests if config.testsEnabled %}
+                    {% if test.runOrder == 'Before' %}
+                        {{ test_stage(test.name, test.continueOnFailure) }}
+                        {{ test.templateString }}
+                    {% endif %}
+                {% endfor %}
+
+            {% if node.materializationType == 'table' %}
+
+            	{% if config.preSQL %}			
+            		{{ stage('Pre-SQL') }}
+            		{{ config.preSQL }}
+            	{% endif %}
+            	
+                {% if is_type_2 %}
+
+                    {% for source in sources %}
+                        {{ stage('MERGE ' + source.name | string) }}
+                        MERGE INTO {{ ref_no_link(node.location.name, node.name) }} "TGT"
+                        USING (
+                        /* New Rows That Don't Exist */
+                        SELECT
+                        {% for col in source.columns if not col.isSurrogateKey %}
+                            {% if col.isSystemVersion %}
+                                1
+                            {% elif col.isSystemCurrentFlag %}
+                                'Y'
+                            {% else %}
+                               {{ get_source_transform(col) }}
+                            {% endif %}
+                            AS "{{ col.name }}",
+                        {% endfor %}
+                            'INSERT_INITAL_VERSION_ROWS' AS "DML_OPERATION"
+                        {{ source.join }}
+                        LEFT JOIN {{ ref_no_link(node.location.name, node.name) }} "DIM" ON
+                        {% for col in source.columns if col.isBusinessKey -%}
+                            {% if not loop.first %}
+                                AND
+                            {% endif %}
+                                {{ get_source_transform(col) }} = "DIM"."{{ col.name }}"
+                        {% endfor %}
+                        WHERE
+                        {% for col in source.columns if col.isBusinessKey -%}
+                            {% if not loop.first %}
+                                AND
+                            {% endif %}
+                            "DIM"."{{ col.name }}" IS NULL
+                        {% endfor %}
+                        UNION ALL
+                        /* New Row Needing To Be Inserted Due To Type-2 Column Changes */
+                        SELECT
+                        {% for col in source.columns if not col.isSurrogateKey %}
+                            {% if col.isSystemVersion %}
+                                "DIM"."{{ col.name }}" + 1
+                            {% elif col.isSystemCurrentFlag %}
+                                'Y'
+                            {% else %}
+                               {{ get_source_transform(col) }}
+                            {% endif %}
+                            AS "{{ col.name }}",
+                        {% endfor %}
+                            'INSERT_NEW_VERSION_ROWS' AS "DML_OPERATION"
+                        {{ source.join }}
+                        INNER JOIN {{ ref_no_link(node.location.name, node.name) }} "DIM" ON
+                        {% for col in source.columns if col.isBusinessKey -%}
+                            {% if not loop.first %}
+                                AND
+                            {% endif %}
+                            {{ get_source_transform(col) }} = "DIM"."{{ col.name }}"
+                        {% endfor %}
+                        WHERE "DIM"."{{ get_value_by_column_attribute("isSystemCurrentFlag") }}" = 'Y'
+                        {% for col in source.columns if (col.isChangeTracking == true) %}
+                            {% if loop.first %}
+                                AND (
+                            {% else %}
+                                OR
+                            {% endif %}
+                            ( NVL( CAST({{ get_source_transform(col) }} as STRING), '**NULL**') <> NVL( CAST("DIM"."{{ col.name }}" as STRING), '**NULL**') )
+                            {% if loop.last %}
+                                )
+                            {% endif %}
+                        {% endfor %}
+                        UNION ALL
+                        /* Rows Needing To Be Expired Due To Type-2 Column Changes
+                        In this case, only two columns are merged (version and end date) */
+                        SELECT
+                        {%- for col in source.columns if not col.isSurrogateKey %}
+                            {% if col.isSystemEndDate %}
+                                DATEADD(MILLISECONDS, -1, CAST(CURRENT_TIMESTAMP AS TIMESTAMP))
+                            {% elif col.isSystemCurrentFlag %}
+                                'N'
+                            {% else %}
+                                "DIM"."{{ col.name }}"
+                            {% endif %}
+                            AS "{{ col.name }}",
+                        {% endfor -%}
+                            'update_expired_version_rows' AS "DML_OPERATION"
+                        {{ source.join }}
+                        INNER JOIN {{ ref_no_link(node.location.name, node.name) }} "DIM" ON
+                        {% for col in source.columns if col.isBusinessKey -%}
+                            {% if not loop.first %}
+                                AND
+                            {% endif %}
+                            {{ get_source_transform(col) }} = "DIM"."{{ col.name }}"
+                        {% endfor %}
+                        WHERE "DIM"."{{ get_value_by_column_attribute("isSystemCurrentFlag") }}" = 'Y'
+                        {% for col in source.columns if (col.isChangeTracking == true) %}
+                            {% if loop.first %}
+                                AND (
+                            {% else %}
+                                OR
+                            {% endif %}
+                            ( NVL( CAST({{ get_source_transform(col) }} as STRING), '**NULL**') <> NVL( CAST("DIM"."{{ col.name }}" as STRING), '**NULL**') )
+                            {% if loop.last %}
+                                )
+                            {% endif %}
+                        {% endfor %}
+                        UNION ALL
+                        /* Rows Needing To Be Updated Due To Changes To Non-Type-2 source.columns
+                        This case merges only when there are changes in non-type-2 column updates, but no changes in type-2 columns*/
+                        SELECT
+                        {%- for col in source.columns if not col.isSurrogateKey %}
+                            {% if col.isSystemVersion or col.isSystemCreateDate or col.isSystemStartDate or col.isSystemEndDate %}
+                                "DIM"."{{ col.name }}"
+                            {% elif col.isSystemCurrentFlag %}
+                                'Y'
+                            {% else %}
+                                {{ get_source_transform(col) }}
+                            {% endif %}
+                            AS "{{ col.name }}",
+                        {% endfor -%}
+                            'UPDATE_NON_TYPE2_ROWS' AS "DML_OPERATION"
+                        {{ source.join }}
+                        INNER JOIN {{ ref_no_link(node.location.name, node.name) }} "DIM" ON
+                        {% for col in source.columns if col.isBusinessKey -%}
+                            {% if not loop.first %}
+                                AND
+                            {% endif %}
+                            {{ get_source_transform(col) }} = "DIM"."{{ col.name }}"
+                        {% endfor %}
+                        WHERE "DIM"."{{ get_value_by_column_attribute("isSystemCurrentFlag") }}" = 'Y'
+                        AND (
+                        {% for col in source.columns if (col.isChangeTracking) -%}
+                            {% if not loop.first %}
+                                AND
+                            {% endif %}
+                            {{ get_source_transform(col) }} = "DIM"."{{ col.name }}"
+                        {% endfor %} )
+                        {% for col in source.columns if not (   col.isBusinessKey or
+                                                                col.isChangeTracking or
+                                                                col.isSurrogateKey or
+                                                                col.isSystemVersion or
+                                                                col.isSystemCurrentFlag or
+                                                                col.isSystemStartDate or
+                                                                col.isSystemEndDate or
+                                                                col.isSystemUpdateDate or
+                                                                col.isSystemCreateDate) -%}
+                            {% if loop.first %}
+                                AND (
+                            {% endif %}
+                            {% if not loop.first %}
+                                OR
+                            {% endif %}
+                            NVL( CAST({{ get_source_transform(col) }} as STRING), '**NULL**') <> NVL( CAST("DIM"."{{ col.name }}" as STRING), '**NULL**')
+                            {% if loop.last %}
+                                )
+                            {% endif %}
+                        {% endfor %}
+                    ) AS "SRC"
+                    ON
+                    {% for col in source.columns if col.isBusinessKey -%}
+                        {% if not loop.first %}
+                            AND
+                        {% endif %}
+                        "TGT"."{{ col.name }}" = "SRC"."{{ col.name }}"
+                    {% endfor %}
+                    AND "TGT"."{{ get_value_by_column_attribute("isSystemVersion") }}" = "SRC"."{{ get_value_by_column_attribute("isSystemVersion") }}"
+                    WHEN MATCHED THEN UPDATE SET
+                    {%- for col in source.columns if not (col.isBusinessKey or col.isSurrogateKey or col.isSystemCreateDate) %}
+                        "TGT"."{{ col.name }}" = "SRC"."{{ col.name }}"
+                        {% if not loop.last %}, {% endif %}
+                    {% endfor -%}
+                    WHEN NOT MATCHED THEN INSERT (
+                    {%- for col in source.columns if not col.isSurrogateKey %}
+                        "{{ col.name }}"
+                        {% if not loop.last %}, {% endif %}
+                    {% endfor -%}
+                    )
+                    VALUES (
+                    {%- for col in source.columns if not col.isSurrogateKey %}
+                        "SRC"."{{ col.name }}"
+                        {% if not loop.last %}, {% endif %}
+                    {% endfor -%}
+                    )
+
+                {% endfor %}
+
+
+
+                {% else %}
+                    {% for source in sources %}
+                        {{ stage('MERGE ' + source.name | string ) }}
+                        MERGE INTO {{ ref_no_link(node.location.name, node.name) }} "TGT"
+                        USING (
+                            SELECT
+                            {% for col in source.columns if not col.isSurrogateKey %}
+                                {% if col.isSystemVersion %}
+                                	1
+                                {% elif col.isSystemCurrentFlag %}
+                                	'Y'
+                                {% else %}
+                                    {{ get_source_transform(col) }}
+                                {% endif %}
+                                AS "{{ col.name }}"
+                                {%- if not loop.last %}, {% endif %}
+                            {% endfor %}
+                            {{ source.join }})
+                            AS "SRC"
+                        ON
+                        {% for col in source.columns if col.isBusinessKey -%}
+                            {% if not loop.first %}
+                                AND
+                            {% endif %}
+                            "SRC"."{{ col.name }}" = "TGT"."{{ col.name }}"
+                        {% endfor %}
+                        WHEN MATCHED
+                        {% for col in source.columns if not (   col.isBusinessKey or
+                                                                col.isSurrogateKey or
+                                                                col.isSystemVersion or
+                                                                col.isSystemCurrentFlag or
+                                                                col.isSystemStartDate or
+                                                                col.isSystemEndDate or
+                                                                col.isSystemUpdateDate or
+                                                                col.isSystemCreateDate) %}
+                            {% if loop.first %}
+                                AND (
+                            {% else %}
+                                OR
+                            {% endif %}
+                            NVL( CAST("SRC"."{{ col.name }}" as STRING), '**NULL**') <> NVL( CAST("TGT"."{{ col.name }}" as STRING), '**NULL**')
+                            {% if loop.last %}
+                                )
+                            {% endif %}
+                        {% endfor %}
+                        THEN UPDATE SET
+                        {%- for col in source.columns if not (  col.isBusinessKey or
+                                                                col.isSurrogateKey or
+                                                                col.isSystemVersion or
+                                                                col.isSystemCurrentFlag or
+                                                                col.isSystemStartDate or
+                                                                col.isSystemEndDate or
+                                                                col.isSystemCreateDate) %}
+                                "TGT"."{{ col.name }}" = "SRC"."{{ col.name }}"
+                            {% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                        WHEN NOT MATCHED THEN
+                        INSERT (
+                        {%- for col in source.columns if not col.isSurrogateKey %}
+                            "{{ col.name }}"
+                            {% if not loop.last %}, {% endif %}
+                        {% endfor -%}
+                        )
+                        VALUES (
+                        {%- for col in source.columns if not col.isSurrogateKey %}
+                            "SRC"."{{ col.name }}"
+                            {% if not loop.last %}, {% endif %}
+                        {% endfor -%}
+                        )
+                    {% endfor %}
+                {% endif %}
+            	
+            	{% if config.postSQL %}			
+            		{{ stage('Post-SQL') }}
+            		{{ config.postSQL }}
+            	{% endif %}
+            {% endif %}
+
+            {% if config.testsEnabled %}
+            	{% for test in node.tests %}
+            		{% if test.runOrder == 'After' %}
+            			{{ test_stage(test.name, test.continueOnFailure) }}
+            			{{ test.templateString }}
+                    {% endif %}
+            	{% endfor %}
+
+            	{% for column in columns %}
+            		{% for test in column.tests %}
+            			{{ test_stage(column.name + ": " + test.name) }}
+            			{{ test.templateString }}
+            		{% endfor %}
+            	{% endfor %}
+            {% endif %}
+    name: Simple Dim
     version: 1
   StepType-4:
     id: "4"
@@ -4966,7 +5473,7 @@ stepTypes:
     version: 1
   StepType-Dimension:
     id: Dimension
-    isDisabled: true
+    isDisabled: false
     metadata:
       defaultStorageLocation: TARGET
       error: null
@@ -6906,5 +7413,7 @@ subgraphs:
   Subgraph-15:
     id: 15
     name: Basic Subgraph
-    steps: []
+    steps:
+      - "642"
+      - "663"
 version: 1

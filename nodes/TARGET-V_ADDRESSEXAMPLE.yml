@@ -1,0 +1,186 @@
+steps:
+  V_ADDRESSEXAMPLE-663:
+    operation:
+      config: {}
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: TARGET
+      materializationType: view
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 7007
+              stepCounter: "663"
+            dataType: VARCHAR(30)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: SOR_TYPE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 7000
+                    stepCounter: "662"
+                transform: ""
+          - columnReference:
+              columnCounter: 7008
+              stepCounter: "663"
+            dataType: VARCHAR(30)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: SOR_LABEL
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 7001
+                    stepCounter: "662"
+                transform: ""
+          - columnReference:
+              columnCounter: 7009
+              stepCounter: "663"
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: CLIENTNUMBER
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 7002
+                    stepCounter: "662"
+                transform: ""
+          - columnReference:
+              columnCounter: 7010
+              stepCounter: "663"
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: ADDRESSSEQUENCE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 7003
+                    stepCounter: "662"
+                transform: ""
+          - columnReference:
+              columnCounter: 7011
+              stepCounter: "663"
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: RECURRINGSTARTMONTH
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 7004
+                    stepCounter: "662"
+                transform: ""
+          - columnReference:
+              columnCounter: 7012
+              stepCounter: "663"
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: RECURRINGSTARTDAY
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 7005
+                    stepCounter: "662"
+                transform: ""
+          - columnReference:
+              columnCounter: 7013
+              stepCounter: "663"
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: RECID
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 7006
+                    stepCounter: "662"
+                transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 7014
+              stepCounter: "663"
+            config: {}
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: ""
+            hashColumns: []
+            isSystemCreateDate: true
+            name: LOADED_AT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 7015
+              stepCounter: "663"
+            config: {}
+            dataType: VARCHAR
+            defaultValue: ""
+            description: ""
+            hashColumns: []
+            isSystemRecordSource: true
+            name: RECORD_SOURCE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: "''"
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 7016
+              stepCounter: "663"
+            config: {}
+            dataType: VARCHAR
+            defaultValue: ""
+            description: ""
+            hashColumns: []
+            isSystemSorType: true
+            name: SOR_TYPE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: SOURCE_DATABASES.SOURCE_SYSTEM_NAME
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: SOURCE
+                nodeName: ADDRESSEXAMPLE
+            join:
+              joinCondition: FROM {{ ref('SOURCE', 'ADDRESSEXAMPLE') }} "ADDRESSEXAMPLE"
+            name: V_ADDRESSEXAMPLE
+            noLinkRefs: []
+      name: V_ADDRESSEXAMPLE
+      overrideSQL: false
+      schema: ""
+      sqlType: "37"
+      type: sql
+    stepCounter: "663"
