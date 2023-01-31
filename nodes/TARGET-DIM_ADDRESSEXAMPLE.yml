@@ -1,7 +1,10 @@
 steps:
   DIM_ADDRESSEXAMPLE-665:
     operation:
-      config: {}
+      config:
+        postSQL: ""
+        preSQL: "{{ macro insert_audit_row() }}"
+        testsEnabled: true
       database: ""
       dependencies: []
       deployEnabled: true
@@ -295,6 +298,6 @@ steps:
       name: DIM_ADDRESSEXAMPLE
       overrideSQL: false
       schema: ""
-      sqlType: "38"
+      sqlType: Dimension
       type: sql
     stepCounter: "665"
