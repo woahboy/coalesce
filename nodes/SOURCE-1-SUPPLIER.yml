@@ -1,12 +1,12 @@
 steps:
-  ADDRESSEXAMPLE-662:
+  SUPPLIER-699:
     operation:
       database: ""
       dataset: ""
       deployEnabled: true
-      description: ""
+      description: Supplier data as defined by TPC-H
       locationID: ""
-      locationName: SOURCE
+      locationName: SOURCE-1
       metadata:
         columns:
           - acceptedValues:
@@ -14,44 +14,14 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 7000
-              stepCounter: 662
-            config: {}
-            dataType: VARCHAR(30)
-            defaultValue: ""
-            description: ""
-            name: SOR_TYPE
-            nullable: true
-            primaryKey: false
-            uniqueKey: false
-          - acceptedValues:
-              strictMatch: true
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: 7001
-              stepCounter: 662
-            config: {}
-            dataType: VARCHAR(30)
-            defaultValue: ""
-            description: ""
-            name: SOR_LABEL
-            nullable: true
-            primaryKey: false
-            uniqueKey: false
-          - acceptedValues:
-              strictMatch: true
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: 7002
-              stepCounter: 662
+              columnCounter: 7424
+              stepCounter: 699
             config: {}
             dataType: NUMBER(38,0)
             defaultValue: ""
             description: ""
-            name: CLIENTNUMBER
-            nullable: true
+            name: S_SUPPKEY
+            nullable: false
             primaryKey: false
             uniqueKey: false
           - acceptedValues:
@@ -59,14 +29,14 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 7003
-              stepCounter: 662
+              columnCounter: 7425
+              stepCounter: 699
             config: {}
-            dataType: NUMBER(38,0)
+            dataType: VARCHAR(25)
             defaultValue: ""
             description: ""
-            name: ADDRESSSEQUENCE
-            nullable: true
+            name: S_NAME
+            nullable: false
             primaryKey: false
             uniqueKey: false
           - acceptedValues:
@@ -74,14 +44,14 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 7004
-              stepCounter: 662
+              columnCounter: 7426
+              stepCounter: 699
             config: {}
-            dataType: NUMBER(38,0)
+            dataType: VARCHAR(40)
             defaultValue: ""
             description: ""
-            name: RECURRINGSTARTMONTH
-            nullable: true
+            name: S_ADDRESS
+            nullable: false
             primaryKey: false
             uniqueKey: false
           - acceptedValues:
@@ -89,14 +59,14 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 7005
-              stepCounter: 662
+              columnCounter: 7427
+              stepCounter: 699
             config: {}
             dataType: NUMBER(38,0)
             defaultValue: ""
             description: ""
-            name: RECURRINGSTARTDAY
-            nullable: true
+            name: S_NATIONKEY
+            nullable: false
             primaryKey: false
             uniqueKey: false
           - acceptedValues:
@@ -104,21 +74,51 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 7006
-              stepCounter: 662
+              columnCounter: 7428
+              stepCounter: 699
             config: {}
-            dataType: NUMBER(38,0)
+            dataType: VARCHAR(15)
             defaultValue: ""
             description: ""
-            name: RECID
+            name: S_PHONE
+            nullable: false
+            primaryKey: false
+            uniqueKey: false
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 7429
+              stepCounter: 699
+            config: {}
+            dataType: NUMBER(12,2)
+            defaultValue: ""
+            description: ""
+            name: S_ACCTBAL
+            nullable: false
+            primaryKey: false
+            uniqueKey: false
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 7430
+              stepCounter: 699
+            config: {}
+            dataType: VARCHAR(101)
+            defaultValue: ""
+            description: ""
+            name: S_COMMENT
             nullable: true
             primaryKey: false
             uniqueKey: false
         join:
-          joinCondition: FROM {{ ref('SOURCE', 'ADDRESSEXAMPLE') }}
-      name: ADDRESSEXAMPLE
+          joinCondition: FROM {{ ref('SOURCE-1', 'SUPPLIER') }}
+      name: SUPPLIER
       schema: ""
       sqlType: Source
-      table: ADDRESSEXAMPLE
+      table: SUPPLIER
       type: sourceInput
-    stepCounter: "662"
+    stepCounter: "699"
