@@ -1,12 +1,12 @@
 steps:
-  STG_CUSTOMER-691:
+  STG_CUSTOMER-716:
     operation:
       config:
         insertStrategy: INSERT
         postSQL: ""
         preSQL: ""
         testsEnabled: true
-        truncateBefore: true
+        truncateBefore: false
       database: ""
       dependencies: []
       deployEnabled: true
@@ -20,8 +20,8 @@ steps:
         appliedNodeTests: []
         columns:
           - columnReference:
-              columnCounter: 7332
-              stepCounter: "691"
+              columnCounter: 7551
+              stepCounter: "716"
             dataType: NUMBER(38,0)
             description: ""
             hashColumns: []
@@ -30,12 +30,12 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 7324
-                    stepCounter: "690"
+                  - columnCounter: 7543
+                    stepCounter: "715"
                 transform: ""
           - columnReference:
-              columnCounter: 7333
-              stepCounter: "691"
+              columnCounter: 7552
+              stepCounter: "716"
             dataType: VARCHAR(25)
             description: ""
             hashColumns: []
@@ -44,12 +44,12 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 7325
-                    stepCounter: "690"
+                  - columnCounter: 7544
+                    stepCounter: "715"
                 transform: UPPER("CUSTOMER"."C_NAME")
           - columnReference:
-              columnCounter: 7334
-              stepCounter: "691"
+              columnCounter: 7553
+              stepCounter: "716"
             dataType: VARCHAR(40)
             description: ""
             hashColumns: []
@@ -58,12 +58,12 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 7326
-                    stepCounter: "690"
+                  - columnCounter: 7545
+                    stepCounter: "715"
                 transform: UPPER("CUSTOMER"."C_ADDRESS")
           - columnReference:
-              columnCounter: 7335
-              stepCounter: "691"
+              columnCounter: 7554
+              stepCounter: "716"
             dataType: NUMBER(38,0)
             description: ""
             hashColumns: []
@@ -72,12 +72,12 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 7327
-                    stepCounter: "690"
+                  - columnCounter: 7546
+                    stepCounter: "715"
                 transform: ""
           - columnReference:
-              columnCounter: 7336
-              stepCounter: "691"
+              columnCounter: 7555
+              stepCounter: "716"
             dataType: VARCHAR(15)
             description: ""
             hashColumns: []
@@ -86,12 +86,26 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 7328
-                    stepCounter: "690"
+                  - columnCounter: 7547
+                    stepCounter: "715"
                 transform: UPPER("CUSTOMER"."C_PHONE")
           - columnReference:
-              columnCounter: 7338
-              stepCounter: "691"
+              columnCounter: 7556
+              stepCounter: "716"
+            dataType: NUMBER(12,2)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_ACCTBAL
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 7548
+                    stepCounter: "715"
+                transform: ""
+          - columnReference:
+              columnCounter: 7557
+              stepCounter: "716"
             dataType: VARCHAR(10)
             description: ""
             hashColumns: []
@@ -100,29 +114,32 @@ steps:
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 7330
-                    stepCounter: "690"
-                transform: UPPER("CUSTOMER"."C_MKTSEGMENT")
-          - columnReference:
-              columnCounter: 7339
-              stepCounter: "691"
-            dataType: VARCHAR(117)
+                  - columnCounter: 7549
+                    stepCounter: "715"
+                transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 7559
+              stepCounter: "716"
+            config: {}
+            dataType: NUMBER
+            defaultValue: ""
             description: ""
-            hashColumns: []
-            hashDetails: null
-            name: C_COMMENT
+            keyColumnType: None
+            name: NEWCOL
             nullable: true
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 7331
-                    stepCounter: "690"
-                transform: UPPER("CUSTOMER"."C_COMMENT")
+              - columnReferences: []
+                transform: "1234"
+            systemColumnType: None
+            transform: ""
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
-          - aliases:
-              CUSTOMER: "690"
-            customSQL:
+          - customSQL:
               customSQL: ""
             dependencies:
               - locationName: SOURCE-1
@@ -136,4 +153,4 @@ steps:
       schema: ""
       sqlType: Stage
       type: sql
-    stepCounter: "691"
+    stepCounter: "716"
