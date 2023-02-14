@@ -1,27 +1,5 @@
 defaultStorageMapping: TARGET
-jobs:
-  Job-11:
-    excludeSelector: ""
-    id: 11
-    includeSelector: "+{ location: TARGET name: DV* }"
-    name: Migration Job$
-    steps: []
-    subgraphs: []
-  Job-13:
-    excludeSelector: ""
-    id: 13
-    includeSelector: "+{ location: TARGET name: DIM* }"
-    name: Populate Dims
-    steps: []
-    subgraphs: []
-  Job-5:
-    excludeSelector: ""
-    id: 5
-    includeSelector: "{ subgraph: \"Basic Subgraph\" }"
-    name: Parameterjob
-    steps:
-      - "340"
-    subgraphs: []
+jobs: {}
 locations:
   SOURCE:
     mappingDefinitions:
@@ -37,29 +15,13 @@ locations:
         database: SNOWFLAKE_SAMPLE_DATA
         schema: TPCH_SF1
       "5":
-        database: ""
-        schema: ""
-  SOURCE-2:
-    mappingDefinitions:
-      "3":
-        database: ""
-        schema: ""
-      "5":
-        database: ""
-        schema: ""
-  SOURCE-3:
-    mappingDefinitions:
-      "3":
-        database: ""
-        schema: ""
-      "5":
-        database: ""
-        schema: ""
+        database: JUSTIN_SOURCE
+        schema: SOURCE_EDW
   TARGET:
     mappingDefinitions:
       "3":
-        database: JUSTIN_SOURCE
-        schema: SOURCE_EDW
+        database: JUSTIN_EDW
+        schema: QA_DEPLOY
       "5":
         database: JUSTIN_EDW
         schema: QA_DEPLOY
@@ -3998,9 +3960,19 @@ stepTypes:
             attributeName: isChangeHash
             isRequired: true
 
+          - displayName: Load Date Column
+            type: columnSelector
+            attributeName: isSystemCreateDate
+            isRequired: true
+
           - type: toggleButton
             attributeName: insertZeroKey
             displayName: Insert Zero Key Record
+            default: true
+
+          - displayName: Enable Tests
+            attributeName: testsEnabled
+            type: toggleButton
             default: true
 
         - groupName: Pre/Post SQL
@@ -4014,19 +3986,6 @@ stepTypes:
             attributeName: postSQL
             type: textBox
             isRequired: false
-
-        systemColumns:
-        - displayName: "LOAD_DATE"
-          transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
-          dataType: TIMESTAMP
-          placement: end
-          attributeName: isSystemCreateDate
-
-        - displayName: "RECORD_SOURCE"
-          transform: "''"
-          dataType: VARCHAR
-          placement: end
-          attributeName: isSystemRecordSource
       templates:
         create:
           templateString: |-
@@ -7899,17 +7858,5 @@ stepTypes:
             {% endif %}
     name: Persistent Stage
     version: 1
-subgraphs:
-  Subgraph-15:
-    id: 15
-    name: Basic Subgraph
-    steps:
-      - "642"
-      - "663"
-  Subgraph-16:
-    id: 16
-    name: New Subgraph
-    steps:
-      - "665"
-      - "700"
+subgraphs: {}
 version: 1

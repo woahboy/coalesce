@@ -1,5 +1,5 @@
 steps:
-  DIM_CUSTOMER-717:
+  DIM_CUSTOMER-749:
     operation:
       config:
         postSQL: ""
@@ -15,15 +15,33 @@ steps:
       locationName: TARGET
       materializationType: table
       metadata:
-        appliedNodeTests: []
+        appliedNodeTests:
+          - continueOnFailure: true
+            description: ""
+            name: Customer Phone is not null test
+            runOrder: After
+            templateString: |-
+              SELECT
+                1
+              WHERE
+                EXISTS (
+                  SELECT
+                    *
+                  FROM
+                    "JUSTIN_EDW"."DEV_EDW"."DIM_CUSTOMER"
+                  WHERE
+                    "C_PHONE" IS NOT NULL
+                )
         columns:
           - acceptedValues:
               strictMatch: true
               values: []
-            appliedColumnTests: {}
+            appliedColumnTests:
+              hasNull: false
+              isDistinct: false
             columnReference:
-              columnCounter: 7560
-              stepCounter: "717"
+              columnCounter: 7838
+              stepCounter: "749"
             config: {}
             dataType: NUMBER
             defaultValue: ""
@@ -35,9 +53,12 @@ steps:
             sourceColumnReferences:
               - columnReferences: []
                 transform: ""
-          - columnReference:
-              columnCounter: 7561
-              stepCounter: "717"
+          - appliedColumnTests:
+              hasNull: false
+              isDistinct: true
+            columnReference:
+              columnCounter: 7839
+              stepCounter: "749"
             dataType: NUMBER(38,0)
             description: ""
             hashColumns: []
@@ -47,12 +68,15 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 7551
-                    stepCounter: "716"
+                  - columnCounter: 7723
+                    stepCounter: "734"
                 transform: ""
-          - columnReference:
-              columnCounter: 7562
-              stepCounter: "717"
+          - appliedColumnTests:
+              hasNull: false
+              isDistinct: false
+            columnReference:
+              columnCounter: 7840
+              stepCounter: "749"
             dataType: VARCHAR(25)
             description: ""
             hashColumns: []
@@ -62,12 +86,15 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 7552
-                    stepCounter: "716"
+                  - columnCounter: 7724
+                    stepCounter: "734"
                 transform: ""
-          - columnReference:
-              columnCounter: 7563
-              stepCounter: "717"
+          - appliedColumnTests:
+              hasNull: false
+              isDistinct: false
+            columnReference:
+              columnCounter: 7841
+              stepCounter: "749"
             dataType: VARCHAR(40)
             description: ""
             hashColumns: []
@@ -77,26 +104,15 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 7553
-                    stepCounter: "716"
+                  - columnCounter: 7725
+                    stepCounter: "734"
                 transform: ""
-          - columnReference:
-              columnCounter: 7564
-              stepCounter: "717"
-            dataType: NUMBER(38,0)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: C_NATIONKEY
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 7554
-                    stepCounter: "716"
-                transform: ""
-          - columnReference:
-              columnCounter: 7565
-              stepCounter: "717"
+          - appliedColumnTests:
+              hasNull: true
+              isDistinct: false
+            columnReference:
+              columnCounter: 7842
+              stepCounter: "749"
             dataType: VARCHAR(15)
             description: ""
             hashColumns: []
@@ -106,12 +122,15 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 7555
-                    stepCounter: "716"
+                  - columnCounter: 7727
+                    stepCounter: "734"
                 transform: ""
-          - columnReference:
-              columnCounter: 7566
-              stepCounter: "717"
+          - appliedColumnTests:
+              hasNull: true
+              isDistinct: false
+            columnReference:
+              columnCounter: 7843
+              stepCounter: "749"
             dataType: NUMBER(12,2)
             description: ""
             hashColumns: []
@@ -120,12 +139,15 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 7556
-                    stepCounter: "716"
+                  - columnCounter: 7728
+                    stepCounter: "734"
                 transform: ""
-          - columnReference:
-              columnCounter: 7567
-              stepCounter: "717"
+          - appliedColumnTests:
+              hasNull: true
+              isDistinct: false
+            columnReference:
+              columnCounter: 7844
+              stepCounter: "749"
             dataType: VARCHAR(10)
             description: ""
             hashColumns: []
@@ -134,30 +156,52 @@ steps:
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 7557
-                    stepCounter: "716"
+                  - columnCounter: 7729
+                    stepCounter: "734"
                 transform: ""
-          - columnReference:
-              columnCounter: 7568
-              stepCounter: "717"
+          - appliedColumnTests:
+              hasNull: false
+              isDistinct: false
+            columnReference:
+              columnCounter: 7845
+              stepCounter: "749"
+            dataType: VARCHAR(117)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_COMMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 7730
+                    stepCounter: "734"
+                transform: ""
+          - appliedColumnTests:
+              hasNull: false
+              isDistinct: false
+            columnReference:
+              columnCounter: 7846
+              stepCounter: "749"
             dataType: NUMBER
             description: ""
             hashColumns: []
             hashDetails: null
-            name: NEWCOL
+            name: NewCol
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 7559
-                    stepCounter: "716"
+                  - columnCounter: 7731
+                    stepCounter: "734"
                 transform: ""
           - acceptedValues:
               strictMatch: true
               values: []
-            appliedColumnTests: {}
+            appliedColumnTests:
+              hasNull: false
+              isDistinct: false
             columnReference:
-              columnCounter: 7569
-              stepCounter: "717"
+              columnCounter: 7847
+              stepCounter: "749"
             config: {}
             dataType: NUMBER
             defaultValue: ""
@@ -172,10 +216,12 @@ steps:
           - acceptedValues:
               strictMatch: true
               values: []
-            appliedColumnTests: {}
+            appliedColumnTests:
+              hasNull: false
+              isDistinct: false
             columnReference:
-              columnCounter: 7570
-              stepCounter: "717"
+              columnCounter: 7848
+              stepCounter: "749"
             config: {}
             dataType: VARCHAR
             defaultValue: ""
@@ -190,10 +236,12 @@ steps:
           - acceptedValues:
               strictMatch: true
               values: []
-            appliedColumnTests: {}
+            appliedColumnTests:
+              hasNull: false
+              isDistinct: false
             columnReference:
-              columnCounter: 7571
-              stepCounter: "717"
+              columnCounter: 7849
+              stepCounter: "749"
             config: {}
             dataType: TIMESTAMP
             defaultValue: ""
@@ -208,10 +256,12 @@ steps:
           - acceptedValues:
               strictMatch: true
               values: []
-            appliedColumnTests: {}
+            appliedColumnTests:
+              hasNull: false
+              isDistinct: false
             columnReference:
-              columnCounter: 7572
-              stepCounter: "717"
+              columnCounter: 7850
+              stepCounter: "749"
             config: {}
             dataType: TIMESTAMP
             defaultValue: ""
@@ -226,10 +276,12 @@ steps:
           - acceptedValues:
               strictMatch: true
               values: []
-            appliedColumnTests: {}
+            appliedColumnTests:
+              hasNull: false
+              isDistinct: false
             columnReference:
-              columnCounter: 7573
-              stepCounter: "717"
+              columnCounter: 7851
+              stepCounter: "749"
             config: {}
             dataType: TIMESTAMP
             defaultValue: ""
@@ -244,10 +296,12 @@ steps:
           - acceptedValues:
               strictMatch: true
               values: []
-            appliedColumnTests: {}
+            appliedColumnTests:
+              hasNull: false
+              isDistinct: false
             columnReference:
-              columnCounter: 7574
-              stepCounter: "717"
+              columnCounter: 7852
+              stepCounter: "749"
             config: {}
             dataType: TIMESTAMP
             defaultValue: ""
@@ -260,7 +314,9 @@ steps:
               - columnReferences: []
                 transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
         cteString: ""
-        enabledColumnTestIDs: []
+        enabledColumnTestIDs:
+          - hasNull
+          - isDistinct
         sourceMapping:
           - customSQL:
               customSQL: ""
@@ -276,4 +332,4 @@ steps:
       schema: ""
       sqlType: "38"
       type: sql
-    stepCounter: "717"
+    stepCounter: "749"
