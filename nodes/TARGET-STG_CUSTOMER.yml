@@ -1,5 +1,5 @@
 steps:
-  STG_CUSTOMER-774:
+  STG_CUSTOMER-811:
     operation:
       config:
         insertStrategy: INSERT
@@ -20,8 +20,8 @@ steps:
         appliedNodeTests: []
         columns:
           - columnReference:
-              columnCounter: 8064
-              stepCounter: "774"
+              columnCounter: 8330
+              stepCounter: "811"
             dataType: NUMBER(38,0)
             description: ""
             hashColumns: []
@@ -30,12 +30,12 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8056
-                    stepCounter: "773"
+                  - columnCounter: 8273
+                    stepCounter: "804"
                 transform: ""
           - columnReference:
-              columnCounter: 8065
-              stepCounter: "774"
+              columnCounter: 8331
+              stepCounter: "811"
             dataType: VARCHAR(25)
             description: ""
             hashColumns: []
@@ -44,12 +44,12 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8057
-                    stepCounter: "773"
-                transform: UPPER("CUSTOMER"."C_NAME")
+                  - columnCounter: 8274
+                    stepCounter: "804"
+                transform: ""
           - columnReference:
-              columnCounter: 8066
-              stepCounter: "774"
+              columnCounter: 8332
+              stepCounter: "811"
             dataType: VARCHAR(40)
             description: ""
             hashColumns: []
@@ -58,12 +58,26 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8058
-                    stepCounter: "773"
-                transform: UPPER("CUSTOMER"."C_ADDRESS")
+                  - columnCounter: 8275
+                    stepCounter: "804"
+                transform: ""
           - columnReference:
-              columnCounter: 8068
-              stepCounter: "774"
+              columnCounter: 8333
+              stepCounter: "811"
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_NATIONKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8276
+                    stepCounter: "804"
+                transform: ""
+          - columnReference:
+              columnCounter: 8334
+              stepCounter: "811"
             dataType: VARCHAR(15)
             description: ""
             hashColumns: []
@@ -72,12 +86,12 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8060
-                    stepCounter: "773"
-                transform: UPPER("CUSTOMER"."C_PHONE")
+                  - columnCounter: 8277
+                    stepCounter: "804"
+                transform: ""
           - columnReference:
-              columnCounter: 8069
-              stepCounter: "774"
+              columnCounter: 8335
+              stepCounter: "811"
             dataType: NUMBER(12,2)
             description: ""
             hashColumns: []
@@ -86,12 +100,12 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8061
-                    stepCounter: "773"
+                  - columnCounter: 8278
+                    stepCounter: "804"
                 transform: ""
           - columnReference:
-              columnCounter: 8070
-              stepCounter: "774"
+              columnCounter: 8336
+              stepCounter: "811"
             dataType: VARCHAR(10)
             description: ""
             hashColumns: []
@@ -100,12 +114,12 @@ steps:
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8062
-                    stepCounter: "773"
-                transform: UPPER("CUSTOMER"."C_MKTSEGMENT")
+                  - columnCounter: 8279
+                    stepCounter: "804"
+                transform: ""
           - columnReference:
-              columnCounter: 8071
-              stepCounter: "774"
+              columnCounter: 8337
+              stepCounter: "811"
             dataType: VARCHAR(117)
             description: ""
             hashColumns: []
@@ -114,30 +128,45 @@ steps:
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8063
-                    stepCounter: "773"
-                transform: UPPER("CUSTOMER"."C_COMMENT")
+                  - columnCounter: 8280
+                    stepCounter: "804"
+                transform: ""
           - acceptedValues:
               strictMatch: true
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 8072
-              stepCounter: "774"
+              columnCounter: 8338
+              stepCounter: "811"
             config: {}
-            dataType: NUMBER
+            dataType: TIMESTAMP
             defaultValue: ""
             description: ""
-            keyColumnType: None
-            name: NewCol
+            hashColumns: []
+            isSystemLoadDate: true
+            name: LDTS
             nullable: true
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 0
-                    stepCounter: "0"
-                transform: "1234"
-            systemColumnType: None
-            transform: ""
+              - columnReferences: []
+                transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 8339
+              stepCounter: "811"
+            config: {}
+            dataType: STRING
+            defaultValue: ""
+            description: ""
+            hashColumns: []
+            isRecordSource: true
+            name: RSCR
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: "{{ getRecordSourceFQN() }}"
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
@@ -153,6 +182,6 @@ steps:
       name: STG_CUSTOMER
       overrideSQL: false
       schema: ""
-      sqlType: Stage
+      sqlType: "32"
       type: sql
-    stepCounter: "774"
+    stepCounter: "811"

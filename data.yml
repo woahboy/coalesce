@@ -1795,9 +1795,9 @@ stepTypes:
     metadata:
       defaultStorageLocation: TARGET
       error: null
-      nodeMetadataSpec: |
+      nodeMetadataSpec: |-
         capitalized: Copy of Stage
-        short: DV_STG
+        short: STG
         plural: Stages
         tagColor: '#2EB67D'
 
@@ -1851,17 +1851,18 @@ stepTypes:
             isRequired: false
 
         systemColumns:
-        - displayName: "RecordSource"
-          transform: '{{ getRecordSourceFQN() }}'
-          dataType: STRING
-          placement: end
-          attributeName: isRecordSource
 
-        - displayName: "LoadDate"
+        - displayName: "LDTS"
           transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
           dataType: TIMESTAMP
           placement: end
           attributeName: isSystemLoadDate
+
+        - displayName: "RSCR"
+          transform: '{{ getRecordSourceFQN() }}'
+          dataType: STRING
+          placement: end
+          attributeName: isRecordSource
       templates:
         create:
           templateString: |
@@ -1919,14 +1920,13 @@ stepTypes:
 
             {% endif %}
         run:
-          templateString: |2
-
-                {% for test in node.tests if config.testsEnabled %}
-                    {% if test.runOrder == 'Before' %}
-                        {{ test_stage(test.name, test.continueOnFailure) }}
-                        {{ test.templateString }}
-                    {% endif %}
-                {% endfor %}
+          templateString: |-
+            {% for test in node.tests if config.testsEnabled %}
+                {% if test.runOrder == 'Before' %}
+                    {{ test_stage(test.name, test.continueOnFailure) }}
+                    {{ test.templateString }}
+                {% endif %}
+            {% endfor %}
 
             {% if node.materializationType == 'table' %}
             	{% if config.preSQL %}
@@ -2363,7 +2363,7 @@ stepTypes:
     version: 1
   StepType-37:
     id: "37"
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: null
       error: null
@@ -2457,7 +2457,7 @@ stepTypes:
     version: 1
   StepType-38:
     id: "38"
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: null
       error: null
@@ -3279,7 +3279,7 @@ stepTypes:
     version: 1
   StepType-41:
     id: "41"
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: TARGET
       error: null
@@ -3482,9 +3482,27 @@ stepTypes:
             {% endif %}
     name: Copy of Stage
     version: 1
+  StepType-42:
+    id: "42"
+    isDisabled: true
+    metadata:
+      defaultStorageLocation: null
+      error: null
+      nodeMetadataSpec: |-
+        capitalized: New Type
+        short: NEW
+        tagColor: gray
+        plural: New Types
+      templates:
+        create:
+          templateString: ""
+        run:
+          templateString: ""
+    name: New Type
+    version: 1
   StepType-6:
     id: "6"
-    isDisabled: false
+    isDisabled: true
     metadata:
       error: null
       nodeMetadataSpec: |-
@@ -3697,19 +3715,6 @@ stepTypes:
             attributeName: postSQL
             type: textBox
             isRequired: false
-
-        systemColumns:
-        - displayName: "LOAD_DATE"
-          transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
-          dataType: TIMESTAMP
-          placement: end
-          attributeName: isSystemCreateDate
-
-        - displayName: "RECORD_SOURCE"
-          transform: "''"
-          dataType: VARCHAR
-          placement: end
-          attributeName: isSystemRecordSource
       templates:
         create:
           templateString: |-
@@ -3729,6 +3734,13 @@ stepTypes:
             {%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
         run:
           templateString: |-
+            {% for test in node.tests if config.testsEnabled %}
+                    {% if test.runOrder == 'Before' %}
+                        {{ test_stage(test.name, test.continueOnFailure) }}
+                        {{ test.templateString }}
+                    {% endif %}
+            {% endfor %}
+
             {% if config.preSQL %}
             	{{ stage('Pre-SQL') }}
             	{{ config.preSQL }}
@@ -3779,6 +3791,22 @@ stepTypes:
             {% if config.postSQL %}
             	{{ stage('Post-SQL') }}
             	{{ config.postSQL }}
+            {% endif %}
+
+            {% if config.testsEnabled %}
+            	{% for test in node.tests %}
+            		{% if test.runOrder == 'After' %}
+            			{{ test_stage(test.name, test.continueOnFailure) }}
+            			{{ test.templateString }}
+                    {% endif %}
+            	{% endfor %}
+
+            	{% for column in columns %}
+            		{% for test in column.tests %}
+            			{{ test_stage(column.name + ": " + test.name) }}
+            			{{ test.templateString }}
+            		{% endfor %}
+            	{% endfor %}
             {% endif %}
     name: "DV Package: Hub"
     packageInfo:
@@ -3850,11 +3878,11 @@ stepTypes:
         run:
           templateString: |-
             {% for test in node.tests if config.testsEnabled %}
-                    {% if test.runOrder == 'Before' %}
-                        {{ test_stage(test.name, test.continueOnFailure) }}
-                        {{ test.templateString }}
-                    {% endif %}
-                {% endfor %}
+                {% if test.runOrder == 'Before' %}
+                    {{ test_stage(test.name, test.continueOnFailure) }}
+                    {{ test.templateString }}
+                {% endif %}
+            {% endfor %}
                 
             {% if config.preSQL %}
                 {{ stage('Pre-SQL') }}
@@ -3931,7 +3959,7 @@ stepTypes:
     version: 1
   StepType-COALESCE-DATA_VAULT::3:
     id: COALESCE-DATA_VAULT::3
-    isDisabled: true
+    isDisabled: false
     metadata:
       defaultStorageLocation: TARGET
       error: null
@@ -4029,6 +4057,13 @@ stepTypes:
             	{% endif %}
         run:
           templateString: |-
+            {% for test in node.tests if config.testsEnabled %}
+                {% if test.runOrder == 'Before' %}
+                    {{ test_stage(test.name, test.continueOnFailure) }}
+                    {{ test.templateString }}
+                {% endif %}
+            {% endfor %}
+
             {% if config.preSQL %}
             	{{ stage('Pre-SQL') }}
             	{{ config.preSQL }}
@@ -4073,6 +4108,22 @@ stepTypes:
             {% if config.postSQL %}
             	{{ stage('Post-SQL') }}
             	{{ config.postSQL }}
+            {% endif %}
+
+            {% if config.testsEnabled %}
+            	{% for test in node.tests %}
+            		{% if test.runOrder == 'After' %}
+            			{{ test_stage(test.name, test.continueOnFailure) }}
+            			{{ test.templateString }}
+                    {% endif %}
+            	{% endfor %}
+
+            	{% for column in columns %}
+            		{% for test in column.tests %}
+            			{{ test_stage(column.name + ": " + test.name) }}
+            			{{ test.templateString }}
+            		{% endfor %}
+            	{% endfor %}
             {% endif %}
     name: "DV Package: Satellite"
     packageInfo:
@@ -4638,7 +4689,7 @@ stepTypes:
     version: 1
   StepType-COALESCE-DATA_VAULT::7:
     id: COALESCE-DATA_VAULT::7
-    isDisabled: true
+    isDisabled: false
     metadata:
       defaultStorageLocation: TARGET
       error: null
@@ -5292,7 +5343,7 @@ stepTypes:
     version: 1
   StepType-COALESCE-MISC::7:
     id: COALESCE-MISC::7
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: TARGET
       error: null
@@ -5867,6 +5918,11 @@ stepTypes:
           transform: ''
           dataType: VARIANT
           placement: beginning
+        - displayName: 'METADATA$FILE_ROW_NUMBER'
+          attributeName: 'METADATA$FILENAME'
+          transform: 'row_id'
+          dataType: number(30,0)
+          placement: end 
         - displayName: 'METADATA$FILENAME'
           attributeName: 'METADATA$FILENAME'
           transform: ''
@@ -7312,7 +7368,7 @@ stepTypes:
     version: 1
   StepType-View:
     id: View
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: null
       error: null
@@ -7392,7 +7448,7 @@ stepTypes:
     version: 1
   StepType-persistentStage:
     id: persistentStage
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: null
       error: null
