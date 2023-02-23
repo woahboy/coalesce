@@ -1,5 +1,5 @@
 steps:
-  STG_ORDERS-826:
+  STG_ORDERS-842:
     operation:
       config:
         insertStrategy: INSERT
@@ -20,8 +20,8 @@ steps:
         appliedNodeTests: []
         columns:
           - columnReference:
-              columnCounter: 8453
-              stepCounter: "826"
+              columnCounter: 8615
+              stepCounter: "842"
             dataType: NUMBER(38,0)
             description: ""
             hashColumns: []
@@ -30,12 +30,12 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8400
-                    stepCounter: "819"
+                  - columnCounter: 8587
+                    stepCounter: "838"
                 transform: ""
           - columnReference:
-              columnCounter: 8454
-              stepCounter: "826"
+              columnCounter: 8616
+              stepCounter: "842"
             dataType: NUMBER(38,0)
             description: ""
             hashColumns: []
@@ -44,12 +44,12 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8401
-                    stepCounter: "819"
+                  - columnCounter: 8588
+                    stepCounter: "838"
                 transform: ""
           - columnReference:
-              columnCounter: 8455
-              stepCounter: "826"
+              columnCounter: 8617
+              stepCounter: "842"
             dataType: VARCHAR(1)
             description: ""
             hashColumns: []
@@ -58,12 +58,12 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8402
-                    stepCounter: "819"
+                  - columnCounter: 8589
+                    stepCounter: "838"
                 transform: ""
           - columnReference:
-              columnCounter: 8456
-              stepCounter: "826"
+              columnCounter: 8618
+              stepCounter: "842"
             dataType: NUMBER(12,2)
             description: ""
             hashColumns: []
@@ -72,12 +72,12 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8403
-                    stepCounter: "819"
+                  - columnCounter: 8590
+                    stepCounter: "838"
                 transform: ""
           - columnReference:
-              columnCounter: 8457
-              stepCounter: "826"
+              columnCounter: 8619
+              stepCounter: "842"
             dataType: DATE
             description: ""
             hashColumns: []
@@ -86,12 +86,12 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8404
-                    stepCounter: "819"
+                  - columnCounter: 8591
+                    stepCounter: "838"
                 transform: ""
           - columnReference:
-              columnCounter: 8458
-              stepCounter: "826"
+              columnCounter: 8620
+              stepCounter: "842"
             dataType: VARCHAR(15)
             description: ""
             hashColumns: []
@@ -100,12 +100,12 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8405
-                    stepCounter: "819"
+                  - columnCounter: 8592
+                    stepCounter: "838"
                 transform: ""
           - columnReference:
-              columnCounter: 8459
-              stepCounter: "826"
+              columnCounter: 8621
+              stepCounter: "842"
             dataType: VARCHAR(15)
             description: ""
             hashColumns: []
@@ -114,12 +114,12 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8406
-                    stepCounter: "819"
+                  - columnCounter: 8593
+                    stepCounter: "838"
                 transform: ""
           - columnReference:
-              columnCounter: 8460
-              stepCounter: "826"
+              columnCounter: 8622
+              stepCounter: "842"
             dataType: NUMBER(38,0)
             description: ""
             hashColumns: []
@@ -128,12 +128,12 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8407
-                    stepCounter: "819"
+                  - columnCounter: 8594
+                    stepCounter: "838"
                 transform: ""
           - columnReference:
-              columnCounter: 8461
-              stepCounter: "826"
+              columnCounter: 8623
+              stepCounter: "842"
             dataType: VARCHAR(79)
             description: ""
             hashColumns: []
@@ -142,9 +142,45 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8408
-                    stepCounter: "819"
+                  - columnCounter: 8595
+                    stepCounter: "838"
                 transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 8624
+              stepCounter: "842"
+            config: {}
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: ""
+            hashColumns: []
+            isSystemLoadDate: true
+            name: LDTS
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 8625
+              stepCounter: "842"
+            config: {}
+            dataType: STRING
+            defaultValue: ""
+            description: ""
+            hashColumns: []
+            isRecordSource: true
+            name: RSCR
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: "{{ getRecordSourceFQN() }}"
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
@@ -160,6 +196,6 @@ steps:
       name: STG_ORDERS
       overrideSQL: false
       schema: ""
-      sqlType: Stage
+      sqlType: "32"
       type: sql
-    stepCounter: "826"
+    stepCounter: "842"

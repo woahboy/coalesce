@@ -1,0 +1,88 @@
+steps:
+  HUB_NODE-845:
+    operation:
+      config:
+        postSQL: ""
+        preSQL: ""
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: TARGET
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 8649
+              stepCounter: "845"
+            config:
+              isHubHash: true
+            dataType: STRING
+            description: ""
+            name: sha1_hub_customer
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8631
+                    stepCounter: "840"
+                transform: ""
+          - columnReference:
+              columnCounter: 8646
+              stepCounter: "845"
+            dataType: NUMBER(38,0)
+            description: ""
+            name: C_CUSTKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8599
+                    stepCounter: "840"
+                transform: ""
+          - columnReference:
+              columnCounter: 8647
+              stepCounter: "845"
+            dataType: TIMESTAMP
+            description: ""
+            name: LDTS
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8607
+                    stepCounter: "840"
+                transform: CURRENT_TIMESTAMP()
+          - columnReference:
+              columnCounter: 8648
+              stepCounter: "845"
+            dataType: STRING
+            description: ""
+            name: RSCR
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8608
+                    stepCounter: "840"
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - aliases:
+              STG_CUSTOMER: "840"
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: TARGET
+                nodeName: STG_CUSTOMER
+            join:
+              joinCondition: FROM {{ ref('TARGET', 'STG_CUSTOMER') }} "STG_CUSTOMER"
+            name: HUB_NODE
+            noLinkRefs: []
+      name: HUB_NODE
+      overrideSQL: false
+      schema: ""
+      sqlType: COALESCE-DATA_VAULT::1
+      type: sql
+    stepCounter: "845"

@@ -1,5 +1,5 @@
 steps:
-  STG_REGION-829:
+  STG_REGION-843:
     operation:
       config:
         insertStrategy: INSERT
@@ -20,8 +20,8 @@ steps:
         appliedNodeTests: []
         columns:
           - columnReference:
-              columnCounter: 8476
-              stepCounter: "829"
+              columnCounter: 8626
+              stepCounter: "843"
             dataType: NUMBER(38,0)
             description: ""
             hashColumns: []
@@ -30,12 +30,12 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8423
-                    stepCounter: "822"
+                  - columnCounter: 8596
+                    stepCounter: "839"
                 transform: ""
           - columnReference:
-              columnCounter: 8477
-              stepCounter: "829"
+              columnCounter: 8627
+              stepCounter: "843"
             dataType: VARCHAR(25)
             description: ""
             hashColumns: []
@@ -44,12 +44,12 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8424
-                    stepCounter: "822"
+                  - columnCounter: 8597
+                    stepCounter: "839"
                 transform: ""
           - columnReference:
-              columnCounter: 8478
-              stepCounter: "829"
+              columnCounter: 8628
+              stepCounter: "843"
             dataType: VARCHAR(152)
             description: ""
             hashColumns: []
@@ -58,9 +58,45 @@ steps:
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8425
-                    stepCounter: "822"
+                  - columnCounter: 8598
+                    stepCounter: "839"
                 transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 8629
+              stepCounter: "843"
+            config: {}
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: ""
+            hashColumns: []
+            isSystemLoadDate: true
+            name: LDTS
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 8630
+              stepCounter: "843"
+            config: {}
+            dataType: STRING
+            defaultValue: ""
+            description: ""
+            hashColumns: []
+            isRecordSource: true
+            name: RSCR
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: "{{ getRecordSourceFQN() }}"
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
@@ -76,6 +112,6 @@ steps:
       name: STG_REGION
       overrideSQL: false
       schema: ""
-      sqlType: Stage
+      sqlType: "32"
       type: sql
-    stepCounter: "829"
+    stepCounter: "843"

@@ -1,5 +1,5 @@
 steps:
-  STG_NATION-825:
+  STG_NATION-841:
     operation:
       config:
         insertStrategy: INSERT
@@ -20,8 +20,8 @@ steps:
         appliedNodeTests: []
         columns:
           - columnReference:
-              columnCounter: 8449
-              stepCounter: "825"
+              columnCounter: 8609
+              stepCounter: "841"
             dataType: NUMBER(38,0)
             description: ""
             hashColumns: []
@@ -30,12 +30,12 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8396
-                    stepCounter: "818"
+                  - columnCounter: 8583
+                    stepCounter: "837"
                 transform: ""
           - columnReference:
-              columnCounter: 8450
-              stepCounter: "825"
+              columnCounter: 8610
+              stepCounter: "841"
             dataType: VARCHAR(25)
             description: ""
             hashColumns: []
@@ -44,12 +44,12 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8397
-                    stepCounter: "818"
+                  - columnCounter: 8584
+                    stepCounter: "837"
                 transform: ""
           - columnReference:
-              columnCounter: 8451
-              stepCounter: "825"
+              columnCounter: 8611
+              stepCounter: "841"
             dataType: NUMBER(38,0)
             description: ""
             hashColumns: []
@@ -58,12 +58,12 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8398
-                    stepCounter: "818"
+                  - columnCounter: 8585
+                    stepCounter: "837"
                 transform: ""
           - columnReference:
-              columnCounter: 8452
-              stepCounter: "825"
+              columnCounter: 8612
+              stepCounter: "841"
             dataType: VARCHAR(152)
             description: ""
             hashColumns: []
@@ -72,9 +72,45 @@ steps:
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8399
-                    stepCounter: "818"
+                  - columnCounter: 8586
+                    stepCounter: "837"
                 transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 8613
+              stepCounter: "841"
+            config: {}
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: ""
+            hashColumns: []
+            isSystemLoadDate: true
+            name: LDTS
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 8614
+              stepCounter: "841"
+            config: {}
+            dataType: STRING
+            defaultValue: ""
+            description: ""
+            hashColumns: []
+            isRecordSource: true
+            name: RSCR
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: "{{ getRecordSourceFQN() }}"
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
@@ -90,6 +126,6 @@ steps:
       name: STG_NATION
       overrideSQL: false
       schema: ""
-      sqlType: Stage
+      sqlType: "32"
       type: sql
-    stepCounter: "825"
+    stepCounter: "841"
