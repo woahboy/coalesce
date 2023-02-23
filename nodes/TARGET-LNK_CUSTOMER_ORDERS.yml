@@ -1,0 +1,109 @@
+steps:
+  LNK_CUSTOMER_ORDERS-854:
+    operation:
+      config:
+        postSQL: ""
+        preSQL: ""
+        testsEnabled: true
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: TARGET
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 8759
+              stepCounter: "854"
+            config:
+              isLinkHash: true
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: SHA1_LINK_CUSTOMER_ORDER
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8752
+                    stepCounter: "853"
+                transform: ""
+          - columnReference:
+              columnCounter: 8760
+              stepCounter: "854"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: SHA1_HUB_CUSTOMER
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8754
+                    stepCounter: "853"
+                transform: ""
+          - columnReference:
+              columnCounter: 8761
+              stepCounter: "854"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: SHA1_HUB_ORDER
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8753
+                    stepCounter: "853"
+                transform: ""
+          - columnReference:
+              columnCounter: 8764
+              stepCounter: "854"
+            dataType: TIMESTAMP
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: LDTS
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8755
+                    stepCounter: "853"
+                transform: ""
+          - columnReference:
+              columnCounter: 8765
+              stepCounter: "854"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: RSCR
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8758
+                    stepCounter: "853"
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: TARGET
+                nodeName: STG_CUSTOMER_ORDERS
+            join:
+              joinCondition: FROM {{ ref('TARGET', 'STG_CUSTOMER_ORDERS') }} "STG_CUSTOMER_ORDERS"
+            name: LNK_CUSTOMER_ORDERS
+            noLinkRefs: []
+      name: LNK_CUSTOMER_ORDERS
+      overrideSQL: false
+      schema: ""
+      sqlType: COALESCE-DATA_VAULT::2
+      type: sql
+    stepCounter: "854"

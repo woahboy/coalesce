@@ -1,5 +1,5 @@
 steps:
-  SAT_CUSTOMER-847:
+  SAT_ORDERS-850:
     operation:
       config:
         insertZeroKey: true
@@ -9,7 +9,7 @@ steps:
       database: ""
       dependencies: []
       deployEnabled: true
-      description: Customer data as defined by TPC-H
+      description: Orders data as defined by TPC-H
       isDataVault: false
       isMultisource: false
       locationID: ""
@@ -19,24 +19,24 @@ steps:
         appliedNodeTests: []
         columns:
           - columnReference:
-              columnCounter: 8667
-              stepCounter: "847"
+              columnCounter: 8687
+              stepCounter: "850"
             config:
               isHubHash: true
             dataType: STRING
             description: ""
             hashColumns: []
             hashDetails: null
-            name: SHA1_HUB_CUSTOMER
+            name: SHA1_HUB_ORDER
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8631
-                    stepCounter: "840"
+                  - columnCounter: 8681
+                    stepCounter: "842"
                 transform: ""
           - columnReference:
-              columnCounter: 8677
-              stepCounter: "847"
+              columnCounter: 8698
+              stepCounter: "850"
             config:
               isSystemCreateDate: true
             dataType: TIMESTAMP
@@ -47,126 +47,126 @@ steps:
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8607
-                    stepCounter: "840"
+                  - columnCounter: 8624
+                    stepCounter: "842"
                 transform: ""
           - columnReference:
-              columnCounter: 8670
-              stepCounter: "847"
-            dataType: VARCHAR(25)
+              columnCounter: 8691
+              stepCounter: "850"
+            dataType: VARCHAR(1)
             description: ""
             hashColumns: []
             hashDetails: null
-            name: C_NAME
+            name: O_ORDERSTATUS
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8600
-                    stepCounter: "840"
+                  - columnCounter: 8617
+                    stepCounter: "842"
                 transform: ""
           - columnReference:
-              columnCounter: 8671
-              stepCounter: "847"
-            dataType: VARCHAR(40)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: C_ADDRESS
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 8601
-                    stepCounter: "840"
-                transform: ""
-          - columnReference:
-              columnCounter: 8673
-              stepCounter: "847"
-            dataType: VARCHAR(15)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: C_PHONE
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 8603
-                    stepCounter: "840"
-                transform: ""
-          - columnReference:
-              columnCounter: 8674
-              stepCounter: "847"
+              columnCounter: 8692
+              stepCounter: "850"
             dataType: NUMBER(12,2)
             description: ""
             hashColumns: []
             hashDetails: null
-            name: C_ACCTBAL
+            name: O_TOTALPRICE
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8604
-                    stepCounter: "840"
+                  - columnCounter: 8618
+                    stepCounter: "842"
                 transform: ""
           - columnReference:
-              columnCounter: 8675
-              stepCounter: "847"
-            dataType: VARCHAR(10)
+              columnCounter: 8693
+              stepCounter: "850"
+            dataType: DATE
             description: ""
             hashColumns: []
             hashDetails: null
-            name: C_MKTSEGMENT
-            nullable: true
+            name: O_ORDERDATE
+            nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8605
-                    stepCounter: "840"
+                  - columnCounter: 8619
+                    stepCounter: "842"
                 transform: ""
           - columnReference:
-              columnCounter: 8676
-              stepCounter: "847"
-            dataType: VARCHAR(117)
+              columnCounter: 8694
+              stepCounter: "850"
+            dataType: VARCHAR(15)
             description: ""
             hashColumns: []
             hashDetails: null
-            name: C_COMMENT
-            nullable: true
+            name: O_ORDERPRIORITY
+            nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8606
-                    stepCounter: "840"
+                  - columnCounter: 8620
+                    stepCounter: "842"
                 transform: ""
           - columnReference:
-              columnCounter: 8672
-              stepCounter: "847"
+              columnCounter: 8695
+              stepCounter: "850"
+            dataType: VARCHAR(15)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: O_CLERK
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8621
+                    stepCounter: "842"
+                transform: ""
+          - columnReference:
+              columnCounter: 8696
+              stepCounter: "850"
             dataType: NUMBER(38,0)
             description: ""
             hashColumns: []
             hashDetails: null
-            name: NATIONCODE
+            name: O_SHIPPRIORITY
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8602
-                    stepCounter: "840"
+                  - columnCounter: 8622
+                    stepCounter: "842"
                 transform: ""
           - columnReference:
-              columnCounter: 8668
-              stepCounter: "847"
+              columnCounter: 8697
+              stepCounter: "850"
+            dataType: VARCHAR(79)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: O_COMMENT
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8623
+                    stepCounter: "842"
+                transform: ""
+          - columnReference:
+              columnCounter: 8688
+              stepCounter: "850"
             config:
               isChangeHash: true
             dataType: STRING
             description: ""
             hashColumns: []
             hashDetails: null
-            name: CUSTOMER_HASH_DIFF
+            name: HASHDIFF
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8632
-                    stepCounter: "840"
+                  - columnCounter: 8682
+                    stepCounter: "842"
                 transform: ""
           - columnReference:
-              columnCounter: 8678
-              stepCounter: "847"
+              columnCounter: 8699
+              stepCounter: "850"
             dataType: STRING
             description: ""
             hashColumns: []
@@ -175,26 +175,24 @@ steps:
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8608
-                    stepCounter: "840"
+                  - columnCounter: 8625
+                    stepCounter: "842"
                 transform: ""
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
-          - aliases:
-              STG_CUSTOMER: "840"
-            customSQL:
+          - customSQL:
               customSQL: ""
             dependencies:
               - locationName: TARGET
-                nodeName: STG_CUSTOMER
+                nodeName: STG_ORDERS
             join:
-              joinCondition: FROM {{ ref('TARGET', 'STG_CUSTOMER') }} "STG_CUSTOMER"
-            name: SAT_CUSTOMER
+              joinCondition: FROM {{ ref('TARGET', 'STG_ORDERS') }} "STG_ORDERS"
+            name: SAT_ORDERS
             noLinkRefs: []
-      name: SAT_CUSTOMER
+      name: SAT_ORDERS
       overrideSQL: false
       schema: ""
       sqlType: COALESCE-DATA_VAULT::3
       type: sql
-    stepCounter: "847"
+    stepCounter: "850"

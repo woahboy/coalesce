@@ -1,5 +1,5 @@
 steps:
-  HUB_NODE-845:
+  HUB_ORDER-849:
     operation:
       config:
         postSQL: ""
@@ -17,72 +17,72 @@ steps:
         appliedNodeTests: []
         columns:
           - columnReference:
-              columnCounter: 8649
-              stepCounter: "845"
+              columnCounter: 8683
+              stepCounter: "849"
             config:
               isHubHash: true
             dataType: STRING
             description: ""
-            name: sha1_hub_customer
+            name: sha1_hub_order
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8631
-                    stepCounter: "840"
+                  - columnCounter: 8681
+                    stepCounter: "842"
                 transform: ""
           - columnReference:
-              columnCounter: 8646
-              stepCounter: "845"
+              columnCounter: 8684
+              stepCounter: "849"
             dataType: NUMBER(38,0)
             description: ""
-            name: C_CUSTKEY
+            name: O_ORDERKEY
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8599
-                    stepCounter: "840"
+                  - columnCounter: 8615
+                    stepCounter: "842"
                 transform: ""
           - columnReference:
-              columnCounter: 8647
-              stepCounter: "845"
+              columnCounter: 8685
+              stepCounter: "849"
             dataType: TIMESTAMP
             description: ""
             name: LDTS
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8607
-                    stepCounter: "840"
+                  - columnCounter: 8624
+                    stepCounter: "842"
                 transform: ""
           - columnReference:
-              columnCounter: 8648
-              stepCounter: "845"
+              columnCounter: 8686
+              stepCounter: "849"
             dataType: STRING
             description: ""
             name: RSCR
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8608
-                    stepCounter: "840"
+                  - columnCounter: 8625
+                    stepCounter: "842"
                 transform: ""
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
           - aliases:
-              STG_CUSTOMER: "840"
+              STG_ORDERS: "842"
             customSQL:
               customSQL: ""
             dependencies:
               - locationName: TARGET
-                nodeName: STG_CUSTOMER
+                nodeName: STG_ORDERS
             join:
-              joinCondition: FROM {{ ref('TARGET', 'STG_CUSTOMER') }} "STG_CUSTOMER"
-            name: HUB_NODE
+              joinCondition: FROM {{ ref('TARGET', 'STG_ORDERS') }} "STG_ORDERS"
+            name: HUB_ORDER
             noLinkRefs: []
-      name: HUB_NODE
+      name: HUB_ORDER
       overrideSQL: false
       schema: ""
       sqlType: COALESCE-DATA_VAULT::1
       type: sql
-    stepCounter: "845"
+    stepCounter: "849"
