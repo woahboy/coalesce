@@ -3,8 +3,8 @@ jobs:
   Job-14:
     excludeSelector: ""
     id: 14
-    includeSelector: "+{ location: TARGET name: DIM_CUSTOMER_NATION }"
-    name: Populate Customer Dim
+    includeSelector: "+{ location: TARGET name: *CUSTOMER* } OR +{ location: TARGET name: *ORDER* }"
+    name: Populate Raw Data Vault
     steps: []
     subgraphs: []
 locations:
@@ -1806,7 +1806,7 @@ stepTypes:
         capitalized: Copy of Stage
         short: STG
         plural: Stages
-        tagColor: '#2EB67D'
+        tagColor: '#C39BD3'
 
         config:
         - groupName: Options
@@ -8005,11 +8005,30 @@ stepTypes:
 subgraphs:
   Subgraph-19:
     id: 19
-    name: Dim_Customer_Subgraph
+    name: Customer Subject Area
     steps:
       - "835"
       - "832"
       - "825"
       - "816"
       - "818"
+      - "836"
+      - "838"
+      - "840"
+      - "842"
+      - "845"
+      - "847"
+      - "853"
+      - "854"
+  Subgraph-21:
+    id: 21
+    name: Orders Subject Area
+    steps:
+      - "836"
+      - "838"
+      - "840"
+      - "842"
+      - "850"
+      - "853"
+      - "854"
 version: 1

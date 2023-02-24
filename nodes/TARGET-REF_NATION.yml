@@ -1,0 +1,123 @@
+steps:
+  REF_NATION-856:
+    operation:
+      config:
+        insertStrategy: INSERT
+        postSQL: ""
+        preSQL: ""
+        testsEnabled: true
+        truncateBefore: true
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: Nation data as defined by TPC-H
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: TARGET
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 8775
+              stepCounter: "856"
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: NATIONCODE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8609
+                    stepCounter: "841"
+                transform: ""
+          - columnReference:
+              columnCounter: 8777
+              stepCounter: "856"
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: REGIONCODE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8611
+                    stepCounter: "841"
+                transform: ""
+          - columnReference:
+              columnCounter: 8779
+              stepCounter: "856"
+            dataType: TIMESTAMP
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: LDTS
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8613
+                    stepCounter: "841"
+                transform: ""
+          - columnReference:
+              columnCounter: 8780
+              stepCounter: "856"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: RSCR
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8614
+                    stepCounter: "841"
+                transform: ""
+          - columnReference:
+              columnCounter: 8776
+              stepCounter: "856"
+            dataType: VARCHAR(25)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: N_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8610
+                    stepCounter: "841"
+                transform: ""
+          - columnReference:
+              columnCounter: 8778
+              stepCounter: "856"
+            dataType: VARCHAR(152)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: N_COMMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8612
+                    stepCounter: "841"
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: TARGET
+                nodeName: STG_NATION
+            join:
+              joinCondition: FROM {{ ref('TARGET', 'STG_NATION') }} "STG_NATION"
+            name: REF_NATION
+            noLinkRefs: []
+      name: REF_NATION
+      overrideSQL: false
+      schema: ""
+      sqlType: Stage
+      type: sql
+    stepCounter: "856"
