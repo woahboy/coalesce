@@ -14,6 +14,13 @@ jobs:
     name: Populate Ref Tables
     steps: []
     subgraphs: []
+  Job-16:
+    excludeSelector: ""
+    id: 16
+    includeSelector: "+{ location: TARGET name: *CUSTOMER* } OR { location: TARGET name: *ORDER* }"
+    name: Populate Raw Data Vault
+    steps: []
+    subgraphs: []
 locations:
   SOURCE:
     mappingDefinitions:
