@@ -17,4 +17,5 @@ steps:
     script: |
       export PATH="/opt/homebrew/bin:${PATH}" 
       npm list -g | grep "@coalescesoftware/coa@$(coalesceCliVersion)" || npm install -g @coalescesoftware/coa@$(coalesceCliVersion);
+      coa plan  --config $(coaConfig.secureFilePath);
       coa deploy  --config $(coaConfig.secureFilePath);
