@@ -1,0 +1,215 @@
+steps:
+  SAT_CURR_CUSTOMER-869:
+    operation:
+      config: {}
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: Customer data as defined by TPC-H
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: TARGET
+      materializationType: view
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 8883
+              stepCounter: "869"
+            config:
+              isSatKey: true
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: SHA1_HUB_CUSTOMER
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8667
+                    stepCounter: "847"
+                transform: ""
+          - columnReference:
+              columnCounter: 8884
+              stepCounter: "869"
+            config:
+              isDateColumn: true
+            dataType: TIMESTAMP
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: LDTS
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8677
+                    stepCounter: "847"
+                transform: ""
+          - columnReference:
+              columnCounter: 8885
+              stepCounter: "869"
+            dataType: VARCHAR(25)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8670
+                    stepCounter: "847"
+                transform: ""
+          - columnReference:
+              columnCounter: 8886
+              stepCounter: "869"
+            dataType: VARCHAR(40)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_ADDRESS
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8671
+                    stepCounter: "847"
+                transform: ""
+          - columnReference:
+              columnCounter: 8887
+              stepCounter: "869"
+            dataType: VARCHAR(15)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_PHONE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8673
+                    stepCounter: "847"
+                transform: ""
+          - columnReference:
+              columnCounter: 8888
+              stepCounter: "869"
+            dataType: NUMBER(12,2)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_ACCTBAL
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8674
+                    stepCounter: "847"
+                transform: ""
+          - columnReference:
+              columnCounter: 8889
+              stepCounter: "869"
+            dataType: VARCHAR(10)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_MKTSEGMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8675
+                    stepCounter: "847"
+                transform: ""
+          - columnReference:
+              columnCounter: 8890
+              stepCounter: "869"
+            dataType: VARCHAR(117)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_COMMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8676
+                    stepCounter: "847"
+                transform: ""
+          - columnReference:
+              columnCounter: 8891
+              stepCounter: "869"
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: NATIONCODE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8672
+                    stepCounter: "847"
+                transform: ""
+          - columnReference:
+              columnCounter: 8893
+              stepCounter: "869"
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: RSCR
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8678
+                    stepCounter: "847"
+                transform: ""
+          - columnReference:
+              columnCounter: 8894
+              stepCounter: "869"
+            dataType: VARCHAR(25)
+            description: ""
+            name: NATION_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8776
+                    stepCounter: "856"
+                transform: ""
+          - columnReference:
+              columnCounter: 8895
+              stepCounter: "869"
+            dataType: VARCHAR(25)
+            description: ""
+            name: REGION_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8789
+                    stepCounter: "858"
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - aliases:
+              REF_NATION: "856"
+              REF_REGION: "858"
+              SAT_CUSTOMER: "847"
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: TARGET
+                nodeName: SAT_CUSTOMER
+              - locationName: TARGET
+                nodeName: REF_NATION
+              - locationName: TARGET
+                nodeName: REF_REGION
+            join:
+              joinCondition: |-
+                FROM {{ ref('TARGET', 'REF_NATION') }} "REF_NATION" 
+                INNER JOIN  {{ ref('TARGET', 'SAT_CUSTOMER') }} "SAT_CUSTOMER"
+                ON "SAT_CUSTOMER"."NATIONCODE" = "REF_NATION"."NATIONCODE"
+                INNER JOIN {{ ref('TARGET', 'REF_REGION') }} "REF_REGION"
+                ON "REF_NATION"."REGIONCODE" = "REF_REGION"."REGIONCODE"
+            name: SAT_CURR_CUSTOMER
+            noLinkRefs: []
+      name: SAT_CURR_CUSTOMER
+      overrideSQL: false
+      schema: ""
+      sqlType: COALESCE-DATA_VAULT::7
+      type: sql
+    stepCounter: "869"
