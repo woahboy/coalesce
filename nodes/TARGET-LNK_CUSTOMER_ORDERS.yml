@@ -2,7 +2,7 @@ steps:
   LNK_CUSTOMER_ORDERS-854:
     operation:
       config:
-        postSQL: ""
+        postSQL: call "JUSTIN_EDW"."DEV_EDW".stproc1(7.30::FLOAT);
         preSQL: ""
         testsEnabled: true
       database: ""
@@ -92,7 +92,9 @@ steps:
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
-          - customSQL:
+          - aliases:
+              STG_CUSTOMER_ORDERS: "853"
+            customSQL:
               customSQL: ""
             dependencies:
               - locationName: TARGET
