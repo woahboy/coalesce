@@ -1,5 +1,5 @@
 steps:
-  STG_SUPPLIER-866:
+  STG_SUPPLIER-892:
     operation:
       config:
         insertStrategy: INSERT
@@ -19,13 +19,32 @@ steps:
       metadata:
         appliedNodeTests: []
         columns:
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 9272
+              stepCounter: "892"
+            config: {}
+            dataType: STRING
+            defaultValue: ""
+            description: ""
+            hashDetails:
+              hashAlgorithm: SHA1
+            hashedColumns:
+              - columnCounter: 9263
+                stepCounter: "892"
+            name: Hub_Supplier_Hash
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
           - columnReference:
-              columnCounter: 8851
-              stepCounter: "866"
+              columnCounter: 9263
+              stepCounter: "892"
             dataType: NUMBER(38,0)
             description: ""
-            hashColumns: []
-            hashDetails: null
             name: S_SUPPKEY
             nullable: false
             sourceColumnReferences:
@@ -34,26 +53,22 @@ steps:
                     stepCounter: "865"
                 transform: ""
           - columnReference:
-              columnCounter: 8852
-              stepCounter: "866"
+              columnCounter: 9264
+              stepCounter: "892"
             dataType: VARCHAR(25)
             description: ""
-            hashColumns: []
-            hashDetails: null
             name: S_NAME
             nullable: false
             sourceColumnReferences:
               - columnReferences:
                   - columnCounter: 8845
                     stepCounter: "865"
-                transform: UPPER("SUPPLIER"."S_NAME")
+                transform: ""
           - columnReference:
-              columnCounter: 8853
-              stepCounter: "866"
+              columnCounter: 9265
+              stepCounter: "892"
             dataType: VARCHAR(40)
             description: ""
-            hashColumns: []
-            hashDetails: null
             name: S_ADDRESS
             nullable: false
             sourceColumnReferences:
@@ -62,12 +77,10 @@ steps:
                     stepCounter: "865"
                 transform: ""
           - columnReference:
-              columnCounter: 8854
-              stepCounter: "866"
+              columnCounter: 9266
+              stepCounter: "892"
             dataType: NUMBER(38,0)
             description: ""
-            hashColumns: []
-            hashDetails: null
             name: S_NATIONKEY
             nullable: false
             sourceColumnReferences:
@@ -76,12 +89,10 @@ steps:
                     stepCounter: "865"
                 transform: ""
           - columnReference:
-              columnCounter: 8855
-              stepCounter: "866"
+              columnCounter: 9267
+              stepCounter: "892"
             dataType: VARCHAR(15)
             description: ""
-            hashColumns: []
-            hashDetails: null
             name: S_PHONE
             nullable: false
             sourceColumnReferences:
@@ -90,12 +101,10 @@ steps:
                     stepCounter: "865"
                 transform: ""
           - columnReference:
-              columnCounter: 8856
-              stepCounter: "866"
+              columnCounter: 9268
+              stepCounter: "892"
             dataType: NUMBER(12,2)
             description: ""
-            hashColumns: []
-            hashDetails: null
             name: S_ACCTBAL
             nullable: false
             sourceColumnReferences:
@@ -104,12 +113,10 @@ steps:
                     stepCounter: "865"
                 transform: ""
           - columnReference:
-              columnCounter: 8857
-              stepCounter: "866"
+              columnCounter: 9269
+              stepCounter: "892"
             dataType: VARCHAR(101)
             description: ""
-            hashColumns: []
-            hashDetails: null
             name: S_COMMENT
             nullable: true
             sourceColumnReferences:
@@ -117,6 +124,40 @@ steps:
                   - columnCounter: 8850
                     stepCounter: "865"
                 transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 9270
+              stepCounter: "892"
+            config: {}
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: ""
+            isSystemLoadDate: true
+            name: LDTS
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 9271
+              stepCounter: "892"
+            config: {}
+            dataType: STRING
+            defaultValue: ""
+            description: ""
+            isRecordSource: true
+            name: RSCR
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: "{{ getRecordSourceFQN() }}"
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
@@ -132,6 +173,6 @@ steps:
       name: STG_SUPPLIER
       overrideSQL: false
       schema: ""
-      sqlType: Stage
+      sqlType: "32"
       type: sql
-    stepCounter: "866"
+    stepCounter: "892"

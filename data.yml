@@ -21,7 +21,22 @@ jobs:
     name: Populate Dim Supplier
     steps: []
     subgraphs: []
+  Job-18:
+    excludeSelector: "{ location: TARGET name: SAT_CURR_CUSTOMER }"
+    id: 18
+    includeSelector: "{ subgraph: \"Customer Order Vault\" }"
+    name: New Job
+    steps: []
+    subgraphs: []
 locations:
+  SOUCE_JUSTIN:
+    mappingDefinitions:
+      "3":
+        database: ""
+        schema: ""
+      "5":
+        database: ""
+        schema: ""
   SOURCE:
     mappingDefinitions:
       "3":
@@ -38,6 +53,14 @@ locations:
       "5":
         database: JUSTIN_SOURCE
         schema: SOURCE_EDW
+  SOURCE-1_JUSTIN:
+    mappingDefinitions:
+      "3":
+        database: ""
+        schema: ""
+      "5":
+        database: ""
+        schema: ""
   TARGET:
     mappingDefinitions:
       "3":
@@ -46,6 +69,14 @@ locations:
       "5":
         database: JUSTIN_EDW
         schema: QA_DEPLOY
+  TARGET_JUSTIN:
+    mappingDefinitions:
+      "3":
+        database: ""
+        schema: ""
+      "5":
+        database: ""
+        schema: ""
 macros:
   Macro-1:
     id: "1"
@@ -7132,7 +7163,6 @@ subgraphs:
     name: Supplier Subject Area
     steps:
       - "865"
-      - "866"
       - "867"
   Subgraph-23:
     id: 23
