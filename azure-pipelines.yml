@@ -4,6 +4,13 @@ variables:
  - name: coalesceCliVersion
    value: "latest"
 
+schedules:
+- cron: "0 * * * *"
+  displayName: Hourly Refresh
+  branches:
+    include:
+    - main
+
 steps:
 
 - task: DownloadSecureFile@1
@@ -17,5 +24,4 @@ steps:
     script: |
       export PATH="/opt/homebrew/bin:${PATH}" 
       npm list -g | grep "@coalescesoftware/coa@$(coalesceCliVersion)" || npm install -g @coalescesoftware/coa@$(coalesceCliVersion);
-      coa plan  --config $(coaConfig.secureFilePath);
-      coa deploy  --config $(coaConfig.secureFilePath);
+      coa refresh  --config $(coaConfig.secureFilePath) --environmentID 3 --jobID 16;
