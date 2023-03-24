@@ -1,10 +1,10 @@
 steps:
-  STG_CUSTOMER-840:
+  STG_CUSTOMER-943:
     operation:
       config:
         insertStrategy: INSERT
         postSQL: ""
-        preSQL: ""
+        preSQL: "{{get_limit(sqlvariable.sqlvar.limit)}}"
         testsEnabled: true
         truncateBefore: true
       database: ""
@@ -19,205 +19,136 @@ steps:
       metadata:
         appliedNodeTests: []
         columns:
-          - acceptedValues:
-              strictMatch: true
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: 8631
-              stepCounter: "840"
-            config: {}
-            dataType: STRING
-            defaultValue: ""
-            description: ""
-            hashDetails:
-              hashAlgorithm: SHA1
-            hashedColumns:
-              - columnCounter: 8599
-                stepCounter: "840"
-            name: sha1_hub_customer
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences: []
-                transform: ""
-          - acceptedValues:
-              strictMatch: true
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: 8632
-              stepCounter: "840"
-            config: {}
-            dataType: STRING
-            defaultValue: ""
-            description: ""
-            hashDetails:
-              hashAlgorithm: SHA1
-            hashedColumns:
-              - columnCounter: 8600
-                stepCounter: "840"
-              - columnCounter: 8601
-                stepCounter: "840"
-              - columnCounter: 8602
-                stepCounter: "840"
-              - columnCounter: 8603
-                stepCounter: "840"
-              - columnCounter: 8604
-                stepCounter: "840"
-              - columnCounter: 8605
-                stepCounter: "840"
-              - columnCounter: 8606
-                stepCounter: "840"
-              - columnCounter: 8680
-                stepCounter: "840"
-            name: customer_hash_diff
-            nullable: true
-            sourceColumnReferences: []
           - columnReference:
-              columnCounter: 8599
-              stepCounter: "840"
+              columnCounter: 9718
+              stepCounter: "943"
             dataType: NUMBER(38,0)
             description: ""
+            hashColumns: []
+            hashDetails: null
             name: C_CUSTKEY
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8575
-                    stepCounter: "836"
+                  - columnCounter: 9710
+                    stepCounter: "942"
                 transform: ""
           - columnReference:
-              columnCounter: 8600
-              stepCounter: "840"
+              columnCounter: 9719
+              stepCounter: "943"
             dataType: VARCHAR(25)
             description: ""
+            hashColumns: []
+            hashDetails: null
             name: C_NAME
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8576
-                    stepCounter: "836"
+                  - columnCounter: 9711
+                    stepCounter: "942"
                 transform: ""
           - columnReference:
-              columnCounter: 8601
-              stepCounter: "840"
+              columnCounter: 9720
+              stepCounter: "943"
             dataType: VARCHAR(40)
             description: ""
+            hashColumns: []
+            hashDetails: null
             name: C_ADDRESS
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8577
-                    stepCounter: "836"
+                  - columnCounter: 9712
+                    stepCounter: "942"
                 transform: ""
           - columnReference:
-              columnCounter: 8602
-              stepCounter: "840"
+              columnCounter: 9721
+              stepCounter: "943"
             dataType: NUMBER(38,0)
             description: ""
-            name: C_NATIONCODE
+            hashColumns: []
+            hashDetails: null
+            name: C_NATIONKEY
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8578
-                    stepCounter: "836"
+                  - columnCounter: 9713
+                    stepCounter: "942"
                 transform: ""
           - columnReference:
-              columnCounter: 8603
-              stepCounter: "840"
+              columnCounter: 9722
+              stepCounter: "943"
             dataType: VARCHAR(15)
             description: ""
+            hashColumns: []
+            hashDetails: null
             name: C_PHONE
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8579
-                    stepCounter: "836"
+                  - columnCounter: 9714
+                    stepCounter: "942"
                 transform: ""
           - columnReference:
-              columnCounter: 8604
-              stepCounter: "840"
+              columnCounter: 9723
+              stepCounter: "943"
             dataType: NUMBER(12,2)
             description: ""
+            hashColumns: []
+            hashDetails: null
             name: C_ACCTBAL
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8580
-                    stepCounter: "836"
+                  - columnCounter: 9715
+                    stepCounter: "942"
                 transform: ""
           - columnReference:
-              columnCounter: 8605
-              stepCounter: "840"
+              columnCounter: 9724
+              stepCounter: "943"
             dataType: VARCHAR(10)
             description: ""
+            hashColumns: []
+            hashDetails: null
             name: C_MKTSEGMENT
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8581
-                    stepCounter: "836"
+                  - columnCounter: 9716
+                    stepCounter: "942"
                 transform: ""
           - columnReference:
-              columnCounter: 8606
-              stepCounter: "840"
+              columnCounter: 9725
+              stepCounter: "943"
             dataType: VARCHAR(117)
             description: ""
+            hashColumns: []
+            hashDetails: null
             name: C_COMMENT
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 8582
-                    stepCounter: "836"
+                  - columnCounter: 9717
+                    stepCounter: "942"
                 transform: ""
-          - acceptedValues:
-              strictMatch: true
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: 8607
-              stepCounter: "840"
-            config: {}
-            dataType: TIMESTAMP
-            defaultValue: ""
-            description: ""
-            isSystemLoadDate: true
-            name: LDTS
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences: []
-                transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
-          - acceptedValues:
-              strictMatch: true
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: 8608
-              stepCounter: "840"
-            config: {}
-            dataType: STRING
-            defaultValue: ""
-            description: ""
-            isRecordSource: true
-            name: RSCR
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences: []
-                transform: "{{ getRecordSourceFQN() }}"
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
-          - customSQL:
+          - aliases: {}
+            customSQL:
               customSQL: ""
             dependencies:
               - locationName: SOURCE-1
                 nodeName: CUSTOMER
             join:
-              joinCondition: FROM {{ ref('SOURCE-1', 'CUSTOMER') }} "CUSTOMER"
+              joinCondition: |-
+                FROM {{ ref('SOURCE-1', 'CUSTOMER') }} "CUSTOMER"
+                LIMIT $MY_VARIABLE;
             name: STG_CUSTOMER
             noLinkRefs: []
       name: STG_CUSTOMER
       overrideSQL: false
       schema: ""
-      sqlType: "32"
+      sqlType: Stage
       type: sql
-    stepCounter: "840"
+    stepCounter: "943"

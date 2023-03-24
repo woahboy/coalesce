@@ -22,14 +22,6 @@ jobs:
     steps: []
     subgraphs: []
 locations:
-  SOUCE_JUSTIN:
-    mappingDefinitions:
-      "3":
-        database: ""
-        schema: ""
-      "5":
-        database: ""
-        schema: ""
   SOURCE:
     mappingDefinitions:
       "3":
@@ -46,14 +38,6 @@ locations:
       "5":
         database: JUSTIN_SOURCE
         schema: SOURCE_EDW
-  SOURCE-1_JUSTIN:
-    mappingDefinitions:
-      "3":
-        database: ""
-        schema: ""
-      "5":
-        database: ""
-        schema: ""
   TARGET:
     mappingDefinitions:
       "3":
@@ -62,14 +46,6 @@ locations:
       "5":
         database: JUSTIN_EDW
         schema: QA_DEPLOY
-  TARGET_JUSTIN:
-    mappingDefinitions:
-      "3":
-        database: ""
-        schema: ""
-      "5":
-        database: ""
-        schema: ""
 macros:
   Macro-1:
     id: "1"
@@ -104,6 +80,18 @@ macros:
            }
 
       ) -%}
+
+      {%- set sqlvariables = namespace(
+
+        sqlvar = {
+          "limit": "0"
+        }
+
+      ) -%}
+
+      {%- macro get_limit(variablename) -%}
+        {set variablename = (select sum(right('{{node.name}}'."C_CUSTKEY",1))/600 from '{{node.name}}')
+      {%- endmacro -%}
 
       {%- macro even_odd(column) -%}
           CASE WHEN MOD({{ column }}, 2) = 0 THEN 'EVEN' ELSE 'ODD' END
@@ -246,7 +234,7 @@ projects: {}
 stepTypes:
   StepType-24:
     id: "24"
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: TARGET
       error: null
@@ -300,7 +288,7 @@ stepTypes:
     version: 1
   StepType-27:
     id: "27"
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: TARGET
       error: null
@@ -564,7 +552,7 @@ stepTypes:
     version: 1
   StepType-30:
     id: "30"
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: null
       error: null
@@ -945,7 +933,7 @@ stepTypes:
     version: 1
   StepType-33:
     id: "33"
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: null
       error: null
@@ -1157,7 +1145,7 @@ stepTypes:
     version: 1
   StepType-35:
     id: "35"
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: null
       error: null
@@ -1245,7 +1233,7 @@ stepTypes:
     version: 1
   StepType-37:
     id: "37"
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: null
       error: null
@@ -1752,7 +1740,7 @@ stepTypes:
     version: 1
   StepType-4:
     id: "4"
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: null
       error: null
@@ -2707,9 +2695,221 @@ stepTypes:
             {%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
     name: "DV Package: Snapshot Table"
     version: 1
+  StepType-50:
+    id: "50"
+    isDisabled: false
+    metadata:
+      defaultStorageLocation: TARGET
+      error: null
+      nodeMetadataSpec: |-
+        capitalized: Copy of Stage
+        short: STG
+        plural: Stages
+        tagColor: '#2EB67D'
+
+        config:
+        - groupName: Options
+          items:
+          - type: materializationSelector
+            default: table
+            options:
+            - table
+            - view
+            isRequired: true
+
+          - type: multisourceToggle
+            enableIf: "{% if node.materializationType == 'table' %} true {% else %} false {% endif %}" 
+
+          - type: overrideSQLToggle
+            enableIf: "{% if node.materializationType == 'view' %} true {% else %} false {% endif %}"
+            
+          - displayName: Multi Source Strategy
+            attributeName: insertStrategy
+            type: dropdownSelector
+            default: INSERT
+            options:
+            - "INSERT"
+            - "UNION"
+            - "UNION ALL"
+            isRequired: true
+            enableIf: "{% if node.isMultisource %} true {% else %} false {% endif %}"
+
+          - displayName: Truncate Before
+            attributeName: truncateBefore
+            type: toggleButton
+            default: true
+
+          - displayName: Enable Tests
+            attributeName: testsEnabled
+            type: toggleButton
+            default: true
+            
+          - displayName: Pre-SQL
+            attributeName: preSQL
+            type: textBox
+            syntax: sql
+            isRequired: false
+
+          - displayName: Post-SQL
+            attributeName: postSQL
+            type: textBox
+            syntax: sql
+            isRequired: false
+
+        systemColumns:
+          - displayName: "TIMESTAMP"
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+            dataType: TIMESTAMP
+            placement: end
+            attributeName: istimestamp
+      templates:
+        create:
+          templateString: |
+            {% if node.override.create.enabled %}
+            	
+            	{{ node.override.create.script }}
+
+            {% elif node.materializationType == 'table' %}
+            	{{ stage('Create Stage Table') }}
+
+            	CREATE OR REPLACE TABLE {{ ref_no_link(node.location.name, node.name) }}
+            	(
+            		{% for col in columns %}
+            			"{{ col.name }}" {{ col.dataType }}
+            			{%- if not col.nullable %} NOT NULL
+            				{%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
+            			{% endif %}
+            			{%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
+            			{%- if not loop.last -%}, {% endif %}
+            		{% endfor %}
+            	)
+            	{%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}'{% endif %}
+
+
+            {% elif node.materializationType == 'view' %}
+                {{ stage('Create Stage View') }}
+
+                CREATE OR REPLACE VIEW {{ ref_no_link(node.location.name, node.name) }}
+                (
+                    {% for col in columns %}
+                        "{{ col.name }}"
+                        {%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
+                        {%- if not loop.last -%}, {% endif %}
+                    {% endfor %}
+                )
+                {%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}'{% endif %}
+                AS
+                {% for source in sources %}
+                    SELECT
+                    {% for col in source.columns %}
+                        {{ get_source_transform(col) }} AS "{{ col.name }}"
+                        {%- if not loop.last -%}, {% endif %}
+                    {% endfor %}
+
+                    {{ source.join }}
+
+                    {% if not loop.last %}
+                        {% if config.insertStrategy in ['UNION', 'UNION ALL'] %}
+                            {{ config.insertStrategy }}
+                        {% else %}
+                            UNION
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+
+            {% endif %}
+        run:
+          templateString: |2
+
+                {% for test in node.tests if config.testsEnabled %}
+                    {% if test.runOrder == 'Before' %}
+                        {{ test_stage(test.name, test.continueOnFailure) }}
+                        {{ test.templateString }}
+                    {% endif %}
+                {% endfor %}
+
+            {% if node.materializationType == 'table' %}
+            	{% if config.preSQL %}
+            		{{ stage('Pre-SQL') }}
+            		{{ config.preSQL }}
+            	{% endif %}
+            	
+            	
+            	
+            		{% if config.truncateBefore %}
+            	
+            			{{ stage('Truncate Stage Table') }}
+            			TRUNCATE IF EXISTS {{ ref_no_link(node.location.name, node.name) }}
+            	
+            		{% endif %}
+            	
+            	
+            		{% if config.insertStrategy in ['UNION', 'UNION ALL'] %}
+            			{{ stage( config.insertStrategy + ' Sources' | string ) }}
+            			INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
+            				(
+            					{% for col in columns %}
+            						"{{ col.name }}"
+            						{%- if not loop.last -%},{% endif %}
+            					{% endfor %}
+            				)
+            		{% endif %}
+            	
+            	
+            		{% for source in sources %}
+            	
+            			{% if config.insertStrategy == 'INSERT' %}
+            				{{ stage('Insert ' + source.name | string ) }}
+            	
+            				INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
+            				(
+            					{% for col in source.columns %}
+            						"{{ col.name }}"
+            						{%- if not loop.last -%},{% endif %}
+            					{% endfor %}
+            				)
+            			{% endif %}
+            	
+            			SELECT
+            			{% for col in source.columns %}
+                            {{ get_source_transform(col) }} AS "{{ col.name }}"
+            				{%- if not loop.last -%}, {% endif %}
+            			{% endfor %}
+            	
+            			{{ source.join }}
+            	
+            			{% if config.insertStrategy in ['UNION', 'UNION ALL'] and not loop.last %}
+            				{{config.insertStrategy}}
+            			{% endif %}
+            	
+            		{% endfor %}
+            	
+            	{% if config.postSQL %}
+            		{{ stage('Post-SQL') }}
+            		{{ config.postSQL }}
+            	{% endif %}
+            {% endif %}
+
+            {% if config.testsEnabled %}
+            	{% for test in node.tests %}
+            		{% if test.runOrder == 'After' %}
+            			{{ test_stage(test.name, test.continueOnFailure) }}
+            			{{ test.templateString }}
+                    {% endif %}
+            	{% endfor %}
+
+            	{% for column in columns %}
+            		{% for test in column.tests %}
+            			{{ test_stage(column.name + ": " + test.name) }}
+            			{{ test.templateString }}
+            		{% endfor %}
+            	{% endfor %}
+            {% endif %}
+    name: Copy of Stage
+    version: 1
   StepType-6:
     id: "6"
-    isDisabled: false
+    isDisabled: true
     metadata:
       error: null
       nodeMetadataSpec: |-
@@ -4403,7 +4603,7 @@ stepTypes:
     version: 1
   StepType-COALESCE-MISC::2:
     id: COALESCE-MISC::2
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: null
       error: null
@@ -4550,7 +4750,7 @@ stepTypes:
     version: 1
   StepType-COALESCE-MISC::7:
     id: COALESCE-MISC::7
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: TARGET
       error: null
@@ -4817,7 +5017,7 @@ stepTypes:
     version: 1
   StepType-COALESCE-MISC::8:
     id: COALESCE-MISC::8
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: TARGET
       error: null
@@ -4989,7 +5189,7 @@ stepTypes:
     version: 1
   StepType-COALESCE-MISC::9:
     id: COALESCE-MISC::9
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: null
       error: null
@@ -7132,7 +7332,6 @@ subgraphs:
       - "825"
       - "816"
       - "818"
-      - "836"
       - "838"
       - "840"
       - "842"
@@ -7144,7 +7343,6 @@ subgraphs:
     id: 21
     name: Orders Subject Area
     steps:
-      - "836"
       - "838"
       - "840"
       - "842"
@@ -7161,7 +7359,6 @@ subgraphs:
     id: 23
     name: Customer Order Vault
     steps:
-      - "836"
       - "837"
       - "838"
       - "839"
@@ -7178,4 +7375,14 @@ subgraphs:
       - "856"
       - "858"
       - "869"
+  Subgraph-24:
+    id: 24
+    name: Source Example
+    steps:
+      - 910
+      - 911
+      - "910"
+      - "911"
+      - "912"
+      - "913"
 version: 1
