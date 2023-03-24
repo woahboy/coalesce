@@ -4,7 +4,7 @@ steps:
       config:
         insertStrategy: INSERT
         postSQL: ""
-        preSQL: "{{get_limit(sqlvariable.sqlvar.limit)}}"
+        preSQL: ""
         testsEnabled: true
         truncateBefore: true
       database: ""
@@ -134,16 +134,16 @@ steps:
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
-          - aliases: {}
+          - aliases:
+              CUSTOMER: "942"
             customSQL:
               customSQL: ""
             dependencies:
               - locationName: SOURCE-1
                 nodeName: CUSTOMER
             join:
-              joinCondition: |-
+              joinCondition: |
                 FROM {{ ref('SOURCE-1', 'CUSTOMER') }} "CUSTOMER"
-                LIMIT $MY_VARIABLE;
             name: STG_CUSTOMER
             noLinkRefs: []
       name: STG_CUSTOMER
