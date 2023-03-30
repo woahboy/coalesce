@@ -1,10 +1,11 @@
 steps:
-  STG_NATION-947:
+  STG_NATION-70b3656e-6991-418a-b302-03019847b050:
     operation:
       config:
         insertStrategy: INSERT
         postSQL: ""
         preSQL: ""
+        selectDistinct: false
         testsEnabled: true
         truncateBefore: true
       database: ""
@@ -20,8 +21,8 @@ steps:
         appliedNodeTests: []
         columns:
           - columnReference:
-              columnCounter: 9762
-              stepCounter: "947"
+              columnCounter: 3fd8b053-1de2-4f0a-9a93-87be8e068559
+              stepCounter: 70b3656e-6991-418a-b302-03019847b050
             dataType: NUMBER(38,0)
             description: ""
             hashColumns: []
@@ -30,12 +31,12 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 9758
-                    stepCounter: "946"
+                  - columnCounter: 4c5e9244-df36-4b18-95ad-7584d5314543
+                    stepCounter: 11c19fb6-7a80-4fa9-8e9c-979a2e185a61
                 transform: ""
           - columnReference:
-              columnCounter: 9763
-              stepCounter: "947"
+              columnCounter: b399b85f-4c3b-4e2c-8d2b-bd1576684a29
+              stepCounter: 70b3656e-6991-418a-b302-03019847b050
             dataType: VARCHAR(25)
             description: ""
             hashColumns: []
@@ -44,12 +45,12 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 9759
-                    stepCounter: "946"
+                  - columnCounter: b7cf4bc8-4321-4a67-a25b-56d2df1914f7
+                    stepCounter: 11c19fb6-7a80-4fa9-8e9c-979a2e185a61
                 transform: ""
           - columnReference:
-              columnCounter: 9764
-              stepCounter: "947"
+              columnCounter: eea2c6b7-ad3f-4b2c-ac11-b21789050c91
+              stepCounter: 70b3656e-6991-418a-b302-03019847b050
             dataType: NUMBER(38,0)
             description: ""
             hashColumns: []
@@ -58,12 +59,12 @@ steps:
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 9760
-                    stepCounter: "946"
+                  - columnCounter: eef0eee9-5b48-4dc4-b62c-72a92712a683
+                    stepCounter: 11c19fb6-7a80-4fa9-8e9c-979a2e185a61
                 transform: ""
           - columnReference:
-              columnCounter: 9765
-              stepCounter: "947"
+              columnCounter: 4506fc52-ec9b-4dbe-9abc-1c5189140c19
+              stepCounter: 70b3656e-6991-418a-b302-03019847b050
             dataType: VARCHAR(152)
             description: ""
             hashColumns: []
@@ -72,9 +73,45 @@ steps:
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 9761
-                    stepCounter: "946"
+                  - columnCounter: 5be4e669-a1a8-4e3b-b934-943889b7dbb9
+                    stepCounter: 11c19fb6-7a80-4fa9-8e9c-979a2e185a61
                 transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: d53113c3-eedd-4c92-a450-ea3aacb80fea
+              stepCounter: 70b3656e-6991-418a-b302-03019847b050
+            config: {}
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: ""
+            hashColumns: []
+            isSystemLoadDate: true
+            name: LDTS
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 961b946e-4a8a-4bf9-b34c-2fbd1321859e
+              stepCounter: 70b3656e-6991-418a-b302-03019847b050
+            config: {}
+            dataType: STRING
+            defaultValue: ""
+            description: ""
+            hashColumns: []
+            isRecordSource: true
+            name: RSCR
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: "{{ getRecordSourceFQN() }}"
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
@@ -90,6 +127,6 @@ steps:
       name: STG_NATION
       overrideSQL: false
       schema: ""
-      sqlType: Stage
+      sqlType: "32"
       type: sql
-    stepCounter: "947"
+    stepCounter: 70b3656e-6991-418a-b302-03019847b050

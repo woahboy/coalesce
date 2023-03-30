@@ -1,10 +1,11 @@
 steps:
-  STG_CUSTOMER-951:
+  STG_CUSTOMER-f2db09c8-ecfa-4122-8c30-abff20ddd362:
     operation:
       config:
         insertStrategy: INSERT
         postSQL: ""
         preSQL: ""
+        selectDistinct: false
         testsEnabled: true
         truncateBefore: true
       database: ""
@@ -19,113 +20,149 @@ steps:
       metadata:
         appliedNodeTests: []
         columns:
-          - columnReference:
-              columnCounter: 9789
-              stepCounter: "951"
-            dataType: NUMBER(38,0)
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 2ddf0d17-5d88-41d8-b24f-d0abb1e210a7
+              stepCounter: f2db09c8-ecfa-4122-8c30-abff20ddd362
+            config: {}
+            dataType: STRING
+            defaultValue: ""
             description: ""
-            hashColumns: []
-            hashDetails: null
-            name: C_CUSTKEY
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 9781
-                    stepCounter: "950"
-                transform: ""
-          - columnReference:
-              columnCounter: 9790
-              stepCounter: "951"
-            dataType: VARCHAR(25)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: C_NAME
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 9782
-                    stepCounter: "950"
-                transform: UPPER("CUSTOMER"."C_NAME")
-          - columnReference:
-              columnCounter: 9791
-              stepCounter: "951"
-            dataType: VARCHAR(40)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: C_ADDRESS
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 9783
-                    stepCounter: "950"
-                transform: UPPER("CUSTOMER"."C_ADDRESS")
-          - columnReference:
-              columnCounter: 9792
-              stepCounter: "951"
-            dataType: NUMBER(38,0)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: C_NATIONKEY
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 9784
-                    stepCounter: "950"
-                transform: ""
-          - columnReference:
-              columnCounter: 9793
-              stepCounter: "951"
-            dataType: VARCHAR(15)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: C_PHONE
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 9785
-                    stepCounter: "950"
-                transform: UPPER("CUSTOMER"."C_PHONE")
-          - columnReference:
-              columnCounter: 9795
-              stepCounter: "951"
-            dataType: VARCHAR(10)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: C_MKTSEGMENT
+            hashDetails:
+              hashAlgorithm: SHA256
+            hashedColumns:
+              - columnCounter: ea564ec9-74ab-4090-af8d-25a133ecb684
+                stepCounter: f2db09c8-ecfa-4122-8c30-abff20ddd362
+            name: HUBCUSTOMERHASH
             nullable: true
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 9787
-                    stepCounter: "950"
-                transform: UPPER("CUSTOMER"."C_MKTSEGMENT")
-          - columnReference:
-              columnCounter: 9796
-              stepCounter: "951"
-            dataType: VARCHAR(117)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: C_COMMENT
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 9788
-                    stepCounter: "950"
+              - columnReferences: []
                 transform: ""
           - acceptedValues:
               strictMatch: true
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 9797
-              stepCounter: "951"
+              columnCounter: 9ebc70e1-b041-470f-bdbb-e475b48fbb0d
+              stepCounter: f2db09c8-ecfa-4122-8c30-abff20ddd362
             config: {}
-            dataType: VARCHAR(10)
+            dataType: STRING
+            defaultValue: ""
+            description: ""
+            hashDetails:
+              hashAlgorithm: SHA1
+            hashedColumns:
+              - columnCounter: ec99f92f-08e6-4724-8378-4b14d594f8ee
+                stepCounter: f2db09c8-ecfa-4122-8c30-abff20ddd362
+              - columnCounter: 93ccde02-d60c-4be3-856e-bab24aa5f038
+                stepCounter: f2db09c8-ecfa-4122-8c30-abff20ddd362
+              - columnCounter: d85db919-cd09-4e1d-9201-26817cea7b2b
+                stepCounter: f2db09c8-ecfa-4122-8c30-abff20ddd362
+              - columnCounter: 94badce7-8bd6-469d-9faa-474acc001d55
+                stepCounter: f2db09c8-ecfa-4122-8c30-abff20ddd362
+              - columnCounter: 373478fc-84f0-44bc-b3b6-fe86b6ee6ce5
+                stepCounter: f2db09c8-ecfa-4122-8c30-abff20ddd362
+              - columnCounter: c55346c6-0220-4acf-8f7e-7886cb0f1bc1
+                stepCounter: f2db09c8-ecfa-4122-8c30-abff20ddd362
+            name: CUSTOMERHASHDIFF
+            nullable: true
+            sourceColumnReferences: []
+          - columnReference:
+              columnCounter: ea564ec9-74ab-4090-af8d-25a133ecb684
+              stepCounter: f2db09c8-ecfa-4122-8c30-abff20ddd362
+            dataType: NUMBER(38,0)
+            description: ""
+            name: C_CUSTKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 736c3756-ec00-4ebe-b2a0-8bfb28338c7e
+                    stepCounter: 8e9d15a1-b028-4a58-ba2e-6707cda0b0e3
+                transform: ""
+          - columnReference:
+              columnCounter: ec99f92f-08e6-4724-8378-4b14d594f8ee
+              stepCounter: f2db09c8-ecfa-4122-8c30-abff20ddd362
+            dataType: STRING
+            description: ""
+            name: C_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 660362bd-a528-407d-862e-a6e8521698c0
+                    stepCounter: 8e9d15a1-b028-4a58-ba2e-6707cda0b0e3
+                transform: ""
+          - columnReference:
+              columnCounter: 93ccde02-d60c-4be3-856e-bab24aa5f038
+              stepCounter: f2db09c8-ecfa-4122-8c30-abff20ddd362
+            dataType: STRING
+            description: ""
+            name: C_ADDRESS
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 99b16cc2-2223-4460-a206-05452da9a009
+                    stepCounter: 8e9d15a1-b028-4a58-ba2e-6707cda0b0e3
+                transform: ""
+          - columnReference:
+              columnCounter: c55346c6-0220-4acf-8f7e-7886cb0f1bc1
+              stepCounter: f2db09c8-ecfa-4122-8c30-abff20ddd362
+            dataType: NUMBER(38,0)
+            description: ""
+            name: C_NATIONKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: b5207149-b912-4307-a71e-17518151238a
+                    stepCounter: 8e9d15a1-b028-4a58-ba2e-6707cda0b0e3
+                transform: ""
+          - columnReference:
+              columnCounter: d85db919-cd09-4e1d-9201-26817cea7b2b
+              stepCounter: f2db09c8-ecfa-4122-8c30-abff20ddd362
+            dataType: STRING
+            description: ""
+            name: C_PHONE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 0b8b3124-b1af-44ea-b870-f7702b3dea11
+                    stepCounter: 8e9d15a1-b028-4a58-ba2e-6707cda0b0e3
+                transform: ""
+          - columnReference:
+              columnCounter: 94badce7-8bd6-469d-9faa-474acc001d55
+              stepCounter: f2db09c8-ecfa-4122-8c30-abff20ddd362
+            dataType: STRING
+            description: ""
+            name: C_MKTSEGMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 1aafbcb8-ce8c-4274-9b66-dd8c3366ca6e
+                    stepCounter: 8e9d15a1-b028-4a58-ba2e-6707cda0b0e3
+                transform: ""
+          - columnReference:
+              columnCounter: 373478fc-84f0-44bc-b3b6-fe86b6ee6ce5
+              stepCounter: f2db09c8-ecfa-4122-8c30-abff20ddd362
+            dataType: STRING
+            description: ""
+            name: C_COMMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: aebb09d6-bad6-4334-929d-56bb6bbab7c0
+                    stepCounter: 8e9d15a1-b028-4a58-ba2e-6707cda0b0e3
+                transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: f117e809-efff-4cf6-8dc0-cb1d73754caa
+              stepCounter: f2db09c8-ecfa-4122-8c30-abff20ddd362
+            config: {}
+            dataType: STRING
             defaultValue: ""
             description: ""
             keyColumnType: None
@@ -133,11 +170,45 @@ steps:
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 0
+                  - columnCounter: "0"
                     stepCounter: "0"
-                transform: "'CUSTOMER'"
+                transform: "'Customer'"
             systemColumnType: None
             transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 1a70233f-08c2-461b-aade-abcd1dfefddb
+              stepCounter: f2db09c8-ecfa-4122-8c30-abff20ddd362
+            config: {}
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: ""
+            isSystemLoadDate: true
+            name: LDTS
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 621168f4-0372-456a-9d08-d25336aaa6cb
+              stepCounter: f2db09c8-ecfa-4122-8c30-abff20ddd362
+            config: {}
+            dataType: STRING
+            defaultValue: ""
+            description: ""
+            isRecordSource: true
+            name: RSCR
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: "{{ getRecordSourceFQN() }}"
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
@@ -153,6 +224,6 @@ steps:
       name: STG_CUSTOMER
       overrideSQL: false
       schema: ""
-      sqlType: Stage
+      sqlType: "32"
       type: sql
-    stepCounter: "951"
+    stepCounter: f2db09c8-ecfa-4122-8c30-abff20ddd362
