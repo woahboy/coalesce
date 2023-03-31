@@ -2912,6 +2912,62 @@ stepTypes:
             {% endif %}
     name: Copy of Stage
     version: 1
+  StepType-55:
+    id: "55"
+    isDisabled: false
+    metadata:
+      defaultStorageLocation: null
+      error: null
+      nodeMetadataSpec: |-
+        capitalized: SQL
+        short: SQL
+        plural: SQLs
+        tagColor: '#2EB67D'
+
+        config:
+        - groupName: Options
+          items:
+          - displayName: SQL
+            attributeName: SQL1
+            type: textBox
+            syntax: sql
+            isRequired: true
+
+        systemColumns:
+        - displayName: SQL_SEQ
+          transform: ''
+          dataType: NUMBER IDENTITY
+          placement: beginning
+          attributeName: isSurrogateKey
+
+        - displayName: SYSTEM_START_DATE
+          transform: ''
+          dataType: TIMESTAMP
+          placement: end
+          attributeName: isSystemStartDate
+      templates:
+        create:
+          templateString: |-
+            {{ stage('Create SQL Audit') }}
+
+              CREATE OR REPLACE TABLE {{ ref_no_link(node.location.name, node.name) }}
+            (
+            	{% for col in columns %}
+            		"{{ col.name }}" {{ col.dataType }}
+            		{%- if not loop.last -%}, {% endif %}
+            	{% endfor %}
+            )
+        run:
+          templateString: |-
+            {{ stage('SQL AUDIT') }}
+            INSERT INTO {{ ref_no_link(node.location.name, node.name) }} (SYSTEM_START_DATE) SELECT CURRENT_TIMESTAMP
+
+            {% if config.SQL1 %}
+            	{{ stage('SQL1') }}
+            	{{ config.SQL1 }}
+            {% endif %}
+    name: SQL Node
+    version: 1
   StepType-6:
     id: "6"
     isDisabled: true
