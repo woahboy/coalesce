@@ -1,0 +1,165 @@
+steps:
+  SAT_CUSTOMER_NATION-bb4dff63-026c-4fd9-9614-615c4c297915:
+    operation:
+      config:
+        insertZeroKey: true
+        postSQL: ""
+        preSQL: ""
+        testsEnabled: true
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: TARGET
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - appliedColumnTests:
+              hasNull: true
+              isDistinct: false
+            columnReference:
+              columnCounter: 7f0b91ff-7a0c-4ae9-b69f-ea286dc30aee
+              stepCounter: bb4dff63-026c-4fd9-9614-615c4c297915
+            config:
+              isHubHash: true
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: CUSTOMER_HUB_HASH
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: d0f144a1-e6ac-408a-a976-1623e7f30f51
+                    stepCounter: 51af7f9f-3149-4575-9636-b2931b6e4619
+                transform: ""
+          - appliedColumnTests:
+              hasNull: true
+              isDistinct: false
+            columnReference:
+              columnCounter: d6368961-4eb4-4c12-a35f-13b36bf916d4
+              stepCounter: bb4dff63-026c-4fd9-9614-615c4c297915
+            config:
+              isChangeHash: true
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: CUSTOMER_NATION_SAT_HASHDIFF
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 831550eb-a8e4-4ffe-98c8-7fbd6785a0ea
+                    stepCounter: 51af7f9f-3149-4575-9636-b2931b6e4619
+                transform: ""
+          - appliedColumnTests:
+              hasNull: true
+              isDistinct: false
+            columnReference:
+              columnCounter: 7c71374a-dbcb-4112-aa71-4aedc8f1ad14
+              stepCounter: bb4dff63-026c-4fd9-9614-615c4c297915
+            dataType: VARCHAR(25)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: N_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 62e07843-39d2-4b4b-bb35-9725323beec8
+                    stepCounter: 51af7f9f-3149-4575-9636-b2931b6e4619
+                transform: ""
+          - appliedColumnTests:
+              hasNull: true
+              isDistinct: false
+            columnReference:
+              columnCounter: a23d55fe-e9a5-43a1-b17b-5df30d83dbc8
+              stepCounter: bb4dff63-026c-4fd9-9614-615c4c297915
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: N_REGIONKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 895a90f2-4193-439b-bc2d-cde5ad6dc50d
+                    stepCounter: 51af7f9f-3149-4575-9636-b2931b6e4619
+                transform: ""
+          - appliedColumnTests:
+              hasNull: true
+              isDistinct: false
+            columnReference:
+              columnCounter: 788c5367-7206-4607-887d-317fff6771e0
+              stepCounter: bb4dff63-026c-4fd9-9614-615c4c297915
+            dataType: VARCHAR(152)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: N_COMMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 0cc11982-d553-4c3f-a293-80dbb20b6620
+                    stepCounter: 51af7f9f-3149-4575-9636-b2931b6e4619
+                transform: ""
+          - appliedColumnTests:
+              hasNull: true
+              isDistinct: false
+            columnReference:
+              columnCounter: f33bf330-e7c3-4738-a7fa-a389f5f2a1a2
+              stepCounter: bb4dff63-026c-4fd9-9614-615c4c297915
+            config:
+              isSystemCreateDate: true
+            dataType: TIMESTAMP
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: LDTS
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 7ca39456-f13a-4cdf-80c4-180e4dc4b3bc
+                    stepCounter: 51af7f9f-3149-4575-9636-b2931b6e4619
+                transform: ""
+          - appliedColumnTests:
+              hasNull: true
+              isDistinct: false
+            columnReference:
+              columnCounter: 823d673f-3f7e-4d1f-996e-95dbfa6802a9
+              stepCounter: bb4dff63-026c-4fd9-9614-615c4c297915
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: RSCR
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 38a2ac44-b4d8-4054-88dc-d59daa4107ca
+                    stepCounter: 51af7f9f-3149-4575-9636-b2931b6e4619
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs:
+          - hasNull
+          - isDistinct
+        sourceMapping:
+          - customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: TARGET
+                nodeName: STG_CUSTOMER_NATION
+            join:
+              joinCondition: FROM {{ ref('TARGET', 'STG_CUSTOMER_NATION') }} "STG_CUSTOMER_NATION"
+            name: SAT_CUSTOMER_NATION
+            noLinkRefs: []
+      name: SAT_CUSTOMER_NATION
+      overrideSQL: false
+      schema: ""
+      sqlType: COALESCE-DATA_VAULT::3
+      type: sql
+    stepCounter: bb4dff63-026c-4fd9-9614-615c4c297915
