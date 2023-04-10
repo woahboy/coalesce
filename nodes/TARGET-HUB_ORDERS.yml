@@ -1,0 +1,94 @@
+steps:
+  HUB_ORDERS-34420cc1-6c20-497e-984f-38c107a309c7:
+    operation:
+      config:
+        postSQL: ""
+        preSQL: ""
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: Orders data as defined by TPC-H
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: TARGET
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 314f8a35-679c-48e4-8bad-3f9bd918b244
+              stepCounter: 34420cc1-6c20-497e-984f-38c107a309c7
+            config:
+              isHubHash: true
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: ORDER_HASH_KEY
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 85695a1f-b678-4e7c-a520-8000a41c4761
+                    stepCounter: 966e05f4-832f-430e-ab29-9f4e6ddc6f5d
+                transform: ""
+          - columnReference:
+              columnCounter: 064087bc-a20d-4782-ac51-082e3d25a375
+              stepCounter: 34420cc1-6c20-497e-984f-38c107a309c7
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: O_ORDERKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: b38cb1ac-287e-4ab8-bc2f-eed842fabc26
+                    stepCounter: 966e05f4-832f-430e-ab29-9f4e6ddc6f5d
+                transform: ""
+          - columnReference:
+              columnCounter: 54f605b4-39cf-4b26-8001-e0ec681a86b5
+              stepCounter: 34420cc1-6c20-497e-984f-38c107a309c7
+            dataType: TIMESTAMP
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: LDTS
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 20afe033-1a55-47f2-969e-d3231cf17929
+                    stepCounter: 966e05f4-832f-430e-ab29-9f4e6ddc6f5d
+                transform: ""
+          - columnReference:
+              columnCounter: f7964351-a86a-4fe9-a4f3-2d8502cd6bf3
+              stepCounter: 34420cc1-6c20-497e-984f-38c107a309c7
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: RSCR
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: a1def52b-4494-4567-aa3f-4d4e546ff5b8
+                    stepCounter: 966e05f4-832f-430e-ab29-9f4e6ddc6f5d
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: TARGET
+                nodeName: STG_ORDERS
+            join:
+              joinCondition: FROM {{ ref('TARGET', 'STG_ORDERS') }} "STG_ORDERS"
+            name: HUB_ORDERS
+            noLinkRefs: []
+      name: HUB_ORDERS
+      overrideSQL: false
+      schema: ""
+      sqlType: COALESCE-DATA_VAULT::1
+      type: sql
+    stepCounter: 34420cc1-6c20-497e-984f-38c107a309c7
