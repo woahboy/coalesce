@@ -256,8 +256,9 @@ steps:
             join:
               joinCondition: |-
                 FROM {{ ref('TARGET', 'STG_CUSTOMER') }} "STG_CUSTOMER"
-                INNER JOIN {{ ref('TARGET', 'STG_NATION') }} "STG_NATION"
+                LEFT JOIN {{ ref('TARGET', 'STG_NATION') }} "STG_NATION"
                 ON "STG_CUSTOMER"."C_NATIONKEY" = "STG_NATION"."N_NATIONKEY"
+                WHERE "STG_CUSTOMER"."C_NAME" IS NOT NULL
             name: STG_CUSTOMER_NATION
             noLinkRefs: []
       name: STG_CUSTOMER_NATION
