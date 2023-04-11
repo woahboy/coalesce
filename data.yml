@@ -8,7 +8,7 @@ jobs:
     steps: []
     subgraphs: []
   Job-16:
-    excludeSelector: ""
+    excludeSelector: "{ location: TARGET name: SAT_CUSTOMER }"
     id: 16
     includeSelector: "+{ location: TARGET name: *CUSTOMER* }"
     name: Populate Raw Data Vault
@@ -789,7 +789,7 @@ stepTypes:
 
         systemColumns:
 
-        - displayName: "LDTS"
+        - displayName: "LOADDATE"
           transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
           dataType: TIMESTAMP
           placement: end
