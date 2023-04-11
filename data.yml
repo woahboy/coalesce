@@ -15,9 +15,9 @@ jobs:
     steps: []
     subgraphs: []
   Job-17:
-    excludeSelector: ""
+    excludeSelector: "{ location: TARGET name: STG_PARTSUPP } OR { location: TARGET name: STG_PART }"
     id: 17
-    includeSelector: "+{ location: TARGET name: DIM_CUSTOMER }"
+    includeSelector: "+{ location: TARGET name: *STG*}"
     name: Populate Dim Customer
     steps: []
     subgraphs: []
