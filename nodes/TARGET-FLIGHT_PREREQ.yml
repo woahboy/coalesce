@@ -1,0 +1,95 @@
+steps:
+  FLIGHT_PREREQ-dae02a8c-7d73-423e-85fe-533e0dfcf55e:
+    operation:
+      config:
+        insertStrategy: INSERT
+        postSQL: ""
+        preSQL: ""
+        testsEnabled: true
+        truncateBefore: true
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: TARGET
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 41c9a136-63cf-427d-81c7-90636a0274cd
+              stepCounter: dae02a8c-7d73-423e-85fe-533e0dfcf55e
+            dataType: DATE
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: FL_DATE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: a53a07b0-4402-41aa-a056-845e242a77da
+                    stepCounter: ace2f4b7-02a3-4a46-9ed8-1b70a312b187
+                transform: ""
+          - columnReference:
+              columnCounter: 2efc7d18-3619-4502-80fd-931a4d80450a
+              stepCounter: dae02a8c-7d73-423e-85fe-533e0dfcf55e
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: CARRIER
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 9bb82b5c-3e9c-4811-9cc7-dc716837a05e
+                    stepCounter: ace2f4b7-02a3-4a46-9ed8-1b70a312b187
+                transform: ""
+          - columnReference:
+              columnCounter: d6e69b35-eaf1-43ad-8b75-2842054076d1
+              stepCounter: dae02a8c-7d73-423e-85fe-533e0dfcf55e
+            dataType: NUMBER
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: FL_NUM
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: be11eb4f-9804-43c6-a8c9-bf89c079a483
+                    stepCounter: ace2f4b7-02a3-4a46-9ed8-1b70a312b187
+                transform: ""
+          - columnReference:
+              columnCounter: 5f5ff732-a587-4711-bb8b-f0e84c83f2b6
+              stepCounter: dae02a8c-7d73-423e-85fe-533e0dfcf55e
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: ORIGIN
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: bfc118c0-c300-4e47-be03-7cebacb3fcf1
+                    stepCounter: ace2f4b7-02a3-4a46-9ed8-1b70a312b187
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: SOURCE
+                nodeName: EXT_FLIGHTS
+            join:
+              joinCondition: FROM {{ ref('SOURCE', 'EXT_FLIGHTS') }} "EXT_FLIGHTS"
+            name: FLIGHT_PREREQ
+            noLinkRefs: []
+      name: FLIGHT_PREREQ
+      overrideSQL: false
+      schema: ""
+      sqlType: Stage
+      type: sql
+    stepCounter: dae02a8c-7d73-423e-85fe-533e0dfcf55e

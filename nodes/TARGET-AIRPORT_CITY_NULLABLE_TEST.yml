@@ -1,0 +1,72 @@
+steps:
+  AIRPORT_CITY_NULLABLE_TEST-e5c86ad4-24ef-4dc8-853e-89575356792d:
+    operation:
+      config:
+        insertStrategy: INSERT
+        postSQL: use database "JUSTIN_EDW";
+        preSQL: ""
+        testsEnabled: true
+        truncateBefore: true
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: TARGET
+      materializationType: table
+      metadata:
+        appliedNodeTests:
+          - continueOnFailure: true
+            description: ""
+            name: AIRPORT CITY NULLABLE
+            runOrder: After
+            templateString: |-
+              with airport_schema 
+                  ("table_catalog", "table_schema", "table_name", "column_name", "is_nullable") 
+                  AS 
+                  (
+                  select table_catalog, table_schema, table_name, column_name, is_nullable from information_schema.columns where table_name='AIRPORT'
+                  )
+              select * from airport_schema
+              where "column_name" = 'City'
+              and "is_nullable" = 'NO'
+        columns:
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: ef1314ab-c198-4041-b58b-02e9894b77a8
+              stepCounter: e5c86ad4-24ef-4dc8-853e-89575356792d
+            config: {}
+            dataType: NUMBER
+            defaultValue: ""
+            description: ""
+            keyColumnType: None
+            name: TEST
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: "0"
+                    stepCounter: "0"
+                transform: "1"
+            systemColumnType: None
+            transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - customSQL:
+              customSQL: ""
+            dependencies: []
+            join:
+              joinCondition: ""
+            name: AIRPORT_CITY_NULLABLE_TEST
+            noLinkRefs: []
+      name: AIRPORT_CITY_NULLABLE_TEST
+      overrideSQL: false
+      schema: ""
+      sqlType: Stage
+      type: sql
+    stepCounter: e5c86ad4-24ef-4dc8-853e-89575356792d

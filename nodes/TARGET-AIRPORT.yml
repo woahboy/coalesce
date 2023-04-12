@@ -1,0 +1,149 @@
+steps:
+  AIRPORT-aa039c9f-7607-42a4-b3a1-a781df72bf45:
+    operation:
+      config:
+        insertStrategy: INSERT
+        postSQL: ""
+        preSQL: ""
+        testsEnabled: true
+        truncateBefore: true
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: TARGET
+      materializationType: table
+      metadata:
+        appliedNodeTests:
+          - continueOnFailure: true
+            description: ""
+            name: Invalid Airport Code ZZZ
+            runOrder: After
+            templateString: SELECT "Code" FROM "JUSTIN_EDW"."DEV_EDW"."AIRPORT" WHERE "Code" = 'ZZZ'
+          - continueOnFailure: true
+            description: ""
+            name: "Code: Null"
+            runOrder: After
+            templateString: |-
+              SELECT
+                1
+              WHERE
+                EXISTS (
+                  SELECT
+                    *
+                  FROM
+                    "JUSTIN_EDW"."DEV_EDW"."AIRPORT"
+                  WHERE
+                    "Code" IS NULL
+                )
+          - continueOnFailure: true
+            description: ""
+            name: Row Counts
+            runOrder: After
+            templateString: |-
+              select 
+              (select count(*) from "JUSTIN_EDW"."DEV_EDW".airport_codes) as airport_codes_count,
+              (select count(*) from "JUSTIN_EDW"."DEV_EDW".airport) as airport_count
+              where airport_codes_count - airport_count != 1
+        columns:
+          - appliedColumnTests: {}
+            columnReference:
+              columnCounter: c7f3eb57-5d76-4326-b16e-0d057451118c
+              stepCounter: aa039c9f-7607-42a4-b3a1-a781df72bf45
+            dataType: STRING
+            description: ""
+            name: Code
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 38cf5538-09a6-44b9-a9f5-48f85bfa634d
+                    stepCounter: 857b7dd3-54a5-4ac4-8aa6-ec03f9f58689
+                transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 728392fc-5f40-4c61-9a55-6e1d077833c9
+              stepCounter: aa039c9f-7607-42a4-b3a1-a781df72bf45
+            config: {}
+            dataType: STRING
+            defaultValue: ""
+            description: ""
+            keyColumnType: None
+            name: City
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: "0"
+                    stepCounter: "0"
+                transform: SPLIT_PART(SPLIT_PART("AIRPORT_CODES"."Description", ':', 1), ',' ,1)
+            systemColumnType: None
+            transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: c0d859ba-1587-451c-8031-62e8c1445e5e
+              stepCounter: aa039c9f-7607-42a4-b3a1-a781df72bf45
+            config: {}
+            dataType: STRING
+            defaultValue: ""
+            description: ""
+            keyColumnType: None
+            name: State
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: "0"
+                    stepCounter: "0"
+                transform: SPLIT_PART(SPLIT_PART("AIRPORT_CODES"."Description", ':', 1), ',' ,2)
+            systemColumnType: None
+            transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 35f81ebd-d19c-4cfe-beb7-63734067222f
+              stepCounter: aa039c9f-7607-42a4-b3a1-a781df72bf45
+            config: {}
+            dataType: STRING
+            defaultValue: ""
+            description: ""
+            keyColumnType: None
+            name: Name
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: "0"
+                    stepCounter: "0"
+                transform: SPLIT_PART("AIRPORT_CODES"."Description", ':', 2)
+            systemColumnType: None
+            transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - aliases:
+              AIRPORT_CODES: 857b7dd3-54a5-4ac4-8aa6-ec03f9f58689
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: TARGET
+                nodeName: AIRPORT_CODES
+            join:
+              joinCondition: |-
+                FROM {{ ref('TARGET', 'AIRPORT_CODES') }} "AIRPORT_CODES"
+                WHERE "Code" NOT IN ('ZZZ')
+            name: AIRPORT
+            noLinkRefs: []
+      name: AIRPORT
+      overrideSQL: false
+      schema: ""
+      sqlType: Stage
+      type: sql
+    stepCounter: aa039c9f-7607-42a4-b3a1-a781df72bf45

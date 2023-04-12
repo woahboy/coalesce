@@ -1,0 +1,72 @@
+steps:
+  AIRPORT_DESCRIPTION_FORMAT_TEST-ec3d08af-0e87-4bbe-8d68-15ed0950170f:
+    operation:
+      config:
+        insertStrategy: INSERT
+        postSQL: use database "JUSTIN_EDW";
+        preSQL: ""
+        testsEnabled: true
+        truncateBefore: true
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: TARGET
+      materializationType: table
+      metadata:
+        appliedNodeTests:
+          - continueOnFailure: true
+            description: ""
+            name: AIRPORT DESCRIPTION FORMAT
+            runOrder: After
+            templateString: |-
+              select 
+              "Description", 
+              charindex(',', "Description", 0) delim1, 
+              charindex(':', "Description", 0) delim2
+              from "JUSTIN_EDW"."DEV_EDW".airport_codes_prereq
+              where delim2 < delim1
+              and delim1 <= 1
+              and delim2 <= 1
+              and delim2 - delim1 <0
+        columns:
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: aee5e1e3-930c-4996-9882-71e2003312cc
+              stepCounter: ec3d08af-0e87-4bbe-8d68-15ed0950170f
+            config: {}
+            dataType: NUMBER
+            defaultValue: ""
+            description: ""
+            keyColumnType: None
+            name: TEST
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: "0"
+                    stepCounter: "0"
+                transform: "1"
+            systemColumnType: None
+            transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - customSQL:
+              customSQL: ""
+            dependencies: []
+            join:
+              joinCondition: ""
+            name: AIRPORT_DESCRIPTION_FORMAT_TEST
+            noLinkRefs: []
+      name: AIRPORT_DESCRIPTION_FORMAT_TEST
+      overrideSQL: false
+      schema: ""
+      sqlType: Stage
+      type: sql
+    stepCounter: ec3d08af-0e87-4bbe-8d68-15ed0950170f

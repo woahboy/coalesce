@@ -46,14 +46,6 @@ locations:
       "5":
         database: JUSTIN_EDW
         schema: QA_DEPLOY
-  TARGET-1:
-    mappingDefinitions:
-      "3":
-        database: ""
-        schema: ""
-      "5":
-        database: ""
-        schema: ""
 macros:
   Macro-1:
     id: "1"
@@ -3508,8 +3500,9 @@ stepTypes:
     version: 1
   StepType-6:
     id: "6"
-    isDisabled: true
+    isDisabled: false
     metadata:
+      defaultStorageLocation: SOURCE
       error: null
       nodeMetadataSpec: |-
         capitalized: External Table
@@ -3527,9 +3520,7 @@ stepTypes:
             type: dropdownSelector
             default: ""
             options:
-            - "List your Stages here"
-            - external_file_load
-            - "Create them in Snowflake"
+            - CHS_DEMO
             isRequired: true
 
           - displayName: File Pattern
@@ -7922,66 +7913,13 @@ stepTypes:
     name: Persistent Stage
     version: 1
 subgraphs:
-  Subgraph-19:
-    id: "19"
-    name: Customer Subject Area
+  Subgraph-27:
+    id: "27"
+    name: TESTS
     steps:
-      - "835"
-      - "832"
-      - "825"
-      - "816"
-      - "818"
-      - "838"
-      - "840"
-      - "842"
-      - "845"
-      - "847"
-      - "853"
-      - "854"
-  Subgraph-21:
-    id: "21"
-    name: Orders Subject Area
-    steps:
-      - "838"
-      - "840"
-      - "842"
-      - "850"
-      - "853"
-      - "854"
-  Subgraph-22:
-    id: "22"
-    name: Supplier Subject Area
-    steps:
-      - "865"
-      - "867"
-  Subgraph-23:
-    id: "23"
-    name: Customer Order Vault
-    steps:
-      - "837"
-      - "838"
-      - "839"
-      - "840"
-      - "841"
-      - "842"
-      - "843"
-      - "845"
-      - "847"
-      - "849"
-      - "850"
-      - "853"
-      - "854"
-      - "856"
-      - "858"
-      - "869"
-  Subgraph-24:
-    id: "24"
-    name: Source Example
-    steps:
-      - "910"
-      - "911"
-      - "910"
-      - "911"
-      - "912"
-      - "913"
+      - ec3d08af-0e87-4bbe-8d68-15ed0950170f
+      - e5c86ad4-24ef-4dc8-853e-89575356792d
+      - a12d432c-56c9-433a-8b31-e5d6d1504e95
+      - 43ec8213-edf3-4491-8416-36c18d328f9d
+      - 5a2d6bb8-ce65-4451-b12a-d0686927f957
 version: 1
