@@ -1,0 +1,110 @@
+steps:
+  STG_PARTSUPP1-ab10aedd-29a3-41cd-ad2b-c5f4da98ac5c:
+    operation:
+      config:
+        insertStrategy: INSERT
+        postSQL: ""
+        preSQL: ""
+        selectDistinct: true
+        testsEnabled: true
+        truncateBefore: true
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: Partsupp data as defined by TPC-H
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: TARGET
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 5376df19-d08d-42eb-87e8-27f212fd870f
+              stepCounter: ab10aedd-29a3-41cd-ad2b-c5f4da98ac5c
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: PS_PARTKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: aeb8a572-ad8d-42e5-9898-016793c466da
+                    stepCounter: 1d5c543b-daf1-43ca-b694-82e1d9891007
+                transform: ""
+          - columnReference:
+              columnCounter: a0e30aa9-e1e1-4763-802a-bbd6e899f138
+              stepCounter: ab10aedd-29a3-41cd-ad2b-c5f4da98ac5c
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: PS_SUPPKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 56377b6f-63dc-4768-8fbe-ba20c8637e68
+                    stepCounter: 1d5c543b-daf1-43ca-b694-82e1d9891007
+                transform: ""
+          - columnReference:
+              columnCounter: 36be6006-f261-45c3-a2b1-81a5f0461784
+              stepCounter: ab10aedd-29a3-41cd-ad2b-c5f4da98ac5c
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: PS_AVAILQTY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 99a74cc8-4fed-413f-94b9-e59fa4ff8bae
+                    stepCounter: 1d5c543b-daf1-43ca-b694-82e1d9891007
+                transform: ""
+          - columnReference:
+              columnCounter: e57668e6-5ff5-49ed-a1e4-7d16cd186dec
+              stepCounter: ab10aedd-29a3-41cd-ad2b-c5f4da98ac5c
+            dataType: NUMBER(12,2)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: PS_SUPPLYCOST
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 50d220c9-bac8-45dc-9672-bc2c25200531
+                    stepCounter: 1d5c543b-daf1-43ca-b694-82e1d9891007
+                transform: ""
+          - columnReference:
+              columnCounter: 13456939-41bd-490f-8019-15b861b83671
+              stepCounter: ab10aedd-29a3-41cd-ad2b-c5f4da98ac5c
+            dataType: VARCHAR(199)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: PS_COMMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 14ff1181-9056-4c51-9895-d8dbb49bea89
+                    stepCounter: 1d5c543b-daf1-43ca-b694-82e1d9891007
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: TARGET
+                nodeName: STG_PARTSUPP
+            join:
+              joinCondition: FROM {{ ref('TARGET', 'STG_PARTSUPP') }} "STG_PARTSUPP"
+            name: STG_PARTSUPP1
+            noLinkRefs: []
+      name: STG_PARTSUPP1
+      overrideSQL: false
+      schema: ""
+      sqlType: "61"
+      type: sql
+    stepCounter: ab10aedd-29a3-41cd-ad2b-c5f4da98ac5c
