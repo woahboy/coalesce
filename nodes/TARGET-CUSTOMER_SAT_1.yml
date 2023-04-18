@@ -1,0 +1,130 @@
+steps:
+  CUSTOMER_SAT_1-39a9d5db-c2cb-49e1-a2bd-46c2244671c9:
+    operation:
+      config:
+        insertZeroKey: true
+        postSQL: ""
+        preSQL: ""
+        testsEnabled: true
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: TARGET
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 8e7ee4d9-4d00-4b85-9be5-889893388ec9
+              stepCounter: 39a9d5db-c2cb-49e1-a2bd-46c2244671c9
+            config:
+              isHubHash: true
+            dataType: STRING
+            description: ""
+            name: CUSTOMER_HUB_HASH
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2037a784-c939-45e4-a634-42f17b1bafbf
+                    stepCounter: 9199eb8f-afca-4cf1-a7d6-989355eb460b
+                transform: ""
+          - columnReference:
+              columnCounter: 3ef97983-da12-49fd-8c2e-1625805b5e69
+              stepCounter: 39a9d5db-c2cb-49e1-a2bd-46c2244671c9
+            config:
+              isChangeHash: true
+            dataType: STRING
+            description: ""
+            name: CUSTOMER_SAT1_HASHDIFF
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 0397ea24-c0b1-419e-8e33-f7b46f351ffe
+                    stepCounter: 9199eb8f-afca-4cf1-a7d6-989355eb460b
+                transform: ""
+          - columnReference:
+              columnCounter: 7caac227-55dd-4b0a-b5d6-3202ceda18d0
+              stepCounter: 39a9d5db-c2cb-49e1-a2bd-46c2244671c9
+            dataType: VARCHAR(25)
+            description: ""
+            name: C_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: ed9f9c8e-2cae-4b81-a429-4fd616898250
+                    stepCounter: 9199eb8f-afca-4cf1-a7d6-989355eb460b
+                transform: ""
+          - columnReference:
+              columnCounter: 8d8a20cd-e3ce-4a4d-b848-7d7e0475cf6f
+              stepCounter: 39a9d5db-c2cb-49e1-a2bd-46c2244671c9
+            dataType: VARCHAR(40)
+            description: ""
+            name: C_ADDRESS
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 6471267d-f502-4f99-8596-19763ef05bea
+                    stepCounter: 9199eb8f-afca-4cf1-a7d6-989355eb460b
+                transform: ""
+          - columnReference:
+              columnCounter: 61ed729b-ee1d-4c49-b64d-08fc92d11ce3
+              stepCounter: 39a9d5db-c2cb-49e1-a2bd-46c2244671c9
+            dataType: VARCHAR(15)
+            description: ""
+            name: C_PHONE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: ed5b5e12-dc29-4f4c-9816-9c71ab28480e
+                    stepCounter: 9199eb8f-afca-4cf1-a7d6-989355eb460b
+                transform: ""
+          - columnReference:
+              columnCounter: 50c12ae8-d01f-4ec6-8365-f9c49258c721
+              stepCounter: 39a9d5db-c2cb-49e1-a2bd-46c2244671c9
+            config:
+              isSystemCreateDate: true
+            dataType: TIMESTAMP
+            description: ""
+            name: LOADDATE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: d4c4ae9a-332c-4d17-97fa-d65410e166c1
+                    stepCounter: 9199eb8f-afca-4cf1-a7d6-989355eb460b
+                transform: ""
+          - columnReference:
+              columnCounter: 218544c9-4811-49c0-9ded-3eecbf8d9553
+              stepCounter: 39a9d5db-c2cb-49e1-a2bd-46c2244671c9
+            dataType: STRING
+            description: ""
+            name: RSCR
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: a72cadcd-5bd2-416a-a75e-29cdfcd7dce6
+                    stepCounter: 9199eb8f-afca-4cf1-a7d6-989355eb460b
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - aliases:
+              STG_CUSTOMER: 9199eb8f-afca-4cf1-a7d6-989355eb460b
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: TARGET
+                nodeName: STG_CUSTOMER
+            join:
+              joinCondition: FROM {{ ref('TARGET', 'STG_CUSTOMER') }} "STG_CUSTOMER"
+            name: CUSTOMER_SAT_1
+            noLinkRefs: []
+      name: CUSTOMER_SAT_1
+      overrideSQL: false
+      schema: ""
+      sqlType: COALESCE-DATA_VAULT::3
+      type: sql
+    stepCounter: 39a9d5db-c2cb-49e1-a2bd-46c2244671c9

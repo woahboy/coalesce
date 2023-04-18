@@ -1,0 +1,132 @@
+steps:
+  SAT_CURR_CUSTOMER_SAT_1-d68abfe9-47df-4103-a90a-230a37a4031d:
+    operation:
+      config: {}
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: ""
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: TARGET
+      materializationType: view
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 5ed851db-9c7e-40d1-8964-b080f4486772
+              stepCounter: d68abfe9-47df-4103-a90a-230a37a4031d
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: CUSTOMER_HUB_HASH
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8e7ee4d9-4d00-4b85-9be5-889893388ec9
+                    stepCounter: 39a9d5db-c2cb-49e1-a2bd-46c2244671c9
+                transform: ""
+          - columnReference:
+              columnCounter: b22f34d2-f71a-40b3-bb13-d7eea042ef8c
+              stepCounter: d68abfe9-47df-4103-a90a-230a37a4031d
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: CUSTOMER_SAT1_HASHDIFF
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 3ef97983-da12-49fd-8c2e-1625805b5e69
+                    stepCounter: 39a9d5db-c2cb-49e1-a2bd-46c2244671c9
+                transform: ""
+          - columnReference:
+              columnCounter: 11c7248f-0789-410a-9d30-4eb7419ec567
+              stepCounter: d68abfe9-47df-4103-a90a-230a37a4031d
+            dataType: VARCHAR(25)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 7caac227-55dd-4b0a-b5d6-3202ceda18d0
+                    stepCounter: 39a9d5db-c2cb-49e1-a2bd-46c2244671c9
+                transform: ""
+          - columnReference:
+              columnCounter: 576671e1-a1a9-4955-af60-8c36a26a0735
+              stepCounter: d68abfe9-47df-4103-a90a-230a37a4031d
+            dataType: VARCHAR(40)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_ADDRESS
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8d8a20cd-e3ce-4a4d-b848-7d7e0475cf6f
+                    stepCounter: 39a9d5db-c2cb-49e1-a2bd-46c2244671c9
+                transform: ""
+          - columnReference:
+              columnCounter: cab10799-84df-4c7e-8cf7-9504f9da3d29
+              stepCounter: d68abfe9-47df-4103-a90a-230a37a4031d
+            dataType: VARCHAR(15)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_PHONE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 61ed729b-ee1d-4c49-b64d-08fc92d11ce3
+                    stepCounter: 39a9d5db-c2cb-49e1-a2bd-46c2244671c9
+                transform: ""
+          - columnReference:
+              columnCounter: 618422f0-6a6b-4f26-933b-648484c78f2a
+              stepCounter: d68abfe9-47df-4103-a90a-230a37a4031d
+            dataType: TIMESTAMP
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: LOADDATE
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 50c12ae8-d01f-4ec6-8365-f9c49258c721
+                    stepCounter: 39a9d5db-c2cb-49e1-a2bd-46c2244671c9
+                transform: ""
+          - columnReference:
+              columnCounter: aa0f53b0-2973-45e0-aefe-3c5702151c80
+              stepCounter: d68abfe9-47df-4103-a90a-230a37a4031d
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: RSCR
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 218544c9-4811-49c0-9ded-3eecbf8d9553
+                    stepCounter: 39a9d5db-c2cb-49e1-a2bd-46c2244671c9
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: TARGET
+                nodeName: CUSTOMER_SAT_1
+            join:
+              joinCondition: FROM {{ ref('TARGET', 'CUSTOMER_SAT_1') }} "CUSTOMER_SAT_1"
+            name: SAT_CURR_CUSTOMER_SAT_1
+            noLinkRefs: []
+      name: SAT_CURR_CUSTOMER_SAT_1
+      overrideSQL: false
+      schema: ""
+      sqlType: COALESCE-DATA_VAULT::7
+      type: sql
+    stepCounter: d68abfe9-47df-4103-a90a-230a37a4031d

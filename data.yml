@@ -4317,7 +4317,7 @@ stepTypes:
           attributeName: isSystemRecordSource
       templates:
         create:
-          templateString: |
+          templateString: |-
             {% if node.materializationType == 'table' %}
                             {{ stage('Create Satellite Table') }}
 
@@ -4333,8 +4333,6 @@ stepTypes:
                                 {% endfor %}
                             )
                             {%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
-
-                        {% endif %}
         run:
           templateString: |
             {% for test in node.tests if config.testsEnabled %}
