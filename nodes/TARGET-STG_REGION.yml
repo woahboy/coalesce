@@ -1,0 +1,81 @@
+steps:
+  STG_REGION-a572dcba-9af7-4b48-bec3-185c92ec1ca5:
+    operation:
+      config:
+        insertStrategy: INSERT
+        postSQL: ""
+        preSQL: ""
+        testsEnabled: true
+        truncateBefore: true
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: Region data as defined by TPC-H
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: TARGET
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: e2b70c94-b45e-40a7-a5a9-29f1207fa4ef
+              stepCounter: a572dcba-9af7-4b48-bec3-185c92ec1ca5
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: R_REGIONKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 24b56046-363f-4296-85ac-1210a4972718
+                    stepCounter: ee8fc4b8-2bdd-4fe9-8b52-9f8afeed0e9b
+                transform: ""
+          - columnReference:
+              columnCounter: d234819c-6ab0-47f3-8307-082146e49f1d
+              stepCounter: a572dcba-9af7-4b48-bec3-185c92ec1ca5
+            dataType: VARCHAR(25)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: R_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: aec2c271-6464-4cf2-b845-d23311fd966b
+                    stepCounter: ee8fc4b8-2bdd-4fe9-8b52-9f8afeed0e9b
+                transform: ""
+          - columnReference:
+              columnCounter: 5bdd7c10-1a46-4990-a7bb-daee18f93fd1
+              stepCounter: a572dcba-9af7-4b48-bec3-185c92ec1ca5
+            dataType: VARCHAR(152)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: R_COMMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8c83c40d-e3aa-4164-bd7c-6123fcce5226
+                    stepCounter: ee8fc4b8-2bdd-4fe9-8b52-9f8afeed0e9b
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: SOURCE-1
+                nodeName: REGION
+            join:
+              joinCondition: FROM {{ ref('SOURCE-1', 'REGION') }} "REGION"
+            name: STG_REGION
+            noLinkRefs: []
+      name: STG_REGION
+      overrideSQL: false
+      schema: ""
+      sqlType: Stage
+      type: sql
+    stepCounter: a572dcba-9af7-4b48-bec3-185c92ec1ca5
