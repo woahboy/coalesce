@@ -1177,7 +1177,7 @@ stepTypes:
     version: 1
   StepType-32:
     id: "32"
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: TARGET
       error: null
@@ -1794,7 +1794,7 @@ stepTypes:
     version: 1
   StepType-38:
     id: "38"
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: null
       error: null
@@ -3375,7 +3375,7 @@ stepTypes:
     version: 1
   StepType-65:
     id: "65"
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: null
       error: null
@@ -3525,294 +3525,6 @@ stepTypes:
 
             {% endif %}
     name: Copy Into
-    version: 1
-  StepType-66:
-    id: "66"
-    isDisabled: false
-    metadata:
-      defaultStorageLocation: null
-      error: null
-      nodeMetadataSpec: |
-        capitalized: Copy of View
-        short: V
-        tagColor: '#C4C4C4'
-        isDisabled: true
-        plural: Views
-
-        config:
-          - groupName: Options
-            items: 
-            - type: materializationSelector
-              options:
-                - view
-              default: view
-              isRequired: true
-
-            - type: toggleButton
-              attributeName: selectDistinct
-              displayName: Distinct
-
-            - type: multisourceToggle
-
-            - type: overrideSQLToggle
-
-            - displayName: Multi Source Strategy
-              attributeName: insertStrategy
-              type: dropdownSelector
-              default: UNION
-              options:
-              - "UNION"
-              - "UNION ALL" 
-              isRequired: true
-              enableIf: "{% if node.isMultisource %} true {% else %} false {% endif %}"
-      templates:
-        create:
-          templateString: |
-            {% if node.override.create.enabled %}
-                
-                {{ node.override.create.script }}
-
-            {% else %}
-                {{ stage('Create View') }}
-                CREATE OR REPLACE VIEW {{ ref_no_link(node.location.name, node.name) }}
-                (
-                    {% for col in columns %}
-                        "{{ col.name }}"
-                        {%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
-                        {%- if not loop.last -%}, {% endif %}
-                    {% endfor %}
-                )
-                {%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}'{% endif %}
-                AS
-                {% for source in sources %}
-                    SELECT {% if config.selectDistinct %} DISTINCT {% endif %}
-                    {% for col in source.columns %}
-                        {{ get_source_transform(col) }} AS "{{ col.name }}"
-                        {%- if not loop.last -%}, {% endif %}
-                    {% endfor %}
-
-                    {{ source.join }}
-
-                    {% if not loop.last %}
-                        {% if config.insertStrategy in ['UNION', 'UNION ALL'] %}
-                            {{ config.insertStrategy }}
-                        {% else %}
-                            UNION
-                        {% endif %}
-                    {% endif %}
-                {% endfor %}
-            {% endif %}
-        run:
-          templateString: ""
-    name: Copy of View
-    version: 1
-  StepType-67:
-    id: "67"
-    isDisabled: false
-    metadata:
-      defaultStorageLocation: TARGET
-      error: null
-      nodeMetadataSpec: |
-        capitalized: Copy of Stage
-        short: STG
-        plural: Stages
-        tagColor: '#2EB67D'
-
-        config:
-        - groupName: Options
-          items:
-          - type: materializationSelector
-            default: table
-            options:
-            - table
-            - view
-            isRequired: true
-
-          - type: multisourceToggle
-            enableIf: "{% if node.materializationType == 'table' %} true {% else %} false {% endif %}" 
-
-          - type: overrideSQLToggle
-            enableIf: "{% if node.materializationType == 'view' %} true {% else %} false {% endif %}"
-            
-          - displayName: Multi Source Strategy
-            attributeName: insertStrategy
-            type: dropdownSelector
-            default: INSERT
-            options:
-            - "INSERT"
-            - "UNION"
-            - "UNION ALL"
-            isRequired: true
-            enableIf: "{% if node.isMultisource %} true {% else %} false {% endif %}"
-
-          - displayName: Truncate Before
-            attributeName: truncateBefore
-            type: toggleButton
-            default: true
-
-          - type: toggleButton
-            attributeName: selectDistinct
-            displayName: Distinct
-
-          - displayName: Enable Tests
-            attributeName: testsEnabled
-            type: toggleButton
-            default: true
-            
-          - displayName: Pre-SQL
-            attributeName: preSQL
-            type: textBox
-            syntax: sql
-            isRequired: false
-
-          - displayName: Post-SQL
-            attributeName: postSQL
-            type: textBox
-            syntax: sql
-            isRequired: false
-      templates:
-        create:
-          templateString: |
-            {% if node.override.create.enabled %}
-            	
-            	{{ node.override.create.script }}
-
-            {% elif node.materializationType == 'table' %}
-            	{{ stage('Create Stage Table') }}
-
-            	CREATE OR REPLACE TABLE {{ ref_no_link(node.location.name, node.name) }}
-            	(
-            		{% for col in columns %}
-            			"{{ col.name }}" {{ col.dataType }}
-            			{%- if not col.nullable %} NOT NULL
-            				{%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
-            			{% endif %}
-            			{%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
-            			{%- if not loop.last -%}, {% endif %}
-            		{% endfor %}
-            	)
-            	{%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}'{% endif %}
-
-
-            {% elif node.materializationType == 'view' %}
-                {{ stage('Create Stage View') }}
-
-                CREATE OR REPLACE VIEW {{ ref_no_link(node.location.name, node.name) }}
-                (
-                    {% for col in columns %}
-                        "{{ col.name }}"
-                        {%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
-                        {%- if not loop.last -%}, {% endif %}
-                    {% endfor %}
-                )
-                {%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}'{% endif %}
-                AS
-                {% for source in sources %}
-                    SELECT
-                    {% for col in source.columns %}
-                        {{ get_source_transform(col) }} AS "{{ col.name }}"
-                        {%- if not loop.last -%}, {% endif %}
-                    {% endfor %}
-
-                    {{ source.join }}
-
-                    {% if not loop.last %}
-                        {% if config.insertStrategy in ['UNION', 'UNION ALL'] %}
-                            {{ config.insertStrategy }}
-                        {% else %}
-                            UNION
-                        {% endif %}
-                    {% endif %}
-                {% endfor %}
-
-            {% endif %}
-        run:
-          templateString: |
-            {% for test in node.tests if config.testsEnabled %}
-                    {% if test.runOrder == 'Before' %}
-                        {{ test_stage(test.name, test.continueOnFailure) }}
-                        {{ test.templateString }}
-                    {% endif %}
-                {% endfor %}
-
-            {% if node.materializationType == 'table' %}
-            	{% if config.preSQL %}
-            		{{ stage('Pre-SQL') }}
-            		{{ config.preSQL }}
-            	{% endif %}
-            	
-            	
-            	
-            		{% if config.truncateBefore %}
-            	
-            			{{ stage('Truncate Stage Table') }}
-            			TRUNCATE IF EXISTS {{ ref_no_link(node.location.name, node.name) }}
-            	
-            		{% endif %}
-            	
-            	
-            		{% if config.insertStrategy in ['UNION', 'UNION ALL'] %}
-            			{{ stage( config.insertStrategy + ' Sources' | string ) }}
-            			INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
-            				(
-            					{% for col in columns %}
-            						"{{ col.name }}"
-            						{%- if not loop.last -%},{% endif %}
-            					{% endfor %}
-            				)
-            		{% endif %}
-            	
-            	
-            		{% for source in sources %}
-            	
-            			{% if config.insertStrategy == 'INSERT' %}
-            				{{ stage('Insert ' + source.name | string ) }}
-            	
-            				INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
-            				(
-            					{% for col in source.columns %}
-            						"{{ col.name }}"
-            						{%- if not loop.last -%},{% endif %}
-            					{% endfor %}
-            				)
-            			{% endif %}
-            	
-            			SELECT {% if config.selectDistinct %} DISTINCT {% endif %}
-            			{% for col in source.columns %}
-                            {{ get_source_transform(col) }} AS "{{ col.name }}"
-            				{%- if not loop.last -%}, {% endif %}
-            			{% endfor %}
-            	
-            			{{ source.join }}
-            	
-            			{% if config.insertStrategy in ['UNION', 'UNION ALL'] and not loop.last %}
-            				{{config.insertStrategy}}
-            			{% endif %}
-            	
-            		{% endfor %}
-            	
-            	{% if config.postSQL %}
-            		{{ stage('Post-SQL') }}
-            		{{ config.postSQL }}
-            	{% endif %}
-            {% endif %}
-
-            {% if config.testsEnabled %}
-            	{% for test in node.tests %}
-            		{% if test.runOrder == 'After' %}
-            			{{ test_stage(test.name, test.continueOnFailure) }}
-            			{{ test.templateString }}
-                    {% endif %}
-            	{% endfor %}
-
-            	{% for column in columns %}
-            		{% for test in column.tests %}
-            			{{ test_stage(column.name + ": " + test.name) }}
-            			{{ test.templateString }}
-            		{% endfor %}
-            	{% endfor %}
-            {% endif %}
-    name: Copy of Stage
     version: 1
   StepType-COALESCE-DATA_VAULT::1:
     id: COALESCE-DATA_VAULT::1
@@ -4397,7 +4109,7 @@ stepTypes:
     version: 1
   StepType-COALESCE-DATA_VAULT::5:
     id: COALESCE-DATA_VAULT::5
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: TARGET
       error: null
@@ -5370,7 +5082,7 @@ stepTypes:
     version: 1
   StepType-COALESCE-MISC::7:
     id: COALESCE-MISC::7
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: TARGET
       error: null
@@ -8779,7 +8491,7 @@ stepTypes:
     version: 1
   StepType-View:
     id: View
-    isDisabled: false
+    isDisabled: true
     metadata:
       defaultStorageLocation: null
       error: null
@@ -9329,11 +9041,21 @@ stepTypes:
 subgraphs:
   Subgraph-28:
     id: "28"
-    name: Customer Data Subgraph
+    name: Demo
     steps:
       - eca333b0-9b2e-432a-abed-91b35e4ade8d
       - 6408f007-2105-4e68-8bbf-99712c51bf37
       - 327d6782-4dfb-4b45-a59c-1a9edcc8f80c
       - e82e27c8-2dc7-499d-9160-7059be529fe1
       - 896e9503-e578-44bb-bd83-827e187277ee
+      - e65eae2b-6369-49ed-bb63-13e97fe7d89e
+      - 6e24a7bc-dbd5-4037-927d-aebc992d0f23
+      - 409807d7-a145-416f-b823-d44927fd0e3f
+      - 99d408b6-31c4-4892-8cf5-e079d70b043c
+      - 70c575f6-87fa-45d3-b7bf-e5abb7d2cfde
+      - 46e2bdbe-eada-49ce-b39c-777b90cd348f
+      - f5b3edb1-2c5f-470d-9693-e255f59b19e9
+      - f14cbf7a-3e4c-41f4-859c-a38c2246d7f1
+      - de093196-e6b4-464c-9ec0-2437fb00c613
+      - 6d6529c4-e4e8-40dc-b749-9dd28094ad3c
 version: 1

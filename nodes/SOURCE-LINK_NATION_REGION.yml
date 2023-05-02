@@ -1,0 +1,120 @@
+steps:
+  LINK_NATION_REGION-9237f16b-f4f8-4243-a180-ceb6f4840cd8:
+    operation:
+      config:
+        postSQL: ""
+        preSQL: ""
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: Nation data as defined by TPC-H
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: SOURCE
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 790d7a23-7874-4d2e-b942-76563b825487
+              stepCounter: 9237f16b-f4f8-4243-a180-ceb6f4840cd8
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: N_NATIONKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: ce864d78-6bbe-4c63-937c-9a1db775ba66
+                    stepCounter: f5d6f9ef-0f24-4d4e-b822-feea3042ead9
+                transform: ""
+          - columnReference:
+              columnCounter: 59a3cba0-58c2-4471-823a-61807295f077
+              stepCounter: 9237f16b-f4f8-4243-a180-ceb6f4840cd8
+            dataType: VARCHAR(25)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: N_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2fd0b834-5e40-4ab9-809b-1ef725ed8ed2
+                    stepCounter: f5d6f9ef-0f24-4d4e-b822-feea3042ead9
+                transform: ""
+          - columnReference:
+              columnCounter: 35e63937-9440-438c-8323-371f655e5405
+              stepCounter: 9237f16b-f4f8-4243-a180-ceb6f4840cd8
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: N_REGIONKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: d3fd803c-7b8b-499c-856f-3980cb00e94e
+                    stepCounter: f5d6f9ef-0f24-4d4e-b822-feea3042ead9
+                transform: ""
+          - columnReference:
+              columnCounter: aabf4a2e-5e21-4ffa-bfa5-bbcae09144e7
+              stepCounter: 9237f16b-f4f8-4243-a180-ceb6f4840cd8
+            dataType: VARCHAR(152)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: N_COMMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: c11bf0fe-106e-49bd-b331-477b0984d593
+                    stepCounter: f5d6f9ef-0f24-4d4e-b822-feea3042ead9
+                transform: ""
+          - columnReference:
+              columnCounter: 871f712d-52be-4bd7-8881-aa21948cd915
+              stepCounter: 9237f16b-f4f8-4243-a180-ceb6f4840cd8
+            dataType: TIMESTAMP
+            description: The Load Date Timestamp (LDTS) describes when this data first arrived in the Data Warehouse.
+            hashColumns: []
+            hashDetails: null
+            name: LDTS
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: c3d31237-adeb-4077-ad27-107f962e1895
+                    stepCounter: f5d6f9ef-0f24-4d4e-b822-feea3042ead9
+                transform: ""
+          - columnReference:
+              columnCounter: a93a3616-96a0-49c1-a2b1-be3db17517c1
+              stepCounter: 9237f16b-f4f8-4243-a180-ceb6f4840cd8
+            dataType: STRING
+            description: The Record Source (RSRC) describes the source of this data.
+            hashColumns: []
+            hashDetails: null
+            name: RSRC
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 611f5bc4-bbb4-4c61-93d6-f8212e67e8ff
+                    stepCounter: f5d6f9ef-0f24-4d4e-b822-feea3042ead9
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: SOURCE
+                nodeName: DVSTG_NATION
+            join:
+              joinCondition: FROM {{ ref('SOURCE', 'DVSTG_NATION') }} "DVSTG_NATION"
+            name: LINK_NATION_REGION
+            noLinkRefs: []
+      name: LINK_NATION_REGION
+      overrideSQL: false
+      schema: ""
+      sqlType: SCALEFREE-DATAVAULT4COALESCE::7
+      type: sql
+    stepCounter: 9237f16b-f4f8-4243-a180-ceb6f4840cd8

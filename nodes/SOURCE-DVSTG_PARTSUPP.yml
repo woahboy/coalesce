@@ -1,12 +1,9 @@
 steps:
-  STG_PARTSUPP-e9d5b692-59bc-4bb6-b39d-cb99fce6095f:
+  DVSTG_PARTSUPP-341666d6-49ae-483e-83d2-a20fa53d8838:
     operation:
       config:
-        insertStrategy: INSERT
-        postSQL: ""
-        preSQL: ""
+        generate_ghost_records: true
         testsEnabled: true
-        truncateBefore: true
       database: ""
       dependencies: []
       deployEnabled: true
@@ -14,14 +11,14 @@ steps:
       isDataVault: false
       isMultisource: false
       locationID: ""
-      locationName: TARGET
-      materializationType: table
+      locationName: SOURCE
+      materializationType: view
       metadata:
         appliedNodeTests: []
         columns:
           - columnReference:
-              columnCounter: 0d21f5a0-d7a7-49b2-af20-308f744a5c34
-              stepCounter: e9d5b692-59bc-4bb6-b39d-cb99fce6095f
+              columnCounter: 33bd8bd8-21e9-4095-aca1-894bff887dce
+              stepCounter: 341666d6-49ae-483e-83d2-a20fa53d8838
             dataType: NUMBER(38,0)
             description: ""
             hashColumns: []
@@ -34,8 +31,8 @@ steps:
                     stepCounter: 3f410820-1a81-4635-9db7-5bfc305a4f92
                 transform: ""
           - columnReference:
-              columnCounter: 84e9d99d-7926-4391-a090-9826324e6c81
-              stepCounter: e9d5b692-59bc-4bb6-b39d-cb99fce6095f
+              columnCounter: b7cc9457-d0a9-4ebe-acbc-1026089924c1
+              stepCounter: 341666d6-49ae-483e-83d2-a20fa53d8838
             dataType: NUMBER(38,0)
             description: ""
             hashColumns: []
@@ -48,8 +45,8 @@ steps:
                     stepCounter: 3f410820-1a81-4635-9db7-5bfc305a4f92
                 transform: ""
           - columnReference:
-              columnCounter: c9e533a2-7d25-4170-9282-daa688cfe8a4
-              stepCounter: e9d5b692-59bc-4bb6-b39d-cb99fce6095f
+              columnCounter: c8bd53c5-1937-4761-b690-88247fa98315
+              stepCounter: 341666d6-49ae-483e-83d2-a20fa53d8838
             dataType: NUMBER(38,0)
             description: ""
             hashColumns: []
@@ -62,8 +59,8 @@ steps:
                     stepCounter: 3f410820-1a81-4635-9db7-5bfc305a4f92
                 transform: ""
           - columnReference:
-              columnCounter: 3b68cdd4-cb16-4d5d-8e95-ecec07fe24cc
-              stepCounter: e9d5b692-59bc-4bb6-b39d-cb99fce6095f
+              columnCounter: ec328856-534e-4b4d-a2b1-47e27df732eb
+              stepCounter: 341666d6-49ae-483e-83d2-a20fa53d8838
             dataType: NUMBER(12,2)
             description: ""
             hashColumns: []
@@ -76,8 +73,8 @@ steps:
                     stepCounter: 3f410820-1a81-4635-9db7-5bfc305a4f92
                 transform: ""
           - columnReference:
-              columnCounter: dd2315f0-54ae-4923-9c73-e2942a40d0af
-              stepCounter: e9d5b692-59bc-4bb6-b39d-cb99fce6095f
+              columnCounter: cc952ccd-9397-4882-9dfe-1b8c52717ce2
+              stepCounter: 341666d6-49ae-483e-83d2-a20fa53d8838
             dataType: VARCHAR(199)
             description: ""
             hashColumns: []
@@ -89,6 +86,42 @@ steps:
                   - columnCounter: 83ab03ec-431b-4df7-b1d4-ec7a62c993be
                     stepCounter: 3f410820-1a81-4635-9db7-5bfc305a4f92
                 transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: f3c2a9c6-4536-4cb1-a0fa-2545bef2a6fc
+              stepCounter: 341666d6-49ae-483e-83d2-a20fa53d8838
+            config: {}
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: The Load Date Timestamp (LDTS) describes when this data first arrived in the Data Warehouse.
+            hashColumns: []
+            is_system_ldts: true
+            name: LDTS
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: SYSDATE()
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: c35d7836-09da-44a8-ae87-3b4db94c8277
+              stepCounter: 341666d6-49ae-483e-83d2-a20fa53d8838
+            config: {}
+            dataType: STRING
+            defaultValue: ""
+            description: The Record Source (RSRC) describes the source of this data.
+            hashColumns: []
+            is_system_rsrc: true
+            name: RSRC
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: "{{record_source()}}"
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
@@ -99,11 +132,11 @@ steps:
                 nodeName: PARTSUPP
             join:
               joinCondition: FROM {{ ref('SOURCE-1', 'PARTSUPP') }} "PARTSUPP"
-            name: STG_PARTSUPP
+            name: DVSTG_PARTSUPP
             noLinkRefs: []
-      name: STG_PARTSUPP
+      name: DVSTG_PARTSUPP
       overrideSQL: false
       schema: ""
-      sqlType: Stage
+      sqlType: SCALEFREE-DATAVAULT4COALESCE::4
       type: sql
-    stepCounter: e9d5b692-59bc-4bb6-b39d-cb99fce6095f
+    stepCounter: 341666d6-49ae-483e-83d2-a20fa53d8838
