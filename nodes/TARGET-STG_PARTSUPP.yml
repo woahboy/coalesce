@@ -1,0 +1,109 @@
+steps:
+  STG_PARTSUPP-b457b75f-3729-41da-9db8-f2bd45ae6033:
+    operation:
+      config:
+        insertStrategy: INSERT
+        postSQL: ""
+        preSQL: ""
+        testsEnabled: true
+        truncateBefore: true
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: Partsupp data as defined by TPC-H
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: TARGET
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: abcccb7e-2285-4d09-bfe0-0f5decd58b56
+              stepCounter: b457b75f-3729-41da-9db8-f2bd45ae6033
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: PS_PARTKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 0e6abda2-61f1-4e1b-8b04-1e70e19f6ab3
+                    stepCounter: 90c6fc40-faa7-4239-a449-89afadf6fb92
+                transform: ""
+          - columnReference:
+              columnCounter: a88e7aee-f985-4c1f-a854-a64f524390b3
+              stepCounter: b457b75f-3729-41da-9db8-f2bd45ae6033
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: PS_SUPPKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 6809091d-894e-405e-932e-da125f9c4fbe
+                    stepCounter: 90c6fc40-faa7-4239-a449-89afadf6fb92
+                transform: ""
+          - columnReference:
+              columnCounter: d23035cc-831a-4645-844c-7b2b28a42b14
+              stepCounter: b457b75f-3729-41da-9db8-f2bd45ae6033
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: PS_AVAILQTY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 863dfc53-a8a2-4a49-91a6-28dc1d18a376
+                    stepCounter: 90c6fc40-faa7-4239-a449-89afadf6fb92
+                transform: ""
+          - columnReference:
+              columnCounter: 32f80c8c-83d8-44cf-b40f-01cebfd1861a
+              stepCounter: b457b75f-3729-41da-9db8-f2bd45ae6033
+            dataType: NUMBER(12,2)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: PS_SUPPLYCOST
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 3b684aa1-1672-4fd3-bf18-afe7f7781543
+                    stepCounter: 90c6fc40-faa7-4239-a449-89afadf6fb92
+                transform: ""
+          - columnReference:
+              columnCounter: 5df08181-1c2a-4b36-8a82-6239814a8fbf
+              stepCounter: b457b75f-3729-41da-9db8-f2bd45ae6033
+            dataType: VARCHAR(199)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: PS_COMMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 82baaa2c-448c-46e6-9c6e-9f931d677ec2
+                    stepCounter: 90c6fc40-faa7-4239-a449-89afadf6fb92
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: SOURCE-1
+                nodeName: PARTSUPP
+            join:
+              joinCondition: FROM {{ ref('SOURCE-1', 'PARTSUPP') }} "PARTSUPP"
+            name: STG_PARTSUPP
+            noLinkRefs: []
+      name: STG_PARTSUPP
+      overrideSQL: false
+      schema: ""
+      sqlType: Stage
+      type: sql
+    stepCounter: b457b75f-3729-41da-9db8-f2bd45ae6033

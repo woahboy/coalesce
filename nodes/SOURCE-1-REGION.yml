@@ -1,0 +1,64 @@
+steps:
+  REGION-1282ebb0-6fab-48d8-a39e-97e4b19e8621:
+    operation:
+      database: ""
+      dataset: ""
+      deployEnabled: true
+      description: Region data as defined by TPC-H
+      locationID: ""
+      locationName: SOURCE-1
+      metadata:
+        columns:
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 03cc127a-d6d9-44ab-85f0-62305f2c2578
+              stepCounter: 1282ebb0-6fab-48d8-a39e-97e4b19e8621
+            config: {}
+            dataType: NUMBER(38,0)
+            defaultValue: ""
+            description: ""
+            name: R_REGIONKEY
+            nullable: false
+            primaryKey: false
+            uniqueKey: false
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 5de1b1c6-b0ae-4515-bbbe-6ca6015827f4
+              stepCounter: 1282ebb0-6fab-48d8-a39e-97e4b19e8621
+            config: {}
+            dataType: VARCHAR(25)
+            defaultValue: ""
+            description: ""
+            name: R_NAME
+            nullable: false
+            primaryKey: false
+            uniqueKey: false
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 3e1ebf16-8d59-467b-8511-1ebb2d094364
+              stepCounter: 1282ebb0-6fab-48d8-a39e-97e4b19e8621
+            config: {}
+            dataType: VARCHAR(152)
+            defaultValue: ""
+            description: ""
+            name: R_COMMENT
+            nullable: true
+            primaryKey: false
+            uniqueKey: false
+        join:
+          joinCondition: FROM {{ ref('SOURCE-1', 'REGION') }}
+      name: REGION
+      schema: ""
+      sqlType: Source
+      table: REGION
+      type: sourceInput
+    stepCounter: 1282ebb0-6fab-48d8-a39e-97e4b19e8621
