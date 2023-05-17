@@ -3,7 +3,7 @@ jobs:
   Job-21:
     excludeSelector: ""
     id: 21
-    includeSelector: "+{ location: TARGET name: DIM_CUSTOMER }"
+    includeSelector: "+{ location: TARGET name: DIM_CUSTOMER_NATION }"
     name: Customer Dim Job
     steps: []
     subgraphs: []
@@ -11,8 +11,8 @@ locations:
   SOURCE:
     mappingDefinitions:
       "3":
-        database: SNOWFLAKE_SAMPLE_DATA
-        schema: TPCH_SF1
+        database: JUSTIN_SOURCE
+        schema: SOURCE_EDW
       "5":
         database: SNOWFLAKE_SAMPLE_DATA
         schema: TPCH_SF1
