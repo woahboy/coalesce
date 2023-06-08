@@ -201,6 +201,10 @@ macros:
                   {{-  location_name | invalid_export_ref(node_name, ref_type='ref') -}}
               {%- endif -%}
       {%- endmacro -%}
+
+      {%- macro sap_tblcol_rename() -%}
+      {{ parameters.srcMapping.tbl | selectattr('name', 'equalto',(sources[0].columns | selectattr('id', 'equalto', column.id) | map(attribute='sourceColumns') | first | map(attribute='name') | first)) | map(attribute='columns') | first | selectattr('sapName', 'equalto',sources[0].columns | selectattr('id','equalto',column.id) | map(attribute='sourceColumns') | first | map(attribute='column') | map(attribute='name') | first) | map(attribute='simpleName') | first }}
+      {%- endmacro -%}
   Macro-SCALEFREE-DATAVAULT4COALESCE::1:
     id: SCALEFREE-DATAVAULT4COALESCE::1
     macroString: |+
