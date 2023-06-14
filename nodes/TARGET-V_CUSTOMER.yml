@@ -1,0 +1,194 @@
+steps:
+  V_CUSTOMER-4033a3ff-d134-468b-a776-60cc54745c59:
+    operation:
+      config:
+        insertStrategy: UNION
+        selectDistinct: false
+      database: ""
+      deployEnabled: true
+      description: Customer data as defined by TPC-H
+      isDataVault: false
+      isMultisource: false
+      locationName: TARGET
+      materializationType: view
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: faf4bf91-3b74-41ba-aec1-b2e0f9d52e94
+              stepCounter: 4033a3ff-d134-468b-a776-60cc54745c59
+            config: {}
+            dataType: NUMBER(38,0)
+            defaultValue: ""
+            description: ""
+            name: C_CUSTKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+            transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: a1202ae7-edb2-49d7-8623-fe1f2770e518
+              stepCounter: 4033a3ff-d134-468b-a776-60cc54745c59
+            config: {}
+            dataType: VARCHAR(25)
+            defaultValue: ""
+            description: ""
+            name: C_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+            transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: f97a2a40-f617-4615-979a-d54d831c25b0
+              stepCounter: 4033a3ff-d134-468b-a776-60cc54745c59
+            config: {}
+            dataType: VARCHAR(40)
+            defaultValue: ""
+            description: ""
+            name: C_ADDRESS
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+            transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 682b5a0f-a5ad-4531-bccd-7f249a56bf22
+              stepCounter: 4033a3ff-d134-468b-a776-60cc54745c59
+            config: {}
+            dataType: NUMBER(38,0)
+            defaultValue: ""
+            description: ""
+            name: C_NATIONKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+            transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 66a52927-08c2-4552-a775-56fb2695f84c
+              stepCounter: 4033a3ff-d134-468b-a776-60cc54745c59
+            config: {}
+            dataType: VARCHAR(15)
+            defaultValue: ""
+            description: ""
+            name: C_PHONE
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+            transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: b06dc8cd-bbbe-4d82-8c4b-57f633942610
+              stepCounter: 4033a3ff-d134-468b-a776-60cc54745c59
+            config: {}
+            dataType: NUMBER(12,2)
+            defaultValue: ""
+            description: ""
+            name: C_ACCTBAL
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+            transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 10faa288-edba-4362-86fb-974083e8cb6a
+              stepCounter: 4033a3ff-d134-468b-a776-60cc54745c59
+            config: {}
+            dataType: VARCHAR(10)
+            defaultValue: ""
+            description: ""
+            name: C_MKTSEGMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+            transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: d3e86c44-858b-4c14-8154-077ee295e5d6
+              stepCounter: 4033a3ff-d134-468b-a776-60cc54745c59
+            config: {}
+            dataType: VARCHAR(117)
+            defaultValue: ""
+            description: ""
+            name: C_COMMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: ""
+            transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - customSQL:
+              customSQL: |-
+                {{ stage('Override Create SQL') }}
+                CREATE OR REPLACE VIEW
+                  "JUSTIN_EDW"."DEV_EDW"."V_CUSTOMER" (
+                    "C_CUSTKEY",
+                    "C_NAME",
+                    "C_ADDRESS",
+                    "C_NATIONKEY",
+                    "C_PHONE",
+                    "C_ACCTBAL",
+                    "C_MKTSEGMENT",
+                    "C_COMMENT"
+                  )
+                COMMENT = 'Customer data as defined by TPC-H' AS
+                SELECT
+                  "CUSTOMER"."C_CUSTKEY" AS "C_CUSTKEY",
+                  "CUSTOMER"."C_NAME" AS "C_NAME",
+                  "CUSTOMER"."C_ADDRESS" AS "C_ADDRESS",
+                  "CUSTOMER"."C_NATIONKEY" AS "C_NATIONKEY",
+                  "CUSTOMER"."C_PHONE" AS "C_PHONE",
+                  "CUSTOMER"."C_ACCTBAL" AS "C_ACCTBAL",
+                  "CUSTOMER"."C_MKTSEGMENT" AS "C_MKTSEGMENT",
+                  "CUSTOMER"."C_COMMENT" AS "C_COMMENT"
+                FROM
+                  "SNOWFLAKE_SAMPLE_DATA"."TPCH_SF1"."CUSTOMER" "CUSTOMER"
+            dependencies:
+              - locationName: SOURCE-1
+                nodeName: CUSTOMER
+            join:
+              joinCondition: FROM {{ ref('SOURCE-1', 'CUSTOMER') }} "CUSTOMER"
+            name: V_CUSTOMER
+            noLinkRefs: []
+      name: V_CUSTOMER
+      overrideSQL: true
+      schema: ""
+      sqlType: View
+      type: sql
+    stepCounter: 4033a3ff-d134-468b-a776-60cc54745c59
