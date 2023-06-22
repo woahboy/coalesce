@@ -3,8 +3,8 @@ jobs:
   Job-23:
     excludeSelector: ""
     id: 23
-    includeSelector: "+{ location: SOURCE name: FCT_ORDERS }"
-    name: Dimension Mart Job
+    includeSelector: "+{ location: SOURCE name: DVSTG_CUSTOMER }+"
+    name: Raw Vault Job
     steps: []
     subgraphs: []
 locations:
@@ -3168,8 +3168,8 @@ stepTypes:
             {% endif %}
     name: Extended Dimension
     version: 1
-  StepType-89:
-    id: "89"
+  StepType-91:
+    id: "91"
     isDisabled: false
     metadata:
       defaultStorageLocation: TARGET
@@ -3212,14 +3212,15 @@ stepTypes:
             type: toggleButton
             default: true
 
-          - type: toggleButton
-            attributeName: selectDistinct
-            displayName: Distinct
-
           - displayName: Enable Tests
             attributeName: testsEnabled
             type: toggleButton
             default: true
+
+          - type: toggleButton
+            attributeName: selectDistinct
+            displayName: Distinct
+
             
           - displayName: Pre-SQL
             attributeName: preSQL
@@ -3376,8 +3377,8 @@ stepTypes:
             {% endif %}
     name: Copy of Stage
     version: 1
-  StepType-90:
-    id: "90"
+  StepType-92:
+    id: "92"
     isDisabled: false
     metadata:
       defaultStorageLocation: TARGET
@@ -4435,7 +4436,7 @@ stepTypes:
     version: 1
   StepType-COALESCE-MISC::10:
     id: COALESCE-MISC::10
-    isDisabled: true
+    isDisabled: false
     metadata:
       defaultStorageLocation: null
       error: null
