@@ -3168,15 +3168,95 @@ stepTypes:
             {% endif %}
     name: Extended Dimension
     version: 1
-  StepType-91:
-    id: "91"
+  StepType-93:
+    id: "93"
+    isDisabled: false
+    metadata:
+      defaultStorageLocation: TARGET
+      error: null
+      nodeMetadataSpec: |
+        capitalized: Copy of View
+        short: V
+        tagColor: '#C4C4C4'
+        isDisabled: true
+        plural: Views
+
+        config:
+          - groupName: Options
+            items: 
+            - type: materializationSelector
+              options:
+                - view
+              default: view
+              isRequired: true
+
+            - type: toggleButton
+              attributeName: selectDistinct
+              displayName: Distinct
+
+            - type: multisourceToggle
+
+            - type: overrideSQLToggle
+
+            - displayName: Multi Source Strategy
+              attributeName: insertStrategy
+              type: dropdownSelector
+              default: UNION
+              options:
+              - "UNION"
+              - "UNION ALL" 
+              isRequired: true
+              enableIf: "{% if node.isMultisource %} true {% else %} false {% endif %}"
+      templates:
+        create:
+          templateString: |
+            {% if node.override.create.enabled %}
+                
+                {{ node.override.create.script }}
+
+            {% else %}
+                {{ stage('Create View') }}
+                CREATE OR REPLACE VIEW {{ ref_no_link(node.location.name, node.name) }}
+                (
+                    {% for col in columns %}
+                        "{{ col.name }}"
+                        {%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
+                        {%- if not loop.last -%}, {% endif %}
+                    {% endfor %}
+                )
+                {%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}'{% endif %}
+                AS
+                {% for source in sources %}
+                    SELECT {% if config.selectDistinct %} DISTINCT {% endif %}
+                    {% for col in source.columns %}
+                        {{ get_source_transform(col) }} AS "{{ col.name }}"
+                        {%- if not loop.last -%}, {% endif %}
+                    {% endfor %}
+
+                    {{ source.join }}
+
+                    {% if not loop.last %}
+                        {% if config.insertStrategy in ['UNION', 'UNION ALL'] %}
+                            {{ config.insertStrategy }}
+                        {% else %}
+                            UNION
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        run:
+          templateString: ""
+    name: Copy of View
+    version: 1
+  StepType-94:
+    id: "94"
     isDisabled: false
     metadata:
       defaultStorageLocation: TARGET
       error: null
       nodeMetadataSpec: |
         capitalized: Copy of Stage
-        short: STG
+        short: MY_STG
         plural: Stages
         tagColor: '#2EB67D'
 
@@ -3220,7 +3300,6 @@ stepTypes:
           - type: toggleButton
             attributeName: selectDistinct
             displayName: Distinct
-
             
           - displayName: Pre-SQL
             attributeName: preSQL
@@ -3376,86 +3455,6 @@ stepTypes:
             	{% endfor %}
             {% endif %}
     name: Copy of Stage
-    version: 1
-  StepType-92:
-    id: "92"
-    isDisabled: false
-    metadata:
-      defaultStorageLocation: TARGET
-      error: null
-      nodeMetadataSpec: |
-        capitalized: Copy of View
-        short: V
-        tagColor: '#C4C4C4'
-        isDisabled: true
-        plural: Views
-
-        config:
-          - groupName: Options
-            items: 
-            - type: materializationSelector
-              options:
-                - view
-              default: view
-              isRequired: true
-
-            - type: toggleButton
-              attributeName: selectDistinct
-              displayName: Distinct
-
-            - type: multisourceToggle
-
-            - type: overrideSQLToggle
-
-            - displayName: Multi Source Strategy
-              attributeName: insertStrategy
-              type: dropdownSelector
-              default: UNION
-              options:
-              - "UNION"
-              - "UNION ALL" 
-              isRequired: true
-              enableIf: "{% if node.isMultisource %} true {% else %} false {% endif %}"
-      templates:
-        create:
-          templateString: |
-            {% if node.override.create.enabled %}
-                
-                {{ node.override.create.script }}
-
-            {% else %}
-                {{ stage('Create View') }}
-                CREATE OR REPLACE VIEW {{ ref_no_link(node.location.name, node.name) }}
-                (
-                    {% for col in columns %}
-                        "{{ col.name }}"
-                        {%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
-                        {%- if not loop.last -%}, {% endif %}
-                    {% endfor %}
-                )
-                {%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}'{% endif %}
-                AS
-                {% for source in sources %}
-                    SELECT {% if config.selectDistinct %} DISTINCT {% endif %}
-                    {% for col in source.columns %}
-                        {{ get_source_transform(col) }} AS "{{ col.name }}"
-                        {%- if not loop.last -%}, {% endif %}
-                    {% endfor %}
-
-                    {{ source.join }}
-
-                    {% if not loop.last %}
-                        {% if config.insertStrategy in ['UNION', 'UNION ALL'] %}
-                            {{ config.insertStrategy }}
-                        {% else %}
-                            UNION
-                        {% endif %}
-                    {% endif %}
-                {% endfor %}
-            {% endif %}
-        run:
-          templateString: ""
-    name: Copy of View
     version: 1
   StepType-COALESCE-DATA_VAULT::1:
     id: COALESCE-DATA_VAULT::1
