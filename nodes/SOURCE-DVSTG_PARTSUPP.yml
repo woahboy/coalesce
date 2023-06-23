@@ -1,0 +1,142 @@
+steps:
+  DVSTG_PARTSUPP-341666d6-49ae-483e-83d2-a20fa53d8838:
+    operation:
+      config:
+        generate_ghost_records: true
+        testsEnabled: true
+      database: ""
+      dependencies: []
+      deployEnabled: true
+      description: Partsupp data as defined by TPC-H
+      isDataVault: false
+      isMultisource: false
+      locationID: ""
+      locationName: SOURCE
+      materializationType: view
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 33bd8bd8-21e9-4095-aca1-894bff887dce
+              stepCounter: 341666d6-49ae-483e-83d2-a20fa53d8838
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: PS_PARTKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: b3aeb477-5353-4890-b37e-0a0b9cc69204
+                    stepCounter: 3f410820-1a81-4635-9db7-5bfc305a4f92
+                transform: ""
+          - columnReference:
+              columnCounter: b7cc9457-d0a9-4ebe-acbc-1026089924c1
+              stepCounter: 341666d6-49ae-483e-83d2-a20fa53d8838
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: PS_SUPPKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 61363ae6-0fe3-4d76-9466-dd955de29af1
+                    stepCounter: 3f410820-1a81-4635-9db7-5bfc305a4f92
+                transform: ""
+          - columnReference:
+              columnCounter: c8bd53c5-1937-4761-b690-88247fa98315
+              stepCounter: 341666d6-49ae-483e-83d2-a20fa53d8838
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: PS_AVAILQTY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 9400569e-3e30-4672-b9d9-df11c59b80c5
+                    stepCounter: 3f410820-1a81-4635-9db7-5bfc305a4f92
+                transform: ""
+          - columnReference:
+              columnCounter: ec328856-534e-4b4d-a2b1-47e27df732eb
+              stepCounter: 341666d6-49ae-483e-83d2-a20fa53d8838
+            dataType: NUMBER(12,2)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: PS_SUPPLYCOST
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: c14ddf64-cd03-440e-927b-e6c2d68b94f9
+                    stepCounter: 3f410820-1a81-4635-9db7-5bfc305a4f92
+                transform: ""
+          - columnReference:
+              columnCounter: cc952ccd-9397-4882-9dfe-1b8c52717ce2
+              stepCounter: 341666d6-49ae-483e-83d2-a20fa53d8838
+            dataType: VARCHAR(199)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: PS_COMMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 83ab03ec-431b-4df7-b1d4-ec7a62c993be
+                    stepCounter: 3f410820-1a81-4635-9db7-5bfc305a4f92
+                transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: f3c2a9c6-4536-4cb1-a0fa-2545bef2a6fc
+              stepCounter: 341666d6-49ae-483e-83d2-a20fa53d8838
+            config: {}
+            dataType: TIMESTAMP
+            defaultValue: ""
+            description: The Load Date Timestamp (LDTS) describes when this data first arrived in the Data Warehouse.
+            hashColumns: []
+            is_system_ldts: true
+            name: LDTS
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: SYSDATE()
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: c35d7836-09da-44a8-ae87-3b4db94c8277
+              stepCounter: 341666d6-49ae-483e-83d2-a20fa53d8838
+            config: {}
+            dataType: STRING
+            defaultValue: ""
+            description: The Record Source (RSRC) describes the source of this data.
+            hashColumns: []
+            is_system_rsrc: true
+            name: RSRC
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences: []
+                transform: "{{record_source()}}"
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: SOURCE-1
+                nodeName: PARTSUPP
+            join:
+              joinCondition: FROM {{ ref('SOURCE-1', 'PARTSUPP') }} "PARTSUPP"
+            name: DVSTG_PARTSUPP
+            noLinkRefs: []
+      name: DVSTG_PARTSUPP
+      overrideSQL: false
+      schema: ""
+      sqlType: SCALEFREE-DATAVAULT4COALESCE::4
+      type: sql
+    stepCounter: 341666d6-49ae-483e-83d2-a20fa53d8838
