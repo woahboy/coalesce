@@ -1,0 +1,76 @@
+steps:
+  V_REGION-9542a6f1-900f-49cc-bf58-2fd77da35141:
+    operation:
+      config:
+        insertStrategy: UNION
+        selectDistinct: true
+      database: ""
+      deployEnabled: true
+      description: Region data as defined by TPC-H
+      isDataVault: false
+      isMultisource: false
+      locationName: TARGET
+      materializationType: view
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: f5853e0b-bb2c-4329-98c6-7378799ce625
+              stepCounter: 9542a6f1-900f-49cc-bf58-2fd77da35141
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: R_REGIONKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 2f6395b6-135c-44e5-985a-01b76a46a208
+                    stepCounter: e55c6611-30ca-454d-b6a6-5c9ab98a7737
+                transform: ""
+          - columnReference:
+              columnCounter: 8769ad3f-752a-46a1-85a2-f0162266fd87
+              stepCounter: 9542a6f1-900f-49cc-bf58-2fd77da35141
+            dataType: VARCHAR(25)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: R_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 4268a908-323b-442f-ac98-0f8ec8011f87
+                    stepCounter: e55c6611-30ca-454d-b6a6-5c9ab98a7737
+                transform: ""
+          - columnReference:
+              columnCounter: bb3765f0-2244-42e7-af0a-eb96a74d2552
+              stepCounter: 9542a6f1-900f-49cc-bf58-2fd77da35141
+            dataType: VARCHAR(152)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: R_COMMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 68d3b912-1ab3-4856-9ec0-a67c9df4595e
+                    stepCounter: e55c6611-30ca-454d-b6a6-5c9ab98a7737
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: SOURCE-1
+                nodeName: REGION
+            join:
+              joinCondition: FROM {{ ref('SOURCE-1', 'REGION') }} "REGION"
+            name: V_REGION
+            noLinkRefs: []
+      name: V_REGION
+      overrideSQL: false
+      schema: ""
+      sqlType: View
+      type: sql
+    stepCounter: 9542a6f1-900f-49cc-bf58-2fd77da35141
