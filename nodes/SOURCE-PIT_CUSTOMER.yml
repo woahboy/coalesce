@@ -1,0 +1,138 @@
+steps:
+  PIT_CUSTOMER-24e640a0-7a27-48e0-b5f4-a250b27c4c87:
+    operation:
+      config:
+        cleanup_pit: true
+      database: ""
+      deployEnabled: true
+      description: Customer data as defined by TPC-H
+      isDataVault: false
+      isMultisource: false
+      locationName: SOURCE
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: cd159e03-dbc5-44a5-8bf2-bbe9279ed346
+              stepCounter: 24e640a0-7a27-48e0-b5f4-a250b27c4c87
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: HUB_CUSTOMER_HK
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 9aa3290d-8aca-4ea5-bd00-16b6ad5a5db6
+                    stepCounter: 569af9d7-11e8-4290-bdd6-9e95a3c1a458
+                transform: ""
+          - columnReference:
+              columnCounter: 8a9acf06-4e48-4585-9791-77df3b42375f
+              stepCounter: 24e640a0-7a27-48e0-b5f4-a250b27c4c87
+            config:
+              is_dimension_key: true
+            dataType: NUMBER(38,0)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: C_CUSTKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 8aee40b1-2b03-48c0-a20e-837652553b37
+                    stepCounter: 569af9d7-11e8-4290-bdd6-9e95a3c1a458
+                transform: ""
+          - columnReference:
+              columnCounter: e8d3b1f4-cac3-4686-9a4f-262d74eb54a8
+              stepCounter: 24e640a0-7a27-48e0-b5f4-a250b27c4c87
+            dataType: TIMESTAMP
+            description: The Load Date Timestamp (LDTS) describes when this data first arrived in the Data Warehouse.
+            hashColumns: []
+            hashDetails: null
+            name: HUB_LDTS
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 24a9f9f0-4628-4d45-8f57-d5a49c8e32b8
+                    stepCounter: 569af9d7-11e8-4290-bdd6-9e95a3c1a458
+                transform: ""
+          - columnReference:
+              columnCounter: fb1e4d97-e9a8-4b29-bfba-e563569f2355
+              stepCounter: 24e640a0-7a27-48e0-b5f4-a250b27c4c87
+            dataType: STRING
+            description: ""
+            name: SAT1_CUSTOMER_HK
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 3e6def21-8f85-4044-9da5-8a8169c2b740
+                    stepCounter: ddcbe1df-7390-4108-9b53-4fb692e3bf3d
+                transform: ""
+          - columnReference:
+              columnCounter: 45837f94-f088-4764-91cb-fa661eacbd91
+              stepCounter: 24e640a0-7a27-48e0-b5f4-a250b27c4c87
+            dataType: TIMESTAMP
+            description: The Load Date Timestamp (LDTS) describes when this data first arrived in the Data Warehouse.
+            name: SAT1_LDTS
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 814e72df-b795-4ddc-9e09-f39390f396ac
+                    stepCounter: ddcbe1df-7390-4108-9b53-4fb692e3bf3d
+                transform: ""
+          - columnReference:
+              columnCounter: 9f5660b3-7857-49cf-ba4e-81cd5fe50bbd
+              stepCounter: 24e640a0-7a27-48e0-b5f4-a250b27c4c87
+            dataType: STRING
+            description: ""
+            name: SAT2_CUSTOMER_HK
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 448d03be-4d27-4abb-8427-cd7180188059
+                    stepCounter: d956366d-9a60-438a-a9e8-db0795161f90
+                transform: ""
+          - columnReference:
+              columnCounter: ec83a2bf-27aa-4117-ad3d-0e2eeae7f088
+              stepCounter: 24e640a0-7a27-48e0-b5f4-a250b27c4c87
+            dataType: TIMESTAMP
+            description: The Load Date Timestamp (LDTS) describes when this data first arrived in the Data Warehouse.
+            name: SAT2_LDTS
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 3c0871e1-6399-4c93-8cfe-7af7c0594e7d
+                    stepCounter: d956366d-9a60-438a-a9e8-db0795161f90
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - aliases:
+              HUB_CUSTOMER: 569af9d7-11e8-4290-bdd6-9e95a3c1a458
+              SATV1_CUSTOMER: ddcbe1df-7390-4108-9b53-4fb692e3bf3d
+              SATV1_CUSTOMER1: d956366d-9a60-438a-a9e8-db0795161f90
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: SOURCE
+                nodeName: HUB_CUSTOMER
+              - locationName: SOURCE
+                nodeName: SATV1_CUSTOMER
+              - locationName: SOURCE
+                nodeName: SATV1_CUSTOMER1
+            join:
+              joinCondition: |-
+                FROM {{ ref('SOURCE', 'HUB_CUSTOMER') }} "HUB_CUSTOMER"
+                INNER JOIN {{ ref('SOURCE', 'SATV1_CUSTOMER') }} "SATV1_CUSTOMER"
+                ON "HUB_CUSTOMER"."HUB_CUSTOMER_HK" = "SATV1_CUSTOMER"."HUB_CUSTOMER_HK"
+                INNER JOIN {{ ref('SOURCE', 'SATV1_CUSTOMER1') }} "SATV1_CUSTOMER1"
+                ON "HUB_CUSTOMER"."HUB_CUSTOMER_HK" = "SATV1_CUSTOMER1"."HUB_CUSTOMER_HK"
+            name: PIT_CUSTOMER
+            noLinkRefs: []
+      name: PIT_CUSTOMER
+      overrideSQL: false
+      schema: ""
+      sqlType: SCALEFREE-DATAVAULT4COALESCE::12
+      type: sql
+    stepCounter: 24e640a0-7a27-48e0-b5f4-a250b27c4c87
