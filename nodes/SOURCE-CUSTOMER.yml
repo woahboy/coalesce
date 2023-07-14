@@ -1,12 +1,12 @@
 steps:
-  NATION-53fd9fcf-af22-4556-9684-07c340e376d1:
+  CUSTOMER-71f180bb-0fc2-426b-a2a9-dbc2e8dff96b:
     operation:
       database: ""
       dataset: ""
       deployEnabled: true
-      description: Nation data as defined by TPC-H
+      description: Customer data as defined by TPC-H
       locationID: ""
-      locationName: SOURCE-1
+      locationName: SOURCE
       metadata:
         columns:
           - acceptedValues:
@@ -14,13 +14,13 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: d5322ae6-289d-47c0-a369-0399aa67be52
-              stepCounter: 53fd9fcf-af22-4556-9684-07c340e376d1
+              columnCounter: 71e7df96-ace5-404b-8b27-4d3943ad9de4
+              stepCounter: 71f180bb-0fc2-426b-a2a9-dbc2e8dff96b
             config: {}
             dataType: NUMBER(38,0)
             defaultValue: ""
             description: ""
-            name: N_NATIONKEY
+            name: C_CUSTKEY
             nullable: false
             primaryKey: false
             uniqueKey: false
@@ -29,13 +29,13 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: b1927b52-e250-4a0d-8b34-da91b26d1f45
-              stepCounter: 53fd9fcf-af22-4556-9684-07c340e376d1
+              columnCounter: 75b5b1b0-c8e0-4322-a1b5-712f210795b3
+              stepCounter: 71f180bb-0fc2-426b-a2a9-dbc2e8dff96b
             config: {}
             dataType: VARCHAR(25)
             defaultValue: ""
             description: ""
-            name: N_NAME
+            name: C_NAME
             nullable: false
             primaryKey: false
             uniqueKey: false
@@ -44,36 +44,36 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: d73c10b6-8261-4c52-b346-b65565a47461
-              stepCounter: 53fd9fcf-af22-4556-9684-07c340e376d1
+              columnCounter: ab957490-7700-4a0f-b025-c26a3653a4f5
+              stepCounter: 71f180bb-0fc2-426b-a2a9-dbc2e8dff96b
+            config: {}
+            dataType: VARCHAR(40)
+            defaultValue: ""
+            description: ""
+            name: C_ADDRESS
+            nullable: false
+            primaryKey: false
+            uniqueKey: false
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 3b035dc0-cee2-4b7a-9bf9-93ebc97c7f02
+              stepCounter: 71f180bb-0fc2-426b-a2a9-dbc2e8dff96b
             config: {}
             dataType: NUMBER(38,0)
             defaultValue: ""
             description: ""
-            name: N_REGIONKEY
+            name: C_NATIONKEY
             nullable: false
             primaryKey: false
             uniqueKey: false
-          - acceptedValues:
-              strictMatch: true
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: 815891a6-6f7d-4bf5-a9cc-284e504ec5a7
-              stepCounter: 53fd9fcf-af22-4556-9684-07c340e376d1
-            config: {}
-            dataType: VARCHAR(152)
-            defaultValue: ""
-            description: ""
-            name: N_COMMENT
-            nullable: true
-            primaryKey: false
-            uniqueKey: false
         join:
-          joinCondition: FROM {{ ref('SOURCE-1', 'NATION') }}
-      name: NATION
+          joinCondition: FROM {{ ref('SOURCE', 'CUSTOMER') }}
+      name: CUSTOMER
       schema: ""
       sqlType: Source
-      table: NATION
+      table: CUSTOMER
       type: sourceInput
-    stepCounter: 53fd9fcf-af22-4556-9684-07c340e376d1
+    stepCounter: 71f180bb-0fc2-426b-a2a9-dbc2e8dff96b
