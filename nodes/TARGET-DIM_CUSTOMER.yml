@@ -108,10 +108,7 @@ steps:
               - columnReferences:
                   - columnCounter: 604092eb-cf82-405b-886d-56f10b55659e
                     stepCounter: c2eec3c8-f2bb-46c0-8383-9b63ec563db9
-                transform: |-
-                  CASE WHEN 
-                  LEAD("STG_HISTORY_CUSTOMER"."SYSTEM_CURRENT_FLAG", 1) OVER (ORDER BY SYSTEM_UPDATE_DATE) = 'N' 
-                  AND "STG_HISTORY_CUSTOMER"."SYSTEM_CURRENT_FLAG" = 'Y' THEN 'N' ELSE "STG_HISTORY_CUSTOMER"."SYSTEM_CURRENT_FLAG" END
+                transform: ""
           - columnReference:
               columnCounter: 5a46f9c6-02c8-4e99-8117-8b0d72b2c334
               stepCounter: 1feef31d-8c06-4282-a98f-65369b752b01
@@ -139,7 +136,7 @@ steps:
               - columnReferences:
                   - columnCounter: df07de3d-71a1-40f2-8849-222f4eba9e47
                     stepCounter: c2eec3c8-f2bb-46c0-8383-9b63ec563db9
-                transform: NVL(LEAD("STG_HISTORY_CUSTOMER"."SYSTEM_START_DATE", 1) OVER (ORDER BY SYSTEM_UPDATE_DATE), TO_TIMESTAMP('2999-01-01'))
+                transform: NVL(LEAD("STG_HISTORY_CUSTOMER"."SYSTEM_START_DATE", 1) OVER (PARTITION BY C_CUSTKEY ORDER BY SYSTEM_UPDATE_DATE), TO_TIMESTAMP('2999-01-01'))
           - columnReference:
               columnCounter: df23fd83-7e65-40ca-9860-1bfade87db07
               stepCounter: 1feef31d-8c06-4282-a98f-65369b752b01
