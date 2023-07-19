@@ -81,6 +81,22 @@ steps:
                   - columnCounter: 3d65f4fb-f90a-44aa-b982-e7ff771dac35
                     stepCounter: c2eec3c8-f2bb-46c0-8383-9b63ec563db9
                 transform: NVL("STG_HISTORY_CUSTOMER"."C_ADDRESS", LAG("STG_HISTORY_CUSTOMER"."C_ADDRESS") IGNORE NULLS OVER (ORDER BY SYSTEM_UPDATE_DATE))
+          - acceptedValues:
+              strictMatch: false
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 8dfe501b-fd80-421d-9465-a936802370a6
+              stepCounter: 1feef31d-8c06-4282-a98f-65369b752b01
+            dataType: NUMBER(38,0)
+            description: ""
+            name: C_NATIONKEY
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 0f50db98-1279-49ff-ab25-d0ab5d5b19aa
+                    stepCounter: c2eec3c8-f2bb-46c0-8383-9b63ec563db9
+                transform: NVL("STG_HISTORY_CUSTOMER"."C_NATIONKEY", LAG("STG_HISTORY_CUSTOMER"."C_NATIONKEY") IGNORE NULLS OVER (ORDER BY SYSTEM_UPDATE_DATE))
           - columnReference:
               columnCounter: 0d401a16-b2e4-4646-90fb-f937aa35b9f0
               stepCounter: 1feef31d-8c06-4282-a98f-65369b752b01
@@ -94,24 +110,79 @@ steps:
               - columnReferences:
                   - columnCounter: fb9271d6-d059-4bd2-8c6c-fd74b34aae36
                     stepCounter: c2eec3c8-f2bb-46c0-8383-9b63ec563db9
-                transform: NVL("STG_HISTORY_CUSTOMER"."N_NAME", LAG("STG_HISTORY_CUSTOMER"."N_NAME") IGNORE NULLS OVER (ORDER BY SYSTEM_UPDATE_DATE))
-          - columnReference:
-              columnCounter: 3963a7d3-9cd3-4a50-baee-8997b4433d7a
+                transform: |-
+                  NVL(
+                      "STG_HISTORY_CUSTOMER"."N_NAME",
+                      LAG("STG_HISTORY_CUSTOMER"."N_NAME") IGNORE NULLS OVER (
+                        PARTITION BY
+                          COALESCE(
+                            "STG_HISTORY_CUSTOMER"."C_NATIONKEY",
+                            "STG_HISTORY_CUSTOMER"."N_NATIONKEY"
+                          )
+                        ORDER BY
+                          SYSTEM_UPDATE_DATE
+                      )
+                    )
+          - acceptedValues:
+              strictMatch: false
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: f431e6aa-40af-4c86-8eb3-ed8c9ef7618b
+              stepCounter: 1feef31d-8c06-4282-a98f-65369b752b01
+            dataType: NUMBER(38,0)
+            description: ""
+            name: N_NATIONKEY
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 14cfca15-c01d-4d33-af7f-76a1cd96763a
+                    stepCounter: c2eec3c8-f2bb-46c0-8383-9b63ec563db9
+                transform: |-
+                  NVL(
+                      "STG_HISTORY_CUSTOMER"."N_NATIONKEY",
+                      LAG("STG_HISTORY_CUSTOMER"."N_NATIONKEY") IGNORE NULLS OVER (
+                        PARTITION BY
+                          COALESCE(
+                            "STG_HISTORY_CUSTOMER"."C_NATIONKEY",
+                            "STG_HISTORY_CUSTOMER"."N_NATIONKEY"
+                          )
+                        ORDER BY
+                          SYSTEM_UPDATE_DATE
+                      )
+                    )
+          - acceptedValues:
+              strictMatch: false
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: e2a2af41-216a-47fe-a0ee-5e928eb74d93
               stepCounter: 1feef31d-8c06-4282-a98f-65369b752b01
             dataType: VARCHAR
             description: ""
-            hashColumns: []
-            hashDetails: null
             name: SYSTEM_CURRENT_FLAG
             nullable: true
             sourceColumnReferences:
               - columnReferences:
                   - columnCounter: 604092eb-cf82-405b-886d-56f10b55659e
                     stepCounter: c2eec3c8-f2bb-46c0-8383-9b63ec563db9
-                transform: |-
-                  CASE WHEN 
-                  LEAD("STG_HISTORY_CUSTOMER"."SYSTEM_CURRENT_FLAG", 1) OVER (ORDER BY SYSTEM_UPDATE_DATE) = 'N' 
-                  AND "STG_HISTORY_CUSTOMER"."SYSTEM_CURRENT_FLAG" = 'Y' THEN 'N' ELSE "STG_HISTORY_CUSTOMER"."SYSTEM_CURRENT_FLAG" END
+                transform: ""
+          - acceptedValues:
+              strictMatch: false
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 3fc18a07-3da3-46ee-b1c8-25b1c4e25975
+              stepCounter: 1feef31d-8c06-4282-a98f-65369b752b01
+            dataType: NUMBER
+            description: ""
+            name: SYSTEM_VERSION
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 25b911b1-639d-4b5f-89d7-eea54ef492bd
+                    stepCounter: c2eec3c8-f2bb-46c0-8383-9b63ec563db9
+                transform: ""
           - columnReference:
               columnCounter: 5a46f9c6-02c8-4e99-8117-8b0d72b2c334
               stepCounter: 1feef31d-8c06-4282-a98f-65369b752b01
@@ -139,7 +210,7 @@ steps:
               - columnReferences:
                   - columnCounter: df07de3d-71a1-40f2-8849-222f4eba9e47
                     stepCounter: c2eec3c8-f2bb-46c0-8383-9b63ec563db9
-                transform: NVL(LEAD("STG_HISTORY_CUSTOMER"."SYSTEM_START_DATE", 1) OVER (ORDER BY SYSTEM_UPDATE_DATE), TO_TIMESTAMP('2999-01-01'))
+                transform: NVL(LEAD("STG_HISTORY_CUSTOMER"."SYSTEM_START_DATE", 1) OVER (PARTITION BY COALESCE("STG_HISTORY_CUSTOMER"."C_NATIONKEY", "STG_HISTORY_CUSTOMER"."N_NATIONKEY") ORDER BY SYSTEM_UPDATE_DATE), TO_TIMESTAMP('2999-01-01'))
           - columnReference:
               columnCounter: df23fd83-7e65-40ca-9860-1bfade87db07
               stepCounter: 1feef31d-8c06-4282-a98f-65369b752b01
@@ -166,6 +237,9 @@ steps:
             join:
               joinCondition: |-
                 FROM {{ ref('TARGET', 'STG_HISTORY_CUSTOMER') }} "STG_HISTORY_CUSTOMER"
+                QUALIFY LAG("STG_HISTORY_CUSTOMER"."C_NATIONKEY", 1) OVER (ORDER BY "STG_HISTORY_CUSTOMER"."SYSTEM_UPDATE_DATE") = "STG_HISTORY_CUSTOMER"."N_NATIONKEY"
+                OR "STG_HISTORY_CUSTOMER"."N_NATIONKEY" IS NULL
+                OR LAG("STG_HISTORY_CUSTOMER"."C_NATIONKEY", 1) OVER (ORDER BY "STG_HISTORY_CUSTOMER"."SYSTEM_UPDATE_DATE") IS NULL
                 ORDER BY SYSTEM_UPDATE_DATE
             name: DIM_CUSTOMER
             noLinkRefs: []
