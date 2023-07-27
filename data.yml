@@ -3,7 +3,7 @@ jobs:
   Job-21:
     excludeSelector: ""
     id: 21
-    includeSelector: "+{ location: TARGET name: DIM_CUSTOMER }"
+    includeSelector: "+{ location: SOURCE name: SATV1* } OR +{ location: SOURCE name: HUB* }"
     name: Customer Dim Job
     steps: []
     subgraphs: []
@@ -28,7 +28,7 @@ locations:
     mappingDefinitions:
       "3":
         database: JUSTIN_EDW
-        schema: QA_DEPLOY
+        schema: PUBLIC
       "5":
         database: JUSTIN_EDW
         schema: PRD_DEPLOY
@@ -36,164 +36,90 @@ macros:
   Macro-1:
     id: "1"
     macroString: |-
-      {%- set datavault4coalesce = namespace(
+      {% if node.override.create.enabled %}
+      	
+      	{{ node.override.create.script }}
 
-           config = {
-           "ldts_alias": "ldts",
-           "rsrc_alias": "rsrc", 
-           "ledts_alias": "ledts", 
-           "snapshot_trigger_column": "is_active",
-           "sdts_alias": "sdts", 
-           "stg_alias": "stg", 
-           "is_current_col_alias": "IS_CURRENT", 
-           "hash": "MD5", 
-           "hash_datatype": "STRING", 
-           "hashkey_input_case_sensitive": "FALSE", 
-           "hashdiff_input_case_sensitive": "TRUE",
-           "copy_rsrc_ldts_input_columns": "false",  
-           "beginning_of_all_times": "0001-01-01T00:00:01", 
-           "end_of_all_times": "8888-12-31T23:59:59",
-           "timestamp_format": "YYYY-MM-DDTHH24:MI:SS", 
-           "default_unknown_rsrc": "SYSTEM", 
-           "default_error_rsrc": "ERROR", 
-           "rsrc_default_dtype": "STRING", 
-           "stg_default_dtype": "STRING", 
-           "derived_columns_default_dtype": "STRING",
-           "error_value__STRING": "'(error)'", 
-           "error_value_alt__STRING": "'e'", 
-           "unknown_value__STRING": "'(unknown)'",
-           "unknown_value_alt__STRING": "'u'"
-           }
+      {% elif node.materializationType == 'table' %}
 
-      ) -%}
+      {% elif node.materializationType == 'view' %}
+          {{ stage('Create Stage View') }}
 
-      {%- set sqlvariables = namespace(
+          CREATE OR REPLACE VIEW {{ ref_no_link(node.location.name, node.name) }}
+          (
+              {% for col in columns %}
+                  {%- if col.is_rsrc_column -%}
+                      "{{datavault4coalesce.config.rsrc_alias}}"
+                  {%- elif col.is_ldts_column -%}
+                      "{{datavault4coalesce.config.ldts_alias}}"
+                  {% else %}
+                      "{{ col.name }}"
+                  {% endif %}
+                  {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
+                  {%- if not loop.last -%}, {% endif %}
+              {% endfor %}
 
-        sqlvar = {
-          "limit": "0"
-        }
+          )
+          {%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
+          AS
+          {% for source in sources %}
+              SELECT
+              {% for col in source.columns %}
+                  {% if col.hashDetails %}
+                      {{ datavault4coalesce__hash(columns=col.hashDetails.columns, datatype=col.dataType, algo=col.hashDetails.algorithm) }} AS "{{ col.name }}"
+                  {% else %}
+                      {{ get_source_transform(col) }} AS "{{ col.name }}"
+                  {% endif %}
+                  {%- if not loop.last -%}, {% endif %}
+              {% endfor %}
 
-      ) -%}
+              {{ source.join }}
 
-      {%- macro get_limit(variablename) -%}
-        {set variablename = (select sum(right('{{node.name}}'."C_CUSTKEY",1))/600 from '{{node.name}}')
-      {%- endmacro -%}
+              {% if not loop.last %}
+                  {% if config.insertStrategy in ['UNION', 'UNION ALL'] %}
+                      {{ config.insertStrategy }}
+                  {% else %}
+                      UNION
+                  {% endif %}
+              {% endif %}
 
-      {%- macro even_odd(column) -%}
-          CASE WHEN MOD({{ column }}, 2) = 0 THEN 'EVEN' ELSE 'ODD' END
-      {%- endmacro %}
+              {%- if config.generate_ghost_records -%}
 
-      {%- macro insert_audit_row() -%}
-      INSERT INTO
-        "JUSTIN_EDW"."DEV_EDW"."ETL_BATCH" (
-          "JOB_NAME",
-          "ITERATION",
-          "JOB_STATUS",
-          "START_TIME"
-        )
-      WITH 
-        counter (num_rows) AS (
-            SELECT count(*) + 1 AS num_rows 
-            FROM "JUSTIN_EDW"."DEV_EDW"."ETL_BATCH"
-            WHERE job_name = '{{node.name}}'||'_JOB')
-      SELECT 
-        '{{node.name}}'||'_JOB', 
-        num_rows, 
-        'STARTED', 
-        CURRENT_TIMESTAMP() 
-        FROM counter
-      {%- endmacro %}
+                  UNION ALL 
 
-      {%- macro update_audit_row() -%}
-      UPDATE 
-        "JUSTIN_EDW"."DEV_EDW"."ETL_BATCH" 
-      SET 
-        END_TIME = current_timestamp(),
-        JOB_STATUS = 'FINISHED'
-      FROM (
-        WITH 
-          counter (num_rows) AS (
-            SELECT count(*) AS num_rows 
-            FROM "JUSTIN_EDW"."DEV_EDW"."ETL_BATCH" 
-            WHERE job_name = '{{node.name}}'||'_JOB') 
-          select counter.num_rows 
-          from counter) AS ctes
-      WHERE ITERATION = ctes.num_rows
-      AND JOB_NAME = '{{node.name}}'||'_JOB'
-      {%- endmacro %}
+                  SELECT
 
-      {%- macro getTitleColNameMinus1(colName) -%}
-          {{- colName[:-1]|replace('_',' ')|title|replace(' Id',' ID') -}}
-      {%- endmacro %}
+                  {% for source in sources %}
+                      {% for col in source.columns %}
+                          {%- if "hashDetails" in col.keys() %}
+                              {{ datavault4coalesce__ghost_record_per_datatype(col.name, col.dataType, 'unknown', hash=true, hash_algo=col.hashDetails.algorithm) }}
+                          {%- else -%}
+                              {{ datavault4coalesce__ghost_record_per_datatype(col.name, col.dataType, 'unknown', hash=false) }}
+                          {%- endif -%}
+                      {% if not loop.last %},{% endif %}
+                      {% endfor %}
+                  {% endfor %}
 
-      {%- macro getTitleColName(colName) -%}
-          {{- colName|replace('_',' ')|title|replace(' Id',' ID') -}}
-      {%- endmacro %}
+                  UNION ALL 
 
-      {%- macro getRecordSourceFQN() -%}
-          '"{{ storageLocations | selectattr('name', 'equalto', (sources[0].dependencies | map(attribute='node') | map(attribute='location') | map(attribute='name') | first)) | map(attribute='database') | first }}"."{{ storageLocations | selectattr('name', 'equalto', (sources[0].dependencies | map(attribute='node') | map(attribute='location') | map(attribute='name') | first)) | map(attribute='schema') | first }}"."{{sources[0].dependencies | map(attribute='node') | map(attribute='name') | first }}"'
-      {%- endmacro -%}
+                  SELECT
 
-      {%-macro record_source()-%}
-      {#--USAGE:{{record_source()}}#}
-      {#--NOTES:Adds a Record Source (name of qualified previous table/view)#}
-      {% set src = storageLocations | selectattr('name', "equalto", sources[0].dependencies[0].node.location.name) | list | first %}
-      '"{{src.database}}"."{{src.schema}}"."{{sources[0].dependencies[0].node.name}}"'
-      {%- endmacro -%}
+                  {% for source in sources %}
+                      {% for col in source.columns %}
+                          {%- if "hashDetails" in col.keys() %}
+                              {{ datavault4coalesce__ghost_record_per_datatype(col.name, col.dataType, 'error', hash=true, hash_algo=col.hashDetails.algorithm) }}
+                          {%- else -%}
+                              {{ datavault4coalesce__ghost_record_per_datatype(col.name, col.dataType, 'error', hash=false) }}
+                          {%- endif -%}
+                      {% if not loop.last %},{% endif %}
+                      {% endfor %}
+                  {% endfor %}
 
-      {%- macro hash_custom(columns, algo='MD5', delimiter='||', datatype='CHAR(32)') -%}
-          {% for col in columns %}
-              {# set algo function #}
-              {% set algo_start = algo + '(' %}
-              {% set algo_end = ')' %}
-              {% if algo | upper == 'SHA256' %}
-                  {% set algo_start = 'SHA2(' %}
-                  {% set algo_end = ', 256)' %}
-              {% endif %}  
-              {# end set algo function #}
-
-              {%- if loop.first %}CAST( {{ algo_start }}{% endif -%}
-                  NVL(CAST(
-                      {%  if col is string %} 
-                          {{ col }}
-                      {% elif col.transform | trim != '' %}
-                          {{ col.transform }}
-                      {% elif col.sourceColumns[0] %} 
-                          "{{ col.sourceColumns[0].node.name }}"."{{ col.sourceColumns[0].column.name }}"
-                      {% else %}
-                          null
-                      {%  endif %} 
-                  AS VARCHAR), 'null')
-              {%- if not loop.last %} || {% if delimiter != '' %} '{{ delimiter }}' || {% endif -%} {% endif -%}
-              {%- if loop.last %}{{ algo_end }} AS {{ datatype }} ){% endif -%}
-          {% endfor %}
-      {%- endmacro -%}
-
-      {%- macro get_source_transform_custom(col) -%}
-          {% if col.hashDetails %}
-              {{ hash(col.hashDetails.columns, algo=col.hashDetails.algorithm, datatype=col.dataType) }}
-          {% elif col.transform | trim != '' -%}
-              {{- col.transform -}}
-          {% elif col.sourceColumns[0].node and col.sourceColumns[0].node.name and col.sourceColumns[0].column and col.sourceColumns[0].column.name -%}
-              "{{- col.sourceColumns[0].node.name }}"."{{ col.sourceColumns[0].column.name -}}"
-          {%- else -%}
-              NULL
-          {% endif %}
-      {%- endmacro -%}
-
-      {%- macro ref(location_name, node_name) -%}
-              {%- set foundMapping = { 'flag': false } -%}
-              {%- for storage in nodeMetadata.mapping -%}
-                  {%- if nodeMetadata.mapping[storage].locationName ==  location_name -%}
-                      {%- if foundMapping.update({'flag': true}) -%}{%- endif -%}
-                      {{-  location_name | export_ref(node_name, ref_type='ref') -}}
-                      "{{- nodeMetadata.mapping[storage].database -}}"."{{- nodeMetadata.mapping[storage].schema -}}"."{{- node_name -}}"
-                  {%- endif -%}
-              {%- endfor -%}
-              {%- if not foundMapping.flag -%}
-                  {{-  location_name | invalid_export_ref(node_name, ref_type='ref') -}}
               {%- endif -%}
-      {%- endmacro -%}
+
+          {% endfor %}
+
+      {% endif %}
   Macro-SCALEFREE-DATAVAULT4COALESCE::1:
     id: SCALEFREE-DATAVAULT4COALESCE::1
     macroString: |+
@@ -633,6 +559,385 @@ macros:
 packages: {}
 projects: {}
 stepTypes:
+  StepType-137:
+    id: "137"
+    isDisabled: false
+    metadata:
+      defaultStorageLocation: null
+      error: null
+      nodeMetadataSpec: |-
+        capitalized: 'DATAVAULT BY SCALEFREE: STAGE'
+        short: DVSTG
+        plural: 'DATAVAULT BY SCALEFREE: STAGES'
+        tagColor: '#AED6F1'
+
+        config:
+        - groupName: Options
+          items:
+          - type: materializationSelector
+            default: view
+            options:
+            - view
+            isRequired: true
+            enableIf: "false"
+
+          - displayName: Enable Tests
+            attributeName: testsEnabled
+            type: toggleButton
+            default: true
+
+        - groupName: Data Vault
+          items:
+          - displayName: Generate Ghost Records
+            attributeName: generate_ghost_records
+            type: toggleButton
+            default: true
+
+        systemColumns:
+        - displayName: "LDTS"
+          transform: SYSDATE()
+          dataType: TIMESTAMP
+          placement: end
+          attributeName: is_system_ldts    
+          description: "The Load Date Timestamp (LDTS) describes when this data first arrived in the Data Warehouse."
+        - displayName: "RSRC"
+          transform: "{{record_source()}}"
+          dataType: STRING
+          placement: end
+          attributeName: is_system_rsrc    
+          description: "The Record Source (RSRC) describes the source of this data."  
+      templates:
+        create:
+          templateString: |-
+            {% if node.override.create.enabled %}
+            	
+            	{{ node.override.create.script }}
+
+            {% elif node.materializationType == 'table' %}
+
+            {% elif node.materializationType == 'view' %}
+                {{ stage('Create Stage View') }}
+
+                CREATE OR REPLACE VIEW {{ ref_no_link(node.location.name, node.name) }}
+                (
+                    {% for col in columns %}
+                        {%- if col.is_rsrc_column -%}
+                            "{{datavault4coalesce.config.rsrc_alias}}"
+                        {%- elif col.is_ldts_column -%}
+                            "{{datavault4coalesce.config.ldts_alias}}"
+                        {% else %}
+                            "{{ col.name }}"
+                        {% endif %}
+                        {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
+                        {%- if not loop.last -%}, {% endif %}
+                    {% endfor %}
+
+                )
+                {%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
+                AS
+                {% for source in sources %}
+                    SELECT
+                    {% for col in source.columns %}
+                        {% if col.hashDetails %}
+                            {{ datavault4coalesce__hash(columns=col.hashDetails.columns, datatype=col.dataType, algo=col.hashDetails.algorithm) }} AS "{{ col.name }}"
+                        {% else %}
+                            {{ get_source_transform(col) }} AS "{{ col.name }}"
+                        {% endif %}
+                        {%- if not loop.last -%}, {% endif %}
+                    {% endfor %}
+
+                    {{ source.join }}
+
+                    {% if not loop.last %}
+                        {% if config.insertStrategy in ['UNION', 'UNION ALL'] %}
+                            {{ config.insertStrategy }}
+                        {% else %}
+                            UNION
+                        {% endif %}
+                    {% endif %}
+
+                    {%- if config.generate_ghost_records -%}
+
+                        UNION ALL 
+
+                        SELECT
+
+                        {% for source in sources %}
+                            {% for col in source.columns %}
+                                {%- if "hashDetails" in col.keys() %}
+                                    {{ datavault4coalesce__ghost_record_per_datatype(col.name, col.dataType, 'unknown', hash=true, hash_algo=col.hashDetails.algorithm) }}
+                                {%- else -%}
+                                    {{ datavault4coalesce__ghost_record_per_datatype(col.name, col.dataType, 'unknown', hash=false) }}
+                                {%- endif -%}
+                            {% if not loop.last %},{% endif %}
+                            {% endfor %}
+                        {% endfor %}
+
+                        UNION ALL 
+
+                        SELECT
+
+                        {% for source in sources %}
+                            {% for col in source.columns %}
+                                {%- if "hashDetails" in col.keys() %}
+                                    {{ datavault4coalesce__ghost_record_per_datatype(col.name, col.dataType, 'error', hash=true, hash_algo=col.hashDetails.algorithm) }}
+                                {%- else -%}
+                                    {{ datavault4coalesce__ghost_record_per_datatype(col.name, col.dataType, 'error', hash=false) }}
+                                {%- endif -%}
+                            {% if not loop.last %},{% endif %}
+                            {% endfor %}
+                        {% endfor %}
+
+                    {%- endif -%}
+
+                {% endfor %}
+
+            {% endif %}
+        run:
+          templateString: ""
+    name: "Copy of Datavault by Scalefree: Stage"
+    version: 1
+  StepType-138:
+    id: "138"
+    isDisabled: false
+    metadata:
+      defaultStorageLocation: null
+      error: null
+      nodeMetadataSpec: |-
+        capitalized: 'DATAVAULT BY SCALEFREE: SATELLITE V0'
+        short: 'SATV0'
+        plural: 'DATAVAULT BY SCALEFREE: SATELLITES V0'
+        tagColor: 'Yellow'
+
+        config:
+        - groupName: Data Vault
+          items:
+          - displayName: Hashkey Column
+            type: columnSelector
+            attributeName: is_hk
+            isRequired: true
+
+          - displayName: Hashdiff Column
+            type: columnSelector
+            attributeName: is_hd
+            isRequired: true
+
+        - groupName: Pre/Post SQL
+          items:
+          - displayName: Pre-SQL
+            attributeName: preSQL
+            type: textBox
+            isRequired: false
+
+          - displayName: Post-SQL
+            attributeName: postSQL
+            type: textBox
+            isRequired: false
+      templates:
+        create:
+          templateString: |
+            {{ stage('Create Satellite Table') }}
+
+            CREATE OR REPLACE TABLE {{ ref_no_link(node.location.name, node.name) }}
+            (
+            	{% for col in columns %}
+            		"{{ col.name }}" {{ col.dataType }}
+            		{%- if not col.nullable %} NOT NULL
+            			{%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
+            		{% endif %}
+            		{%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
+            		{%- if not loop.last -%}, {% endif %}
+            	{% endfor %}
+            )
+            {%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
+        run:
+          templateString: |-
+            {% if config.preSQL %}
+            	{{ stage('Pre-SQL') }}
+            	{{ config.preSQL }}
+            {% endif %}
+
+            {{ stage('Insert New Rows') }}
+            INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
+            WITH latest_entries_in_sat AS (
+            	/* get current rows from satellite */
+            	{% for col in columns if col.is_hk or col.is_hd %}
+            		{%- if loop.first -%}SELECT {% endif %} 
+            		"{{col.name}}"
+            		{%- if not loop.last -%}, {% endif %}
+            		{%- if loop.last %} 
+            			FROM {{ ref_no_link(node.location.name, node.name) }} 
+            			QUALIFY ROW_NUMBER() OVER (PARTITION BY "{{ get_value_by_column_attribute("is_hk") }}" ORDER BY "{{ datavault4coalesce.config.ldts_alias }}" DESC) = 1
+            		{% endif %}
+            	{% endfor %}
+            ),
+
+            deduplicated_numbered_source AS (
+                
+                {% for source in sources %}
+
+                    SELECT
+            		{% for col in source.columns %}
+            			{{ get_source_transform(col) }} AS {{ col.name }},
+            		{% endfor %}
+                    ROW_NUMBER() OVER(PARTITION BY "{{ get_value_by_column_attribute("is_hk") }}" ORDER BY "{{ datavault4coalesce.config.ldts_alias }}") as rn
+                    
+                    {{ source.join }}
+                    QUALIFY
+                    CASE
+                        WHEN "{{ get_value_by_column_attribute("is_hd") }}" = LAG("{{ get_value_by_column_attribute("is_hd") }}") OVER(PARTITION BY "{{ get_value_by_column_attribute("is_hk") }}" ORDER BY "{{ datavault4coalesce.config.ldts_alias }}" ) THEN FALSE
+                        ELSE TRUE
+                    END
+
+                {% endfor %}
+
+            )
+
+            	{% for source in sources %}
+            		SELECT DISTINCT
+            		{% for col in source.columns %}
+            			{{ col.name }}
+            			{%- if not loop.last -%}, {% endif %}
+            		{% endfor %}
+
+            		FROM deduplicated_numbered_source
+            	WHERE NOT EXISTS (
+            		SELECT 1 FROM latest_entries_in_sat
+            		WHERE 
+            		{% for col in source.columns if col.is_hk or col.is_hd %}
+            			{% if not loop.first %}
+            				AND
+            			{% endif %}
+            			deduplicated_numbered_source.{{ col.name }} = latest_entries_in_sat."{{ col.name }}"
+            		{% endfor %}
+                    AND deduplicated_numbered_source.rn = 1
+            	)
+
+            	{% endfor %}
+
+            {% if config.postSQL %}
+            	{{ stage('Post-SQL') }}
+            	{{ config.postSQL }}
+            {% endif %}
+    name: "Copy of Datavault by Scalefree: Satellite v0"
+    version: 1
+  StepType-139:
+    id: "139"
+    isDisabled: false
+    metadata:
+      defaultStorageLocation: null
+      error: null
+      nodeMetadataSpec: |-
+        capitalized: 'DATAVAULT BY SCALEFREE: HUB'
+        short: 'HUB'
+        tagColor: blue
+        plural: 'DATAVAULT BY SCALEFREE: HUBS'
+
+        config:
+        - groupName: Options
+          items:
+          - type: materializationSelector
+            isRequired: true
+            enableIf: 'true'
+            options: 
+            - table
+            default: table
+         
+          - displayName: Pre-SQL
+            attributeName: preSQL
+            type: textBox
+            isRequired: false
+
+          - displayName: Post-SQL
+            attributeName: postSQL
+            type: textBox
+            isRequired: false
+
+          - type: multisourceToggle
+
+        - groupName: Data Vault
+          items:
+
+          - displayName: Hub Hashkey Column
+            type: columnSelector
+            attributeName: is_Hub_hk
+            isRequired: true
+
+          - displayName: Hub LoadDateTimestamp Column
+            enableIf: 'false'
+            type: columnSelector
+            attributeName: is_Hub_ldts
+            isRequired: false
+      templates:
+        create:
+          templateString: |
+            {{ stage('Create Hub Table') }}
+
+            CREATE OR REPLACE TABLE {{ ref_no_link(node.location.name, node.name) }}
+            (
+            	{% for col in columns %}
+            		"{{ col.name }}" {{ col.dataType }}
+            		{%- if not col.nullable %} NOT NULL
+            			{%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
+            		{% endif %}
+            		{%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
+            		{%- if not loop.last -%}, {% endif %}
+            	{% endfor %}
+            )
+            {%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
+        run:
+          templateString: |-
+            {% if config.preSQL %}
+            	{{ stage('Pre-SQL') }}
+            	{{ config.preSQL }}
+            {% endif %}
+
+            {% for source in sources %}
+
+            	{{ stage('INSERT INTO Hub - ' ~ source.name) }}
+
+            	{%- set hashkey_column = get_value_by_column_attribute("is_Hub_hk") -%}
+
+            	INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
+            	
+            WITH incoming AS (
+
+            	SELECT DISTINCT
+            	{% for col in source.columns %}
+            		{{ get_source_transform(col) }} AS "{{ col.name }}"
+            		{%- if not loop.last -%}, {% endif %}
+            	{% endfor %}
+
+            	{{ source.join }}
+
+            ), 
+
+            new_records AS (
+
+            	SELECT 
+            	"SRC".* 
+            	FROM incoming "SRC"
+            	WHERE NOT EXISTS 
+
+            	(SELECT 1 
+            	FROM {{ ref_no_link(node.location.name, node.name) }} "TGT"
+            	WHERE 
+            		"SRC"."{{ hashkey_column }}" = "TGT"."{{ hashkey_column }}")
+
+            	QUALIFY ROW_NUMBER() OVER (PARTITION BY "{{ hashkey_column }}" ORDER BY "{{ datavault4coalesce.config.ldts_alias }}" ) = 1
+            )
+
+
+            	SELECT * FROM new_records
+
+            {% endfor %}
+
+            {% if config.postSQL %}
+            	{{ stage('Post-SQL') }}
+            	{{ config.postSQL }}
+            {% endif %}
+    name: "Copy of Datavault by Scalefree: Hub"
+    version: 1
   StepType-24:
     id: "24"
     isDisabled: true
@@ -8844,4 +9149,4 @@ subgraphs:
       - 327d6782-4dfb-4b45-a59c-1a9edcc8f80c
       - e82e27c8-2dc7-499d-9160-7059be529fe1
       - 896e9503-e578-44bb-bd83-827e187277ee
-version: 1
+version: 2
