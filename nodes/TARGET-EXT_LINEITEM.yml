@@ -3,14 +3,14 @@ steps:
     operation:
       config:
         autoRefresh: false
-        compression: GZIP
+        compression: AUTO
         fieldDelim: ","
         fieldEnclosed: \042
         fileLocation: LINEITEM
         filePattern: .*[.]csv.gz
         fileType: CSV
-        recDelim: |+
-
+        recDelim: |
+          |
         skipBlankLines: true
         skipHeader: "1"
         snsTopic: arn:aws:sns:your-region:123456789012:your-notification
@@ -55,9 +55,7 @@ steps:
             name: L_ORDERKEY
             nullable: false
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2741
-                    stepCounter: "276"
+              - columnReferences: []
                 transform: ""
           - columnReference:
               columnCounter: 2759
@@ -69,9 +67,7 @@ steps:
             name: L_PARTKEY
             nullable: false
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2742
-                    stepCounter: "276"
+              - columnReferences: []
                 transform: ""
           - columnReference:
               columnCounter: 2760
@@ -83,9 +79,7 @@ steps:
             name: L_SUPPKEY
             nullable: false
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2743
-                    stepCounter: "276"
+              - columnReferences: []
                 transform: ""
           - columnReference:
               columnCounter: 2761
@@ -97,9 +91,7 @@ steps:
             name: L_LINENUMBER
             nullable: false
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2744
-                    stepCounter: "276"
+              - columnReferences: []
                 transform: ""
           - columnReference:
               columnCounter: 2762
@@ -111,9 +103,7 @@ steps:
             name: L_QUANTITY
             nullable: false
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2745
-                    stepCounter: "276"
+              - columnReferences: []
                 transform: ""
           - columnReference:
               columnCounter: 2763
@@ -125,9 +115,7 @@ steps:
             name: L_EXTENDEDPRICE
             nullable: false
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2746
-                    stepCounter: "276"
+              - columnReferences: []
                 transform: ""
           - columnReference:
               columnCounter: 2764
@@ -139,9 +127,7 @@ steps:
             name: L_DISCOUNT
             nullable: false
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2747
-                    stepCounter: "276"
+              - columnReferences: []
                 transform: ""
           - columnReference:
               columnCounter: 2765
@@ -153,9 +139,7 @@ steps:
             name: L_TAX
             nullable: false
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2748
-                    stepCounter: "276"
+              - columnReferences: []
                 transform: ""
           - columnReference:
               columnCounter: 2766
@@ -167,9 +151,7 @@ steps:
             name: L_RETURNFLAG
             nullable: false
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2749
-                    stepCounter: "276"
+              - columnReferences: []
                 transform: ""
           - columnReference:
               columnCounter: 2767
@@ -181,9 +163,7 @@ steps:
             name: L_LINESTATUS
             nullable: false
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2750
-                    stepCounter: "276"
+              - columnReferences: []
                 transform: ""
           - columnReference:
               columnCounter: 2768
@@ -195,9 +175,7 @@ steps:
             name: L_SHIPDATE
             nullable: false
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2751
-                    stepCounter: "276"
+              - columnReferences: []
                 transform: ""
           - columnReference:
               columnCounter: 2769
@@ -209,9 +187,7 @@ steps:
             name: L_COMMITDATE
             nullable: false
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2752
-                    stepCounter: "276"
+              - columnReferences: []
                 transform: ""
           - columnReference:
               columnCounter: 2770
@@ -223,9 +199,7 @@ steps:
             name: L_RECEIPTDATE
             nullable: false
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2753
-                    stepCounter: "276"
+              - columnReferences: []
                 transform: ""
           - columnReference:
               columnCounter: 2771
@@ -237,9 +211,7 @@ steps:
             name: L_SHIPINSTRUCT
             nullable: false
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2754
-                    stepCounter: "276"
+              - columnReferences: []
                 transform: ""
           - columnReference:
               columnCounter: 2772
@@ -251,24 +223,29 @@ steps:
             name: L_SHIPMODE
             nullable: false
             sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2755
-                    stepCounter: "276"
+              - columnReferences: []
                 transform: ""
-          - columnReference:
-              columnCounter: 2773
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 3732955d-c35a-441b-aba8-11f32824921e
               stepCounter: "277"
-            dataType: VARCHAR(44)
+            config: {}
+            dataType: STRING
+            defaultValue: ""
             description: ""
-            hashColumns: []
-            hashDetails: null
+            keyColumnType: None
             name: L_COMMENT
-            nullable: false
+            nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 2756
-                    stepCounter: "276"
+                  - columnCounter: "0"
+                    stepCounter: "0"
                 transform: ""
+            systemColumnType: None
+            transform: ""
           - METADATA$FILENAME: true
             acceptedValues:
               strictMatch: true

@@ -7,10 +7,17 @@ jobs:
     name: DIM CUSTOMER LOAD
     steps: []
     subgraphs: []
+  Job-25:
+    excludeSelector: ""
+    id: 25
+    includeSelector: "+{ location: TARGET name: PSTG_LINEITEM }"
+    name: Load Lineitem persistent stage
+    steps: []
+    subgraphs: []
   Job-9:
     excludeSelector: ""
     id: 9
-    includeSelector: "+{ location: TARGET name: DIM_SUPPLIER }"
+    includeSelector: "+{ location: TARGET name: DIM_CUSTOMER }"
     name: DIM SUPPLIER LOAD
     steps: []
     subgraphs: []
@@ -1269,7 +1276,7 @@ stepTypes:
     version: 1
   StepType-16:
     id: "16"
-    isDisabled: true
+    isDisabled: false
     metadata:
       defaultStorageLocation: null
       error: null
@@ -6243,7 +6250,6 @@ subgraphs:
       - "277"
       - "278"
       - "279"
-      - "282"
       - "285"
       - "286"
       - "287"
@@ -6319,4 +6325,4 @@ subgraphs:
     id: "8"
     name: Datamart
     steps: []
-version: 1
+version: 2
