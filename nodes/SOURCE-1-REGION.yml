@@ -1,0 +1,64 @@
+steps:
+  REGION-bd5cfcc1-7907-4e35-a30b-4048c337c345:
+    operation:
+      database: ""
+      dataset: ""
+      deployEnabled: true
+      description: Region data as defined by TPC-H
+      locationID: ""
+      locationName: SOURCE-1
+      metadata:
+        columns:
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: f256210b-36d8-4ee6-af92-9fbd23154921
+              stepCounter: bd5cfcc1-7907-4e35-a30b-4048c337c345
+            config: {}
+            dataType: NUMBER(38,0)
+            defaultValue: ""
+            description: ""
+            name: R_REGIONKEY
+            nullable: false
+            primaryKey: false
+            uniqueKey: false
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 15f5c91b-e9d6-4445-9e76-f28339eb0c4d
+              stepCounter: bd5cfcc1-7907-4e35-a30b-4048c337c345
+            config: {}
+            dataType: VARCHAR(25)
+            defaultValue: ""
+            description: ""
+            name: R_NAME
+            nullable: false
+            primaryKey: false
+            uniqueKey: false
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 5931ae1f-429d-4554-97d6-ffb1e8f3cb9e
+              stepCounter: bd5cfcc1-7907-4e35-a30b-4048c337c345
+            config: {}
+            dataType: VARCHAR(152)
+            defaultValue: ""
+            description: ""
+            name: R_COMMENT
+            nullable: true
+            primaryKey: false
+            uniqueKey: false
+        join:
+          joinCondition: FROM {{ ref('SOURCE-1', 'REGION') }}
+      name: REGION
+      schema: ""
+      sqlType: Source
+      table: REGION
+      type: sourceInput
+    stepCounter: bd5cfcc1-7907-4e35-a30b-4048c337c345
