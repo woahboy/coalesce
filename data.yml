@@ -737,25 +737,20 @@ stepTypes:
 
             {% endif %}
         run:
-          templateString: |
+          templateString: |-
             {% set is_type_2 = columns | selectattr("isChangeTracking") | list | length > 0 %}
-
                 {% for test in node.tests if config.testsEnabled %}
                     {% if test.runOrder == 'Before' %}
                         {{ test_stage(test.name, test.continueOnFailure) }}
                         {{ test.templateString }}
                     {% endif %}
                 {% endfor %}
-
             {% if node.materializationType == 'table' %}
-
             	{% if config.preSQL %}			
             		{{ stage('Pre-SQL') }}
             		{{ config.preSQL }}
             	{% endif %}
-            	
                 {% if is_type_2 %}
-
                     {% for source in sources %}
                         {{ stage('MERGE ' + source.name | string) }}
                         MERGE INTO {{ ref_no_link(node.location.name, node.name) }} "TGT"
@@ -857,16 +852,21 @@ stepTypes:
                                 )
                             {% endif %}
                         {% endfor %}
-                        {% if columns | selectattr('isChangeTracking') | list | length 
-                            + columns | selectattr('isSurrogateKey') | list | length
-                            + columns | selectattr('isBusinessKey') | list | length
-                            + columns | selectattr('isSystemVersion') | list | length
-                            + columns | selectattr('isSystemCurrentFlag') | list | length
-                            + columns | selectattr('isSystemStartDate') | list | length
-                            + columns | selectattr('isSystemEndDate') | list | length
-                            + columns | selectattr('isSystemCreateDate') | list | length
-                            + columns | selectattr('isSystemUpdateDate') | list | length
-                            == columns | list | length %} 
+                        
+                        {# The if-block below avoids unnecessary updates when no type 2 column changes are present #}
+                        {% if source.columns 
+                            | rejectattr('isSurrogateKey')
+                            | rejectattr('isBusinessKey')
+                            | rejectattr('isChangeTracking')
+                            | rejectattr('isSystemVersion')
+                            | rejectattr('isSystemCurrentFlag')
+                            | rejectattr('isSystemStartDate')
+                            | rejectattr('isSystemEndDate')
+                            | rejectattr('isSystemCreateDate')
+                            | rejectattr('isSystemUpdateDate') 
+                            | list | length == 0 
+                        %}
+                            {# Skip Section #}
                         {% else %} 
                             UNION ALL
                             /* Rows Needing To Be Updated Due To Changes To Non-Type-2 source.columns
@@ -946,11 +946,7 @@ stepTypes:
                         {% if not loop.last %}, {% endif %}
                     {% endfor -%}
                     )
-
                 {% endfor %}
-
-
-
                 {% else %}
                     {% for source in sources %}
                         {{ stage('MERGE ' + source.name | string ) }}
@@ -1022,13 +1018,11 @@ stepTypes:
                         )
                     {% endfor %}
                 {% endif %}
-            	
             	{% if config.postSQL %}			
             		{{ stage('Post-SQL') }}
             		{{ config.postSQL }}
             	{% endif %}
             {% endif %}
-
             {% if config.testsEnabled %}
             	{% for test in node.tests %}
             		{% if test.runOrder == 'After' %}
@@ -1036,7 +1030,6 @@ stepTypes:
             			{{ test.templateString }}
                     {% endif %}
             	{% endfor %}
-
             	{% for column in columns %}
             		{% for test in column.tests %}
             			{{ test_stage(column.name + ": " + test.name) }}
@@ -1555,8 +1548,8 @@ stepTypes:
             {% endif %}
     name: CDC
     version: 1
-  StepType-150:
-    id: "150"
+  StepType-154:
+    id: "154"
     isDisabled: false
     metadata:
       defaultStorageLocation: TARGET
@@ -1635,8 +1628,8 @@ stepTypes:
           templateString: ""
     name: Copy of View
     version: 1
-  StepType-152:
-    id: "152"
+  StepType-155:
+    id: "155"
     isDisabled: false
     metadata:
       defaultStorageLocation: TARGET
@@ -1679,15 +1672,15 @@ stepTypes:
             type: toggleButton
             default: true
 
-          - type: toggleButton
-            attributeName: selectDistinct
-            displayName: Distinct
-
           - displayName: Enable Tests
             attributeName: testsEnabled
             type: toggleButton
             default: true
             
+          - type: toggleButton
+            attributeName: selectDistinct
+            displayName: Distinct
+
           - displayName: Pre-SQL
             attributeName: preSQL
             type: textBox
