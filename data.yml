@@ -1555,88 +1555,8 @@ stepTypes:
             {% endif %}
     name: CDC
     version: 1
-  StepType-165:
-    id: "165"
-    isDisabled: false
-    metadata:
-      defaultStorageLocation: TARGET
-      error: null
-      nodeMetadataSpec: |
-        capitalized: Copy of View
-        short: V
-        tagColor: '#C4C4C4'
-        isDisabled: true
-        plural: Views
-
-        config:
-          - groupName: Options
-            items: 
-            - type: materializationSelector
-              options:
-                - view
-              default: view
-              isRequired: true
-
-            - type: toggleButton
-              attributeName: selectDistinct
-              displayName: Distinct
-
-            - type: multisourceToggle
-
-            - type: overrideSQLToggle
-
-            - displayName: Multi Source Strategy
-              attributeName: insertStrategy
-              type: dropdownSelector
-              default: UNION
-              options:
-              - "UNION"
-              - "UNION ALL" 
-              isRequired: true
-              enableIf: "{% if node.isMultisource %} true {% else %} false {% endif %}"
-      templates:
-        create:
-          templateString: |
-            {% if node.override.create.enabled %}
-                
-                {{ node.override.create.script }}
-
-            {% else %}
-                {{ stage('Create View') }}
-                CREATE OR REPLACE VIEW {{ ref_no_link(node.location.name, node.name) }}
-                (
-                    {% for col in columns %}
-                        "{{ col.name }}"
-                        {%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
-                        {%- if not loop.last -%}, {% endif %}
-                    {% endfor %}
-                )
-                {%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}'{% endif %}
-                AS
-                {% for source in sources %}
-                    SELECT {% if config.selectDistinct %} DISTINCT {% endif %}
-                    {% for col in source.columns %}
-                        {{ get_source_transform(col) }} AS "{{ col.name }}"
-                        {%- if not loop.last -%}, {% endif %}
-                    {% endfor %}
-
-                    {{ source.join }}
-
-                    {% if not loop.last %}
-                        {% if config.insertStrategy in ['UNION', 'UNION ALL'] %}
-                            {{ config.insertStrategy }}
-                        {% else %}
-                            UNION
-                        {% endif %}
-                    {% endif %}
-                {% endfor %}
-            {% endif %}
-        run:
-          templateString: ""
-    name: Copy of View
-    version: 1
-  StepType-166:
-    id: "166"
+  StepType-169:
+    id: "169"
     isDisabled: false
     metadata:
       defaultStorageLocation: TARGET
@@ -1842,6 +1762,86 @@ stepTypes:
             	{% endfor %}
             {% endif %}
     name: Copy of Stage
+    version: 1
+  StepType-170:
+    id: "170"
+    isDisabled: false
+    metadata:
+      defaultStorageLocation: TARGET
+      error: null
+      nodeMetadataSpec: |
+        capitalized: Copy of View
+        short: V
+        tagColor: '#C4C4C4'
+        isDisabled: true
+        plural: Views
+
+        config:
+          - groupName: Options
+            items: 
+            - type: materializationSelector
+              options:
+                - view
+              default: view
+              isRequired: true
+
+            - type: toggleButton
+              attributeName: selectDistinct
+              displayName: Distinct
+
+            - type: multisourceToggle
+
+            - type: overrideSQLToggle
+
+            - displayName: Multi Source Strategy
+              attributeName: insertStrategy
+              type: dropdownSelector
+              default: UNION
+              options:
+              - "UNION"
+              - "UNION ALL" 
+              isRequired: true
+              enableIf: "{% if node.isMultisource %} true {% else %} false {% endif %}"
+      templates:
+        create:
+          templateString: |
+            {% if node.override.create.enabled %}
+                
+                {{ node.override.create.script }}
+
+            {% else %}
+                {{ stage('Create View') }}
+                CREATE OR REPLACE VIEW {{ ref_no_link(node.location.name, node.name) }}
+                (
+                    {% for col in columns %}
+                        "{{ col.name }}"
+                        {%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
+                        {%- if not loop.last -%}, {% endif %}
+                    {% endfor %}
+                )
+                {%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}'{% endif %}
+                AS
+                {% for source in sources %}
+                    SELECT {% if config.selectDistinct %} DISTINCT {% endif %}
+                    {% for col in source.columns %}
+                        {{ get_source_transform(col) }} AS "{{ col.name }}"
+                        {%- if not loop.last -%}, {% endif %}
+                    {% endfor %}
+
+                    {{ source.join }}
+
+                    {% if not loop.last %}
+                        {% if config.insertStrategy in ['UNION', 'UNION ALL'] %}
+                            {{ config.insertStrategy }}
+                        {% else %}
+                            UNION
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        run:
+          templateString: ""
+    name: Copy of View
     version: 1
   StepType-30:
     id: "30"
