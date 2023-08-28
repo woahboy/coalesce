@@ -1,24 +1,21 @@
 steps:
-  STG_CUSTOMER-7873c0ca-b27e-42c1-9966-cf3062839c18:
+  V_CUSTOMER-434e34f3-5036-4c97-b8c3-c4717dfa4a43:
     operation:
       config:
-        insertStrategy: INSERT
-        postSQL: ""
-        preSQL: ""
-        testsEnabled: true
-        truncateBefore: true
+        insertStrategy: UNION
+        selectDistinct: true
       database: ""
       deployEnabled: true
       description: Customer data as defined by TPC-H
       isMultisource: false
       locationName: TARGET
-      materializationType: table
+      materializationType: view
       metadata:
         appliedNodeTests: []
         columns:
           - columnReference:
-              columnCounter: fe918399-6307-44c9-accc-7b0f6308b998
-              stepCounter: 7873c0ca-b27e-42c1-9966-cf3062839c18
+              columnCounter: 643798d2-4a33-48f2-9384-8d60184087fd
+              stepCounter: 434e34f3-5036-4c97-b8c3-c4717dfa4a43
             dataType: NUMBER(38,0)
             description: ""
             hashColumns: []
@@ -31,8 +28,8 @@ steps:
                     stepCounter: d72250f1-00c4-429c-b314-44d974d62e9b
                 transform: ""
           - columnReference:
-              columnCounter: 4008200e-d8c6-4e6a-b07f-f8dde51532ae
-              stepCounter: 7873c0ca-b27e-42c1-9966-cf3062839c18
+              columnCounter: 9994b20f-6f36-4304-843d-b3125a069cdc
+              stepCounter: 434e34f3-5036-4c97-b8c3-c4717dfa4a43
             dataType: VARCHAR(25)
             description: ""
             hashColumns: []
@@ -45,8 +42,8 @@ steps:
                     stepCounter: d72250f1-00c4-429c-b314-44d974d62e9b
                 transform: ""
           - columnReference:
-              columnCounter: 3ff033fb-01ce-4d17-9735-9ad535147859
-              stepCounter: 7873c0ca-b27e-42c1-9966-cf3062839c18
+              columnCounter: a602880e-ce40-4574-8e52-3b32f305e5d5
+              stepCounter: 434e34f3-5036-4c97-b8c3-c4717dfa4a43
             dataType: VARCHAR(40)
             description: ""
             hashColumns: []
@@ -59,8 +56,8 @@ steps:
                     stepCounter: d72250f1-00c4-429c-b314-44d974d62e9b
                 transform: ""
           - columnReference:
-              columnCounter: 4bd54b5e-6a12-4903-b70d-6effc6535c24
-              stepCounter: 7873c0ca-b27e-42c1-9966-cf3062839c18
+              columnCounter: e8ec3b4b-0f2f-46bb-930d-d6c657d25d9d
+              stepCounter: 434e34f3-5036-4c97-b8c3-c4717dfa4a43
             dataType: NUMBER(38,0)
             description: ""
             hashColumns: []
@@ -73,8 +70,8 @@ steps:
                     stepCounter: d72250f1-00c4-429c-b314-44d974d62e9b
                 transform: ""
           - columnReference:
-              columnCounter: 35285423-775e-4d87-972c-963c4e902b2c
-              stepCounter: 7873c0ca-b27e-42c1-9966-cf3062839c18
+              columnCounter: 5cfe50ef-5c64-4f6b-ab35-084aa533f4a8
+              stepCounter: 434e34f3-5036-4c97-b8c3-c4717dfa4a43
             dataType: VARCHAR(15)
             description: ""
             hashColumns: []
@@ -87,8 +84,8 @@ steps:
                     stepCounter: d72250f1-00c4-429c-b314-44d974d62e9b
                 transform: ""
           - columnReference:
-              columnCounter: ba64615c-79b3-406a-9781-6a85001188c3
-              stepCounter: 7873c0ca-b27e-42c1-9966-cf3062839c18
+              columnCounter: b14b459d-df93-43f4-8505-8d3d1930bf8f
+              stepCounter: 434e34f3-5036-4c97-b8c3-c4717dfa4a43
             dataType: NUMBER(12,2)
             description: ""
             hashColumns: []
@@ -101,8 +98,8 @@ steps:
                     stepCounter: d72250f1-00c4-429c-b314-44d974d62e9b
                 transform: ""
           - columnReference:
-              columnCounter: cf3b54e0-4b9a-4eed-a702-80937770a29b
-              stepCounter: 7873c0ca-b27e-42c1-9966-cf3062839c18
+              columnCounter: 41ecf085-31cc-48b3-afa4-163c4a3742f2
+              stepCounter: 434e34f3-5036-4c97-b8c3-c4717dfa4a43
             dataType: VARCHAR(10)
             description: ""
             hashColumns: []
@@ -115,8 +112,8 @@ steps:
                     stepCounter: d72250f1-00c4-429c-b314-44d974d62e9b
                 transform: ""
           - columnReference:
-              columnCounter: 9ef70dcf-e673-455b-a89f-c97e00bfc42d
-              stepCounter: 7873c0ca-b27e-42c1-9966-cf3062839c18
+              columnCounter: 541efd0a-4564-4dcf-8d82-f41d467092e1
+              stepCounter: 434e34f3-5036-4c97-b8c3-c4717dfa4a43
             dataType: VARCHAR(117)
             description: ""
             hashColumns: []
@@ -138,11 +135,11 @@ steps:
                 nodeName: CUSTOMER
             join:
               joinCondition: FROM {{ ref('SOURCE-1', 'CUSTOMER') }} "CUSTOMER"
-            name: STG_CUSTOMER
+            name: V_CUSTOMER
             noLinkRefs: []
-      name: STG_CUSTOMER
+      name: V_CUSTOMER
       overrideSQL: false
       schema: ""
-      sqlType: Stage
+      sqlType: View
       type: sql
-    stepCounter: 7873c0ca-b27e-42c1-9966-cf3062839c18
+    stepCounter: 434e34f3-5036-4c97-b8c3-c4717dfa4a43
