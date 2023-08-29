@@ -1,10 +1,10 @@
 steps:
-  CUSTOMER-3f60afcd-3ae0-4ba9-a9e0-0cefcd8569ae:
+  ORDERS-36b60c80-6e38-4247-b44a-cbff8102b16a:
     operation:
       database: ""
       dataset: ""
       deployEnabled: true
-      description: Customer data as defined by TPC-H
+      description: Orders data as defined by TPC-H
       locationID: ""
       locationName: SOURCE-1
       metadata:
@@ -14,13 +14,13 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 054fdd8e-d891-4b5f-b625-2db162c98308
-              stepCounter: 3f60afcd-3ae0-4ba9-a9e0-0cefcd8569ae
+              columnCounter: 7374362a-48ae-473d-af04-f56c738acfe4
+              stepCounter: 36b60c80-6e38-4247-b44a-cbff8102b16a
             config: {}
             dataType: NUMBER(38,0)
             defaultValue: ""
             description: ""
-            name: C_CUSTKEY
+            name: O_ORDERKEY
             nullable: false
             primaryKey: false
             uniqueKey: false
@@ -29,43 +29,13 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 786f0e05-3d1f-4edf-8ca6-82dc9d091a37
-              stepCounter: 3f60afcd-3ae0-4ba9-a9e0-0cefcd8569ae
-            config: {}
-            dataType: VARCHAR(25)
-            defaultValue: ""
-            description: ""
-            name: C_NAME
-            nullable: false
-            primaryKey: false
-            uniqueKey: false
-          - acceptedValues:
-              strictMatch: true
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: 652e7dbc-bd53-4aef-905a-6eba1773136a
-              stepCounter: 3f60afcd-3ae0-4ba9-a9e0-0cefcd8569ae
-            config: {}
-            dataType: VARCHAR(40)
-            defaultValue: ""
-            description: ""
-            name: C_ADDRESS
-            nullable: false
-            primaryKey: false
-            uniqueKey: false
-          - acceptedValues:
-              strictMatch: true
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: d6397a94-c369-469e-bc5d-60a06ec64609
-              stepCounter: 3f60afcd-3ae0-4ba9-a9e0-0cefcd8569ae
+              columnCounter: d0dc70d4-ab5f-419c-a221-adca5191af7d
+              stepCounter: 36b60c80-6e38-4247-b44a-cbff8102b16a
             config: {}
             dataType: NUMBER(38,0)
             defaultValue: ""
             description: ""
-            name: C_NATIONKEY
+            name: O_CUSTKEY
             nullable: false
             primaryKey: false
             uniqueKey: false
@@ -74,13 +44,13 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 064e9b0f-7f73-46b8-ad4a-0d9a0b29cbf6
-              stepCounter: 3f60afcd-3ae0-4ba9-a9e0-0cefcd8569ae
+              columnCounter: 1a7c0f79-9f59-47e8-b74e-386d4a11aaaf
+              stepCounter: 36b60c80-6e38-4247-b44a-cbff8102b16a
             config: {}
-            dataType: VARCHAR(15)
+            dataType: VARCHAR(1)
             defaultValue: ""
             description: ""
-            name: C_PHONE
+            name: O_ORDERSTATUS
             nullable: false
             primaryKey: false
             uniqueKey: false
@@ -89,13 +59,13 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 5f1d1ac9-4e35-4be7-861b-0c863d4d0e94
-              stepCounter: 3f60afcd-3ae0-4ba9-a9e0-0cefcd8569ae
+              columnCounter: 1198c4cd-e9d5-4388-a0b2-7cd0cb8bd459
+              stepCounter: 36b60c80-6e38-4247-b44a-cbff8102b16a
             config: {}
             dataType: NUMBER(12,2)
             defaultValue: ""
             description: ""
-            name: C_ACCTBAL
+            name: O_TOTALPRICE
             nullable: false
             primaryKey: false
             uniqueKey: false
@@ -104,14 +74,14 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 08200310-814b-4ce1-adc5-eca029cd092a
-              stepCounter: 3f60afcd-3ae0-4ba9-a9e0-0cefcd8569ae
+              columnCounter: 7717e3ed-9af1-4e10-9011-20ec969f220b
+              stepCounter: 36b60c80-6e38-4247-b44a-cbff8102b16a
             config: {}
-            dataType: VARCHAR(10)
+            dataType: DATE
             defaultValue: ""
             description: ""
-            name: C_MKTSEGMENT
-            nullable: true
+            name: O_ORDERDATE
+            nullable: false
             primaryKey: false
             uniqueKey: false
           - acceptedValues:
@@ -119,21 +89,66 @@ steps:
               values: []
             appliedColumnTests: {}
             columnReference:
-              columnCounter: 543da4d7-be3d-48f8-a7f6-68a7cd534e1a
-              stepCounter: 3f60afcd-3ae0-4ba9-a9e0-0cefcd8569ae
+              columnCounter: 0016ee2e-2c8c-4245-b1f5-4515cc727d80
+              stepCounter: 36b60c80-6e38-4247-b44a-cbff8102b16a
             config: {}
-            dataType: VARCHAR(117)
+            dataType: VARCHAR(15)
             defaultValue: ""
             description: ""
-            name: C_COMMENT
-            nullable: true
+            name: O_ORDERPRIORITY
+            nullable: false
+            primaryKey: false
+            uniqueKey: false
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 594268e5-1b93-4320-87c4-da32e34a4924
+              stepCounter: 36b60c80-6e38-4247-b44a-cbff8102b16a
+            config: {}
+            dataType: VARCHAR(15)
+            defaultValue: ""
+            description: ""
+            name: O_CLERK
+            nullable: false
+            primaryKey: false
+            uniqueKey: false
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 1d9d17e3-bf21-4632-82c8-886aa0a3bffb
+              stepCounter: 36b60c80-6e38-4247-b44a-cbff8102b16a
+            config: {}
+            dataType: NUMBER(38,0)
+            defaultValue: ""
+            description: ""
+            name: O_SHIPPRIORITY
+            nullable: false
+            primaryKey: false
+            uniqueKey: false
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 472ecfc9-454a-424f-b3fa-1f269cfce390
+              stepCounter: 36b60c80-6e38-4247-b44a-cbff8102b16a
+            config: {}
+            dataType: VARCHAR(79)
+            defaultValue: ""
+            description: ""
+            name: O_COMMENT
+            nullable: false
             primaryKey: false
             uniqueKey: false
         join:
-          joinCondition: FROM {{ ref('SOURCE-1', 'CUSTOMER') }}
-      name: CUSTOMER
+          joinCondition: FROM {{ ref('SOURCE-1', 'ORDERS') }}
+      name: ORDERS
       schema: ""
       sqlType: Source
-      table: CUSTOMER
+      table: ORDERS
       type: sourceInput
-    stepCounter: 3f60afcd-3ae0-4ba9-a9e0-0cefcd8569ae
+    stepCounter: 36b60c80-6e38-4247-b44a-cbff8102b16a
