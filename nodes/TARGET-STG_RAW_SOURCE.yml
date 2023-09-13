@@ -1,0 +1,307 @@
+steps:
+  STG_RAW_SOURCE-0105c222-fb8f-40f1-8c79-ae21ef13bd12:
+    operation:
+      config:
+        insertStrategy: INSERT
+        postSQL: ""
+        preSQL: ""
+        testsEnabled: true
+        truncateBefore: true
+      database: ""
+      deployEnabled: true
+      description: ""
+      isMultisource: false
+      locationName: TARGET
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 7a3ad4ee-3a4f-4dc8-9fc6-3c99f6cc8b06
+              stepCounter: 0105c222-fb8f-40f1-8c79-ae21ef13bd12
+            dataType: VARIANT
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: SRC
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: bd1c9f90-256c-4cac-b750-429cd939cbcf
+                    stepCounter: 10f13d40-1568-4bd9-ae9d-4e4bb6c025de
+                transform: ""
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 1ead139f-4416-4238-a6ca-7b0710de6b72
+              stepCounter: 0105c222-fb8f-40f1-8c79-ae21ef13bd12
+            config: {}
+            dataType: STRING
+            description: ""
+            name: device_type
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: bd1c9f90-256c-4cac-b750-429cd939cbcf
+                    stepCounter: 10f13d40-1568-4bd9-ae9d-4e4bb6c025de
+                transform: "\"RAW_SOURCE\".\"SRC\":\"device_type\"::STRING"
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 886cac21-c0c8-444f-bf9a-8785533a4ee9
+              stepCounter: 0105c222-fb8f-40f1-8c79-ae21ef13bd12
+            config: {}
+            dataType: DOUBLE
+            description: ""
+            name: events_f
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: bd1c9f90-256c-4cac-b750-429cd939cbcf
+                    stepCounter: 10f13d40-1568-4bd9-ae9d-4e4bb6c025de
+                transform: "\"SRC_events\".value:\"f\"::DOUBLE"
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 9f873504-727e-4c42-96e0-2787d0671c91
+              stepCounter: 0105c222-fb8f-40f1-8c79-ae21ef13bd12
+            config: {}
+            dataType: STRING
+            description: ""
+            name: events_rv
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: bd1c9f90-256c-4cac-b750-429cd939cbcf
+                    stepCounter: 10f13d40-1568-4bd9-ae9d-4e4bb6c025de
+                transform: "\"SRC_events\".value:\"rv\"::STRING"
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 6d1a5bbf-01f6-4604-b836-d9b968fc4c15
+              stepCounter: 0105c222-fb8f-40f1-8c79-ae21ef13bd12
+            config: {}
+            dataType: DOUBLE
+            description: ""
+            name: events_t
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: bd1c9f90-256c-4cac-b750-429cd939cbcf
+                    stepCounter: 10f13d40-1568-4bd9-ae9d-4e4bb6c025de
+                transform: "\"SRC_events\".value:\"t\"::DOUBLE"
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: a6d6eb43-228f-44c2-90e6-cf6a8ebf0af9
+              stepCounter: 0105c222-fb8f-40f1-8c79-ae21ef13bd12
+            config: {}
+            dataType: DOUBLE
+            description: ""
+            name: events_vd
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: bd1c9f90-256c-4cac-b750-429cd939cbcf
+                    stepCounter: 10f13d40-1568-4bd9-ae9d-4e4bb6c025de
+                transform: "\"SRC_events\".value:\"vd\"::DOUBLE"
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 89a6b2ba-3454-42c5-a186-40f74fcb3738
+              stepCounter: 0105c222-fb8f-40f1-8c79-ae21ef13bd12
+            config: {}
+            dataType: DOUBLE
+            description: ""
+            name: events_v_ACHZ
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: bd1c9f90-256c-4cac-b750-429cd939cbcf
+                    stepCounter: 10f13d40-1568-4bd9-ae9d-4e4bb6c025de
+                transform: "\"SRC_events\".value:\"v\".\"ACHZ\"::DOUBLE"
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 38f2662e-3189-49d2-a759-a7ffb52d558b
+              stepCounter: 0105c222-fb8f-40f1-8c79-ae21ef13bd12
+            config: {}
+            dataType: DOUBLE
+            description: ""
+            name: events_v_ACV
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: bd1c9f90-256c-4cac-b750-429cd939cbcf
+                    stepCounter: 10f13d40-1568-4bd9-ae9d-4e4bb6c025de
+                transform: "\"SRC_events\".value:\"v\".\"ACV\"::DOUBLE"
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: d44e7164-8b44-45c8-9081-d2bc3a1d8616
+              stepCounter: 0105c222-fb8f-40f1-8c79-ae21ef13bd12
+            config: {}
+            dataType: DOUBLE
+            description: ""
+            name: events_v_DCA
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: bd1c9f90-256c-4cac-b750-429cd939cbcf
+                    stepCounter: 10f13d40-1568-4bd9-ae9d-4e4bb6c025de
+                transform: "\"SRC_events\".value:\"v\".\"DCA\"::DOUBLE"
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: d8b133f6-3a91-4516-a3a2-03e8518dacf9
+              stepCounter: 0105c222-fb8f-40f1-8c79-ae21ef13bd12
+            config: {}
+            dataType: DOUBLE
+            description: ""
+            name: events_v_DCV
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: bd1c9f90-256c-4cac-b750-429cd939cbcf
+                    stepCounter: 10f13d40-1568-4bd9-ae9d-4e4bb6c025de
+                transform: "\"SRC_events\".value:\"v\".\"DCV\"::DOUBLE"
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 21b43ad6-2254-4521-878f-4607d5bbc2d7
+              stepCounter: 0105c222-fb8f-40f1-8c79-ae21ef13bd12
+            config: {}
+            dataType: DOUBLE
+            description: ""
+            name: events_v_ENJR
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: bd1c9f90-256c-4cac-b750-429cd939cbcf
+                    stepCounter: 10f13d40-1568-4bd9-ae9d-4e4bb6c025de
+                transform: "\"SRC_events\".value:\"v\".\"ENJR\"::DOUBLE"
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: a0affe4b-0928-4945-9897-8ba2f8c9cd34
+              stepCounter: 0105c222-fb8f-40f1-8c79-ae21ef13bd12
+            config: {}
+            dataType: DOUBLE
+            description: ""
+            name: events_v_ERRS
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: bd1c9f90-256c-4cac-b750-429cd939cbcf
+                    stepCounter: 10f13d40-1568-4bd9-ae9d-4e4bb6c025de
+                transform: "\"SRC_events\".value:\"v\".\"ERRS\"::DOUBLE"
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 750cedd2-521a-44c1-a89b-0f9cdb3884b9
+              stepCounter: 0105c222-fb8f-40f1-8c79-ae21ef13bd12
+            config: {}
+            dataType: DOUBLE
+            description: ""
+            name: events_v_MXEC
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: bd1c9f90-256c-4cac-b750-429cd939cbcf
+                    stepCounter: 10f13d40-1568-4bd9-ae9d-4e4bb6c025de
+                transform: "\"SRC_events\".value:\"v\".\"MXEC\"::DOUBLE"
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: d03aa448-119c-4257-9693-67701cb884a8
+              stepCounter: 0105c222-fb8f-40f1-8c79-ae21ef13bd12
+            config: {}
+            dataType: DOUBLE
+            description: ""
+            name: events_v_TMPI
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: bd1c9f90-256c-4cac-b750-429cd939cbcf
+                    stepCounter: 10f13d40-1568-4bd9-ae9d-4e4bb6c025de
+                transform: "\"SRC_events\".value:\"v\".\"TMPI\"::DOUBLE"
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: aeadd0a3-f6ae-4445-a984-f35e0637b897
+              stepCounter: 0105c222-fb8f-40f1-8c79-ae21ef13bd12
+            config: {}
+            dataType: DOUBLE
+            description: ""
+            name: events_z
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: bd1c9f90-256c-4cac-b750-429cd939cbcf
+                    stepCounter: 10f13d40-1568-4bd9-ae9d-4e4bb6c025de
+                transform: "\"SRC_events\".value:\"z\"::DOUBLE"
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 7edb7939-d6bc-491f-9503-8e7a9ca5a3e2
+              stepCounter: 0105c222-fb8f-40f1-8c79-ae21ef13bd12
+            config: {}
+            dataType: DOUBLE
+            description: ""
+            name: version
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: bd1c9f90-256c-4cac-b750-429cd939cbcf
+                    stepCounter: 10f13d40-1568-4bd9-ae9d-4e4bb6c025de
+                transform: "\"RAW_SOURCE\".\"SRC\":\"version\"::DOUBLE"
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: SOURCE
+                nodeName: RAW_SOURCE
+            join:
+              joinCondition: |-
+                FROM {{ ref('SOURCE', 'RAW_SOURCE') }} "RAW_SOURCE", 
+                lateral flatten(input => "SRC":"events", OUTER => TRUE) "SRC_events"
+            name: STG_RAW_SOURCE
+            noLinkRefs: []
+      name: STG_RAW_SOURCE
+      overrideSQL: false
+      schema: ""
+      sqlType: Stage
+      type: sql
+    stepCounter: 0105c222-fb8f-40f1-8c79-ae21ef13bd12
