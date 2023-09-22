@@ -1,12 +1,12 @@
 steps:
-  HUB_CUSTOMER-42caa3ec-74ee-4a80-8662-6c913ccaa22b:
+  HUB_REGION-147c7371-afcb-4091-95b7-6fb407386e9b:
     operation:
       config:
         postSQL: ""
         preSQL: ""
       database: ""
       deployEnabled: true
-      description: Customer data as defined by TPC-H
+      description: Region data as defined by TPC-H
       isMultisource: false
       locationName: TARGET
       materializationType: table
@@ -14,38 +14,36 @@ steps:
         appliedNodeTests: []
         columns:
           - columnReference:
-              columnCounter: d393f0f5-38be-4ec1-be82-ded6498800d1
-              stepCounter: 42caa3ec-74ee-4a80-8662-6c913ccaa22b
-            config:
-              is_Hub_hk: true
+              columnCounter: b778ca32-9d49-431c-bdcc-34e1568d5707
+              stepCounter: 147c7371-afcb-4091-95b7-6fb407386e9b
             dataType: STRING
             description: ""
             hashColumns: []
             hashDetails: null
-            name: HUB_CUSTOMER_HK
+            name: HUB_REGION_HK
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: d39a9396-39d0-41b1-9946-f4c43acd97dc
-                    stepCounter: a033f7e6-4b0f-4847-8f3a-5349a02d4f92
+                  - columnCounter: 543f34c0-b733-4a4d-9b09-64550f81816a
+                    stepCounter: 84adc751-9e60-4169-9e96-b80673eba660
                 transform: ""
           - columnReference:
-              columnCounter: 23875836-951a-4f64-afd4-4950f087ca83
-              stepCounter: 42caa3ec-74ee-4a80-8662-6c913ccaa22b
+              columnCounter: bb749e97-c7ec-44e5-9939-1e31eb2c16b2
+              stepCounter: 147c7371-afcb-4091-95b7-6fb407386e9b
             dataType: NUMBER(38,0)
             description: ""
             hashColumns: []
             hashDetails: null
-            name: C_CUSTKEY
+            name: R_REGIONKEY
             nullable: false
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 14c0621c-1d3b-4c94-bca4-ca8a5a1eef75
-                    stepCounter: a033f7e6-4b0f-4847-8f3a-5349a02d4f92
+                  - columnCounter: c5bf9b88-859b-4f61-b57f-e4c9ab41c2f2
+                    stepCounter: 84adc751-9e60-4169-9e96-b80673eba660
                 transform: ""
           - columnReference:
-              columnCounter: 5f37609f-d1ae-45a1-b390-6e35d9e43ab4
-              stepCounter: 42caa3ec-74ee-4a80-8662-6c913ccaa22b
+              columnCounter: 849a3f30-c231-46de-acb6-2e4170f07f87
+              stepCounter: 147c7371-afcb-4091-95b7-6fb407386e9b
             dataType: TIMESTAMP
             description: The Load Date Timestamp (LDTS) describes when this data first arrived in the Data Warehouse.
             hashColumns: []
@@ -54,12 +52,12 @@ steps:
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 272a98e7-1332-4f13-8de6-83a3c0803f4f
-                    stepCounter: a033f7e6-4b0f-4847-8f3a-5349a02d4f92
+                  - columnCounter: 8ea1f84f-7836-4702-918f-e96772d0394f
+                    stepCounter: 84adc751-9e60-4169-9e96-b80673eba660
                 transform: ""
           - columnReference:
-              columnCounter: 7d847831-e254-4030-829d-619ba3b55eec
-              stepCounter: 42caa3ec-74ee-4a80-8662-6c913ccaa22b
+              columnCounter: e14825f2-5799-4f33-852b-650d5605933f
+              stepCounter: 147c7371-afcb-4091-95b7-6fb407386e9b
             dataType: STRING
             description: The Record Source (RSRC) describes the source of this data.
             hashColumns: []
@@ -68,8 +66,8 @@ steps:
             nullable: true
             sourceColumnReferences:
               - columnReferences:
-                  - columnCounter: 60fe3002-8255-4b43-b399-b532af9a1fd7
-                    stepCounter: a033f7e6-4b0f-4847-8f3a-5349a02d4f92
+                  - columnCounter: 13ebce3c-a1c0-4787-ba93-9d7cd7b57c27
+                    stepCounter: 84adc751-9e60-4169-9e96-b80673eba660
                 transform: ""
         cteString: ""
         enabledColumnTestIDs: []
@@ -78,14 +76,14 @@ steps:
               customSQL: ""
             dependencies:
               - locationName: TARGET
-                nodeName: DVSTG_CUSTOMER
+                nodeName: DVSTG_REGION
             join:
-              joinCondition: FROM {{ ref('TARGET', 'DVSTG_CUSTOMER') }} "DVSTG_CUSTOMER"
-            name: HUB_CUSTOMER
+              joinCondition: FROM {{ ref('TARGET', 'DVSTG_REGION') }} "DVSTG_REGION"
+            name: HUB_REGION
             noLinkRefs: []
-      name: HUB_CUSTOMER
+      name: HUB_REGION
       overrideSQL: false
       schema: ""
       sqlType: SCALEFREE-DATAVAULT4COALESCE::6
       type: sql
-    stepCounter: 42caa3ec-74ee-4a80-8662-6c913ccaa22b
+    stepCounter: 147c7371-afcb-4091-95b7-6fb407386e9b
