@@ -519,6 +519,11 @@ stepTypes:
             attributeName: testsEnabled
             type: toggleButton
             default: true
+
+          - displayName: Distinct
+            attributeName: selectDistinct
+            type: toggleButton
+            default: false
             
           - displayName: Pre-SQL
             attributeName: preSQL
@@ -588,9 +593,8 @@ stepTypes:
 
             {% endif %}
         run:
-          templateString: |2
-
-                {% for test in node.tests if config.testsEnabled %}
+          templateString: |
+            {% for test in node.tests if config.testsEnabled %}
                     {% if test.runOrder == 'Before' %}
                         {{ test_stage(test.name, test.continueOnFailure) }}
                         {{ test.templateString }}
@@ -639,7 +643,7 @@ stepTypes:
             				)
             			{% endif %}
             	
-            			SELECT
+            			SELECT {% if config.selectDistinct %} DISTINCT {% endif %}
             			{% for col in source.columns %}
                             {{ get_source_transform(col) }} AS "{{ col.name }}"
             				{%- if not loop.last -%}, {% endif %}
