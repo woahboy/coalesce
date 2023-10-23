@@ -1,0 +1,119 @@
+steps:
+  PIT_CUSTOMER-a059de51-8a3d-46fd-9da8-43fd5e673824:
+    operation:
+      config:
+        cleanup_pit: true
+      database: ""
+      deployEnabled: true
+      description: ""
+      isMultisource: false
+      locationName: TARGET
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 7e99b79e-6f53-46de-9c9b-9ffce0eee185
+              stepCounter: a059de51-8a3d-46fd-9da8-43fd5e673824
+            dataType: TIMESTAMP
+            description: ""
+            name: SDTS
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 81196343-e098-4668-aec6-c9f3816e18cd
+                    stepCounter: 1c44015e-c38b-43b9-9313-26ba08bfb073
+                transform: ""
+          - columnReference:
+              columnCounter: 2d19daa9-0e40-4619-85bb-41d3ec850821
+              stepCounter: a059de51-8a3d-46fd-9da8-43fd5e673824
+            config:
+              is_dimension_key: true
+            dataType: NUMBER(38,0)
+            description: ""
+            name: C_CUSTKEY
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 91503083-f09e-47a6-9874-42c0e146ed9c
+                    stepCounter: 3d3b55f6-6328-4998-a9d1-6c2b09ad28dc
+                transform: ""
+          - columnReference:
+              columnCounter: 52df6b43-6ac4-4cb8-8d58-9e3ee29c59f4
+              stepCounter: a059de51-8a3d-46fd-9da8-43fd5e673824
+            dataType: STRING
+            description: ""
+            name: HUB_CUSTOMER_HK
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: e3abfbc0-60f6-47c7-a178-25c2c3830013
+                    stepCounter: 3d3b55f6-6328-4998-a9d1-6c2b09ad28dc
+                transform: ""
+          - columnReference:
+              columnCounter: e96bf0a7-68ca-47c2-a2cb-df7c43616bcf
+              stepCounter: a059de51-8a3d-46fd-9da8-43fd5e673824
+            dataType: TIMESTAMP
+            description: The Load Date Timestamp (LDTS) describes when this data first arrived in the Data Warehouse.
+            name: HUB_CUSTOMER_LDTS
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 3981f4ec-f505-4ce7-bc51-c0d30ab8e4aa
+                    stepCounter: 3d3b55f6-6328-4998-a9d1-6c2b09ad28dc
+                transform: ""
+          - columnReference:
+              columnCounter: d0aad8b2-4427-4543-8dfd-698a048df031
+              stepCounter: a059de51-8a3d-46fd-9da8-43fd5e673824
+            dataType: STRING
+            description: ""
+            name: SAT_CUSTOMER_HK
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 50a5adb2-4718-48c2-8575-d03c16d1762e
+                    stepCounter: 895fd83e-6643-4443-a782-a5f019ca840f
+                transform: ""
+          - columnReference:
+              columnCounter: 29083f9f-6421-43b3-984e-f286adb34b4d
+              stepCounter: a059de51-8a3d-46fd-9da8-43fd5e673824
+            dataType: TIMESTAMP
+            description: The Load Date Timestamp (LDTS) describes when this data first arrived in the Data Warehouse.
+            name: SAT_CUSTOMER_LDTS
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 48ce4d53-ae4c-4de6-bab6-b3724c2bd2f0
+                    stepCounter: 895fd83e-6643-4443-a782-a5f019ca840f
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - aliases:
+              HUB_CUSTOMER: 3d3b55f6-6328-4998-a9d1-6c2b09ad28dc
+              SATV1_CUSTOMER: 895fd83e-6643-4443-a782-a5f019ca840f
+              SNAPSHOTV1_NODE: 1c44015e-c38b-43b9-9313-26ba08bfb073
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: TARGET
+                nodeName: HUB_CUSTOMER
+              - locationName: TARGET
+                nodeName: SATV1_CUSTOMER
+              - locationName: TARGET
+                nodeName: SNAPSHOTV1_NODE
+            join:
+              joinCondition: |-
+                FROM {{ ref('TARGET', 'SNAPSHOTV1_NODE') }} "SNAPSHOTV1_NODE"
+                INNER JOIN {{ ref('TARGET', 'HUB_CUSTOMER') }} "HUB_CUSTOMER"
+                ON "SNAPSHOTV1_NODE"."SDTS" = "HUB_CUSTOMER"."LDTS"
+                INNER JOIN {{ ref('TARGET', 'SATV1_CUSTOMER') }} "SATV1_CUSTOMER"
+                ON "SNAPSHOTV1_NODE"."SDTS" = "SATV1_CUSTOMER"."LDTS"
+            name: PIT_CUSTOMER
+            noLinkRefs: []
+      name: PIT_CUSTOMER
+      overrideSQL: false
+      schema: ""
+      sqlType: SCALEFREE-DATAVAULT4COALESCE::12
+      type: sql
+    stepCounter: a059de51-8a3d-46fd-9da8-43fd5e673824
