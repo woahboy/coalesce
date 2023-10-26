@@ -1560,52 +1560,6 @@ stepTypes:
             {% endif %}
     name: CDC
     version: 1
-  StepType-218:
-    id: "218"
-    isDisabled: false
-    metadata:
-      defaultStorageLocation: null
-      error: null
-      nodeMetadataSpec: |-
-        capitalized: New Type
-        short: NEW
-        tagColor: gray
-        plural: New Types
-      templates:
-        create:
-          templateString: ""
-        run:
-          templateString: ""
-    name: New Type
-    version: 1
-  StepType-234:
-    id: "234"
-    isDisabled: false
-    metadata:
-      defaultStorageLocation: null
-      error: null
-      nodeMetadataSpec: |-
-        capitalized: 'My Node Name'
-        short: 'MNN'
-        plural: 'My Node Names'
-        tagColor: '#FF5A5F'
-
-        joinTemplate: |
-          {%- for dep in sources[0].dependencies -%}
-            {%- if loop.first %} FROM {% endif -%}
-            {%- if not loop.first %}LEFT JOIN {% endif -%}
-            {{- ref_raw(dep.node.location.name, dep.node.name) }} {{ dep.node.name }}
-            {% if not loop.first %} ON {{ sources[0].dependencies[loop.index0].node.name }}./*COLUMN*/ = {{ sources[0].dependencies[loop.index0 - 1].node.name }}./*COLUMN*/ {%- endif %}
-          {% endfor -%}
-          
-          WHERE 1=1
-      templates:
-        create:
-          templateString: ""
-        run:
-          templateString: ""
-    name: New Type
-    version: 1
   StepType-30:
     id: "30"
     isDisabled: true
