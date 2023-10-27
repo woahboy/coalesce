@@ -1,24 +1,21 @@
 steps:
-  STG_PARTSUPP-92611a2c-2791-42a5-a88d-17ed26462bf0:
+  V_PARTSUPP-b277ad7b-828b-4902-9bb9-8e93f1bfa2e0:
     operation:
       config:
-        insertStrategy: INSERT
-        postSQL: ""
-        preSQL: ""
-        testsEnabled: true
-        truncateBefore: true
+        insertStrategy: UNION
+        selectDistinct: false
       database: ""
       deployEnabled: true
       description: Partsupp data as defined by TPC-H
       isMultisource: false
       locationName: TARGET
-      materializationType: table
+      materializationType: view
       metadata:
         appliedNodeTests: []
         columns:
           - columnReference:
-              columnCounter: 6fc84e53-76e9-417b-8339-6a2efa5b732e
-              stepCounter: 92611a2c-2791-42a5-a88d-17ed26462bf0
+              columnCounter: b13ed6ad-30b2-4bbc-8e21-a249dbc37113
+              stepCounter: b277ad7b-828b-4902-9bb9-8e93f1bfa2e0
             dataType: NUMBER(38,0)
             description: ""
             hashColumns: []
@@ -31,8 +28,8 @@ steps:
                     stepCounter: 3fd3e0b7-ca93-4b02-b8b9-708f33099017
                 transform: ""
           - columnReference:
-              columnCounter: 58107eff-ebed-440f-a1c1-1469bb4affb6
-              stepCounter: 92611a2c-2791-42a5-a88d-17ed26462bf0
+              columnCounter: 8797ab44-51f1-40c3-9ab7-a483e113a8ed
+              stepCounter: b277ad7b-828b-4902-9bb9-8e93f1bfa2e0
             dataType: NUMBER(38,0)
             description: ""
             hashColumns: []
@@ -45,8 +42,8 @@ steps:
                     stepCounter: 3fd3e0b7-ca93-4b02-b8b9-708f33099017
                 transform: ""
           - columnReference:
-              columnCounter: be32def7-4ea9-414f-9850-de899e9d9140
-              stepCounter: 92611a2c-2791-42a5-a88d-17ed26462bf0
+              columnCounter: 14f4d639-c01c-4f8f-8d16-17649b8aa348
+              stepCounter: b277ad7b-828b-4902-9bb9-8e93f1bfa2e0
             dataType: NUMBER(38,0)
             description: ""
             hashColumns: []
@@ -59,8 +56,8 @@ steps:
                     stepCounter: 3fd3e0b7-ca93-4b02-b8b9-708f33099017
                 transform: ""
           - columnReference:
-              columnCounter: 14fb80fa-ab50-447e-9562-7f736fdcee75
-              stepCounter: 92611a2c-2791-42a5-a88d-17ed26462bf0
+              columnCounter: 2a44249a-aafb-4f29-bc66-3d3367613322
+              stepCounter: b277ad7b-828b-4902-9bb9-8e93f1bfa2e0
             dataType: NUMBER(12,2)
             description: ""
             hashColumns: []
@@ -73,8 +70,8 @@ steps:
                     stepCounter: 3fd3e0b7-ca93-4b02-b8b9-708f33099017
                 transform: ""
           - columnReference:
-              columnCounter: 6fd26a0c-e517-4c72-89c5-42ff365bfcae
-              stepCounter: 92611a2c-2791-42a5-a88d-17ed26462bf0
+              columnCounter: 0d63e57e-6366-48ca-b1b5-215b576a5b4f
+              stepCounter: b277ad7b-828b-4902-9bb9-8e93f1bfa2e0
             dataType: VARCHAR(199)
             description: ""
             hashColumns: []
@@ -96,11 +93,11 @@ steps:
                 nodeName: PARTSUPP
             join:
               joinCondition: FROM {{ ref('SOURCE-1', 'PARTSUPP') }} "PARTSUPP"
-            name: STG_PARTSUPP
+            name: V_PARTSUPP
             noLinkRefs: []
-      name: STG_PARTSUPP
+      name: V_PARTSUPP
       overrideSQL: false
       schema: ""
-      sqlType: Stage
+      sqlType: View
       type: sql
-    stepCounter: 92611a2c-2791-42a5-a88d-17ed26462bf0
+    stepCounter: b277ad7b-828b-4902-9bb9-8e93f1bfa2e0
