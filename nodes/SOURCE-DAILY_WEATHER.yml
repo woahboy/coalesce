@@ -1,0 +1,48 @@
+steps:
+  DAILY_WEATHER-b21740db-65ca-4f86-be78-3bb79371efa6:
+    operation:
+      database: ""
+      dataset: ""
+      deployEnabled: true
+      description: ""
+      locationName: SOURCE
+      metadata:
+        columns:
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 87a7455e-ec66-4d10-b07b-78df910bd5f0
+              stepCounter: b21740db-65ca-4f86-be78-3bb79371efa6
+            config: {}
+            dataType: VARIANT
+            defaultValue: ""
+            description: ""
+            name: V
+            nullable: true
+            primaryKey: false
+            uniqueKey: false
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 41c55f3c-8035-40db-892e-9b4e600c694f
+              stepCounter: b21740db-65ca-4f86-be78-3bb79371efa6
+            config: {}
+            dataType: TIMESTAMP_NTZ(9)
+            defaultValue: ""
+            description: ""
+            name: T
+            nullable: true
+            primaryKey: false
+            uniqueKey: false
+        join:
+          joinCondition: FROM {{ ref('SOURCE', 'DAILY_WEATHER') }}
+      name: DAILY_WEATHER
+      schema: ""
+      sqlType: Source
+      table: DAILY_WEATHER
+      type: sourceInput
+    stepCounter: b21740db-65ca-4f86-be78-3bb79371efa6
