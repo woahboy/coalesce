@@ -1,0 +1,62 @@
+steps:
+  V_DAILY_WEATHER-a4f76193-7385-4a1a-8d14-54e7179089fc:
+    operation:
+      config:
+        insertStrategy: UNION
+        selectDistinct: false
+      database: ""
+      deployEnabled: true
+      description: ""
+      isMultisource: false
+      locationName: TARGET
+      materializationType: view
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: 94a15574-2755-472c-946a-11b417b2c868
+              stepCounter: a4f76193-7385-4a1a-8d14-54e7179089fc
+            dataType: VARIANT
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: V
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: a5a45bdc-d2eb-4ec1-a5ee-2fd91c5ef0a7
+                    stepCounter: e985de0c-bf50-4fdb-b5c3-0f4ce6f971e6
+                transform: ""
+          - columnReference:
+              columnCounter: d6c90067-b34b-45e1-9c5e-84295fdb139d
+              stepCounter: a4f76193-7385-4a1a-8d14-54e7179089fc
+            dataType: TIMESTAMP_NTZ(9)
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: T
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 157be82f-d02d-4db3-937f-8a8946954f10
+                    stepCounter: e985de0c-bf50-4fdb-b5c3-0f4ce6f971e6
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: SOURCE
+                nodeName: DAILY_WEATHER
+            join:
+              joinCondition: FROM {{ ref('SOURCE', 'DAILY_WEATHER') }} "DAILY_WEATHER"
+            name: V_DAILY_WEATHER
+            noLinkRefs: []
+      name: V_DAILY_WEATHER
+      overrideSQL: false
+      schema: ""
+      sqlType: View
+      type: sql
+    stepCounter: a4f76193-7385-4a1a-8d14-54e7179089fc
