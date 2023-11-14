@@ -134,7 +134,7 @@ steps:
               - columnReferences:
                   - columnCounter: ecd8d80e-250e-4a9f-90cd-259483dd19f8
                     stepCounter: 42512d53-ba11-4aee-9094-1c74abd1fc1f
-                transform: CASE WHEN "CUSTOMER"."C_ACCTBAL" > 5000 THEN 'High' ELSE 'Low' END
+                transform: CASE WHEN "CUSTOMER"."C_ACCTBAL" > 5000 AND "CUSTOMER"."C_MKTSEGMENT" IN ('BUILDING', 'HOUSEHOLD') THEN 'High' ELSE 'Low' END
           - appliedColumnTests: {}
             columnReference:
               columnCounter: f6acaf90-f754-455f-abc7-da2a58c297e5
