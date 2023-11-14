@@ -14,9 +14,24 @@ steps:
       locationName: TARGET
       materializationType: table
       metadata:
-        appliedNodeTests: []
+        appliedNodeTests:
+          - continueOnFailure: false
+            description: ""
+            name: Test
+            runOrder: Before
+            templateString: |2-
+                  SELECT
+                    "C_MKTSEGMENT",
+                    COUNT(*)
+                  FROM
+                    "JUSTIN_EDW"."DEV_EDW"."STG_CUSTOMER"
+                  GROUP BY
+                    "C_MKTSEGMENT"
+                  HAVING
+                    COUNT(*) > 1
         columns:
-          - columnReference:
+          - appliedColumnTests: {}
+            columnReference:
               columnCounter: 11d8296b-840f-45ee-b640-a1f92a8bbb6e
               stepCounter: 7eb37746-3d71-4b68-98a5-4fa60dc65b43
             dataType: NUMBER(38,0)
@@ -30,7 +45,8 @@ steps:
                   - columnCounter: 518533fe-eaec-4206-99c5-67ddc389c719
                     stepCounter: 42512d53-ba11-4aee-9094-1c74abd1fc1f
                 transform: ""
-          - columnReference:
+          - appliedColumnTests: {}
+            columnReference:
               columnCounter: 3e36a026-3780-4364-b55b-d3ab8022977a
               stepCounter: 7eb37746-3d71-4b68-98a5-4fa60dc65b43
             dataType: VARCHAR(25)
@@ -44,7 +60,8 @@ steps:
                   - columnCounter: d4fd4ce4-be59-4205-8647-88dbfa58047c
                     stepCounter: 42512d53-ba11-4aee-9094-1c74abd1fc1f
                 transform: ""
-          - columnReference:
+          - appliedColumnTests: {}
+            columnReference:
               columnCounter: b6dcad1f-c977-464c-a5f8-b8b823005215
               stepCounter: 7eb37746-3d71-4b68-98a5-4fa60dc65b43
             dataType: VARCHAR(40)
@@ -58,7 +75,8 @@ steps:
                   - columnCounter: 8c41f6ed-3f92-42a4-9ca6-a7d6c2546fe7
                     stepCounter: 42512d53-ba11-4aee-9094-1c74abd1fc1f
                 transform: ""
-          - columnReference:
+          - appliedColumnTests: {}
+            columnReference:
               columnCounter: d760ad30-a222-4852-8583-1885706a4626
               stepCounter: 7eb37746-3d71-4b68-98a5-4fa60dc65b43
             dataType: VARCHAR(15)
@@ -72,7 +90,8 @@ steps:
                   - columnCounter: 0fcd6e84-f2d5-43a7-b516-56cf3a0fd99b
                     stepCounter: 42512d53-ba11-4aee-9094-1c74abd1fc1f
                 transform: ""
-          - columnReference:
+          - appliedColumnTests: {}
+            columnReference:
               columnCounter: 79f6d7ac-78a7-43d8-ae35-a26c0b8c0ec0
               stepCounter: 7eb37746-3d71-4b68-98a5-4fa60dc65b43
             dataType: NUMBER(12,2)
@@ -86,7 +105,8 @@ steps:
                   - columnCounter: 4d762731-d708-4982-8ecb-6420c6187147
                     stepCounter: 42512d53-ba11-4aee-9094-1c74abd1fc1f
                 transform: ""
-          - columnReference:
+          - appliedColumnTests: {}
+            columnReference:
               columnCounter: aed1cab8-51fd-4969-a097-b479b97f364c
               stepCounter: 7eb37746-3d71-4b68-98a5-4fa60dc65b43
             dataType: VARCHAR(10)
@@ -100,7 +120,8 @@ steps:
                   - columnCounter: ecd8d80e-250e-4a9f-90cd-259483dd19f8
                     stepCounter: 42512d53-ba11-4aee-9094-1c74abd1fc1f
                 transform: ""
-          - columnReference:
+          - appliedColumnTests: {}
+            columnReference:
               columnCounter: effc27d0-5d4e-4271-a0ac-3a80387edb2e
               stepCounter: 7eb37746-3d71-4b68-98a5-4fa60dc65b43
             dataType: VARCHAR(10)
@@ -114,7 +135,8 @@ steps:
                   - columnCounter: ecd8d80e-250e-4a9f-90cd-259483dd19f8
                     stepCounter: 42512d53-ba11-4aee-9094-1c74abd1fc1f
                 transform: CASE WHEN "CUSTOMER"."C_ACCTBAL" > 5000 THEN 'High' ELSE 'Low' END
-          - columnReference:
+          - appliedColumnTests: {}
+            columnReference:
               columnCounter: f6acaf90-f754-455f-abc7-da2a58c297e5
               stepCounter: 7eb37746-3d71-4b68-98a5-4fa60dc65b43
             dataType: VARCHAR(117)
@@ -128,7 +150,8 @@ steps:
                   - columnCounter: 4c7f2741-05d1-4f1b-950f-820ac2ab4df9
                     stepCounter: 42512d53-ba11-4aee-9094-1c74abd1fc1f
                 transform: ""
-          - columnReference:
+          - appliedColumnTests: {}
+            columnReference:
               columnCounter: 4927d43e-5fed-4321-9009-6b0f8497861a
               stepCounter: 7eb37746-3d71-4b68-98a5-4fa60dc65b43
             dataType: VARCHAR(25)
@@ -140,7 +163,8 @@ steps:
                   - columnCounter: 4e8a5814-3c99-4d87-81d4-0af06852d5c9
                     stepCounter: 25f69740-2dad-4a4f-b781-1addabba9ec3
                 transform: ""
-          - columnReference:
+          - appliedColumnTests: {}
+            columnReference:
               columnCounter: 1ecb0734-22b4-4314-9b37-717048615043
               stepCounter: 7eb37746-3d71-4b68-98a5-4fa60dc65b43
             dataType: VARCHAR(152)
