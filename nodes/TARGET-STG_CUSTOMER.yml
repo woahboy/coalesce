@@ -5,6 +5,7 @@ steps:
         insertStrategy: INSERT
         postSQL: ""
         preSQL: ""
+        selectDistinct: true
         testsEnabled: true
         truncateBefore: true
       database: ""
@@ -14,9 +15,20 @@ steps:
       locationName: TARGET
       materializationType: table
       metadata:
-        appliedNodeTests: []
+        appliedNodeTests:
+          - continueOnFailure: false
+            description: ""
+            name: Test
+            runOrder: After
+            templateString: |-
+              SELECT "C_MKTSEGMENT", COUNT(*)
+              FROM "JUSTIN_EDW"."DEV_EDW"."STG_CUSTOMER" 
+              GROUP BY "C_MKTSEGMENT"
+              HAVING COUNT(*) > 1
         columns:
-          - columnReference:
+          - appliedColumnTests:
+              isDistinct: false
+            columnReference:
               columnCounter: 1e76afbd-9d39-4937-a1f4-7bb0fb197fbc
               stepCounter: 6aae3143-9274-418d-8cd2-ce6da82477b0
             dataType: NUMBER(38,0)
@@ -30,7 +42,9 @@ steps:
                   - columnCounter: 0c02cf6e-a4d6-4177-8319-458d3db20b53
                     stepCounter: b4308975-85a6-4853-9b92-98064b577a50
                 transform: ""
-          - columnReference:
+          - appliedColumnTests:
+              isDistinct: false
+            columnReference:
               columnCounter: 7b06a2d7-50aa-4e92-b6e2-3b50c3f1bfd3
               stepCounter: 6aae3143-9274-418d-8cd2-ce6da82477b0
             dataType: STRING
@@ -44,7 +58,9 @@ steps:
                   - columnCounter: d6b4d19b-711d-4c34-9e77-67b06d23179b
                     stepCounter: b4308975-85a6-4853-9b92-98064b577a50
                 transform: ""
-          - columnReference:
+          - appliedColumnTests:
+              isDistinct: false
+            columnReference:
               columnCounter: e7b34aed-30cd-475f-afc7-70eacd2990c5
               stepCounter: 6aae3143-9274-418d-8cd2-ce6da82477b0
             dataType: STRING
@@ -58,7 +74,9 @@ steps:
                   - columnCounter: 93f8e036-07e3-41b9-96b4-ffaa40017120
                     stepCounter: b4308975-85a6-4853-9b92-98064b577a50
                 transform: ""
-          - columnReference:
+          - appliedColumnTests:
+              isDistinct: false
+            columnReference:
               columnCounter: 9e4b1d06-5ffc-46c6-b50a-031891a69dd6
               stepCounter: 6aae3143-9274-418d-8cd2-ce6da82477b0
             dataType: STRING
@@ -72,7 +90,9 @@ steps:
                   - columnCounter: 57df1e61-b0f8-44f3-a73a-0d4e9fe9f883
                     stepCounter: b4308975-85a6-4853-9b92-98064b577a50
                 transform: ""
-          - columnReference:
+          - appliedColumnTests:
+              isDistinct: false
+            columnReference:
               columnCounter: 800c95e7-6af3-451c-bb7c-0173b8f1b4f5
               stepCounter: 6aae3143-9274-418d-8cd2-ce6da82477b0
             dataType: NUMBER(12,2)
@@ -86,7 +106,9 @@ steps:
                   - columnCounter: 678c43d6-f33d-4890-a514-8e94c09eb54d
                     stepCounter: b4308975-85a6-4853-9b92-98064b577a50
                 transform: ""
-          - columnReference:
+          - appliedColumnTests:
+              isDistinct: true
+            columnReference:
               columnCounter: a85f1bbd-caff-41f5-b18f-06d3ed8ffd25
               stepCounter: 6aae3143-9274-418d-8cd2-ce6da82477b0
             dataType: STRING
@@ -100,7 +122,9 @@ steps:
                   - columnCounter: 09450388-d245-43be-ab8b-ed2f0a48d1c3
                     stepCounter: b4308975-85a6-4853-9b92-98064b577a50
                 transform: ""
-          - columnReference:
+          - appliedColumnTests:
+              isDistinct: false
+            columnReference:
               columnCounter: 84b841d8-2509-45eb-a766-28cdbe6be7b3
               stepCounter: 6aae3143-9274-418d-8cd2-ce6da82477b0
             dataType: STRING
@@ -114,7 +138,9 @@ steps:
                   - columnCounter: 09450388-d245-43be-ab8b-ed2f0a48d1c3
                     stepCounter: b4308975-85a6-4853-9b92-98064b577a50
                 transform: CASE WHEN "CUSTOMER"."C_ACCTBAL" > 5000 AND "CUSTOMER"."C_MKTSEGMENT" IN ('BUILDING', 'HOUSEHOLD') THEN 'High' ELSE 'Low' END
-          - columnReference:
+          - appliedColumnTests:
+              isDistinct: false
+            columnReference:
               columnCounter: 1ca1a748-dfe9-4d37-a51e-6ab212f43943
               stepCounter: 6aae3143-9274-418d-8cd2-ce6da82477b0
             dataType: STRING
@@ -128,7 +154,9 @@ steps:
                   - columnCounter: b0319711-76c6-42a2-83df-bedfcfe8edf2
                     stepCounter: b4308975-85a6-4853-9b92-98064b577a50
                 transform: ""
-          - columnReference:
+          - appliedColumnTests:
+              isDistinct: false
+            columnReference:
               columnCounter: b62654c0-58e4-4c51-9681-b1be91016401
               stepCounter: 6aae3143-9274-418d-8cd2-ce6da82477b0
             dataType: STRING
@@ -140,7 +168,9 @@ steps:
                   - columnCounter: 04455563-2b07-4ee4-b453-da1d644dbc42
                     stepCounter: 8a3ffffe-16f3-4afb-a95e-5819c131824d
                 transform: ""
-          - columnReference:
+          - appliedColumnTests:
+              isDistinct: false
+            columnReference:
               columnCounter: 1a18a0ab-c6b9-4cf9-955a-5eebbb555265
               stepCounter: 6aae3143-9274-418d-8cd2-ce6da82477b0
             dataType: STRING
@@ -152,7 +182,9 @@ steps:
                   - columnCounter: 8d61158d-5c6f-4526-b9c0-9cb778b99a52
                     stepCounter: 8a3ffffe-16f3-4afb-a95e-5819c131824d
                 transform: ""
-          - columnReference:
+          - appliedColumnTests:
+              isDistinct: false
+            columnReference:
               columnCounter: 94eca9ad-55c6-4166-8c09-78e8fba7934e
               stepCounter: 6aae3143-9274-418d-8cd2-ce6da82477b0
             dataType: STRING
@@ -164,7 +196,9 @@ steps:
                   - columnCounter: 1d89a697-77d3-45a6-89e8-6561ea6ba1c9
                     stepCounter: 704fd601-7248-4e2a-8e57-39d54a6e96b7
                 transform: ""
-          - columnReference:
+          - appliedColumnTests:
+              isDistinct: false
+            columnReference:
               columnCounter: ffa4ecd7-eb30-4186-b885-3a8f5dedc616
               stepCounter: 6aae3143-9274-418d-8cd2-ce6da82477b0
             dataType: STRING
@@ -177,7 +211,8 @@ steps:
                     stepCounter: 704fd601-7248-4e2a-8e57-39d54a6e96b7
                 transform: ""
         cteString: ""
-        enabledColumnTestIDs: []
+        enabledColumnTestIDs:
+          - isDistinct
         sourceMapping:
           - aliases:
               CUSTOMER: b4308975-85a6-4853-9b92-98064b577a50
@@ -204,6 +239,6 @@ steps:
       name: STG_CUSTOMER
       overrideSQL: false
       schema: ""
-      sqlType: Stage
+      sqlType: "249"
       type: sql
     stepCounter: 6aae3143-9274-418d-8cd2-ce6da82477b0
