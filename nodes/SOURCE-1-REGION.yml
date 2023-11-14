@@ -1,0 +1,63 @@
+steps:
+  REGION-0d1ebef2-66b3-454b-8d33-2b7a9e7524c5:
+    operation:
+      database: ""
+      dataset: ""
+      deployEnabled: true
+      description: Region data as defined by TPC-H
+      locationName: SOURCE-1
+      metadata:
+        columns:
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: f9ef3b63-d62d-44db-b8fb-5d8ebf206eea
+              stepCounter: 0d1ebef2-66b3-454b-8d33-2b7a9e7524c5
+            config: {}
+            dataType: NUMBER(38,0)
+            defaultValue: ""
+            description: ""
+            name: R_REGIONKEY
+            nullable: false
+            primaryKey: false
+            uniqueKey: false
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: ff85baa1-83a1-40ca-b359-fe1be032630a
+              stepCounter: 0d1ebef2-66b3-454b-8d33-2b7a9e7524c5
+            config: {}
+            dataType: VARCHAR(25)
+            defaultValue: ""
+            description: ""
+            name: R_NAME
+            nullable: false
+            primaryKey: false
+            uniqueKey: false
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 7f5572be-1e4d-4556-8162-4e153d0a38ce
+              stepCounter: 0d1ebef2-66b3-454b-8d33-2b7a9e7524c5
+            config: {}
+            dataType: VARCHAR(152)
+            defaultValue: ""
+            description: ""
+            name: R_COMMENT
+            nullable: true
+            primaryKey: false
+            uniqueKey: false
+        join:
+          joinCondition: FROM {{ ref('SOURCE-1', 'REGION') }}
+      name: REGION
+      schema: ""
+      sqlType: Source
+      table: REGION
+      type: sourceInput
+    stepCounter: 0d1ebef2-66b3-454b-8d33-2b7a9e7524c5

@@ -176,12 +176,37 @@ steps:
                   - columnCounter: a3fb4a4f-e6bd-46f9-a295-72a8e91694f5
                     stepCounter: 25f69740-2dad-4a4f-b781-1addabba9ec3
                 transform: ""
+          - columnReference:
+              columnCounter: b477a48f-19d1-4063-ac4c-ce6021ac6795
+              stepCounter: 7eb37746-3d71-4b68-98a5-4fa60dc65b43
+            dataType: VARCHAR(25)
+            description: ""
+            name: R_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: ff85baa1-83a1-40ca-b359-fe1be032630a
+                    stepCounter: 0d1ebef2-66b3-454b-8d33-2b7a9e7524c5
+                transform: ""
+          - columnReference:
+              columnCounter: a5d99eb9-73ed-449b-8ad1-e287f1525c3c
+              stepCounter: 7eb37746-3d71-4b68-98a5-4fa60dc65b43
+            dataType: VARCHAR(152)
+            description: ""
+            name: R_COMMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 7f5572be-1e4d-4556-8162-4e153d0a38ce
+                    stepCounter: 0d1ebef2-66b3-454b-8d33-2b7a9e7524c5
+                transform: ""
         cteString: ""
         enabledColumnTestIDs: []
         sourceMapping:
           - aliases:
               CUSTOMER: 42512d53-ba11-4aee-9094-1c74abd1fc1f
               NATION: 25f69740-2dad-4a4f-b781-1addabba9ec3
+              REGION: 0d1ebef2-66b3-454b-8d33-2b7a9e7524c5
             customSQL:
               customSQL: ""
             dependencies:
@@ -189,11 +214,15 @@ steps:
                 nodeName: CUSTOMER
               - locationName: SOURCE-1
                 nodeName: NATION
+              - locationName: SOURCE-1
+                nodeName: REGION
             join:
               joinCondition: |-
                 FROM {{ ref('SOURCE-1', 'CUSTOMER') }} "CUSTOMER"
                 INNER JOIN {{ ref('SOURCE-1', 'NATION') }} "NATION"
                 ON "CUSTOMER"."C_NATIONKEY" = "NATION"."N_NATIONKEY"
+                INNER JOIN {{ ref('SOURCE-1', 'REGION') }} "REGION"
+                ON "NATION"."N_REGIONKEY" = "REGION"."R_REGIONKEY"
             name: STG_CUSTOMER
             noLinkRefs: []
       name: STG_CUSTOMER
