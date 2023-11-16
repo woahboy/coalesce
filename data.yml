@@ -22,6 +22,13 @@ jobs:
     name: PARSE JSON
     steps: []
     subgraphs: []
+  Job-29:
+    excludeSelector: ""
+    id: 29
+    includeSelector: "+{ location: SOURCE name: FCT_LINEITEM_ORDERS_DIM_LOOKUP }"
+    name: Job1
+    steps: []
+    subgraphs: []
 locations:
   SOURCE:
     mappingDefinitions:
@@ -1295,6 +1302,271 @@ stepTypes:
             	{%- endfor %}
             {%- endif %}
     name: Dynamic Table
+    version: 1
+  StepType-250:
+    id: "250"
+    isDisabled: false
+    metadata:
+      defaultStorageLocation: null
+      error: null
+      nodeMetadataSpec: |
+        capitalized: CDC Table
+        short: "CDC"
+        tagColor: "#ff33cc"
+        plural: CDC Tables
+
+        deployStrategy: advanced
+
+        config:
+        - groupName: Task
+          items:
+
+          - displayName: Create Task
+            enableIf: {{config.cdcTableEnabled}}
+            attributeName: taskEnabled
+            type: toggleButton
+            default: false
+            isRequired: false
+
+          - displayName: Task Schedule
+            enableIf: "{{config.taskEnabled}}"
+            attributeName: taskSchedule
+            type: dropdownSelector
+            default: "Every 30 minutes"
+            options:
+            - "Every minute"
+            - "Every 5 minutes"
+            - "Every 30 minutes"
+            - "Every hour"
+            - "Every day"
+            isRequired: false
+
+          - displayName: Warehouse
+            enableIf: "{{config.taskEnabled}}"
+            attributeName: taskWarehouse
+            type: dropdownSelector
+            default: "EMEA_TRANSFORM_XS_WH"
+            options:
+            - "EMEA_TRANSFORM_XS_WH"
+            - "EMEA_TRANSFORM_S_WH"
+            - "EMEA_TRANSFORM_M_WH"
+            - "EMEA_TRANSFORM_L_WH"
+            - "COMPUTE_WH"
+            - "My warehouse"
+            isRequired: false
+
+          - displayName: Custom Task Name
+            enableIf: "{{config.taskEnabled}}"
+            attributeName: taskCustomName
+            type: textBox
+            isRequired: false
+
+        - groupName: Hidden config
+          enableIf: "false"
+          items:
+          - displayName: Type
+            type: materializationSelector
+            default: table
+            options:
+            - table
+            isRequired: false
+
+        systemColumns:
+        - displayName: "METADATA$ACTION"
+          transform: "METADATA$ACTION"
+          dataType: STRING
+          placement: end
+          attributeName: isStreamMetadataAction
+          description: Indicates the DML operation (INSERT, DELETE) recorded.
+        - displayName: "METADATA$ISUPDATE"
+          transform: "METADATA$ISUPDATE"
+          dataType: STRING
+          placement: end
+          attributeName: isStreamMetadataIsUpdate
+          description: Indicates whether the operation was part of an UPDATE statement.
+        - displayName: "METADATA$ROW_ID"
+          transform: "METADATA$ROW_ID"
+          dataType: STRING
+          placement: end
+          attributeName: isStreamMetadataRowId
+          description: Specifies the unique and immutable ID for the row, which can be used to track changes to specific rows over time.
+        - displayName: "CDC_ID"
+          transform: "{{ ref_no_link(node.location.name, \"SEQ_\" + node.name) }}.NEXTVAL"
+          dataType: INTEGER
+          placement: end
+          attributeName: isStreamMetadataCDCId
+          description: Medtronic specific CDC identifier based on a sequence.
+        - displayName: "CDC_TIMESTAMP"
+          transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+          dataType: TIMESTAMP
+          placement: end
+          attributeName: isSystemCreateDate
+          description: Medtronic specific attribute containing the timestamp of storing the CDC record.
+      templates:
+        create:
+          templateString: |-
+            {% if currentState != undefined and desiredState == undefined %}
+
+                {{ stage('Drop Stream') }}
+                DROP STREAM IF EXISTS {{ ref_no_link(currentState.node.location.name, currentState.node.name) }}
+
+                {{ stage('Drop Sequence') }}
+                DROP SEQUENCE IF NOT EXISTS {{ ref_no_link(currentState.node.location.name, 'SEQ_' + currentState.node.name) }}
+
+                {{ stage('Drop CDC Table') }}
+                DROP TABLE IF EXISTS {{ ref_no_link(currentState.node.location.name, currentState.node.name) }}
+                
+                {% if currentState.config.taskEnabled is true %}
+
+                    {{ stage('Drop Task') }}
+                        DROP TASK 
+                    {% if currentState.config.taskCustomName != '' %}
+                        {{ ref_no_link(currentState.node.location.name, currentState.config.taskCustomName) }}
+                    {% else %}
+                        {{ ref_no_link(currentState.node.location.name, 'TSK_' + currentState.node.name) }}
+                    {% endif %}
+
+                {% endif %}
+
+            {% else %}
+
+                {{ stage('Create Stream') }}
+
+                CREATE OR REPLACE STREAM {{ ref_no_link(desiredState.node.location.name, 'STR_' + desiredState.node.name) }}
+                ON TABLE {{ ref(desiredState.node.location.name, desiredState.sources[0].dependencies[0].node.name) }}
+                APPEND_ONLY = FALSE
+                COMMENT = 'CDC Stream on {{ ref(desiredState.node.location.name, desiredState.sources[0].dependencies[0].node.name) }}'
+
+                {{ stage('Create Sequence') }}
+
+                CREATE SEQUENCE IF NOT EXISTS {{ ref_no_link(desiredState.node.location.name, 'SEQ_' + desiredState.node.name) }}
+
+                {{ stage('Create CDC Table') }}
+
+                CREATE OR REPLACE TABLE {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }}
+                (
+                    {% for col in desiredState.columns %}
+                        "{{ col.name }}" {{ col.dataType }}
+                        {%- if not col.nullable %} NOT NULL
+                            {%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
+                        {% endif %}
+                        {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
+                        {%- if not loop.last -%}, {% endif %}
+                    {% endfor %}
+                )
+                {%- if desiredState.node.description | length > 0 %} COMMENT = '{{ desiredState.node.description }}'{% endif %}
+
+                {% if desiredState.config.taskEnabled is true %}
+
+                    {{ stage('Create Task') }}
+
+                    CREATE OR REPLACE TASK 
+                    {% if desiredState.config.taskCustomName != '' %}
+                        {{ ref_no_link(desiredState.node.location.name, desiredState.config.taskCustomName) }}
+                    {% else %}
+                        {{ ref_no_link(desiredState.node.location.name, 'TSK_' + desiredState.node.name) }}
+                    {% endif %}
+                    WAREHOUSE = {{desiredState.config.taskWarehouse}}
+                
+                    SCHEDULE = 
+                    {% if desiredState.config.taskSchedule == 'Every minute' %}
+                        '1 MINUTE'
+                    {% elif desiredState.config.taskSchedule == 'Every 5 minutes' %}
+                        '5 MINUTE'
+                    {% elif desiredState.config.taskSchedule == 'Every 30 minutes' %}
+                        '30 MINUTE'
+                    {% elif desiredState.config.taskSchedule == 'Every hour' %}
+                        '60 MINUTE'
+                    {% elif desiredState.config.taskSchedule == 'Every day' %}
+                        '3600 MINUTE'
+                    {% else %}
+                        'INVALID'
+                    {% endif %}
+                    COMMENT='Task to copy data of stream STR_{{desiredState.node.name}} to CDC Table {{desiredState.node.name}}'
+                    WHEN SYSTEM$STREAM_HAS_DATA('{{ ref_no_link(desiredState.node.location.name, 'STR_' + desiredState.node.name) }}')
+                    AS
+                    INSERT INTO {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }}
+
+                    {% for source in desiredState.sources %}
+                        SELECT
+
+                        {% for col in source.columns %}
+                            {% if col.name == 'CDC_ID' %}
+                                SEQ_{{desiredState.node.name}}.NEXTVAL
+                            {% elif col.transform | trim != '' %}
+                                {{ col.transform.replace(source.dependencies[0].node.name, 'STR_' + desiredState.node.name) }}
+                            {% elif col.sourceColumns[0].column and col.sourceColumns[0].column.name %}
+                                "STR_{{ desiredState.node.name }}"."{{ col.sourceColumns[0].column.name }}"
+                            {% else %}
+                                NULL
+                            {% endif %}
+                            AS "{{ col.name }}"
+                            {%- if not loop.last -%}, {% endif %}
+                        {% endfor %}
+
+                        FROM {{ ref_no_link(desiredState.node.location.name, 'STR_' + desiredState.node.name) }}
+
+                        {% if desiredState.config.insertStrategy in ['UNION', 'UNION ALL'] and not loop.last %}
+                            {{desiredState.config.insertStrategy}}
+                        {% endif %}
+
+                    {% endfor %}
+
+                {% elif currentState != undefined and currentState.config.taskEnabled is true %}
+
+                    {{ stage('Drop Task') }}
+                    DROP TASK 
+                    {% if currentState.config.taskCustomName != '' %}
+                        {{ ref_no_link(currentState.node.location.name, currentState.config.taskCustomName) }}
+                    {% else %}
+                        {{ ref_no_link(currentState.node.location.name, 'TSK_' + currentState.node.name) }}
+                    {% endif %}
+
+                {% endif %}
+
+            {% endif %}
+        run:
+          templateString: |-
+            {% if config.taskEnabled is true %}
+
+                {{ stage('Resume Task') }}
+
+                ALTER TASK 
+                {% if config.taskCustomName != '' %}
+                    {{ ref_no_link(node.location.name, config.taskCustomName) }}
+                {% else %}
+                    {{ ref_no_link(node.location.name, "TSK_" + node.name) }}
+                {% endif %}
+                RESUME
+
+            {% else %}
+
+                {{ stage('Insert From Stream') }}
+
+                INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
+
+                {% for source in sources %}
+                
+                    SELECT
+                    {% for col in source.columns %}
+                        {% if col.name == 'CDC_ID' %}
+                            {{ ref_no_link(node.location.name, "SEQ_" + node.name) }}.NEXTVAL
+                        {% else %}
+                            {{ get_source_transform(col) }}
+                        {% endif %} AS "{{ col.name }}"
+                        {%- if not loop.last -%}, {% endif %}
+                    {% endfor %}
+
+                    FROM {{ ref_no_link(node.location.name, "STR_" + node.name) }} AS "{{ sources[0].dependencies[0].node.name }}"
+
+                    {% if config.insertStrategy in ['UNION', 'UNION ALL'] and not loop.last %}
+                        {{config.insertStrategy}}
+                    {% endif %}
+
+                {% endfor %}
+
+            {% endif %}
+    name: CDC
     version: 1
   StepType-30:
     id: "30"
