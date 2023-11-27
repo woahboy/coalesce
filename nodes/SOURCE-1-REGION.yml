@@ -1,0 +1,63 @@
+steps:
+  REGION-a0e5c70e-c19a-40a9-bc7a-bff6e0ac8fd8:
+    operation:
+      database: ""
+      dataset: ""
+      deployEnabled: true
+      description: Region data as defined by TPC-H
+      locationName: SOURCE-1
+      metadata:
+        columns:
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: 9334a6e7-9516-4c81-aa88-f952e81c0018
+              stepCounter: a0e5c70e-c19a-40a9-bc7a-bff6e0ac8fd8
+            config: {}
+            dataType: NUMBER(38,0)
+            defaultValue: ""
+            description: ""
+            name: R_REGIONKEY
+            nullable: false
+            primaryKey: false
+            uniqueKey: false
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: fdc89831-1f4b-4544-8d62-a2e41a7ed8f5
+              stepCounter: a0e5c70e-c19a-40a9-bc7a-bff6e0ac8fd8
+            config: {}
+            dataType: VARCHAR(25)
+            defaultValue: ""
+            description: ""
+            name: R_NAME
+            nullable: false
+            primaryKey: false
+            uniqueKey: false
+          - acceptedValues:
+              strictMatch: true
+              values: []
+            appliedColumnTests: {}
+            columnReference:
+              columnCounter: bdb814b6-4f3d-4166-a3b7-2917d62338af
+              stepCounter: a0e5c70e-c19a-40a9-bc7a-bff6e0ac8fd8
+            config: {}
+            dataType: VARCHAR(152)
+            defaultValue: ""
+            description: ""
+            name: R_COMMENT
+            nullable: true
+            primaryKey: false
+            uniqueKey: false
+        join:
+          joinCondition: FROM {{ ref('SOURCE-1', 'REGION') }}
+      name: REGION
+      schema: ""
+      sqlType: Source
+      table: REGION
+      type: sourceInput
+    stepCounter: a0e5c70e-c19a-40a9-bc7a-bff6e0ac8fd8
