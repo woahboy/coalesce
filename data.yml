@@ -9,6 +9,14 @@ jobs:
     steps: []
     subgraphs: []
 locations:
+  COVID:
+    mappingDefinitions:
+      "3":
+        database: COVID19
+        schema: PUBLIC
+      "5":
+        database: COVID19
+        schema: PUBLIC
   SOURCE:
     mappingDefinitions:
       "3":
@@ -2463,8 +2471,6 @@ stepTypes:
                     {% endfor %}
                 FROM TABLE(RESULT_SCAN(-1)) RES;
             {% endif %}
-
-            END
     name: Cortex ML
     version: 1
   StepType-30:
