@@ -4,7 +4,7 @@ jobs:
   Job-23:
     excludeSelector: ""
     id: 23
-    includeSelector: "+{ location: SOURCE name: DVSTG_CUSTOMER }+"
+    includeSelector: "+{ location: SOURCE name: SATV0_CUSTOMER_ADDRESS1}"
     name: Raw Vault Job
     steps: []
     subgraphs: []
@@ -550,7 +550,7 @@ macros:
       {#--                       satellite's hash diff attribute.                              --#}
       {%- if is_hashdiff and multi_active_key is defined and multi_active_key|length>0 -%}
           {%- set multi_active_key = multi_active_key|join(", ") -%}
-          {%- set listagg_closing = ' WITHIN GROUP (ORDER BY "{}") OVER (PARTITION BY "{}", "{}"))'.format(multi_active_key, main_hashkey_col, ldts_alias) -%}
+          {%- set listagg_closing = ' WITHIN GROUP (ORDER BY "{}") OVER (PARTITION BY "{}", {}))'.format(multi_active_key, main_hashkey_col, 'SYSDATE()') -%}
       {%- endif -%}
 
       {%- if 'VARCHAR' in datatype or 'CHAR' in datatype or 'STRING' in datatype or 'TEXT' in datatype %}
@@ -3909,17 +3909,17 @@ stepTypes:
             {%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
         run:
           templateString: |-
-            {% if config.preSQL %}
-              {{ stage('Pre-SQL') }}
-              {{ config.preSQL }}
-            {% endif %}
-
             {% for test in node.tests if config.testsEnabled %}
               {% if test.runOrder == 'Before' %}
                 {{ test_stage(test.name, test.continueOnFailure) }}
                 {{ test.templateString }}
               {% endif %}
             {% endfor %}
+
+            {% if config.preSQL %}
+              {{ stage('Pre-SQL') }}
+              {{ config.preSQL }}
+            {% endif %}
 
             {{ stage('Insert New Rows') }}
 
@@ -4697,7 +4697,29 @@ stepTypes:
 
             SELECT * FROM active_logic_combined
         run:
-          templateString: ""
+          templateString: |-
+            {% for test in node.tests if config.testsEnabled %}
+              {% if test.runOrder == 'Before' %}
+                {{ test_stage(test.name, test.continueOnFailure) }}
+                {{ test.templateString }}
+              {% endif %}
+            {% endfor %}
+
+            {% if config.testsEnabled %}
+              {% for test in node.tests %}
+                {% if test.runOrder == 'After' %}
+                  {{ test_stage(test.name, test.continueOnFailure) }}
+                  {{ test.templateString }}
+                    {% endif %}
+              {% endfor %}
+
+              {% for column in columns %}
+                {% for test in column.tests %}
+                  {{ test_stage(column.name + ": " + test.name) }}
+                  {{ test.templateString }}
+                {% endfor %}
+              {% endfor %}
+            {% endif %}
     name: "Datavault by Scalefree: Snapshot v1"
     version: 1
   StepType-SCALEFREE-DATAVAULT4COALESCE::18:
@@ -4932,7 +4954,29 @@ stepTypes:
                 {{ source.join }}
             {% endfor %}
         run:
-          templateString: ""
+          templateString: |-
+            {% for test in node.tests if config.testsEnabled %}
+              {% if test.runOrder == 'Before' %}
+                {{ test_stage(test.name, test.continueOnFailure) }}
+                {{ test.templateString }}
+              {% endif %}
+            {% endfor %}
+
+            {% if config.testsEnabled %}
+              {% for test in node.tests %}
+                {% if test.runOrder == 'After' %}
+                  {{ test_stage(test.name, test.continueOnFailure) }}
+                  {{ test.templateString }}
+                    {% endif %}
+              {% endfor %}
+
+              {% for column in columns %}
+                {% for test in column.tests %}
+                  {{ test_stage(column.name + ": " + test.name) }}
+                  {{ test.templateString }}
+                {% endfor %}
+              {% endfor %}
+            {% endif %}
     name: "Datavault by Scalefree: Multi-active Satellite v1"
     version: 1
   StepType-SCALEFREE-DATAVAULT4COALESCE::23:
@@ -5005,10 +5049,16 @@ stepTypes:
             {%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
         run:
           templateString: |-
+            {% for test in node.tests if config.testsEnabled %}
+              {% if test.runOrder == 'Before' %}
+                {{ test_stage(test.name, test.continueOnFailure) }}
+                {{ test.templateString }}
+              {% endif %}
+            {% endfor %}
+
             {% if config.preSQL %}
                 {{ stage('Pre-SQL') }}
                 {{ config.preSQL }}
-
             {% endif %}
 
             {% for source in sources %}
@@ -5063,6 +5113,22 @@ stepTypes:
             {% if config.postSQL %}
                 {{ stage('Post-SQL') }}
                 {{ config.postSQL }}    
+            {% endif %}
+
+            {% if config.testsEnabled %}
+              {% for test in node.tests %}
+                {% if test.runOrder == 'After' %}
+                  {{ test_stage(test.name, test.continueOnFailure) }}
+                  {{ test.templateString }}
+                    {% endif %}
+              {% endfor %}
+
+              {% for column in columns %}
+                {% for test in column.tests %}
+                  {{ test_stage(column.name + ": " + test.name) }}
+                  {{ test.templateString }}
+                {% endfor %}
+              {% endfor %}
             {% endif %}
     name: "Datavault by Scalefree: Non-Historized Link"
     version: 1
@@ -5128,10 +5194,16 @@ stepTypes:
             {%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
         run:
           templateString: |-
+            {% for test in node.tests if config.testsEnabled %}
+              {% if test.runOrder == 'Before' %}
+                {{ test_stage(test.name, test.continueOnFailure) }}
+                {{ test.templateString }}
+              {% endif %}
+            {% endfor %}
+
             {% if config.preSQL %}
                 {{ stage('Pre-SQL') }}
                 {{ config.preSQL }}
-
             {% endif %}
 
             {% for source in sources %}
@@ -5187,6 +5259,22 @@ stepTypes:
             {% if config.postSQL %}
                 {{ stage('Post-SQL') }}
                 {{ config.postSQL }}    
+            {% endif %}
+
+            {% if config.testsEnabled %}
+              {% for test in node.tests %}
+                {% if test.runOrder == 'After' %}
+                  {{ test_stage(test.name, test.continueOnFailure) }}
+                  {{ test.templateString }}
+                    {% endif %}
+              {% endfor %}
+
+              {% for column in columns %}
+                {% for test in column.tests %}
+                  {{ test_stage(column.name + ": " + test.name) }}
+                  {{ test.templateString }}
+                {% endfor %}
+              {% endfor %}
             {% endif %}
     name: "Datavault by Scalefree: Non-Historized Satellite"
     version: 1
@@ -5254,11 +5342,17 @@ stepTypes:
             {%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
         run:
           templateString: |-
+            {% for test in node.tests if config.testsEnabled %}
+              {% if test.runOrder == 'Before' %}
+                {{ test_stage(test.name, test.continueOnFailure) }}
+                {{ test.templateString }}
+              {% endif %}
+            {% endfor %}
+
             {% if config.preSQL %}
               {{ stage('Pre-SQL') }}
               {{ config.preSQL }}
             {% endif %}
-
 
             {%- set hashkey_column = config.is_hk.name -%}
 
@@ -5315,6 +5409,22 @@ stepTypes:
             {% if config.postSQL %}
               {{ stage('Post-SQL') }}
               {{ config.postSQL }}
+            {% endif %}
+
+            {% if config.testsEnabled %}
+              {% for test in node.tests %}
+                {% if test.runOrder == 'After' %}
+                  {{ test_stage(test.name, test.continueOnFailure) }}
+                  {{ test.templateString }}
+                    {% endif %}
+              {% endfor %}
+
+              {% for column in columns %}
+                {% for test in column.tests %}
+                  {{ test_stage(column.name + ": " + test.name) }}
+                  {{ test.templateString }}
+                {% endfor %}
+              {% endfor %}
             {% endif %}
     name: "Datavault by Scalefree: Record-Tracking Satellite"
     version: 1
@@ -5489,7 +5599,29 @@ stepTypes:
 
             {% endif %}
         run:
-          templateString: ""
+          templateString: |-
+            {% for test in node.tests if config.testsEnabled %}
+              {% if test.runOrder == 'Before' %}
+                {{ test_stage(test.name, test.continueOnFailure) }}
+                {{ test.templateString }}
+              {% endif %}
+            {% endfor %}
+
+            {% if config.testsEnabled %}
+              {% for test in node.tests %}
+                {% if test.runOrder == 'After' %}
+                  {{ test_stage(test.name, test.continueOnFailure) }}
+                  {{ test.templateString }}
+                    {% endif %}
+              {% endfor %}
+
+              {% for column in columns %}
+                {% for test in column.tests %}
+                  {{ test_stage(column.name + ": " + test.name) }}
+                  {{ test.templateString }}
+                {% endfor %}
+              {% endfor %}
+            {% endif %}
     name: "Datavault by Scalefree: Stage"
     version: 1
   StepType-SCALEFREE-DATAVAULT4COALESCE::6:
@@ -5572,17 +5704,17 @@ stepTypes:
             {%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
         run:
           templateString: |-
-            {% if config.preSQL %}
-              {{ stage('Pre-SQL') }}
-              {{ config.preSQL }}
-            {% endif %}
-
             {% for test in node.tests if config.testsEnabled %}
               {% if test.runOrder == 'Before' %}
                 {{ test_stage(test.name, test.continueOnFailure) }}
                 {{ test.templateString }}
               {% endif %}
             {% endfor %}
+
+            {% if config.preSQL %}
+              {{ stage('Pre-SQL') }}
+              {{ config.preSQL }}
+            {% endif %}
 
             {% for source in sources %}
 
@@ -5736,18 +5868,17 @@ stepTypes:
             {%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
         run:
           templateString: |-
-            {% if config.preSQL %}
-                {{ stage('Pre-SQL') }}
-                {{ config.preSQL }}
-
-            {% endif %}
-
             {% for test in node.tests if config.testsEnabled %}
               {% if test.runOrder == 'Before' %}
                 {{ test_stage(test.name, test.continueOnFailure) }}
                 {{ test.templateString }}
               {% endif %}
             {% endfor %}
+
+            {% if config.preSQL %}
+                {{ stage('Pre-SQL') }}
+                {{ config.preSQL }}
+            {% endif %}
 
             {% for source in sources %}
                         
@@ -5886,18 +6017,18 @@ stepTypes:
             )
             {%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
         run:
-          templateString: |+
-            {% if config.preSQL %}
-              {{ stage('Pre-SQL') }}
-              {{ config.preSQL }}
-            {% endif %}
-
+          templateString: |-
             {% for test in node.tests if config.testsEnabled %}
               {% if test.runOrder == 'Before' %}
                 {{ test_stage(test.name, test.continueOnFailure) }}
                 {{ test.templateString }}
               {% endif %}
             {% endfor %}
+
+            {% if config.preSQL %}
+              {{ stage('Pre-SQL') }}
+              {{ config.preSQL }}
+            {% endif %}
 
             {{ stage('Insert New Rows') }}
             INSERT INTO {{ ref_no_link(node.location.name, node.name) }}
@@ -5995,7 +6126,6 @@ stepTypes:
                 {% endfor %}
               {% endfor %}
             {% endif %}
-
     name: "Datavault by Scalefree: Satellite v0"
     version: 1
   StepType-SCALEFREE-DATAVAULT4COALESCE::9:
@@ -6086,7 +6216,29 @@ stepTypes:
                 {{ source.join }}
             {% endfor %}
         run:
-          templateString: ""
+          templateString: |-
+            {% for test in node.tests if config.testsEnabled %}
+                    {% if test.runOrder == 'Before' %}
+                        {{ test_stage(test.name, test.continueOnFailure) }}
+                        {{ test.templateString }}
+                    {% endif %}
+            {% endfor %}
+
+            {% if config.testsEnabled %}
+            	{% for test in node.tests %}
+            		{% if test.runOrder == 'After' %}
+            			{{ test_stage(test.name, test.continueOnFailure) }}
+            			{{ test.templateString }}
+                    {% endif %}
+            	{% endfor %}
+
+            	{% for column in columns %}
+            		{% for test in column.tests %}
+            			{{ test_stage(column.name + ": " + test.name) }}
+            			{{ test.templateString }}
+            		{% endfor %}
+            	{% endfor %}
+            {% endif %}
     name: "Datavault by Scalefree: Satellite v1"
     version: 1
   StepType-Satellite:
@@ -6482,9 +6634,9 @@ stepTypes:
     version: 1
   StepType-View:
     id: View
-    isDisabled: true
+    isDisabled: false
     metadata:
-      defaultStorageLocation: null
+      defaultStorageLocation: TARGET
       error: null
       nodeMetadataSpec: |
         capitalized: View

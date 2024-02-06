@@ -1,0 +1,108 @@
+steps:
+  LINK_CUSTOMER_NATION-47f7720d-9bfd-4137-9d34-e2cf1e5d1dfe:
+    operation:
+      config:
+        disable_hwm: true
+        postSQL: ""
+        preSQL: ""
+        testsEnabled: true
+      database: ""
+      deployEnabled: true
+      description: Customer data as defined by TPC-H
+      isMultisource: false
+      locationName: SOURCE
+      materializationType: table
+      metadata:
+        appliedNodeTests: []
+        columns:
+          - columnReference:
+              columnCounter: a9f1abe1-d2f9-4fe9-bf3e-4a021c7090c5
+              stepCounter: 47f7720d-9bfd-4137-9d34-e2cf1e5d1dfe
+            config:
+              is_Link_hk: true
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: LINK_CUSTOMER_NATION_HK
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 9830d07a-39fc-43dc-a11d-74b61fd6ec10
+                    stepCounter: 0ed6f27d-51f5-4e12-a005-0768d3172de5
+                transform: ""
+          - columnReference:
+              columnCounter: 375a6434-b69e-4589-a42e-f4fa1a013ee6
+              stepCounter: 47f7720d-9bfd-4137-9d34-e2cf1e5d1dfe
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: HUB_CUSTOMER_HK
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: e7f2fd6b-c3e3-4c56-92af-c20693930a3d
+                    stepCounter: 0ed6f27d-51f5-4e12-a005-0768d3172de5
+                transform: ""
+          - columnReference:
+              columnCounter: 666189d4-aa98-48a9-9881-40a4d2f75347
+              stepCounter: 47f7720d-9bfd-4137-9d34-e2cf1e5d1dfe
+            dataType: STRING
+            description: ""
+            hashColumns: []
+            hashDetails: null
+            name: HUB_NATION_HK
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 9d637a14-5ad7-4a80-a48d-45b0dfc3062c
+                    stepCounter: 0ed6f27d-51f5-4e12-a005-0768d3172de5
+                transform: ""
+          - columnReference:
+              columnCounter: d8b02b04-dfb3-48b6-82e4-91458ed50d7a
+              stepCounter: 47f7720d-9bfd-4137-9d34-e2cf1e5d1dfe
+            dataType: TIMESTAMP
+            description: The Load Date Timestamp (LDTS) describes when this data first arrived in the Data Warehouse.
+            hashColumns: []
+            hashDetails: null
+            name: LDTS
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: e37514a6-034b-4d8e-8ad9-d370451f0c4d
+                    stepCounter: 0ed6f27d-51f5-4e12-a005-0768d3172de5
+                transform: ""
+          - columnReference:
+              columnCounter: d75d3630-54af-423b-8acc-060dbdca9138
+              stepCounter: 47f7720d-9bfd-4137-9d34-e2cf1e5d1dfe
+            dataType: STRING
+            description: The Record Source (RSRC) describes the source of this data.
+            hashColumns: []
+            hashDetails: null
+            name: RSRC
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 855aed7b-7393-4eab-b459-b1dcd9076227
+                    stepCounter: 0ed6f27d-51f5-4e12-a005-0768d3172de5
+                transform: ""
+        cteString: ""
+        enabledColumnTestIDs: []
+        sourceMapping:
+          - aliases: {}
+            customSQL:
+              customSQL: ""
+            dependencies:
+              - locationName: SOURCE
+                nodeName: DVSTG_CUSTOMER
+            join:
+              joinCondition: FROM {{ ref('SOURCE', 'DVSTG_CUSTOMER') }} "DVSTG_CUSTOMER"
+            name: LINK_CUSTOMER_NATION
+            noLinkRefs: []
+      name: LINK_CUSTOMER_NATION
+      overrideSQL: false
+      schema: ""
+      sqlType: SCALEFREE-DATAVAULT4COALESCE::7
+      type: sql
+    stepCounter: 47f7720d-9bfd-4137-9d34-e2cf1e5d1dfe
