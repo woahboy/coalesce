@@ -158,19 +158,50 @@ steps:
                 transform: "1234"
             systemColumnType: None
             transform: ""
+          - columnReference:
+              columnCounter: 371f188b-fe65-4c74-a581-97fbe8a8d9bd
+              stepCounter: 73460721-10a3-4aaf-aa4e-520ea3e8ee42
+            dataType: VARCHAR(25)
+            description: ""
+            name: N_NAME
+            nullable: false
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: 307e1d40-db4d-4c1d-a3c6-6bc5205cf282
+                    stepCounter: 7c17d47f-f938-464c-b72c-5f418c8f5042
+                transform: ""
+          - columnReference:
+              columnCounter: d99d70eb-aa31-4c59-8c91-05eca162687d
+              stepCounter: 73460721-10a3-4aaf-aa4e-520ea3e8ee42
+            dataType: VARCHAR(152)
+            description: ""
+            name: N_COMMENT
+            nullable: true
+            sourceColumnReferences:
+              - columnReferences:
+                  - columnCounter: c4052808-8e39-4183-9a5b-5422fa5c5a4e
+                    stepCounter: 7c17d47f-f938-464c-b72c-5f418c8f5042
+                transform: ""
         cteString: ""
         enabledColumnTestIDs:
           - hasNull
           - isDistinct
         sourceMapping:
-          - aliases: {}
+          - aliases:
+              CUSTOMER: 061baeb7-284a-4bd2-869d-f521c284dff4
+              NATION: 7c17d47f-f938-464c-b72c-5f418c8f5042
             customSQL:
               customSQL: ""
             dependencies:
               - locationName: SOURCE-1
                 nodeName: CUSTOMER
+              - locationName: SOURCE-1
+                nodeName: NATION
             join:
-              joinCondition: FROM {{ ref('SOURCE-1', 'CUSTOMER') }} "CUSTOMER"
+              joinCondition: |-
+                FROM {{ ref('SOURCE-1', 'CUSTOMER') }} "CUSTOMER"
+                INNER JOIN {{ ref('SOURCE-1', 'NATION') }} "NATION"
+                ON "CUSTOMER"."C_NATIONKEY" = "NATION"."N_NATIONKEY"
             name: STG_CUSTOMER
             noLinkRefs: []
       name: STG_CUSTOMER
