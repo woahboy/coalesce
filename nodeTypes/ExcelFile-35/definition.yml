@@ -1,0 +1,54 @@
+fileVersion: 1
+id: "35"
+isDisabled: false
+metadata:
+  defaultStorageLocation: null
+  error: null
+  nodeMetadataSpec: |-
+    capitalized: EXCEL FILE
+    short: XLSX
+    plural: Excel Files
+    tagColor: 'green'
+    config:
+    - groupName: Options
+      items:
+
+      - displayName: Stage
+        attributeName: stage
+        type: dropdownSelector
+        default: RefData
+        options:
+        - "TPCH"
+        - "RefData"
+        - "Logs"
+        isRequired: true
+
+      - displayName: Filename
+        attributeName: filename
+        type: textBox
+        default: myfile.xlsx
+        isRequired: true
+
+      - displayName: Worksheet (empty will take the first sheet)
+        attributeName: worksheet
+        type: textBox
+        isRequired: false
+
+      - displayName: Number of rows to skip
+        attributeName: skipRows
+        type: textBox
+        isRequired: false
+      
+      - displayName: Columns to be used (eg. C:D)
+        attributeName: useCols
+        type: textBox
+        isRequired: false  
+
+    systemColumns:
+    - displayName: 'VALUE'
+      attributeName: 'VALUE'
+      transform: ''
+      dataType: VARIANT
+      placement: beginning
+name: Excel File
+type: NodeType
