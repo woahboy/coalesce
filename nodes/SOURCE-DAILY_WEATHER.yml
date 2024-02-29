@@ -1,0 +1,49 @@
+fileVersion: 1
+id: aef36fc0-cf6c-4d87-bec6-e56ec794c8b4
+name: DAILY_WEATHER
+operation:
+  database: ""
+  dataset: ""
+  deployEnabled: true
+  description: ""
+  locationName: SOURCE
+  metadata:
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: df9e4586-c747-48e5-b8ce-ee186adb2976
+          stepCounter: aef36fc0-cf6c-4d87-bec6-e56ec794c8b4
+        config: {}
+        dataType: VARIANT
+        defaultValue: ""
+        description: ""
+        name: V
+        nullable: true
+        primaryKey: false
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 38f37317-dbac-4b8f-a8d3-eef670eb8896
+          stepCounter: aef36fc0-cf6c-4d87-bec6-e56ec794c8b4
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        defaultValue: ""
+        description: ""
+        name: T
+        nullable: true
+        primaryKey: false
+        uniqueKey: false
+    join:
+      joinCondition: FROM {{ ref('SOURCE', 'DAILY_WEATHER') }}
+  name: DAILY_WEATHER
+  schema: ""
+  sqlType: Source
+  table: DAILY_WEATHER
+  type: sourceInput
+type: Node
