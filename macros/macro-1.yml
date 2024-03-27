@@ -1,50 +1,6 @@
 fileVersion: 1
 id: "1"
 macroString: |-
-  {%- set datavault4coalesce = namespace(
-
-       config = {
-       "ldts_alias": "ldts", 
-       "rsrc_alias": "rsrc", 
-       "ledts_alias": "ledts", 
-       "snapshot_trigger_column": "is_active",
-       "sdts_alias": "sdts", 
-       "stg_alias": "stg", 
-       "is_current_col_alias": "IS_CURRENT", 
-       "hash": "MD5", 
-       "hash_datatype": "STRING", 
-       "hashkey_input_case_sensitive": "FALSE", 
-       "hashdiff_input_case_sensitive": "TRUE",
-       "copy_rsrc_ldts_input_columns": "false",  
-       "beginning_of_all_times": "0001-01-01T00:00:01", 
-       "end_of_all_times": "8888-12-31T23:59:59",
-       "timestamp_format": "YYYY-MM-DDTHH24:MI:SS", 
-       "default_unknown_rsrc": "SYSTEM", 
-       "default_error_rsrc": "ERROR", 
-       "rsrc_default_dtype": "STRING", 
-       "stg_default_dtype": "STRING", 
-       "derived_columns_default_dtype": "STRING",
-       "error_value__STRING": "'(error)'", 
-       "error_value_alt__STRING": "'e'", 
-       "unknown_value__STRING": "'(unknown)'",
-       "unknown_value_alt__STRING": "'u'"
-       }
-
-  ) -%}
-
-  {%- set sqlvariables = namespace(
-
-    sqlvar = {
-      "limit": "0"
-    }
-
-  ) 
-  -%}
-
-  {%- macro get_limit(variablename) -%}
-    {set variablename = (select sum(right('{{node.name}}'."C_CUSTKEY",1))/600 from '{{node.name}}')
-  {%- endmacro -%}
-
   {%- macro even_odd(column) -%}
       CASE WHEN MOD({{ column }}, 2) = 0 THEN 'EVEN' ELSE 'ODD' END
   {%- endmacro %}
@@ -100,15 +56,20 @@ macroString: |-
       '"{{ storageLocations | selectattr('name', 'equalto', (sources[0].dependencies | map(attribute='node') | map(attribute='location') | map(attribute='name') | first)) | map(attribute='database') | first }}"."{{ storageLocations | selectattr('name', 'equalto', (sources[0].dependencies | map(attribute='node') | map(attribute='location') | map(attribute='name') | first)) | map(attribute='schema') | first }}"."{{sources[0].dependencies | map(attribute='node') | map(attribute='name') | first }}"'
   {%- endmacro -%}
 
-  {%-macro record_source()-%}
-  {#--USAGE:{{record_source()}}#}
-  {#--NOTES:Adds a Record Source (name of qualified previous table/view)#}
-  {% set src = storageLocations | selectattr('name', "equalto", sources[0].dependencies[0].node.location.name) | list | first %}
-  '"{{src.database}}"."{{src.schema}}"."{{sources[0].dependencies[0].node.name}}"'
-  {%- endmacro -%}
-
   {%-macro pi_macro()-%}
     '3.141592654'
+  {%- endmacro -%}
+
+  {%- macro ref_raw(location_name, node_name) -%}
+      {% raw %}{{ ref('{% endraw %}{{ location_name }}{% raw %}', '{% endraw %}{{ node_name }}{% raw %}') }}{% endraw %}
+  {%- endmacro -%}
+
+  {%- macro ref_no_link_raw(location_name, node_name) -%}
+      {% raw %}{{ ref_no_link('{% endraw %}{{ location_name }}{% raw %}', '{% endraw %}{{ node_name }}{% raw %}') }}{% endraw %}
+  {%- endmacro -%}
+
+  {%- macro ref_link_raw(location_name, node_name) -%}
+      {% raw %}{{ ref_link('{% endraw %}{{ location_name }}{% raw %}', '{% endraw %}{{ node_name }}{% raw %}') }}{% endraw %}
   {%- endmacro -%}
 name: macro
 type: Macro
