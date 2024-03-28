@@ -1,0 +1,64 @@
+fileVersion: 1
+id: "1"
+macroString: |-
+  {%- macro even_odd(column) -%}
+      CASE WHEN MOD({{ column }}, 2) = 0 THEN 'EVEN' ELSE 'ODD' END
+  {%- endmacro %}
+
+  {%- macro insert_audit_row() -%}
+  INSERT INTO
+    "COALESCE_DB"."ETL1"."TC9_ETL_BATCH" (
+      "JOB_NAME",
+      "ITERATION",
+      "JOB_STATUS",
+      "START_TIME"
+    )
+  WITH 
+    counter (num_rows) AS (
+        SELECT count(*) + 1 AS num_rows 
+        FROM "COALESCE_DB"."ETL1"."TC9_ETL_BATCH"
+        WHERE job_name = '{{node.name}}'||'_JOB')
+  SELECT 
+    '{{node.name}}'||'_JOB', 
+    num_rows, 
+    'STARTED', 
+    CURRENT_TIMESTAMP() 
+    FROM counter
+  {%- endmacro %}
+
+  {%- macro update_audit_row() -%}
+  UPDATE 
+    "COALESCE_DB"."ETL1"."TC9_ETL_BATCH" 
+  SET 
+    END_TIME = current_timestamp(), 
+    JOB_STATUS = 'FINISHED'
+  FROM (
+    WITH 
+      counter (num_rows) AS (
+        SELECT count(*) AS num_rows 
+        FROM "COALESCE_DB"."ETL1"."TC9_ETL_BATCH" 
+        WHERE job_name = '{{node.name}}'||'_JOB') 
+      select counter.num_rows 
+      from counter) AS ctes
+  WHERE ITERATION = ctes.num_rows
+  AND JOB_NAME = '{{node.name}}'||'_JOB'
+  {%- endmacro %}
+
+  {%- macro tbl_hash(cols, algo='MD5', delimiter='||', length=32) -%}
+      {% for col in cols if not col.isTableHash %}
+          {%- if loop.first %}CAST( {{ algo }}({% endif -%}
+            NVL(CAST({{col.name}} AS VARCHAR), 'null')
+          {%- if not loop.last %} || {% if delimiter != '' %} '{{ delimiter }}' || {% endif -%} {% endif -%}
+          {%- if loop.last %}) AS CHAR({{ length }}) ){% endif -%}
+      {%  endfor %}
+  {%- endmacro -%}
+
+  {%- macro print_mac() -%}
+    {% for source in sources %}
+      {% for col in source.columns if not col.isTableHash %}
+        '{{col.name}}'
+      {% endfor %}
+    {% endfor %}
+  {%- endmacro -%}
+name: macro
+type: Macro

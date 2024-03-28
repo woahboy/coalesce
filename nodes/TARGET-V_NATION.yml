@@ -1,113 +1,120 @@
-steps:
-  V_NATION-242:
-    operation:
-      config:
-        insertStrategy: UNION
-        selectDistinct: false
-      database: ""
-      dependencies: []
-      deployEnabled: false
-      description: ""
-      isDataVault: false
-      isMultisource: false
-      locationID: ""
-      locationName: TARGET
-      materializationType: view
-      metadata:
-        appliedNodeTests: []
-        columns:
-          - columnReference:
-              columnCounter: 2328
-              stepCounter: "242"
-            dataType: NUMBER(38,0)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: N_NATIONKEY
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2251
-                    stepCounter: "234"
-                transform: ""
-          - columnReference:
-              columnCounter: 2329
-              stepCounter: "242"
-            dataType: VARCHAR(25)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: N_NAME
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2252
-                    stepCounter: "234"
-                transform: ""
-          - columnReference:
-              columnCounter: 2330
-              stepCounter: "242"
-            dataType: NUMBER(38,0)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: N_REGIONKEY
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2253
-                    stepCounter: "234"
-                transform: ""
-          - columnReference:
-              columnCounter: 2331
-              stepCounter: "242"
-            dataType: VARCHAR(152)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: N_COMMENT
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2254
-                    stepCounter: "234"
-                transform: ""
-          - acceptedValues:
-              strictMatch: true
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: f2a240ab-d007-4b99-9f60-71baa2d01499
-              stepCounter: "242"
-            config: {}
-            dataType: STRING
-            defaultValue: ""
-            description: ""
-            keyColumnType: None
-            name: NEWCOL
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: "0"
-                    stepCounter: "0"
-                transform: "1234"
-            systemColumnType: None
+fileVersion: 1
+id: "242"
+name: V_NATION
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: false
+  description: ""
+  isMultisource: false
+  locationName: TARGET
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: "2328"
+          stepCounter: "242"
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        name: N_NATIONKEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "2251"
+                stepCounter: "234"
             transform: ""
-        cteString: ""
-        enabledColumnTestIDs: []
-        sourceMapping:
-          - customSQL:
-              customSQL: ""
-            dependencies:
-              - locationName: TARGET
-                nodeName: EXT_NATION
-            join:
-              joinCondition: FROM {{ ref('TARGET', 'EXT_NATION') }} "EXT_NATION"
-            name: V_NATION
-            noLinkRefs: []
-      name: V_NATION
-      overrideSQL: false
-      schema: ""
-      sqlType: View
-      type: sql
-    stepCounter: "242"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: "2329"
+          stepCounter: "242"
+        config: {}
+        dataType: VARCHAR(25)
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        name: N_NAME
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "2252"
+                stepCounter: "234"
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: "2330"
+          stepCounter: "242"
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        name: N_REGIONKEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "2253"
+                stepCounter: "234"
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: "2331"
+          stepCounter: "242"
+        config: {}
+        dataType: VARCHAR(152)
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        name: N_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "2254"
+                stepCounter: "234"
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: f2a240ab-d007-4b99-9f60-71baa2d01499
+          stepCounter: "242"
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        keyColumnType: None
+        name: NEWCOL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: "1234"
+        systemColumnType: None
+        transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: TARGET
+            nodeName: EXT_NATION
+        join:
+          joinCondition: FROM {{ ref('TARGET', 'EXT_NATION') }} "EXT_NATION"
+        name: V_NATION
+        noLinkRefs: []
+  name: V_NATION
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+type: Node

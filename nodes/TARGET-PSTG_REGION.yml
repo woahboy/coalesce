@@ -1,80 +1,85 @@
-steps:
-  PSTG_REGION-248:
-    operation:
-      config:
-        postSQL: ""
-        preSQL: ""
-        testsEnabled: true
-      database: ""
-      dependencies: []
-      deployEnabled: true
-      description: ""
-      isDataVault: false
-      isMultisource: false
-      locationID: ""
-      locationName: TARGET
-      materializationType: table
-      metadata:
-        appliedNodeTests: []
-        columns:
-          - columnReference:
-              columnCounter: 2403
-              stepCounter: "248"
-            dataType: NUMBER(38,0)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            isBusinessKey: true
-            name: R_REGIONKEY
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2298
-                    stepCounter: "239"
-                transform: ""
-          - columnReference:
-              columnCounter: 2404
-              stepCounter: "248"
-            dataType: VARCHAR(25)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: R_NAME
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2299
-                    stepCounter: "239"
-                transform: ""
-          - columnReference:
-              columnCounter: 2405
-              stepCounter: "248"
-            dataType: VARCHAR(152)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: R_COMMENT
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2300
-                    stepCounter: "239"
-                transform: ""
-        cteString: ""
-        enabledColumnTestIDs: []
-        sourceMapping:
-          - customSQL:
-              customSQL: ""
-            dependencies:
-              - locationName: TARGET
-                nodeName: V_REGION
-            join:
-              joinCondition: FROM {{ ref('TARGET', 'V_REGION') }} "V_REGION"
-            name: PSTG_REGION
-            noLinkRefs: []
-      name: PSTG_REGION
-      overrideSQL: false
-      schema: ""
-      sqlType: persistentStage
-      type: sql
-    stepCounter: "248"
+fileVersion: 1
+id: "248"
+name: PSTG_REGION
+operation:
+  config:
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: TARGET
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: "2403"
+          stepCounter: "248"
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        isBusinessKey: true
+        name: R_REGIONKEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "2298"
+                stepCounter: "239"
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: "2404"
+          stepCounter: "248"
+        config: {}
+        dataType: VARCHAR(25)
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        name: R_NAME
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "2299"
+                stepCounter: "239"
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: "2405"
+          stepCounter: "248"
+        config: {}
+        dataType: VARCHAR(152)
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        name: R_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "2300"
+                stepCounter: "239"
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: TARGET
+            nodeName: V_REGION
+        join:
+          joinCondition: FROM {{ ref('TARGET', 'V_REGION') }} "V_REGION"
+        name: PSTG_REGION
+        noLinkRefs: []
+  name: PSTG_REGION
+  overrideSQL: false
+  schema: ""
+  sqlType: persistentStage
+  type: sql
+type: Node

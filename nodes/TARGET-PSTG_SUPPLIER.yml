@@ -1,136 +1,149 @@
-steps:
-  PSTG_SUPPLIER-247:
-    operation:
-      config:
-        postSQL: ""
-        preSQL: ""
-        testsEnabled: true
-      database: ""
-      dependencies: []
-      deployEnabled: true
-      description: ""
-      isDataVault: false
-      isMultisource: false
-      locationID: ""
-      locationName: TARGET
-      materializationType: table
-      metadata:
-        appliedNodeTests: []
-        columns:
-          - columnReference:
-              columnCounter: 2389
-              stepCounter: "247"
-            dataType: NUMBER(38,0)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            isBusinessKey: true
-            name: S_SUPPKEY
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2289
-                    stepCounter: "238"
-                transform: ""
-          - columnReference:
-              columnCounter: 2390
-              stepCounter: "247"
-            dataType: VARCHAR(25)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: S_NAME
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2290
-                    stepCounter: "238"
-                transform: ""
-          - columnReference:
-              columnCounter: 2391
-              stepCounter: "247"
-            dataType: VARCHAR(40)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: S_ADDRESS
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2291
-                    stepCounter: "238"
-                transform: ""
-          - columnReference:
-              columnCounter: 2392
-              stepCounter: "247"
-            dataType: NUMBER(38,0)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: S_NATIONKEY
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2292
-                    stepCounter: "238"
-                transform: ""
-          - columnReference:
-              columnCounter: 2393
-              stepCounter: "247"
-            dataType: VARCHAR(15)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: S_PHONE
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2293
-                    stepCounter: "238"
-                transform: ""
-          - columnReference:
-              columnCounter: 2394
-              stepCounter: "247"
-            dataType: NUMBER(12,2)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: S_ACCTBAL
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2294
-                    stepCounter: "238"
-                transform: ""
-          - columnReference:
-              columnCounter: 2395
-              stepCounter: "247"
-            dataType: VARCHAR(101)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: S_COMMENT
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2295
-                    stepCounter: "238"
-                transform: ""
-        cteString: ""
-        enabledColumnTestIDs: []
-        sourceMapping:
-          - customSQL:
-              customSQL: ""
-            dependencies:
-              - locationName: TARGET
-                nodeName: V_SUPPLIER
-            join:
-              joinCondition: FROM {{ ref('TARGET', 'V_SUPPLIER') }} "V_SUPPLIER"
-            name: PSTG_SUPPLIER
-            noLinkRefs: []
-      name: PSTG_SUPPLIER
-      overrideSQL: false
-      schema: ""
-      sqlType: persistentStage
-      type: sql
-    stepCounter: "247"
+fileVersion: 1
+id: "247"
+name: PSTG_SUPPLIER
+operation:
+  config:
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: TARGET
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: "2389"
+          stepCounter: "247"
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        isBusinessKey: true
+        name: S_SUPPKEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "2289"
+                stepCounter: "238"
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: "2390"
+          stepCounter: "247"
+        config: {}
+        dataType: VARCHAR(25)
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        name: S_NAME
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "2290"
+                stepCounter: "238"
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: "2391"
+          stepCounter: "247"
+        config: {}
+        dataType: VARCHAR(40)
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        name: S_ADDRESS
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "2291"
+                stepCounter: "238"
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: "2392"
+          stepCounter: "247"
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        name: S_NATIONKEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "2292"
+                stepCounter: "238"
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: "2393"
+          stepCounter: "247"
+        config: {}
+        dataType: VARCHAR(15)
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        name: S_PHONE
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "2293"
+                stepCounter: "238"
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: "2394"
+          stepCounter: "247"
+        config: {}
+        dataType: NUMBER(12,2)
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        name: S_ACCTBAL
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "2294"
+                stepCounter: "238"
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: "2395"
+          stepCounter: "247"
+        config: {}
+        dataType: VARCHAR(101)
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        name: S_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "2295"
+                stepCounter: "238"
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: TARGET
+            nodeName: V_SUPPLIER
+        join:
+          joinCondition: FROM {{ ref('TARGET', 'V_SUPPLIER') }} "V_SUPPLIER"
+        name: PSTG_SUPPLIER
+        noLinkRefs: []
+  name: PSTG_SUPPLIER
+  overrideSQL: false
+  schema: ""
+  sqlType: persistentStage
+  type: sql
+type: Node

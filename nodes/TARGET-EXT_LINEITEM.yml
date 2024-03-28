@@ -1,284 +1,313 @@
-steps:
-  EXT_LINEITEM-277:
-    operation:
-      config:
-        autoRefresh: false
-        compression: AUTO
-        fieldDelim: ","
-        fieldEnclosed: \042
-        fileLocation: LINEITEM
-        filePattern: .*[.]csv.gz
-        fileType: CSV
-        recDelim: |
-          |
-        skipBlankLines: true
-        skipHeader: "1"
-        snsTopic: arn:aws:sns:your-region:123456789012:your-notification
-        trimSpace: true
-      database: ""
-      dependencies: []
-      deployEnabled: false
-      description: ""
-      isDataVault: false
-      isMultisource: false
-      locationID: ""
-      locationName: TARGET
-      materializationType: view
-      metadata:
-        appliedNodeTests: []
-        columns:
-          - VALUE: true
-            acceptedValues:
-              strictMatch: true
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: 2757
-              stepCounter: "277"
-            config: {}
-            dataType: VARIANT
-            defaultValue: ""
-            description: ""
-            hashColumns: []
-            name: VALUE
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences: []
-                transform: ""
-          - columnReference:
-              columnCounter: 2758
-              stepCounter: "277"
-            dataType: NUMBER(38,0)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: L_ORDERKEY
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences: []
-                transform: ""
-          - columnReference:
-              columnCounter: 2759
-              stepCounter: "277"
-            dataType: NUMBER(38,0)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: L_PARTKEY
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences: []
-                transform: ""
-          - columnReference:
-              columnCounter: 2760
-              stepCounter: "277"
-            dataType: NUMBER(38,0)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: L_SUPPKEY
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences: []
-                transform: ""
-          - columnReference:
-              columnCounter: 2761
-              stepCounter: "277"
-            dataType: NUMBER(38,0)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: L_LINENUMBER
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences: []
-                transform: ""
-          - columnReference:
-              columnCounter: 2762
-              stepCounter: "277"
-            dataType: NUMBER(12,2)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: L_QUANTITY
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences: []
-                transform: ""
-          - columnReference:
-              columnCounter: 2763
-              stepCounter: "277"
-            dataType: NUMBER(12,2)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: L_EXTENDEDPRICE
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences: []
-                transform: ""
-          - columnReference:
-              columnCounter: 2764
-              stepCounter: "277"
-            dataType: NUMBER(12,2)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: L_DISCOUNT
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences: []
-                transform: ""
-          - columnReference:
-              columnCounter: 2765
-              stepCounter: "277"
-            dataType: NUMBER(12,2)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: L_TAX
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences: []
-                transform: ""
-          - columnReference:
-              columnCounter: 2766
-              stepCounter: "277"
-            dataType: VARCHAR(1)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: L_RETURNFLAG
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences: []
-                transform: ""
-          - columnReference:
-              columnCounter: 2767
-              stepCounter: "277"
-            dataType: VARCHAR(1)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: L_LINESTATUS
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences: []
-                transform: ""
-          - columnReference:
-              columnCounter: 2768
-              stepCounter: "277"
-            dataType: DATE
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: L_SHIPDATE
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences: []
-                transform: ""
-          - columnReference:
-              columnCounter: 2769
-              stepCounter: "277"
-            dataType: DATE
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: L_COMMITDATE
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences: []
-                transform: ""
-          - columnReference:
-              columnCounter: 2770
-              stepCounter: "277"
-            dataType: DATE
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: L_RECEIPTDATE
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences: []
-                transform: ""
-          - columnReference:
-              columnCounter: 2771
-              stepCounter: "277"
-            dataType: VARCHAR(25)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: L_SHIPINSTRUCT
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences: []
-                transform: ""
-          - columnReference:
-              columnCounter: 2772
-              stepCounter: "277"
-            dataType: VARCHAR(10)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: L_SHIPMODE
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences: []
-                transform: ""
-          - acceptedValues:
-              strictMatch: true
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: 3732955d-c35a-441b-aba8-11f32824921e
-              stepCounter: "277"
-            config: {}
-            dataType: STRING
-            defaultValue: ""
-            description: ""
-            keyColumnType: None
-            name: L_COMMENT
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: "0"
-                    stepCounter: "0"
-                transform: ""
-            systemColumnType: None
+fileVersion: 1
+id: "277"
+name: EXT_LINEITEM
+operation:
+  config:
+    autoRefresh: false
+    compression: AUTO
+    fieldDelim: ","
+    fieldEnclosed: \042
+    fileLocation: LINEITEM
+    filePattern: .*[.]csv.gz
+    fileType: CSV
+    recDelim: |
+      |
+    skipBlankLines: true
+    skipHeader: "1"
+    snsTopic: arn:aws:sns:your-region:123456789012:your-notification
+    trimSpace: true
+  database: ""
+  deployEnabled: false
+  description: ""
+  isMultisource: false
+  locationName: TARGET
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - VALUE: true
+        acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: "2757"
+          stepCounter: "277"
+        config: {}
+        dataType: VARIANT
+        defaultValue: ""
+        description: ""
+        hashColumns: []
+        name: VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
             transform: ""
-          - METADATA$FILENAME: true
-            acceptedValues:
-              strictMatch: true
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: 2774
-              stepCounter: "277"
-            config: {}
-            dataType: STRING
-            defaultValue: ""
-            description: ""
-            hashColumns: []
-            name: METADATA$FILENAME
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences: []
-                transform: ""
-        cteString: ""
-        enabledColumnTestIDs: []
-        sourceMapping:
-          - customSQL:
-              customSQL: ""
-            dependencies:
-              - locationName: TARGET
-                nodeName: EXPORT_LINEITEM
-            join:
-              joinCondition: FROM {{ ref('TARGET', 'EXPORT_LINEITEM') }} "EXPORT_LINEITEM"
-            name: EXT_LINEITEM
-            noLinkRefs: []
-      name: EXT_LINEITEM
-      overrideSQL: false
-      schema: ""
-      sqlType: "6"
-      type: sql
-    stepCounter: "277"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: "2758"
+          stepCounter: "277"
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        name: L_ORDERKEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: "2759"
+          stepCounter: "277"
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        name: L_PARTKEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: "2760"
+          stepCounter: "277"
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        name: L_SUPPKEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: "2761"
+          stepCounter: "277"
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        name: L_LINENUMBER
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: "2762"
+          stepCounter: "277"
+        config: {}
+        dataType: NUMBER(12,2)
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        name: L_QUANTITY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: "2763"
+          stepCounter: "277"
+        config: {}
+        dataType: NUMBER(12,2)
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        name: L_EXTENDEDPRICE
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: "2764"
+          stepCounter: "277"
+        config: {}
+        dataType: NUMBER(12,2)
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        name: L_DISCOUNT
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: "2765"
+          stepCounter: "277"
+        config: {}
+        dataType: NUMBER(12,2)
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        name: L_TAX
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: "2766"
+          stepCounter: "277"
+        config: {}
+        dataType: VARCHAR(1)
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        name: L_RETURNFLAG
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: "2767"
+          stepCounter: "277"
+        config: {}
+        dataType: VARCHAR(1)
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        name: L_LINESTATUS
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: "2768"
+          stepCounter: "277"
+        config: {}
+        dataType: DATE
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        name: L_SHIPDATE
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: "2769"
+          stepCounter: "277"
+        config: {}
+        dataType: DATE
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        name: L_COMMITDATE
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: "2770"
+          stepCounter: "277"
+        config: {}
+        dataType: DATE
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        name: L_RECEIPTDATE
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: "2771"
+          stepCounter: "277"
+        config: {}
+        dataType: VARCHAR(25)
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        name: L_SHIPINSTRUCT
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: "2772"
+          stepCounter: "277"
+        config: {}
+        dataType: VARCHAR(10)
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        name: L_SHIPMODE
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3732955d-c35a-441b-aba8-11f32824921e
+          stepCounter: "277"
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        keyColumnType: None
+        name: L_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "0"
+                stepCounter: "0"
+            transform: ""
+        systemColumnType: None
+        transform: ""
+      - METADATA$FILENAME: true
+        acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: "2774"
+          stepCounter: "277"
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: ""
+        hashColumns: []
+        name: METADATA$FILENAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: TARGET
+            nodeName: EXPORT_LINEITEM
+        join:
+          joinCondition: FROM {{ ref('TARGET', 'EXPORT_LINEITEM') }} "EXPORT_LINEITEM"
+        name: EXT_LINEITEM
+        noLinkRefs: []
+  name: EXT_LINEITEM
+  overrideSQL: false
+  schema: ""
+  sqlType: "6"
+  type: sql
+type: Node

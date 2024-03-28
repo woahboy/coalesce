@@ -1,0 +1,34 @@
+fileVersion: 1
+id: COALESCE-DATA_VAULT::7
+isDisabled: false
+metadata:
+  defaultStorageLocation: null
+  error: null
+  nodeMetadataSpec: |-
+    capitalized: BV SAT CURRENT VIEW
+    short: SAT_CURR
+    tagColor: '#C4C4C4'
+    isDisabled: true
+    plural: BV Sat Current Views
+
+    config:
+    - groupName: Options
+      items:
+      - displayName: Sat Hash Column(s) (Include Multi-Active)
+        type: columnSelector
+        attributeName: isSatKey
+        isRequired: true
+
+      - displayName: Sat Date Column(s)
+        type: columnSelector
+        attributeName: isDateColumn
+        isRequired: true
+
+      - type: materializationSelector
+        isRequired: true
+        enableIf: 'false'
+        options: 
+        - view
+        default: view
+name: "DV Package: BV Sat Current View"
+type: NodeType

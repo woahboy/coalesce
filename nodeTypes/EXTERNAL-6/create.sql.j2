@@ -1,0 +1,28 @@
+{{ stage('Create External Table') }}
+ 
+CREATE OR REPLACE EXTERNAL TABLE {{ ref_no_link(node.location.name, node.name) }}
+  {% if config.fileType == "CSV" %}
+    {% for col in sources[0].columns if (col.name | upper != "VALUE" and col.name | upper != "METADATA$FILENAME") %}
+      {% if loop.first %}({% endif %}
+        "{{ col.name }}" {{ col.dataType }} AS (value:c{{ loop.index }}::{{ col.dataType }})
+      {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
+      {%- if not loop.last -%}, {% else %}){% endif %}
+    {% endfor %}
+  {% endif %}
+
+  with location = @{{ ref_no_link(node.location.name, config.fileLocation) }}
+  pattern='{{ config.filePattern }}'
+  file_format = (type = {{ config.fileType }}
+  {% if config.fileType == "CSV" %}
+    {% if config.recDelim != '' %}record_delimiter = '{{ config.recDelim }}'{% endif %}
+    {% if config.fieldDelim != '' %}field_delimiter = '{{ config.fieldDelim }}'{% endif %}
+    {% if config.fieldEnclosed != '' %}field_optionally_enclosed_by = '{{ config.fieldEnclosed }}'{% endif %}
+    {% if config.skipHeader != '' %}skip_header = {{ config.skipHeader }}{% endif %}
+    {% if config.skipBlankLines %}skip_blank_lines = {{ config.skipBlankLines }}{% endif %}
+    {% if config.trimSpace %}trim_space = {{ config.trimSpace }}{% endif %}
+  {% endif %}
+  )
+  auto_refresh = {{ config.autoRefresh }}
+  {% if config.autoRefresh and config.snsTopic != '' %}aws_sns_topic = '{{ config.snsTopic }}'{% endif %}
+  {%- if node.description | length > 0 %} COMMENT = '{{ node.description }}'{% endif %}
+;

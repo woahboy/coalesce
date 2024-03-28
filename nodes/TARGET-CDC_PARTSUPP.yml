@@ -1,203 +1,214 @@
-steps:
-  CDC_PARTSUPP-f26e869c-e8bd-44a5-8812-1a099e28f95f:
-    operation:
-      config:
-        taskCustomName: ""
-        taskEnabled: false
-        taskSchedule: Every 30 minutes
-        taskWarehouse: EMEA_TRANSFORM_XS_WH
-        undefined: |-
-          A CDC table consists of a few components:
-           1. A stream on the source node
-           2. The CDC table which contains a persistent replica of recent CDC records
-           3. A sequence to keep track of streams
-           4. Optional: a Task to replicate records from the Stream into the CDC table
-           
-      database: ""
-      deployEnabled: true
-      description: ""
-      isDataVault: false
-      isMultisource: false
-      locationName: TARGET
-      materializationType: table
-      metadata:
-        appliedNodeTests: []
-        columns:
-          - columnReference:
-              columnCounter: 938bcc05-9165-4787-bca1-2799b1a8aeef
-              stepCounter: f26e869c-e8bd-44a5-8812-1a099e28f95f
-            dataType: NUMBER(38,0)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: PS_PARTKEY
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2543
-                    stepCounter: "261"
-                transform: ""
-          - columnReference:
-              columnCounter: 41d00e1a-97e7-4fbc-97fd-df136015191f
-              stepCounter: f26e869c-e8bd-44a5-8812-1a099e28f95f
-            dataType: NUMBER(38,0)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: PS_SUPPKEY
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2544
-                    stepCounter: "261"
-                transform: ""
-          - columnReference:
-              columnCounter: 9b03ee2c-fca0-436b-8cea-74272ca1e2ac
-              stepCounter: f26e869c-e8bd-44a5-8812-1a099e28f95f
-            dataType: NUMBER(38,0)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: PS_AVAILQTY
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2545
-                    stepCounter: "261"
-                transform: ""
-          - columnReference:
-              columnCounter: c7e9faa8-a13b-436a-a2f5-e6df3770e15d
-              stepCounter: f26e869c-e8bd-44a5-8812-1a099e28f95f
-            dataType: NUMBER(12,2)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: PS_SUPPLYCOST
-            nullable: false
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2546
-                    stepCounter: "261"
-                transform: ""
-          - columnReference:
-              columnCounter: 433b285e-84d8-4a60-a28e-083ee37d205b
-              stepCounter: f26e869c-e8bd-44a5-8812-1a099e28f95f
-            dataType: VARCHAR(199)
-            description: ""
-            hashColumns: []
-            hashDetails: null
-            name: PS_COMMENT
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences:
-                  - columnCounter: 2547
-                    stepCounter: "261"
-                transform: ""
-          - acceptedValues:
-              strictMatch: true
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: 537f767c-6c66-490e-9ae7-e1f7ff793ba2
-              stepCounter: f26e869c-e8bd-44a5-8812-1a099e28f95f
-            config: {}
-            dataType: STRING
-            defaultValue: ""
-            description: Indicates the DML operation (INSERT, DELETE) recorded.
-            hashColumns: []
-            isStreamMetadataAction: true
-            name: METADATA$ACTION
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences: []
-                transform: METADATA$ACTION
-          - acceptedValues:
-              strictMatch: true
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: 90dc57b2-0b53-4e7a-95dc-7801e7f5cd61
-              stepCounter: f26e869c-e8bd-44a5-8812-1a099e28f95f
-            config: {}
-            dataType: STRING
-            defaultValue: ""
-            description: Indicates whether the operation was part of an UPDATE statement.
-            hashColumns: []
-            isStreamMetadataIsUpdate: true
-            name: METADATA$ISUPDATE
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences: []
-                transform: METADATA$ISUPDATE
-          - acceptedValues:
-              strictMatch: true
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: 713471cb-5846-4ab3-9073-0daa6ec86227
-              stepCounter: f26e869c-e8bd-44a5-8812-1a099e28f95f
-            config: {}
-            dataType: STRING
-            defaultValue: ""
-            description: Specifies the unique and immutable ID for the row, which can be used to track changes to specific rows over time.
-            hashColumns: []
-            isStreamMetadataRowId: true
-            name: METADATA$ROW_ID
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences: []
-                transform: METADATA$ROW_ID
-          - acceptedValues:
-              strictMatch: true
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: f44c3cf7-852c-45cd-ad78-d090883aa74d
-              stepCounter: f26e869c-e8bd-44a5-8812-1a099e28f95f
-            config: {}
-            dataType: INTEGER
-            defaultValue: ""
-            description: specific CDC identifier based on a sequence.
-            hashColumns: []
-            isStreamMetadataCDCId: true
-            name: CDC_ID
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences: []
-                transform: ""
-          - acceptedValues:
-              strictMatch: true
-              values: []
-            appliedColumnTests: {}
-            columnReference:
-              columnCounter: a287b6d5-7152-47c4-966a-eb4784331c3d
-              stepCounter: f26e869c-e8bd-44a5-8812-1a099e28f95f
-            config: {}
-            dataType: TIMESTAMP
-            defaultValue: ""
-            description: specific attribute containing the timestamp of storing the CDC record.
-            hashColumns: []
-            isSystemCreateDate: true
-            name: CDC_TIMESTAMP
-            nullable: true
-            sourceColumnReferences:
-              - columnReferences: []
-                transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
-        cteString: ""
-        enabledColumnTestIDs: []
-        sourceMapping:
-          - customSQL:
-              customSQL: ""
-            dependencies:
-              - locationName: TARGET
-                nodeName: PSTG_PARTSUPP
-            join:
-              joinCondition: FROM {{ ref('TARGET', 'PSTG_PARTSUPP') }} "PSTG_PARTSUPP"
-            name: CDC_PARTSUPP
-            noLinkRefs: []
-      name: CDC_PARTSUPP
-      overrideSQL: false
-      schema: ""
-      sqlType: COALESCE-MISC::7
-      type: sql
-    stepCounter: f26e869c-e8bd-44a5-8812-1a099e28f95f
+fileVersion: 1
+id: f26e869c-e8bd-44a5-8812-1a099e28f95f
+name: CDC_PARTSUPP
+operation:
+  config:
+    taskCustomName: ""
+    taskEnabled: false
+    taskSchedule: Every 30 minutes
+    taskWarehouse: EMEA_TRANSFORM_XS_WH
+    undefined: |-
+      A CDC table consists of a few components:
+       1. A stream on the source node
+       2. The CDC table which contains a persistent replica of recent CDC records
+       3. A sequence to keep track of streams
+       4. Optional: a Task to replicate records from the Stream into the CDC table
+       
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: TARGET
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 938bcc05-9165-4787-bca1-2799b1a8aeef
+          stepCounter: f26e869c-e8bd-44a5-8812-1a099e28f95f
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        name: PS_PARTKEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "2543"
+                stepCounter: "261"
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 41d00e1a-97e7-4fbc-97fd-df136015191f
+          stepCounter: f26e869c-e8bd-44a5-8812-1a099e28f95f
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        name: PS_SUPPKEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "2544"
+                stepCounter: "261"
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9b03ee2c-fca0-436b-8cea-74272ca1e2ac
+          stepCounter: f26e869c-e8bd-44a5-8812-1a099e28f95f
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        name: PS_AVAILQTY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "2545"
+                stepCounter: "261"
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c7e9faa8-a13b-436a-a2f5-e6df3770e15d
+          stepCounter: f26e869c-e8bd-44a5-8812-1a099e28f95f
+        config: {}
+        dataType: NUMBER(12,2)
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        name: PS_SUPPLYCOST
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "2546"
+                stepCounter: "261"
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 433b285e-84d8-4a60-a28e-083ee37d205b
+          stepCounter: f26e869c-e8bd-44a5-8812-1a099e28f95f
+        config: {}
+        dataType: VARCHAR(199)
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        name: PS_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: "2547"
+                stepCounter: "261"
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 537f767c-6c66-490e-9ae7-e1f7ff793ba2
+          stepCounter: f26e869c-e8bd-44a5-8812-1a099e28f95f
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: Indicates the DML operation (INSERT, DELETE) recorded.
+        hashColumns: []
+        isStreamMetadataAction: true
+        name: METADATA$ACTION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: METADATA$ACTION
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 90dc57b2-0b53-4e7a-95dc-7801e7f5cd61
+          stepCounter: f26e869c-e8bd-44a5-8812-1a099e28f95f
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: Indicates whether the operation was part of an UPDATE statement.
+        hashColumns: []
+        isStreamMetadataIsUpdate: true
+        name: METADATA$ISUPDATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: METADATA$ISUPDATE
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 713471cb-5846-4ab3-9073-0daa6ec86227
+          stepCounter: f26e869c-e8bd-44a5-8812-1a099e28f95f
+        config: {}
+        dataType: STRING
+        defaultValue: ""
+        description: Specifies the unique and immutable ID for the row, which can be used to track changes to specific rows over time.
+        hashColumns: []
+        isStreamMetadataRowId: true
+        name: METADATA$ROW_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: METADATA$ROW_ID
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: f44c3cf7-852c-45cd-ad78-d090883aa74d
+          stepCounter: f26e869c-e8bd-44a5-8812-1a099e28f95f
+        config: {}
+        dataType: INTEGER
+        defaultValue: ""
+        description: specific CDC identifier based on a sequence.
+        hashColumns: []
+        isStreamMetadataCDCId: true
+        name: CDC_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: a287b6d5-7152-47c4-966a-eb4784331c3d
+          stepCounter: f26e869c-e8bd-44a5-8812-1a099e28f95f
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: specific attribute containing the timestamp of storing the CDC record.
+        hashColumns: []
+        isSystemCreateDate: true
+        name: CDC_TIMESTAMP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: TARGET
+            nodeName: PSTG_PARTSUPP
+        join:
+          joinCondition: FROM {{ ref('TARGET', 'PSTG_PARTSUPP') }} "PSTG_PARTSUPP"
+        name: CDC_PARTSUPP
+        noLinkRefs: []
+  name: CDC_PARTSUPP
+  overrideSQL: false
+  schema: ""
+  sqlType: COALESCE-MISC::7
+  type: sql
+type: Node
