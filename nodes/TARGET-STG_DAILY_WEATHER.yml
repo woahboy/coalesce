@@ -1,0 +1,481 @@
+fileVersion: 1
+id: 7f206844-8c39-4bfc-a473-5ddb224630b3
+name: STG_DAILY_WEATHER
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: TARGET
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 64078526-bbe1-430a-9ce4-9ae633dce867
+          stepCounter: 7f206844-8c39-4bfc-a473-5ddb224630b3
+        config: {}
+        dataType: VARIANT
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        name: V
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b37a48a7-e488-4fe8-90fa-9107e45303f6
+                stepCounter: 8b0a7958-7b7a-4d56-b6a6-3d224c15fb55
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7182175b-33af-4d6e-875f-5fccd4c359f9
+          stepCounter: 7f206844-8c39-4bfc-a473-5ddb224630b3
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        description: ""
+        hashColumns: []
+        hashDetails: null
+        name: T
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: de77d1cc-7f8b-4c18-ac85-a0a00d365c8c
+                stepCounter: 8b0a7958-7b7a-4d56-b6a6-3d224c15fb55
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: c8f314ba-5096-4882-9898-6ae0bcfbb5c9
+          stepCounter: 7f206844-8c39-4bfc-a473-5ddb224630b3
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: city_coord_lat
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b37a48a7-e488-4fe8-90fa-9107e45303f6
+                stepCounter: 8b0a7958-7b7a-4d56-b6a6-3d224c15fb55
+            transform: "\"DAILY_WEATHER\".\"V\":\"city\".\"coord\".\"lat\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 11129406-0ea6-4a2a-8c30-2dac7612bb67
+          stepCounter: 7f206844-8c39-4bfc-a473-5ddb224630b3
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: city_coord_lon
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b37a48a7-e488-4fe8-90fa-9107e45303f6
+                stepCounter: 8b0a7958-7b7a-4d56-b6a6-3d224c15fb55
+            transform: "\"DAILY_WEATHER\".\"V\":\"city\".\"coord\".\"lon\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: cae6f9cf-a59d-4af5-bc8c-98a931362b60
+          stepCounter: 7f206844-8c39-4bfc-a473-5ddb224630b3
+        config: {}
+        dataType: STRING
+        description: ""
+        name: city_country
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b37a48a7-e488-4fe8-90fa-9107e45303f6
+                stepCounter: 8b0a7958-7b7a-4d56-b6a6-3d224c15fb55
+            transform: "\"DAILY_WEATHER\".\"V\":\"city\".\"country\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 69fa2c2b-e057-455e-aa13-9f5600340eb0
+          stepCounter: 7f206844-8c39-4bfc-a473-5ddb224630b3
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: city_id
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b37a48a7-e488-4fe8-90fa-9107e45303f6
+                stepCounter: 8b0a7958-7b7a-4d56-b6a6-3d224c15fb55
+            transform: "\"DAILY_WEATHER\".\"V\":\"city\".\"id\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: eedd5dda-7e90-4681-97f1-3993345afbc8
+          stepCounter: 7f206844-8c39-4bfc-a473-5ddb224630b3
+        config: {}
+        dataType: STRING
+        description: ""
+        name: city_name
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b37a48a7-e488-4fe8-90fa-9107e45303f6
+                stepCounter: 8b0a7958-7b7a-4d56-b6a6-3d224c15fb55
+            transform: "\"DAILY_WEATHER\".\"V\":\"city\".\"name\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7dca688a-aff0-49b6-b8dc-adce9cec0c9c
+          stepCounter: 7f206844-8c39-4bfc-a473-5ddb224630b3
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: data_clouds
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b37a48a7-e488-4fe8-90fa-9107e45303f6
+                stepCounter: 8b0a7958-7b7a-4d56-b6a6-3d224c15fb55
+            transform: "\"V_data\".value:\"clouds\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: bf68efe0-dbbf-41bf-8764-e9e861a8733e
+          stepCounter: 7f206844-8c39-4bfc-a473-5ddb224630b3
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: data_deg
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b37a48a7-e488-4fe8-90fa-9107e45303f6
+                stepCounter: 8b0a7958-7b7a-4d56-b6a6-3d224c15fb55
+            transform: "\"V_data\".value:\"deg\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 629065ee-04b5-4a65-be74-67feb4e223f4
+          stepCounter: 7f206844-8c39-4bfc-a473-5ddb224630b3
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: data_dt
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b37a48a7-e488-4fe8-90fa-9107e45303f6
+                stepCounter: 8b0a7958-7b7a-4d56-b6a6-3d224c15fb55
+            transform: "\"V_data\".value:\"dt\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 181b34c9-7bab-4439-b767-39e572c13b8e
+          stepCounter: 7f206844-8c39-4bfc-a473-5ddb224630b3
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: data_humidity
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b37a48a7-e488-4fe8-90fa-9107e45303f6
+                stepCounter: 8b0a7958-7b7a-4d56-b6a6-3d224c15fb55
+            transform: "\"V_data\".value:\"humidity\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 49854f90-8dc3-46bf-8a9e-87681dbe60bf
+          stepCounter: 7f206844-8c39-4bfc-a473-5ddb224630b3
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: data_pressure
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b37a48a7-e488-4fe8-90fa-9107e45303f6
+                stepCounter: 8b0a7958-7b7a-4d56-b6a6-3d224c15fb55
+            transform: "\"V_data\".value:\"pressure\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: f4b58380-f573-4721-b0ba-bc82013115f3
+          stepCounter: 7f206844-8c39-4bfc-a473-5ddb224630b3
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: data_rain
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b37a48a7-e488-4fe8-90fa-9107e45303f6
+                stepCounter: 8b0a7958-7b7a-4d56-b6a6-3d224c15fb55
+            transform: "\"V_data\".value:\"rain\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 51cb7d53-e6d6-48a4-a83d-b00914d25a25
+          stepCounter: 7f206844-8c39-4bfc-a473-5ddb224630b3
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: data_speed
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b37a48a7-e488-4fe8-90fa-9107e45303f6
+                stepCounter: 8b0a7958-7b7a-4d56-b6a6-3d224c15fb55
+            transform: "\"V_data\".value:\"speed\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0ff04770-354d-44c4-a27f-41880f685ac4
+          stepCounter: 7f206844-8c39-4bfc-a473-5ddb224630b3
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: data_temp_day
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b37a48a7-e488-4fe8-90fa-9107e45303f6
+                stepCounter: 8b0a7958-7b7a-4d56-b6a6-3d224c15fb55
+            transform: "\"V_data\".value:\"temp\".\"day\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0a7b2e63-7d9d-4d30-806f-a3bb2d9a1b86
+          stepCounter: 7f206844-8c39-4bfc-a473-5ddb224630b3
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: data_temp_eve
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b37a48a7-e488-4fe8-90fa-9107e45303f6
+                stepCounter: 8b0a7958-7b7a-4d56-b6a6-3d224c15fb55
+            transform: "\"V_data\".value:\"temp\".\"eve\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: f6e2bae8-6031-441a-8321-5c3e99d6d440
+          stepCounter: 7f206844-8c39-4bfc-a473-5ddb224630b3
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: data_temp_max
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b37a48a7-e488-4fe8-90fa-9107e45303f6
+                stepCounter: 8b0a7958-7b7a-4d56-b6a6-3d224c15fb55
+            transform: "\"V_data\".value:\"temp\".\"max\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 49da3c43-5a12-4601-bb67-2a29fcb35a0c
+          stepCounter: 7f206844-8c39-4bfc-a473-5ddb224630b3
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: data_temp_min
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b37a48a7-e488-4fe8-90fa-9107e45303f6
+                stepCounter: 8b0a7958-7b7a-4d56-b6a6-3d224c15fb55
+            transform: "\"V_data\".value:\"temp\".\"min\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: e18721d0-8071-42c7-9b9a-b427e71b6604
+          stepCounter: 7f206844-8c39-4bfc-a473-5ddb224630b3
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: data_temp_morn
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b37a48a7-e488-4fe8-90fa-9107e45303f6
+                stepCounter: 8b0a7958-7b7a-4d56-b6a6-3d224c15fb55
+            transform: "\"V_data\".value:\"temp\".\"morn\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 121aac12-051f-41e8-b5c0-5e6ed045587f
+          stepCounter: 7f206844-8c39-4bfc-a473-5ddb224630b3
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: data_temp_night
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b37a48a7-e488-4fe8-90fa-9107e45303f6
+                stepCounter: 8b0a7958-7b7a-4d56-b6a6-3d224c15fb55
+            transform: "\"V_data\".value:\"temp\".\"night\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: aca00ae7-e83d-48cd-8305-c7ec90d7633c
+          stepCounter: 7f206844-8c39-4bfc-a473-5ddb224630b3
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: data_uvi
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b37a48a7-e488-4fe8-90fa-9107e45303f6
+                stepCounter: 8b0a7958-7b7a-4d56-b6a6-3d224c15fb55
+            transform: "\"V_data\".value:\"uvi\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1a7e4557-2229-49e2-873c-91779b3ed509
+          stepCounter: 7f206844-8c39-4bfc-a473-5ddb224630b3
+        config: {}
+        dataType: STRING
+        description: ""
+        name: data_weather_description
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b37a48a7-e488-4fe8-90fa-9107e45303f6
+                stepCounter: 8b0a7958-7b7a-4d56-b6a6-3d224c15fb55
+            transform: "\"V_data_weather\".value:\"description\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 65dd671e-da1d-4326-ae80-0ddf05ff92fd
+          stepCounter: 7f206844-8c39-4bfc-a473-5ddb224630b3
+        config: {}
+        dataType: STRING
+        description: ""
+        name: data_weather_icon
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b37a48a7-e488-4fe8-90fa-9107e45303f6
+                stepCounter: 8b0a7958-7b7a-4d56-b6a6-3d224c15fb55
+            transform: "\"V_data_weather\".value:\"icon\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 727f0b28-3122-4514-9803-01cec125b651
+          stepCounter: 7f206844-8c39-4bfc-a473-5ddb224630b3
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: data_weather_id
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b37a48a7-e488-4fe8-90fa-9107e45303f6
+                stepCounter: 8b0a7958-7b7a-4d56-b6a6-3d224c15fb55
+            transform: "\"V_data_weather\".value:\"id\"::DOUBLE"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 342b695c-aac5-486b-a939-de66b9e74bb5
+          stepCounter: 7f206844-8c39-4bfc-a473-5ddb224630b3
+        config: {}
+        dataType: STRING
+        description: ""
+        name: data_weather_main
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b37a48a7-e488-4fe8-90fa-9107e45303f6
+                stepCounter: 8b0a7958-7b7a-4d56-b6a6-3d224c15fb55
+            transform: "\"V_data_weather\".value:\"main\"::STRING"
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 665d4679-d840-48f0-8862-d8a0e2b899b6
+          stepCounter: 7f206844-8c39-4bfc-a473-5ddb224630b3
+        config: {}
+        dataType: DOUBLE
+        description: ""
+        name: time
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b37a48a7-e488-4fe8-90fa-9107e45303f6
+                stepCounter: 8b0a7958-7b7a-4d56-b6a6-3d224c15fb55
+            transform: "\"DAILY_WEATHER\".\"V\":\"time\"::DOUBLE"
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SOURCE
+            nodeName: DAILY_WEATHER
+        join:
+          joinCondition: |-
+            FROM {{ ref('SOURCE', 'DAILY_WEATHER') }} "DAILY_WEATHER", 
+            lateral flatten(input => "V":"data", OUTER => TRUE) "V_data", 
+            lateral flatten(input => "V_data".value:"weather", OUTER => TRUE) "V_data_weather"
+        name: STG_DAILY_WEATHER
+        noLinkRefs: []
+  name: STG_DAILY_WEATHER
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+type: Node
