@@ -38,9 +38,10 @@ AS
 	SELECT
 	{%- for col in includeList %}
 		{%- set colTransform = sources[0].columns | selectattr('name', 'equalto', col) | map(attribute='transform') | first %}
+        {%- set colName = sources[0].columns[loop.index-1].sourceColumns[0].column.name %}
 		{%- set colDesc = columns | selectattr('name', 'equalto', col) | map(attribute='description') | first %}
 		{%- if colTransform == "" %}
-		{%- set colVal = '"' + col + '"' %}
+		{%- set colVal = '"' + colName + '"' %}
 		{%- else %}
 		{%- set colVal = colTransform %}
 		{%- endif %}

@@ -1,0 +1,79 @@
+fileVersion: 1
+id: 280ef970-f1a2-453b-bafd-f2773541ad73
+name: NATION
+operation:
+  database: ""
+  dataset: ""
+  deployEnabled: true
+  description: Nation data as defined by TPC-H
+  locationName: SOURCE-1
+  metadata:
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 241a94ab-3dd8-405c-83de-f018a690e3c1
+          stepCounter: 280ef970-f1a2-453b-bafd-f2773541ad73
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: N_NATIONKEY
+        nullable: false
+        primaryKey: false
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7d8a8c2f-3118-4991-978e-449e6a8eb6d7
+          stepCounter: 280ef970-f1a2-453b-bafd-f2773541ad73
+        config: {}
+        dataType: VARCHAR(25)
+        defaultValue: ""
+        description: ""
+        name: N_NAME
+        nullable: false
+        primaryKey: false
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 24e1ebba-95c1-4c54-897a-2526c18160e8
+          stepCounter: 280ef970-f1a2-453b-bafd-f2773541ad73
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: N_REGIONKEY
+        nullable: false
+        primaryKey: false
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: b51c4322-2780-4444-8b5e-fd9ed6d89d1b
+          stepCounter: 280ef970-f1a2-453b-bafd-f2773541ad73
+        config: {}
+        dataType: VARCHAR(152)
+        defaultValue: ""
+        description: ""
+        name: N_COMMENT
+        nullable: true
+        primaryKey: false
+        uniqueKey: false
+    join:
+      joinCondition: FROM {{ ref('SOURCE-1', 'NATION') }}
+  name: NATION
+  schema: ""
+  sqlType: Source
+  table: NATION
+  type: sourceInput
+type: Node

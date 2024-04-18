@@ -1,0 +1,64 @@
+fileVersion: 1
+id: e85f65b1-e584-4b45-92b2-66b1e60f5566
+name: REGION
+operation:
+  database: ""
+  dataset: ""
+  deployEnabled: true
+  description: Region data as defined by TPC-H
+  locationName: SOURCE-1
+  metadata:
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 00430530-d901-4a17-883d-de2404991679
+          stepCounter: e85f65b1-e584-4b45-92b2-66b1e60f5566
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: R_REGIONKEY
+        nullable: false
+        primaryKey: false
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 061a071f-b418-49dc-9e39-085d1fad394f
+          stepCounter: e85f65b1-e584-4b45-92b2-66b1e60f5566
+        config: {}
+        dataType: VARCHAR(25)
+        defaultValue: ""
+        description: ""
+        name: R_NAME
+        nullable: false
+        primaryKey: false
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: a1f1700a-13bb-4b0f-9698-6b615302ee33
+          stepCounter: e85f65b1-e584-4b45-92b2-66b1e60f5566
+        config: {}
+        dataType: VARCHAR(152)
+        defaultValue: ""
+        description: ""
+        name: R_COMMENT
+        nullable: true
+        primaryKey: false
+        uniqueKey: false
+    join:
+      joinCondition: FROM {{ ref('SOURCE-1', 'REGION') }}
+  name: REGION
+  schema: ""
+  sqlType: Source
+  table: REGION
+  type: sourceInput
+type: Node
