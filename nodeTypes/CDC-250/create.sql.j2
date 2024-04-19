@@ -1,0 +1,120 @@
+{% if currentState != undefined and desiredState == undefined %}
+
+    {{ stage('Drop Stream') }}
+    DROP STREAM IF EXISTS {{ ref_no_link(currentState.node.location.name, currentState.node.name) }}
+
+    {{ stage('Drop Sequence') }}
+    DROP SEQUENCE IF NOT EXISTS {{ ref_no_link(currentState.node.location.name, 'SEQ_' + currentState.node.name) }}
+
+    {{ stage('Drop CDC Table') }}
+    DROP TABLE IF EXISTS {{ ref_no_link(currentState.node.location.name, currentState.node.name) }}
+    
+    {% if currentState.config.taskEnabled is true %}
+
+        {{ stage('Drop Task') }}
+            DROP TASK 
+        {% if currentState.config.taskCustomName != '' %}
+            {{ ref_no_link(currentState.node.location.name, currentState.config.taskCustomName) }}
+        {% else %}
+            {{ ref_no_link(currentState.node.location.name, 'TSK_' + currentState.node.name) }}
+        {% endif %}
+
+    {% endif %}
+
+{% else %}
+
+    {{ stage('Create Stream') }}
+
+    CREATE OR REPLACE STREAM {{ ref_no_link(desiredState.node.location.name, 'STR_' + desiredState.node.name) }}
+    ON TABLE {{ ref(desiredState.node.location.name, desiredState.sources[0].dependencies[0].node.name) }}
+    APPEND_ONLY = FALSE
+    COMMENT = 'CDC Stream on {{ ref(desiredState.node.location.name, desiredState.sources[0].dependencies[0].node.name) }}'
+
+    {{ stage('Create Sequence') }}
+
+    CREATE SEQUENCE IF NOT EXISTS {{ ref_no_link(desiredState.node.location.name, 'SEQ_' + desiredState.node.name) }}
+
+    {{ stage('Create CDC Table') }}
+
+    CREATE OR REPLACE TABLE {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }}
+    (
+        {% for col in desiredState.columns %}
+            "{{ col.name }}" {{ col.dataType }}
+            {%- if not col.nullable %} NOT NULL
+                {%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
+            {% endif %}
+            {%- if col.description | length > 0 %} COMMENT '{{ col.description }}'{% endif %}
+            {%- if not loop.last -%}, {% endif %}
+        {% endfor %}
+    )
+    {%- if desiredState.node.description | length > 0 %} COMMENT = '{{ desiredState.node.description }}'{% endif %}
+
+    {% if desiredState.config.taskEnabled is true %}
+
+        {{ stage('Create Task') }}
+
+        CREATE OR REPLACE TASK 
+        {% if desiredState.config.taskCustomName != '' %}
+            {{ ref_no_link(desiredState.node.location.name, desiredState.config.taskCustomName) }}
+        {% else %}
+            {{ ref_no_link(desiredState.node.location.name, 'TSK_' + desiredState.node.name) }}
+        {% endif %}
+        WAREHOUSE = {{desiredState.config.taskWarehouse}}
+    
+        SCHEDULE = 
+        {% if desiredState.config.taskSchedule == 'Every minute' %}
+            '1 MINUTE'
+        {% elif desiredState.config.taskSchedule == 'Every 5 minutes' %}
+            '5 MINUTE'
+        {% elif desiredState.config.taskSchedule == 'Every 30 minutes' %}
+            '30 MINUTE'
+        {% elif desiredState.config.taskSchedule == 'Every hour' %}
+            '60 MINUTE'
+        {% elif desiredState.config.taskSchedule == 'Every day' %}
+            '3600 MINUTE'
+        {% else %}
+            'INVALID'
+        {% endif %}
+        COMMENT='Task to copy data of stream STR_{{desiredState.node.name}} to CDC Table {{desiredState.node.name}}'
+        WHEN SYSTEM$STREAM_HAS_DATA('{{ ref_no_link(desiredState.node.location.name, 'STR_' + desiredState.node.name) }}')
+        AS
+        INSERT INTO {{ ref_no_link(desiredState.node.location.name, desiredState.node.name) }}
+
+        {% for source in desiredState.sources %}
+            SELECT
+
+            {% for col in source.columns %}
+                {% if col.name == 'CDC_ID' %}
+                    SEQ_{{desiredState.node.name}}.NEXTVAL
+                {% elif col.transform | trim != '' %}
+                    {{ col.transform.replace(source.dependencies[0].node.name, 'STR_' + desiredState.node.name) }}
+                {% elif col.sourceColumns[0].column and col.sourceColumns[0].column.name %}
+                    "STR_{{ desiredState.node.name }}"."{{ col.sourceColumns[0].column.name }}"
+                {% else %}
+                    NULL
+                {% endif %}
+                AS "{{ col.name }}"
+                {%- if not loop.last -%}, {% endif %}
+            {% endfor %}
+
+            FROM {{ ref_no_link(desiredState.node.location.name, 'STR_' + desiredState.node.name) }}
+
+            {% if desiredState.config.insertStrategy in ['UNION', 'UNION ALL'] and not loop.last %}
+                {{desiredState.config.insertStrategy}}
+            {% endif %}
+
+        {% endfor %}
+
+    {% elif currentState != undefined and currentState.config.taskEnabled is true %}
+
+        {{ stage('Drop Task') }}
+        DROP TASK 
+        {% if currentState.config.taskCustomName != '' %}
+            {{ ref_no_link(currentState.node.location.name, currentState.config.taskCustomName) }}
+        {% else %}
+            {{ ref_no_link(currentState.node.location.name, 'TSK_' + currentState.node.name) }}
+        {% endif %}
+
+    {% endif %}
+
+{% endif %}

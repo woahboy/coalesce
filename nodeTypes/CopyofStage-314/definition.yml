@@ -1,16 +1,17 @@
 fileVersion: 1
-id: "30"
+id: "314"
 isDisabled: false
 metadata:
   defaultStorageLocation: null
   error: null
-  nodeMetadataSpec: |-
-    capitalized: MS Loop
-    short: MSLOOP
-    plural: MS Loop
-    tagColor: 'black'
+  nodeMetadataSpec: |
+    capitalized: Copy of Stage
+    short: STG
+    plural: Stages
+    tagColor: '#2EB67D'
+
     config:
-    - groupName: Additional Options
+    - groupName: Options
       items:
       - type: materializationSelector
         default: table
@@ -18,10 +19,18 @@ metadata:
         - table
         - view
         isRequired: true
+
+      - type: toggleButton
+        attributeName: selectDistinct
+        displayName: Distinct
+
       - type: multisourceToggle
-        isRequired: false
-        enableIf: "{% if node.materializationType == 'table' %} true {% else %} false {% endif %}"
-      - displayName: Insert Strategy
+        enableIf: "{% if node.materializationType == 'table' %} true {% else %} false {% endif %}" 
+
+      - type: overrideSQLToggle
+        enableIf: "{% if node.materializationType == 'view' %} true {% else %} false {% endif %}"
+        
+      - displayName: Multi Source Strategy
         attributeName: insertStrategy
         type: dropdownSelector
         default: INSERT
@@ -30,33 +39,28 @@ metadata:
         - "UNION"
         - "UNION ALL"
         isRequired: true
+        enableIf: "{% if node.isMultisource %} true {% else %} false {% endif %}"
+
       - displayName: Truncate Before
         attributeName: truncateBefore
         type: toggleButton
         default: true
-        isRequired: true
+
+      - displayName: Enable Tests
+        attributeName: testsEnabled
+        type: toggleButton
+        default: true
+        
       - displayName: Pre-SQL
         attributeName: preSQL
         type: textBox
         syntax: sql
         isRequired: false
+
       - displayName: Post-SQL
         attributeName: postSQL
         type: textBox
         syntax: sql
         isRequired: false
-    - groupName: Storage Location Query
-      items:
-      - displayName: Starts With
-        attributeName: storageLocationSearchText
-        type: textBox
-        default: 'SOURCE'
-        isRequired: true
-    systemColumns:
-    - displayName: "SOURCE"
-      transform: ''
-      dataType: VARCHAR
-      placement: end
-      attributeName: isSystemSource
-name: Multi Source Loop
+name: Copy of Stage
 type: NodeType
