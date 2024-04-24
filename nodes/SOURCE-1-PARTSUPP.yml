@@ -1,11 +1,11 @@
 fileVersion: 1
-id: 787720b0-4529-40cd-9328-13f8b2af1a42
-name: NATION
+id: d92ac630-2ca2-4725-8c5e-de0667bd3da0
+name: PARTSUPP
 operation:
   database: ""
   dataset: ""
   deployEnabled: true
-  description: Nation data as defined by TPC-H
+  description: Partsupp data as defined by TPC-H
   locationName: SOURCE-1
   metadata:
     columns:
@@ -14,13 +14,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 8d8f37f3-dd27-4aaa-aa6f-d5e88c711023
-          stepCounter: 787720b0-4529-40cd-9328-13f8b2af1a42
+          columnCounter: f02e955d-75af-43e6-ad54-b6932866baf2
+          stepCounter: d92ac630-2ca2-4725-8c5e-de0667bd3da0
         config: {}
         dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: N_NATIONKEY
+        name: PS_PARTKEY
         nullable: false
         primaryKey: false
         uniqueKey: false
@@ -29,28 +29,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 4b2fa680-ec27-4a7d-b38f-099ee824461a
-          stepCounter: 787720b0-4529-40cd-9328-13f8b2af1a42
-        config: {}
-        dataType: VARCHAR(25)
-        defaultValue: ""
-        description: ""
-        name: N_NAME
-        nullable: false
-        primaryKey: false
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 56077f31-ead3-4682-b26d-2be71de761fd
-          stepCounter: 787720b0-4529-40cd-9328-13f8b2af1a42
+          columnCounter: b066c786-3d50-481c-b222-8ab9a994fba5
+          stepCounter: d92ac630-2ca2-4725-8c5e-de0667bd3da0
         config: {}
         dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: N_REGIONKEY
+        name: PS_SUPPKEY
         nullable: false
         primaryKey: false
         uniqueKey: false
@@ -59,21 +44,51 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: db070c91-0ade-4bbb-a2bf-1c7f29d57f2c
-          stepCounter: 787720b0-4529-40cd-9328-13f8b2af1a42
+          columnCounter: 44444388-5830-4734-aa17-826625b76e52
+          stepCounter: d92ac630-2ca2-4725-8c5e-de0667bd3da0
         config: {}
-        dataType: VARCHAR(152)
+        dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: N_COMMENT
+        name: PS_AVAILQTY
+        nullable: false
+        primaryKey: false
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: adb57c33-e2c4-44bc-a5dd-34121a50443e
+          stepCounter: d92ac630-2ca2-4725-8c5e-de0667bd3da0
+        config: {}
+        dataType: NUMBER(12,2)
+        defaultValue: ""
+        description: ""
+        name: PS_SUPPLYCOST
+        nullable: false
+        primaryKey: false
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 49911d4f-382c-4e04-b6a3-c69563b71da2
+          stepCounter: d92ac630-2ca2-4725-8c5e-de0667bd3da0
+        config: {}
+        dataType: VARCHAR(199)
+        defaultValue: ""
+        description: ""
+        name: PS_COMMENT
         nullable: true
         primaryKey: false
         uniqueKey: false
     join:
-      joinCondition: FROM {{ ref('SOURCE-1', 'NATION') }}
-  name: NATION
+      joinCondition: FROM {{ ref('SOURCE-1', 'PARTSUPP') }}
+  name: PARTSUPP
   schema: ""
   sqlType: Source
-  table: NATION
+  table: PARTSUPP
   type: sourceInput
 type: Node
