@@ -1,15 +1,15 @@
 fileVersion: 1
-id: "358"
-isDisabled: false
+id: "361"
+isDisabled: true
 metadata:
   defaultStorageLocation: TARGET
   error: null
-  nodeMetadataSpec: |
-    capitalized: 3NF Type 1
-    short: 3NF1
-    plural: 3NF
-    tagColor: '#29B2DB'
-        
+  nodeMetadataSpec: |-
+    capitalized: Copy of Dimension
+    short: DIM
+    tagColor: '#1E339A'
+    plural: Dimensions
+
     config:
     - groupName: Options
       items:
@@ -20,24 +20,14 @@ metadata:
         - table
         - view
 
-      - type: columnSelector 
-        displayName: Primary Key
-        attributeName: isPrimaryKey 
-        isRequired: true
-
-      - type: columnSelector 
-        displayName: Foreign Key
-        attributeName: isForeignKey 
-        isRequired: false
-
-      - type: textBox 
-        displayName: Foreign Key References
-        attributeName: isForeignKeyRef 
-        default: "parent (c_1, c_2) ..."
-        isRequired: false
-
       - type: multisourceToggle
         enableIf: "{% if node.materializationType == 'table' %} true {% else %} false {% endif %}"
+
+      - type: businessKeyColumns
+        isRequired: true
+
+      - type: changeTrackingColumns
+        isRequired: true
 
       - type: overrideSQLToggle
         enableIf: "{% if node.materializationType == 'view' %} true {% else %} false {% endif %}"
@@ -60,7 +50,6 @@ metadata:
         isRequired: false
 
     systemColumns:
-
     - displayName: '{{NODE_NAME}}_KEY'
       transform: ''
       dataType: NUMBER
@@ -102,5 +91,5 @@ metadata:
       dataType: TIMESTAMP
       placement: end
       attributeName: isSystemUpdateDate
-name: 3NF Type 1
+name: 3NF Type 2
 type: NodeType

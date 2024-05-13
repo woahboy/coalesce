@@ -12,12 +12,14 @@
                 {%- if col.defaultValue | length > 0 %} DEFAULT {{ col.defaultValue }}{% endif %}
             {% endif %}
             {%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
-            {%- if not loop.last -%}, {% endif %}
+            ,
         {% endfor %}
-        {% for col in source.columns if col.isBusinessKey -%}
-            CONSTRAINT pkey_1 PRIMARY KEY ()
-                {{ get_source_transform(col) }} = "DIM"."{{ col.name }}"
+        CONSTRAINT pkey_1 PRIMARY KEY (
+        {% for col in columns if col.isPrimaryKey -%}
+             {{ col.name }}
+             {% if not loop.last %}, {% endif %}
         {% endfor %}
+        ) NOT ENFORCED
     )
     {%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}'{% endif %}
 
