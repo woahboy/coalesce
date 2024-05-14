@@ -71,7 +71,7 @@
                 {{ get_source_transform(col) }} = "DIM"."{{ col.name }}"
             {% endfor %}
             WHERE "DIM"."{{ get_value_by_column_attribute("isSystemCurrentFlag") }}" = 'Y'
-            {% for col in source.columns if (col.isChangeTracking == true) %}
+            {% for col in source.columns if (col.isForeignKey == true) %}
                 {% if loop.first %}
                     AND (
                 {% else %}
