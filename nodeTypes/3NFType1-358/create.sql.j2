@@ -1,3 +1,5 @@
+{% set is_fk = columns | selectattr("isForeignKey") | list | length > 0 %}
+
 {% if node.materializationType == 'table' %}
     {{ stage('Create Persistent Stage Table') }}
 
@@ -14,12 +16,20 @@
             {%- if col.description | length > 0 %} COMMENT '{{ col.description | escape }}'{% endif %}
             ,
         {% endfor %}
-        CONSTRAINT pkey_1 PRIMARY KEY (
+        CONSTRAINT pkey PRIMARY KEY (
         {% for col in columns if col.isPrimaryKey -%}
-             {{ col.name }}
+             "{{ col.name }}"
              {% if not loop.last %}, {% endif %}
         {% endfor %}
         ) NOT ENFORCED
+        {% if is_fk %}
+            , CONSTRAINT fkey FOREIGN KEY ( 
+            {% for col in columns if col.isForeignKey -%}
+                "{{ col.name }}"
+                {% if not loop.last %}, {% endif %}
+            {% endfor %}
+            ) REFERENCES {{ config.isForeignKeyRef }} NOT ENFORCED
+        {% endif %}
     )
     {%- if node.description | length > 0 %} COMMENT = '{{ node.description | escape }}'{% endif %}
 
