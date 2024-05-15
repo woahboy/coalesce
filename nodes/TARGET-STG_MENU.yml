@@ -1,0 +1,98 @@
+fileVersion: 1
+id: b53f1a33-259f-45d9-85fc-df98ac8696c4
+name: STG_MENU
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: TARGET
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 045f2b78-d5dc-43a9-a528-4c016325472c
+          stepCounter: b53f1a33-259f-45d9-85fc-df98ac8696c4
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: MENU_TYPE_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1573f6ba-a225-44eb-8b40-dddaa1f06282
+                stepCounter: 4ba1224a-3cb7-4fc4-a103-ca196778b2e1
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3d2b6e83-6a38-4e28-b496-1fad9760c01a
+          stepCounter: b53f1a33-259f-45d9-85fc-df98ac8696c4
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: MENU_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e889571f-2cd9-4166-9ae6-51935683cec6
+                stepCounter: 4ba1224a-3cb7-4fc4-a103-ca196778b2e1
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 48146f5a-d765-4825-b473-2081fb9b17e8
+          stepCounter: b53f1a33-259f-45d9-85fc-df98ac8696c4
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: TRUCK_BRAND_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 49134b2a-69fb-484d-9b4c-9ebc7d80018e
+                stepCounter: 4ba1224a-3cb7-4fc4-a103-ca196778b2e1
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c9456bca-c5bf-44c9-82fd-2f5b010b5f08
+          stepCounter: b53f1a33-259f-45d9-85fc-df98ac8696c4
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: MENU_ITEM_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d9b38fb6-1201-4f58-8b8b-0bae9465d191
+                stepCounter: 4ba1224a-3cb7-4fc4-a103-ca196778b2e1
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          MENU: 4ba1224a-3cb7-4fc4-a103-ca196778b2e1
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SOURCE_TASTYBYTES
+            nodeName: MENU
+        join:
+          joinCondition: |-
+            FROM {{ ref('SOURCE_TASTYBYTES', 'MENU') }} "MENU"
+            WHERE "MENU"."TRUCK_BRAND_NAME" = 'Plant Palace'
+        name: STG_MENU
+        noLinkRefs: []
+  name: STG_MENU
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node
