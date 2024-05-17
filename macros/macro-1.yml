@@ -128,46 +128,5 @@ macroString: |-
           {%- if loop.last %}{{ algo_end }} AS {{ datatype }} ){% endif -%}
       {% endfor %}
   {%- endmacro -%}
-
-  {%- macro ref_no_link(location_name, node_name) -%}
-          {%- set foundMapping = { 'flag': false } -%}
-          {%- for storage in nodeMetadata.mapping -%}
-              {%- if nodeMetadata.mapping[storage].locationName ==  location_name -%}
-                  {%- if foundMapping.update({'flag': true}) -%}{%- endif -%}
-                  {{-  location_name | export_ref(node_name, ref_type='ref_no_link') -}}
-                  "{{- nodeMetadata.mapping[storage].database -}}"."{{- nodeMetadata.mapping[storage].schema -}}"."{{- node_name -}}"
-              {%- endif -%}
-          {%- endfor -%}
-          {%- if not foundMapping.flag -%}
-              {{-  location_name | invalid_export_ref(node_name, ref_type='ref_no_link') -}}
-          {%- endif -%}
-  {%- endmacro -%}
-
-  {%- macro ref_link(location_name, node_name) -%}
-          {%- set foundMapping = { 'flag': false } -%}
-          {%- for storage in nodeMetadata.mapping -%}
-              {%- if nodeMetadata.mapping[storage].locationName ==  location_name -%}
-                  {%- if foundMapping.update({'flag': true}) -%}{%- endif -%}
-                  {{-  location_name | export_ref(node_name, ref_type='ref_link') -}}
-              {%- endif -%}
-          {%- endfor -%}
-          {%- if not foundMapping.flag -%}
-              {{-  location_name | invalid_export_ref(node_name, ref_type='ref_link') -}}
-          {%- endif -%}
-  {%- endmacro -%}
-
-  {%- macro ref(location_name, node_name) -%}
-          {%- set foundMapping = { 'flag': false } -%}
-          {%- for storage in nodeMetadata.mapping -%}
-              {%- if nodeMetadata.mapping[storage].locationName ==  location_name -%}
-                  {%- if foundMapping.update({'flag': true}) -%}{%- endif -%}
-                  {{-  location_name | export_ref(node_name, ref_type='ref') -}}
-                  "{{- nodeMetadata.mapping[storage].database -}}"."{{- nodeMetadata.mapping[storage].schema -}}"."{{- node_name -}}"
-              {%- endif -%}
-          {%- endfor -%}
-          {%- if not foundMapping.flag -%}
-              {{-  location_name | invalid_export_ref(node_name, ref_type='ref') -}}
-          {%- endif -%}
-  {%- endmacro -%}
 name: macro
 type: Macro
