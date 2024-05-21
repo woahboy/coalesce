@@ -1,11 +1,11 @@
 fileVersion: 1
-id: 23bc5f56-573b-4805-96af-12e5cd00ff2e
-name: NATION
+id: bcb4f4ab-a1d9-4861-8068-06dd90d51a06
+name: REGION
 operation:
   database: ""
   dataset: ""
   deployEnabled: true
-  description: Nation data as defined by TPC-H
+  description: Region data as defined by TPC-H
   locationName: SOURCE_TPCH
   metadata:
     columns:
@@ -14,13 +14,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 731b4954-9f3f-41d0-b37e-466ec79dd8df
-          stepCounter: 23bc5f56-573b-4805-96af-12e5cd00ff2e
+          columnCounter: 9c14cd56-125e-4ebb-a6bd-952709335054
+          stepCounter: bcb4f4ab-a1d9-4861-8068-06dd90d51a06
         config: {}
         dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: N_NATIONKEY
+        name: R_REGIONKEY
         nullable: false
         primaryKey: false
         sourceColumnReferences:
@@ -33,13 +33,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 60608ee6-9227-4aa7-969a-4f591c83a8ba
-          stepCounter: 23bc5f56-573b-4805-96af-12e5cd00ff2e
+          columnCounter: 788def88-ad61-4ead-848f-9f88dc82c8d0
+          stepCounter: bcb4f4ab-a1d9-4861-8068-06dd90d51a06
         config: {}
         dataType: VARCHAR(25)
         defaultValue: ""
         description: ""
-        name: N_NAME
+        name: R_NAME
         nullable: false
         primaryKey: false
         sourceColumnReferences:
@@ -52,32 +52,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: c0c50ba2-652a-435e-9f04-94654b5a7ce9
-          stepCounter: 23bc5f56-573b-4805-96af-12e5cd00ff2e
-        config: {}
-        dataType: NUMBER(38,0)
-        defaultValue: ""
-        description: ""
-        name: N_REGIONKEY
-        nullable: false
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: f9631af3-2cc5-48ca-9389-d00d48d7747e
-          stepCounter: 23bc5f56-573b-4805-96af-12e5cd00ff2e
+          columnCounter: 91961acb-c452-47e9-9a36-39f159da4222
+          stepCounter: bcb4f4ab-a1d9-4861-8068-06dd90d51a06
         config: {}
         dataType: VARCHAR(152)
         defaultValue: ""
         description: ""
-        name: N_COMMENT
+        name: R_COMMENT
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -86,11 +67,11 @@ operation:
         transform: ""
         uniqueKey: false
     join:
-      joinCondition: FROM {{ ref('SOURCE_TPCH', 'NATION') }}
-  name: NATION
+      joinCondition: FROM {{ ref('SOURCE_TPCH', 'REGION') }}
+  name: REGION
   schema: ""
   sqlType: Source
-  table: NATION
+  table: REGION
   type: sourceInput
   version: 1
 type: Node
