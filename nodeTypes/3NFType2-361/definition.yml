@@ -1,14 +1,14 @@
 fileVersion: 1
 id: "361"
-isDisabled: true
+isDisabled: false
 metadata:
   defaultStorageLocation: TARGET
   error: null
   nodeMetadataSpec: |-
-    capitalized: Copy of Dimension
-    short: DIM
-    tagColor: '#1E339A'
-    plural: Dimensions
+    capitalized: 3NF Type 2
+    short: 3NF2
+    tagColor: 'blue'
+    plural: 3NF
 
     config:
     - groupName: Options
@@ -23,11 +23,24 @@ metadata:
       - type: multisourceToggle
         enableIf: "{% if node.materializationType == 'table' %} true {% else %} false {% endif %}"
 
-      - type: businessKeyColumns
+      - type: columnSelector 
+        displayName: Primary Key
+        attributeName: isPrimaryKey 
         isRequired: true
 
+      - type: columnSelector 
+        displayName: Foreign Key
+        attributeName: isForeignKey 
+        isRequired: false
+
+      - type: textBox 
+        displayName: Foreign Key References
+        attributeName: isForeignKeyRef 
+        default: "parent (c_1, c_2) ..."
+        isRequired: false
+
       - type: changeTrackingColumns
-        isRequired: true
+        isRequired: false
 
       - type: overrideSQLToggle
         enableIf: "{% if node.materializationType == 'view' %} true {% else %} false {% endif %}"
