@@ -128,5 +128,9 @@ macroString: |-
           {%- if loop.last %}{{ algo_end }} AS {{ datatype }} ){% endif -%}
       {% endfor %}
   {%- endmacro -%}
+
+  {%- macro use_role(role) -%}
+      USE ROLE {{ role }}
+  {%- endmacro %}
 name: macro
 type: Macro
