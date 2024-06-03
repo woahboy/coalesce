@@ -1,0 +1,95 @@
+fileVersion: 1
+id: "372"
+isDisabled: false
+metadata:
+  defaultStorageLocation: TARGET
+  error: null
+  nodeMetadataSpec: |
+    capitalized: Warehouse
+    short: WH
+    plural: Warehouses
+    tagColor: 'red'
+
+    config:
+    - groupName: Warehouse Config
+      items:
+
+      - type: dropdownSelector
+        displayName: Warehouse Type
+        attributeName: warehouseType
+        default: STANDARD
+        options:
+        - STANDARD
+        - SNOWPARK OPTIMIZED
+
+      - type: dropdownSelector
+        displayName: Warehouse Size
+        attributeName: warehouseSize
+        default: XSMALL
+        options:
+        - XSMALL
+        - SMALL
+        - MEDIUM
+        - LARGE
+        - XLARGE
+        - X2LARGE
+        - X3XLARGE
+        - X4LARGE
+        - X5LARGE
+        - X6LARGE
+        
+      - type: dropdownSelector
+        displayName: Minimum Cluster Count
+        attributeName: minClusterCount
+        default: '1'
+        options:
+        - '1'
+        - '2'
+        - '3'
+        - '4'
+        - '5'
+        - '6'
+        - '7'
+        - '8'
+        - '9'
+        - '10'
+
+      - type: dropdownSelector
+        displayName: Maximum Cluster Count
+        attributeName: maxClusterCount
+        default: '2'
+        options:
+        - '1'
+        - '2'
+        - '3'
+        - '4'
+        - '5'
+        - '6'
+        - '7'
+        - '8'
+        - '9'
+        - '10'
+
+      - type: dropdownSelector
+        displayName: Scaling Policy
+        attributeName: scalingPolicy
+        default: STANDARD
+        options:
+        - STANDARD
+        - ECONOMY
+
+      - type: textBox
+        displayName: Auto Suspend Seconds
+        attributeName: autoSuspend
+        default: 60
+        syntax: none
+
+      - type: toggleButton
+        displayName: Auto Resume
+        attributeName: autoResume
+
+      - type: toggleButton
+        displayName: Initially Suspended
+        attributeName: initiallySuspended
+name: Warehouse
+type: NodeType

@@ -1,12 +1,12 @@
 fileVersion: 1
-id: 8e91536d-23d3-44bf-bbab-2e1e32c415b6
-name: ORDERS
+id: f457f297-f8f6-44e4-8685-2207535d2bc0
+name: CUSTOMER_LOYALTY_METRICS_V
 operation:
   database: ""
   dataset: ""
   deployEnabled: true
-  description: Orders data as defined by TPC-H
-  locationName: SOURCE_TPCH
+  description: Tasty Bytes Customer Loyalty Member Metrics View
+  locationName: SOURCE_TASTYBYTES_ANALYTICS
   metadata:
     columns:
       - acceptedValues:
@@ -14,14 +14,14 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: dbeac2fd-a8b7-4a6d-874f-dfac4bf4a0fe
-          stepCounter: 8e91536d-23d3-44bf-bbab-2e1e32c415b6
+          columnCounter: 94af59b7-2389-4c58-b4ce-6cd16dc303b8
+          stepCounter: f457f297-f8f6-44e4-8685-2207535d2bc0
         config: {}
         dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: O_ORDERKEY
-        nullable: false
+        name: CUSTOMER_ID
+        nullable: true
         primaryKey: false
         sourceColumnReferences:
           - columnReferences: []
@@ -33,14 +33,14 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 35f8c2b0-6d8b-422a-8799-79d422ef9dd7
-          stepCounter: 8e91536d-23d3-44bf-bbab-2e1e32c415b6
+          columnCounter: 1d6fa940-5b09-4a9a-a559-ba5b9c17811e
+          stepCounter: f457f297-f8f6-44e4-8685-2207535d2bc0
         config: {}
-        dataType: NUMBER(38,0)
+        dataType: VARCHAR(16777216)
         defaultValue: ""
         description: ""
-        name: O_CUSTKEY
-        nullable: false
+        name: CITY
+        nullable: true
         primaryKey: false
         sourceColumnReferences:
           - columnReferences: []
@@ -52,14 +52,14 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 4c60a717-22af-40a7-8ad7-891364b8f56a
-          stepCounter: 8e91536d-23d3-44bf-bbab-2e1e32c415b6
+          columnCounter: 39a8e329-888b-4751-bb23-70a48eee7d46
+          stepCounter: f457f297-f8f6-44e4-8685-2207535d2bc0
         config: {}
-        dataType: VARCHAR(1)
+        dataType: VARCHAR(16777216)
         defaultValue: ""
         description: ""
-        name: O_ORDERSTATUS
-        nullable: false
+        name: COUNTRY
+        nullable: true
         primaryKey: false
         sourceColumnReferences:
           - columnReferences: []
@@ -71,14 +71,14 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 607216b8-2099-4ad9-b044-6885d0303c71
-          stepCounter: 8e91536d-23d3-44bf-bbab-2e1e32c415b6
+          columnCounter: a7215792-ceb2-40d2-83e3-0a106a6d25b7
+          stepCounter: f457f297-f8f6-44e4-8685-2207535d2bc0
         config: {}
-        dataType: NUMBER(12,2)
+        dataType: VARCHAR(16777216)
         defaultValue: ""
         description: ""
-        name: O_TOTALPRICE
-        nullable: false
+        name: FIRST_NAME
+        nullable: true
         primaryKey: false
         sourceColumnReferences:
           - columnReferences: []
@@ -90,14 +90,14 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 339591ad-eacb-4517-92df-5b03d2a72761
-          stepCounter: 8e91536d-23d3-44bf-bbab-2e1e32c415b6
+          columnCounter: 5e0221f9-b41c-493f-b9c8-a27b9250177c
+          stepCounter: f457f297-f8f6-44e4-8685-2207535d2bc0
         config: {}
-        dataType: DATE
+        dataType: VARCHAR(16777216)
         defaultValue: ""
         description: ""
-        name: O_ORDERDATE
-        nullable: false
+        name: LAST_NAME
+        nullable: true
         primaryKey: false
         sourceColumnReferences:
           - columnReferences: []
@@ -109,14 +109,14 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 00aaf5e5-41ae-4955-a935-2acb82806e2a
-          stepCounter: 8e91536d-23d3-44bf-bbab-2e1e32c415b6
+          columnCounter: 1c16772a-2930-4579-a339-c74b19ba0e52
+          stepCounter: f457f297-f8f6-44e4-8685-2207535d2bc0
         config: {}
-        dataType: VARCHAR(15)
+        dataType: VARCHAR(16777216)
         defaultValue: ""
         description: ""
-        name: O_ORDERPRIORITY
-        nullable: false
+        name: PHONE_NUMBER
+        nullable: true
         primaryKey: false
         sourceColumnReferences:
           - columnReferences: []
@@ -128,14 +128,14 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 293afe8f-cf21-4cd1-95bc-aa76cb695b3c
-          stepCounter: 8e91536d-23d3-44bf-bbab-2e1e32c415b6
+          columnCounter: 84b5bb01-b39f-4012-8169-0d928320d6ee
+          stepCounter: f457f297-f8f6-44e4-8685-2207535d2bc0
         config: {}
-        dataType: VARCHAR(15)
+        dataType: VARCHAR(16777216)
         defaultValue: ""
         description: ""
-        name: O_CLERK
-        nullable: false
+        name: E_MAIL
+        nullable: true
         primaryKey: false
         sourceColumnReferences:
           - columnReferences: []
@@ -147,14 +147,14 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 53711bdf-a54e-4dc4-9b74-97ec9e1fa285
-          stepCounter: 8e91536d-23d3-44bf-bbab-2e1e32c415b6
+          columnCounter: 98a4af44-b04f-426a-ae8f-a2062863e201
+          stepCounter: f457f297-f8f6-44e4-8685-2207535d2bc0
         config: {}
-        dataType: NUMBER(38,0)
+        dataType: NUMBER(38,4)
         defaultValue: ""
         description: ""
-        name: O_SHIPPRIORITY
-        nullable: false
+        name: TOTAL_SALES
+        nullable: true
         primaryKey: false
         sourceColumnReferences:
           - columnReferences: []
@@ -166,13 +166,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 2f844d50-c281-4e68-b998-c04a843876d5
-          stepCounter: 8e91536d-23d3-44bf-bbab-2e1e32c415b6
+          columnCounter: 6c4c8c1f-cb92-431c-8f91-874cbac382b6
+          stepCounter: f457f297-f8f6-44e4-8685-2207535d2bc0
         config: {}
-        dataType: VARCHAR(79)
+        dataType: ARRAY
         defaultValue: ""
         description: ""
-        name: O_COMMENT
+        name: VISITED_LOCATION_IDS_ARRAY
         nullable: false
         primaryKey: false
         sourceColumnReferences:
@@ -181,11 +181,11 @@ operation:
         transform: ""
         uniqueKey: false
     join:
-      joinCondition: FROM {{ ref('SOURCE_TPCH', 'ORDERS') }}
-  name: ORDERS
+      joinCondition: FROM {{ ref('SOURCE_TASTYBYTES_ANALYTICS', 'CUSTOMER_LOYALTY_METRICS_V') }}
+  name: CUSTOMER_LOYALTY_METRICS_V
   schema: ""
   sqlType: Source
-  table: ORDERS
+  table: CUSTOMER_LOYALTY_METRICS_V
   type: sourceInput
   version: 1
 type: Node

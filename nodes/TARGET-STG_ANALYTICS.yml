@@ -1,0 +1,105 @@
+fileVersion: 1
+id: 0d19aa3e-3431-4c3a-93e1-65c321323f44
+name: STG_ANALYTICS
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ALTER WAREHOUSE tb_test_wh SET warehouse_size = 'XSmall'
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: TARGET
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7d08c11e-cc56-4dc9-aa9d-43e401854e9c
+          stepCounter: 0d19aa3e-3431-4c3a-93e1-65c321323f44
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: CUSTOMER_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2beb35fd-73eb-4c3e-b5ed-95e386da18f8
+                stepCounter: 7b61da97-bdbc-4db2-a1e6-05b60718278a
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 812017f3-21df-4586-b4a6-481f45243b76
+          stepCounter: 0d19aa3e-3431-4c3a-93e1-65c321323f44
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1d6fa940-5b09-4a9a-a559-ba5b9c17811e
+                stepCounter: f457f297-f8f6-44e4-8685-2207535d2bc0
+            transform: CONCAT("CUSTOMER_LOYALTY_METRICS_V"."FIRST_NAME", ' ', CUSTOMER_LOYALTY_METRICS_V."LAST_NAME")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 13f91bb8-f3da-44af-8e60-290b440952e3
+          stepCounter: 0d19aa3e-3431-4c3a-93e1-65c321323f44
+        config: {}
+        dataType: INT
+        description: ""
+        name: ORDER_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1d6fa940-5b09-4a9a-a559-ba5b9c17811e
+                stepCounter: f457f297-f8f6-44e4-8685-2207535d2bc0
+            transform: COUNT(DISTINCT "ORDERS_V"."ORDER_ID")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7c02d690-0c7c-425a-b27a-8d3b5e4daf23
+          stepCounter: 0d19aa3e-3431-4c3a-93e1-65c321323f44
+        config: {}
+        dataType: INT
+        description: ""
+        name: TOTAL_SALES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1d6fa940-5b09-4a9a-a559-ba5b9c17811e
+                stepCounter: f457f297-f8f6-44e4-8685-2207535d2bc0
+            transform: SUM("ORDERS_V"."PRICE")
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SOURCE_TASTYBYTES_ANALYTICS
+            nodeName: CUSTOMER_LOYALTY_METRICS_V
+          - locationName: SOURCE_TASTYBYTES_ANALYTICS
+            nodeName: ORDERS_V
+          - locationName: TARGET
+            nodeName: STG_MENU
+        join:
+          joinCondition: |-
+            FROM {{ ref('SOURCE_TASTYBYTES_ANALYTICS', 'ORDERS_V') }} "ORDERS_V"
+            INNER JOIN {{ ref('SOURCE_TASTYBYTES_ANALYTICS', 'CUSTOMER_LOYALTY_METRICS_V') }} "CUSTOMER_LOYALTY_METRICS_V"
+            ON "ORDERS_V"."CUSTOMER_ID" = "CUSTOMER_LOYALTY_METRICS_V"."CUSTOMER_ID"
+            GROUP BY "ORDERS_V"."CUSTOMER_ID", NAME
+            ORDER BY ORDER_COUNT DESC;
+            {{ ref_link('TARGET', 'STG_MENU') }} "ORDERS_V"
+        name: STG_ANALYTICS
+        noLinkRefs: []
+  name: STG_ANALYTICS
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

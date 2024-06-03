@@ -1,0 +1,18 @@
+{{ node.override.create.script }}
+
+{{ stage('Create Stage Table') }}
+
+CREATE OR REPLACE WAREHOUSE {{ node.name }} 
+{%- if node.description | length > 0 %}  WITH COMMENT = '{{ node.description | escape }}'{% endif %}
+{%- if config.warehouseType | length > 0 %}  
+    {%- if config.warehouseType == 'STANDARD' + " "-%} WAREHOUSE_TYPE = 'STANDARD' {% endif %}
+    {%- if config.warehouseType == 'SNOWPARK OPTIMIZED' + " "-%}  WAREHOUSE_TYPE = 'SNOWPARK-OPTIMIZED' {% endif %}
+{% endif %}
+{%- if config.warehouseSize | length > 0 %}  WAREHOUSE_SIZE = '{{config.warehouseSize}}' {% endif%}
+{%- if config.minClusterCount | length > 0 %}  MIN_CLUSTER_COUNT = {{config.minClusterCount}} {% endif%}
+{%- if config.maxClusterCount | length > 0 %}  MAX_CLUSTER_COUNT = {{config.maxClusterCount}} {% endif%}
+{%- if config.scalingPolicy | length > 0 %}  SCALING_POLICY = '{{config.scalingPolicy}}' {% endif%}
+{%- if config.autoSuspend | length > 0 %}  AUTO_SUSPEND = {{config.autoSuspend}} {% endif%}
+{%- if config.autoResume %}  AUTO_RESUME = {{config.autoResume}} {% endif%}
+{%- if config.initiallySuspended %}  INITIALLY_SUSPENDED = {{config.initiallySuspended}} {% endif%}
+;

@@ -1,0 +1,48 @@
+fileVersion: 1
+id: db7b7031-b94a-4a2c-b85c-f0b6ca6ad4e3
+name: tb_test_wh
+operation:
+  config:
+    autoResume: true
+    autoSuspend: "60"
+    initiallySuspended: true
+    insertStrategy: INSERT
+    maxClusterCount: "2"
+    minClusterCount: "1"
+    postSQL: ""
+    preSQL: |-
+      USE ROLE tb_admin;
+      USE WAREHOUSE tb_de_wh;
+      USE DATABASE tb_101;
+    scalingPolicy: STANDARD
+    testsEnabled: true
+    truncateBefore: true
+    warehouseSize: XSMALL
+    warehouseType: STANDARD
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: TARGET
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns: []
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies: []
+        join:
+          joinCondition: ""
+        name: tb_test_wh
+        noLinkRefs: []
+  name: tb_test_wh
+  overrideSQL: false
+  schema: ""
+  sqlType: "372"
+  type: sql
+  version: 1
+type: Node
