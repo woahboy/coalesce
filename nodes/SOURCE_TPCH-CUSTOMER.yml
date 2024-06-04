@@ -1,12 +1,12 @@
 fileVersion: 1
-id: f457f297-f8f6-44e4-8685-2207535d2bc0
-name: CUSTOMER_LOYALTY_METRICS_V
+id: bc291890-0e23-49c5-baa0-2c657829c251
+name: CUSTOMER
 operation:
   database: ""
   dataset: ""
   deployEnabled: true
-  description: Tasty Bytes Customer Loyalty Member Metrics View
-  locationName: SOURCE_TASTYBYTES_ANALYTICS
+  description: Customer data as defined by TPC-H
+  locationName: SOURCE_TPCH
   metadata:
     columns:
       - acceptedValues:
@@ -14,165 +14,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 94af59b7-2389-4c58-b4ce-6cd16dc303b8
-          stepCounter: f457f297-f8f6-44e4-8685-2207535d2bc0
+          columnCounter: 1aa27ce0-0912-492e-8f53-9009e9a6b9bd
+          stepCounter: bc291890-0e23-49c5-baa0-2c657829c251
         config: {}
         dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: CUSTOMER_ID
-        nullable: true
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 1d6fa940-5b09-4a9a-a559-ba5b9c17811e
-          stepCounter: f457f297-f8f6-44e4-8685-2207535d2bc0
-        config: {}
-        dataType: VARCHAR(16777216)
-        defaultValue: ""
-        description: ""
-        name: CITY
-        nullable: true
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 39a8e329-888b-4751-bb23-70a48eee7d46
-          stepCounter: f457f297-f8f6-44e4-8685-2207535d2bc0
-        config: {}
-        dataType: VARCHAR(16777216)
-        defaultValue: ""
-        description: ""
-        name: COUNTRY
-        nullable: true
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: a7215792-ceb2-40d2-83e3-0a106a6d25b7
-          stepCounter: f457f297-f8f6-44e4-8685-2207535d2bc0
-        config: {}
-        dataType: VARCHAR(16777216)
-        defaultValue: ""
-        description: ""
-        name: FIRST_NAME
-        nullable: true
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 5e0221f9-b41c-493f-b9c8-a27b9250177c
-          stepCounter: f457f297-f8f6-44e4-8685-2207535d2bc0
-        config: {}
-        dataType: VARCHAR(16777216)
-        defaultValue: ""
-        description: ""
-        name: LAST_NAME
-        nullable: true
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 1c16772a-2930-4579-a339-c74b19ba0e52
-          stepCounter: f457f297-f8f6-44e4-8685-2207535d2bc0
-        config: {}
-        dataType: VARCHAR(16777216)
-        defaultValue: ""
-        description: ""
-        name: PHONE_NUMBER
-        nullable: true
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 84b5bb01-b39f-4012-8169-0d928320d6ee
-          stepCounter: f457f297-f8f6-44e4-8685-2207535d2bc0
-        config: {}
-        dataType: VARCHAR(16777216)
-        defaultValue: ""
-        description: ""
-        name: E_MAIL
-        nullable: true
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 98a4af44-b04f-426a-ae8f-a2062863e201
-          stepCounter: f457f297-f8f6-44e4-8685-2207535d2bc0
-        config: {}
-        dataType: NUMBER(38,4)
-        defaultValue: ""
-        description: ""
-        name: TOTAL_SALES
-        nullable: true
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 6c4c8c1f-cb92-431c-8f91-874cbac382b6
-          stepCounter: f457f297-f8f6-44e4-8685-2207535d2bc0
-        config: {}
-        dataType: ARRAY
-        defaultValue: ""
-        description: ""
-        name: VISITED_LOCATION_IDS_ARRAY
+        name: C_CUSTKEY
         nullable: false
         primaryKey: false
         sourceColumnReferences:
@@ -180,12 +28,145 @@ operation:
             transform: ""
         transform: ""
         uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: e8e5263b-4da8-4b89-bd07-a84cec02c62d
+          stepCounter: bc291890-0e23-49c5-baa0-2c657829c251
+        config: {}
+        dataType: VARCHAR(25)
+        defaultValue: ""
+        description: ""
+        name: C_NAME
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ac18579e-1ebe-4b45-8344-f50aab1bddbe
+          stepCounter: bc291890-0e23-49c5-baa0-2c657829c251
+        config: {}
+        dataType: VARCHAR(40)
+        defaultValue: ""
+        description: ""
+        name: C_ADDRESS
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3545f7bd-8296-44f7-a02c-9d27a194b622
+          stepCounter: bc291890-0e23-49c5-baa0-2c657829c251
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: C_NATIONKEY
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 45a41ce1-2150-4c96-aeff-a11b8fd6dd6f
+          stepCounter: bc291890-0e23-49c5-baa0-2c657829c251
+        config: {}
+        dataType: VARCHAR(15)
+        defaultValue: ""
+        description: ""
+        name: C_PHONE
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ecd8689f-c168-4abf-be40-e99f6b749813
+          stepCounter: bc291890-0e23-49c5-baa0-2c657829c251
+        config: {}
+        dataType: NUMBER(12,2)
+        defaultValue: ""
+        description: ""
+        name: C_ACCTBAL
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 71850218-b5b5-448f-905a-5c3b4974516b
+          stepCounter: bc291890-0e23-49c5-baa0-2c657829c251
+        config: {}
+        dataType: VARCHAR(10)
+        defaultValue: ""
+        description: ""
+        name: C_MKTSEGMENT
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6a0646ea-706b-4f14-a82a-8d371ea634c9
+          stepCounter: bc291890-0e23-49c5-baa0-2c657829c251
+        config: {}
+        dataType: VARCHAR(117)
+        defaultValue: ""
+        description: ""
+        name: C_COMMENT
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
     join:
-      joinCondition: FROM {{ ref('SOURCE_TASTYBYTES_ANALYTICS', 'CUSTOMER_LOYALTY_METRICS_V') }}
-  name: CUSTOMER_LOYALTY_METRICS_V
+      joinCondition: FROM {{ ref('SOURCE_TPCH', 'CUSTOMER') }}
+  name: CUSTOMER
   schema: ""
   sqlType: Source
-  table: CUSTOMER_LOYALTY_METRICS_V
+  table: CUSTOMER
   type: sourceInput
   version: 1
 type: Node
