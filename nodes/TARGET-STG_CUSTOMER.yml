@@ -103,6 +103,20 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
+          columnCounter: d55cc320-add6-44c7-97df-e68f92601806
+          stepCounter: 21511a61-537c-4853-b87e-09c813752c7b
+        config: {}
+        dataType: VARCHAR(10)
+        description: ""
+        name: C_VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2c54e78e-7522-4957-9574-84a1e518fbd5
+                stepCounter: d9e69a34-a03f-4a33-8714-e269d36828fe
+            transform: CASE WHEN "CUSTOMER"."C_ACCTBAL" > 5000 AND "CUSTOMER"."C_MKTSEGMENT" IN ('BUILDING', 'HOUSEHOLD') THEN 'HIGH' ELSE 'LOW' END
+      - appliedColumnTests: {}
+        columnReference:
           columnCounter: a4807e1a-0519-465a-91fe-da39eeaaf80a
           stepCounter: 21511a61-537c-4853-b87e-09c813752c7b
         config: {}
