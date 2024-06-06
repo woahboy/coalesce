@@ -143,6 +143,48 @@ operation:
               - columnCounter: 7d43616c-8835-4919-9d2f-6ed8e2d49af9
                 stepCounter: 02fc8e96-4112-494c-a811-118457583be8
             transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 043ff54c-f0b8-4b05-9ea5-625a98aa836a
+          stepCounter: c38633be-7ebf-4d64-8d28-a48208ee7d68
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: DIM_CUSTOMER_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c22fe2a7-4410-4034-a0e1-2e3bd0e64389
+                stepCounter: e0a7a1b9-e908-4407-b616-684fc30ce9ca
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 96fa2db4-7e5f-4427-bb47-702003226fbb
+          stepCounter: c38633be-7ebf-4d64-8d28-a48208ee7d68
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: DIM_PART_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 886b145e-1301-42b2-a11a-a1935b937dc8
+                stepCounter: 1fa9b557-acf2-4161-9f80-7c8930284e0c
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6aea4a5c-ae79-4d16-ba41-d85971e3e755
+          stepCounter: c38633be-7ebf-4d64-8d28-a48208ee7d68
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: DIM_SUPPLIER_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7192fb18-7912-47ea-8fcd-2c57890a81b5
+                stepCounter: b5d3fb45-5e43-420d-8668-bdaf546f7865
+            transform: ""
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
@@ -152,8 +194,21 @@ operation:
         dependencies:
           - locationName: SOURCE_TPCH
             nodeName: ORDERS
+          - locationName: TARGET
+            nodeName: DIM_CUSTOMER
+          - locationName: TARGET
+            nodeName: DIM_PART
+          - locationName: TARGET
+            nodeName: DIM_SUPPLIER
         join:
-          joinCondition: FROM {{ ref('SOURCE_TPCH', 'ORDERS') }} "ORDERS"
+          joinCondition: |-
+            FROM {{ ref('SOURCE_TPCH', 'ORDERS') }} "ORDERS"
+            LEFT JOIN {{ ref('TARGET', 'DIM_CUSTOMER') }} "DIM_CUSTOMER"
+            ON "ORDERS"./*COLUMN*/ = "DIM_CUSTOMER"."C_CUSTKEY"
+            LEFT JOIN {{ ref('TARGET', 'DIM_PART') }} "DIM_PART"
+            ON "ORDERS"./*COLUMN*/ = "DIM_PART"."P_PARTKEY"
+            LEFT JOIN {{ ref('TARGET', 'DIM_SUPPLIER') }} "DIM_SUPPLIER"
+            ON "ORDERS"./*COLUMN*/ = "DIM_SUPPLIER"."S_SUPPKEY"
         name: STG_ORDERS
         noLinkRefs: []
   name: STG_ORDERS
