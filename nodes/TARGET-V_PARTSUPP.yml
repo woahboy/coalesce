@@ -4,7 +4,7 @@ name: V_PARTSUPP
 operation:
   config:
     insertStrategy: UNION
-    selectDistinct: false
+    selectDistinct: true
   database: ""
   deployEnabled: true
   description: Partsupp data as defined by TPC-H
@@ -14,82 +14,125 @@ operation:
   metadata:
     appliedNodeTests: []
     columns:
-      - appliedColumnTests: {}
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
-          columnCounter: dd8a94d3-4d9e-4728-9b2b-a97378384231
+          columnCounter: c2f5cfa5-10b0-488d-b6b2-436250220bb7
           stepCounter: 5caa5e4a-51cd-450b-a17d-e06a5170542d
         config: {}
         dataType: NUMBER(38,0)
+        defaultValue: ""
         description: ""
         name: PS_PARTKEY
         nullable: false
+        primaryKey: false
         sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: da5d9cee-b194-4ada-813b-585b227ea58e
-                stepCounter: 4c564fdf-28e7-432c-bfc4-45a3e6877184
+          - columnReferences: []
             transform: ""
-      - appliedColumnTests: {}
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
-          columnCounter: 32e83ad0-d8df-423f-8876-6fb0564dfc53
+          columnCounter: ee6c55e2-c351-4852-ba31-01e0b5a5083e
           stepCounter: 5caa5e4a-51cd-450b-a17d-e06a5170542d
         config: {}
         dataType: NUMBER(38,0)
+        defaultValue: ""
         description: ""
         name: PS_SUPPKEY
         nullable: false
+        primaryKey: false
         sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 8a901b60-730d-44f7-ab63-d1250652e79e
-                stepCounter: 4c564fdf-28e7-432c-bfc4-45a3e6877184
+          - columnReferences: []
             transform: ""
-      - appliedColumnTests: {}
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
-          columnCounter: 0a5d83ff-1303-4103-8400-4b37b03ba1c2
+          columnCounter: 27fc5051-85eb-416e-bb26-8759979b02fe
           stepCounter: 5caa5e4a-51cd-450b-a17d-e06a5170542d
         config: {}
         dataType: NUMBER(38,0)
+        defaultValue: ""
         description: ""
         name: PS_AVAILQTY
         nullable: false
+        primaryKey: false
         sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: cd6ce620-7dda-4d62-a523-c047d1fbb737
-                stepCounter: 4c564fdf-28e7-432c-bfc4-45a3e6877184
+          - columnReferences: []
             transform: ""
-      - appliedColumnTests: {}
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
-          columnCounter: 6eb5358c-40b1-412c-84fe-7ac8f1e5b9f2
+          columnCounter: 9cdc10a0-19a4-425d-8a1f-2cc6b93ea5b2
           stepCounter: 5caa5e4a-51cd-450b-a17d-e06a5170542d
         config: {}
         dataType: NUMBER(12,2)
+        defaultValue: ""
         description: ""
         name: PS_SUPPLYCOST
         nullable: false
+        primaryKey: false
         sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 8bb3bf25-e072-4cce-b48d-10c9aae8e5d9
-                stepCounter: 4c564fdf-28e7-432c-bfc4-45a3e6877184
+          - columnReferences: []
             transform: ""
-      - appliedColumnTests: {}
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
         columnReference:
-          columnCounter: 7d715baa-aec1-4971-8e1d-184eaee624ca
+          columnCounter: 721667bd-2ba0-490d-a4b3-bf09d0d770c2
           stepCounter: 5caa5e4a-51cd-450b-a17d-e06a5170542d
         config: {}
         dataType: VARCHAR(199)
+        defaultValue: ""
         description: ""
         name: PS_COMMENT
         nullable: true
+        primaryKey: false
         sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: a5009492-be9f-4ed1-a631-ebd38a89007f
-                stepCounter: 4c564fdf-28e7-432c-bfc4-45a3e6877184
+          - columnReferences: []
             transform: ""
+        transform: ""
+        uniqueKey: false
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
       - aliases: {}
         customSQL:
-          customSQL: ""
+          customSQL: |-
+            {{ stage('Override Create SQL') }}
+            CREATE OR REPLACE VIEW
+              "JUSTIN_EDW"."DEV_EDW"."V_PARTSUPP" (
+                "PS_PARTKEY",
+                "PS_SUPPKEY",
+                "PS_AVAILQTY",
+                "PS_SUPPLYCOST",
+                "PS_COMMENT"
+              )
+            COMMENT = 'Partsupp data as defined by TPC-H' AS
+            SELECT
+              "PARTSUPP"."PS_PARTKEY" AS "PS_PARTKEY",
+              "PARTSUPP"."PS_SUPPKEY" AS "PS_SUPPKEY",
+              "PARTSUPP"."PS_AVAILQTY" AS "PS_AVAILQTY",
+              "PARTSUPP"."PS_SUPPLYCOST" AS "PS_SUPPLYCOST",
+              "PARTSUPP"."PS_COMMENT" AS "PS_COMMENT"
+            FROM
+              "SNOWFLAKE_SAMPLE_DATA"."TPCH_SF1"."PARTSUPP" "PARTSUPP"
         dependencies:
           - locationName: SOURCE_TPCH
             nodeName: PARTSUPP
