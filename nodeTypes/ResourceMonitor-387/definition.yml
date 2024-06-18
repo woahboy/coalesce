@@ -1,0 +1,64 @@
+fileVersion: 1
+id: "387"
+isDisabled: false
+metadata:
+  defaultStorageLocation: TARGET
+  error: null
+  nodeMetadataSpec: |
+    capitalized: Resource Monitor
+    short: RM
+    plural: Resource Monitors
+    tagColor: 'purple'
+
+    config:
+    - groupName: Resource Monitor Config
+      items:
+
+      - type: textBox
+        displayName: Credit Quota
+        attributeName: creditQuota
+        default: 100
+
+      - displayName: Set Frequency
+        attributeName: setFrequency
+        type: toggleButton
+        default: false
+
+      - type: dropdownSelector
+        displayName: Frequency
+        attributeName: frequency
+        default: MONTHLY
+        options:
+        - DAILY
+        - WEEKLY
+        - MONTHLY
+        - YEARLY
+        - NEVER
+        enableIf: "{{ config.setFrequency }}"
+        
+      - type: textBox
+        displayName: Start Timestamp
+        attributeName: startTimestamp
+        default: IMMEDIATELY
+        enableIf: "{{ config.setFrequency }}"
+
+      - type: tabular
+        displayName: Triggers
+        attributeName: triggers
+        isRequired: false
+        columns:
+
+        - type: textBox
+          displayName: Threshold Percent
+          attributeName: triggerThreshold
+          default: 100
+
+        - type: dropdownSelector
+          displayName: Action
+          attributeName: triggerAction
+          options:
+          - DO SUSPEND
+          - SUSPEND IMMEDIATE
+          - NOTIFY
+name: Resource Monitor
+type: NodeType

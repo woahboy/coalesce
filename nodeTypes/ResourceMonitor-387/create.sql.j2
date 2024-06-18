@@ -1,0 +1,9 @@
+{{ node.override.create.script }}
+
+{{ stage('Create Stage Table') }}
+
+CREATE OR REPLACE RESOURCE MONITOR {{ node.name }} WITH
+{%- if node.description | length > 0 %}  WITH COMMENT = '{{ node.description | escape }}'{% endif %}
+{%- if config.creditQuota | length > 0 %} CREDIT_QUOTA = {{ config.creditQuota }} {% endif %}
+{%- if config.creditQuota | length > 0 %} CREDIT_QUOTA = {{ config.creditQuota }} {% endif %}
+;

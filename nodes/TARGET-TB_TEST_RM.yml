@@ -1,22 +1,14 @@
 fileVersion: 1
-id: db7b7031-b94a-4a2c-b85c-f0b6ca6ad4e3
-name: tb_test_wh
+id: fda26921-cd29-4b14-9833-a884d04b4372
+name: TB_TEST_RM
 operation:
   config:
-    autoResume: true
-    autoSuspend: "60"
-    initiallySuspended: true
-    insertStrategy: INSERT
+    autoResume: false
+    autoSuspend: 60
+    initiallySuspended: false
     maxClusterCount: "2"
     minClusterCount: "1"
-    postSQL: ""
-    preSQL: |-
-      USE ROLE tb_admin;
-      USE WAREHOUSE tb_de_wh;
-      USE DATABASE tb_101;
     scalingPolicy: STANDARD
-    testsEnabled: true
-    truncateBefore: true
     warehouseSize: XSMALL
     warehouseType: STANDARD
   database: ""
@@ -37,12 +29,12 @@ operation:
         dependencies: []
         join:
           joinCondition: ""
-        name: tb_test_wh
+        name: TB_TEST_RM
         noLinkRefs: []
-  name: tb_test_wh
+  name: TB_TEST_RM
   overrideSQL: false
   schema: ""
-  sqlType: "372"
+  sqlType: "387"
   type: sql
   version: 1
 type: Node
