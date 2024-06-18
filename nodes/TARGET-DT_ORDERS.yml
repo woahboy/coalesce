@@ -7,7 +7,8 @@ operation:
     isOnlyCurrent: false
     lagSpec:
       items:
-        - {}
+        - lagNumber: 60
+          lagType: Minutes
     nonDelete: false
     postSQL: ""
     preSQL: ""
@@ -22,16 +23,39 @@ operation:
   materializationType: table
   metadata:
     appliedNodeTests: []
-    columns: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ff568fb9-bda5-419d-ad30-2124d27008b4
+          stepCounter: 569d754a-9ad9-42c1-a315-a0a95ed9030f
+        config: {}
+        dataType: VARCHAR
+        defaultValue: ""
+        description: ""
+        keyColumnType: None
+        name: test
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b1a01a99-eb25-434a-8244-fd73cbd68549
+                stepCounter: 63d1804a-de60-4cd5-87d7-83e74362038e
+            transform: ""
+        systemColumnType: None
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
-      - aliases: {}
+      - aliases:
+          STG_CUSTOMER: 63d1804a-de60-4cd5-87d7-83e74362038e
         customSQL:
           customSQL: ""
-        dependencies: []
+        dependencies:
+          - locationName: TARGET
+            nodeName: STG_CUSTOMER
         join:
-          joinCondition: ""
+          joinCondition: FROM {{ ref('TARGET', 'STG_CUSTOMER') }} "STG_CUSTOMER"
         name: DT_ORDERS
         noLinkRefs: []
   name: DT_ORDERS
