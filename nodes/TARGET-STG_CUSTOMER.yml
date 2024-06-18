@@ -44,7 +44,7 @@ operation:
           - columnReferences:
               - columnCounter: c8801fe4-7930-4b8f-86fb-00681d6b912f
                 stepCounter: 554cdd33-34d8-4da1-a755-d2078c0d73ee
-            transform: ""
+            transform: UPPER("CUSTOMER"."C_NAME")
       - appliedColumnTests: {}
         columnReference:
           columnCounter: f90a0fcc-706e-4535-a3c6-0209aef83104
@@ -61,26 +61,12 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 26e29f3d-2a07-454d-8333-6a737a000503
-          stepCounter: 63d1804a-de60-4cd5-87d7-83e74362038e
-        config: {}
-        dataType: NUMBER(38,0)
-        description: ""
-        name: C_NATIONKEY
-        nullable: false
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: e305a218-f437-42f4-a9b1-c5cdf7c51268
-                stepCounter: 554cdd33-34d8-4da1-a755-d2078c0d73ee
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
           columnCounter: a6125ff2-06d6-4abe-9a7a-011a00533705
           stepCounter: 63d1804a-de60-4cd5-87d7-83e74362038e
         config: {}
         dataType: VARCHAR(15)
         description: ""
-        name: C_PHONE
+        name: CUSTOMER_PHONE_NUMBER
         nullable: false
         sourceColumnReferences:
           - columnReferences:
@@ -115,6 +101,20 @@ operation:
               - columnCounter: a91f888b-33cd-49db-8b51-0c77ae43214f
                 stepCounter: 554cdd33-34d8-4da1-a755-d2078c0d73ee
             transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 31c60b2a-4cce-49ef-9c39-3724733ce897
+          stepCounter: 63d1804a-de60-4cd5-87d7-83e74362038e
+        config: {}
+        dataType: VARCHAR(10)
+        description: ""
+        name: C_VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a91f888b-33cd-49db-8b51-0c77ae43214f
+                stepCounter: 554cdd33-34d8-4da1-a755-d2078c0d73ee
+            transform: CASE WHEN "CUSTOMER"."C_ACCTBAL" > 5000 AND "CUSTOMER"."C_MKTSEGMENT" IN ('BUILDING', 'HOUSEHOLD') THEN 'High' ELSE 'Low' END
       - appliedColumnTests: {}
         columnReference:
           columnCounter: 65fe18e6-8314-4a75-ba64-1132682d95f4
@@ -169,6 +169,20 @@ operation:
         sourceColumnReferences:
           - columnReferences:
               - columnCounter: 01808c00-127e-4ddc-9833-68424c4294f5
+                stepCounter: 5a7f9a95-515d-430a-8131-ec4309850ac1
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0d20d5a8-46f3-4d0a-9578-bb5fa959e74a
+          stepCounter: 63d1804a-de60-4cd5-87d7-83e74362038e
+        config: {}
+        dataType: VARCHAR(152)
+        description: ""
+        name: R_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5ed673c9-b6d5-487d-8de5-b49070884f49
                 stepCounter: 5a7f9a95-515d-430a-8131-ec4309850ac1
             transform: ""
     cteString: ""
