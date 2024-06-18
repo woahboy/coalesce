@@ -5,7 +5,7 @@ operation:
   config:
     insertStrategy: INSERT
     postSQL: ALTER WAREHOUSE tb_test_wh SET warehouse_size = 'XSmall'
-    preSQL: ""
+    preSQL: ALTER WAREHOUSE tb_test_wh SET statement_timeout_in_seconds = 1800;
     testsEnabled: true
     truncateBefore: true
   database: ""
@@ -93,7 +93,7 @@ operation:
             ON "ORDERS_V"."CUSTOMER_ID" = "CUSTOMER_LOYALTY_METRICS_V"."CUSTOMER_ID"
             GROUP BY "ORDERS_V"."CUSTOMER_ID", NAME
             ORDER BY ORDER_COUNT DESC;
-            {{ ref_link('TARGET', 'STG_MENU') }} "ORDERS_V"
+            {{ ref_link('TARGET', 'STG_MENU') }}
         name: STG_ANALYTICS
         noLinkRefs: []
   name: STG_ANALYTICS
