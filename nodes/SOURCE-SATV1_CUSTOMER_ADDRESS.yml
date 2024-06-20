@@ -1,0 +1,166 @@
+fileVersion: 1
+id: 111c22e2-8c8f-4fe8-a3af-057cb2d7eca9
+name: SATV1_CUSTOMER_ADDRESS
+operation:
+  config:
+    postSQL: ""
+    preSQL: ""
+  database: ""
+  deployEnabled: true
+  description: Customer data as defined by TPC-H
+  isMultisource: false
+  locationName: SOURCE
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2e72e93c-bd02-45d5-9b1f-3f3c3a018fa0
+          stepCounter: 111c22e2-8c8f-4fe8-a3af-057cb2d7eca9
+        config:
+          is_hk: true
+        dataType: STRING
+        description: ""
+        name: HUB_CUSTOMER_HK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0221fd30-60c2-466e-9a5f-324d8bdb5b38
+                stepCounter: 8cf2e78f-d899-48d9-9df3-ddea83836e50
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2275cc6e-649e-462f-9163-0896c6dda29d
+          stepCounter: 111c22e2-8c8f-4fe8-a3af-057cb2d7eca9
+        config: {}
+        dataType: STRING
+        description: ""
+        name: SAT_CUSTOMER_ADDRESS_HD
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3a95d4fe-b543-4de0-bc05-c614b332b48c
+                stepCounter: 8cf2e78f-d899-48d9-9df3-ddea83836e50
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 48ae67d1-9da9-4fb4-a885-5ba2a377f2f9
+          stepCounter: 111c22e2-8c8f-4fe8-a3af-057cb2d7eca9
+        config: {}
+        dataType: VARCHAR(25)
+        description: ""
+        name: C_NAME
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3fe3246f-c1a1-4b35-844f-6a59c33c2724
+                stepCounter: 8cf2e78f-d899-48d9-9df3-ddea83836e50
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d4302d01-3c4d-479a-955d-b8fa9e9a8617
+          stepCounter: 111c22e2-8c8f-4fe8-a3af-057cb2d7eca9
+        config: {}
+        dataType: VARCHAR(40)
+        description: ""
+        name: C_ADDRESS
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: adc1b102-0a43-4ff7-ad36-3a64b03980c9
+                stepCounter: 8cf2e78f-d899-48d9-9df3-ddea83836e50
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 197f0569-260e-4345-92b5-d5407234fa4e
+          stepCounter: 111c22e2-8c8f-4fe8-a3af-057cb2d7eca9
+        config: {}
+        dataType: TIMESTAMP
+        description: The Load Date Timestamp (LDTS) describes when this data first arrived in the Data Warehouse.
+        name: LDTS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 21925440-a0d8-4520-b290-588ff6c6e8f2
+                stepCounter: 8cf2e78f-d899-48d9-9df3-ddea83836e50
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f67205c3-3d85-4baf-bcc2-a8e65aea6769
+          stepCounter: 111c22e2-8c8f-4fe8-a3af-057cb2d7eca9
+        config: {}
+        dataType: STRING
+        description: The Record Source (RSRC) describes the source of this data.
+        name: RSRC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: afc16a6a-ce37-4955-9c8e-882b09194f5f
+                stepCounter: 8cf2e78f-d899-48d9-9df3-ddea83836e50
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 27611521-c3e2-4057-b1a7-2a03629524d8
+          stepCounter: 111c22e2-8c8f-4fe8-a3af-057cb2d7eca9
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        is_system_ledts: true
+        name: LEDTS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: |-
+              COALESCE(LEAD("{{ datavault4coalesce.config.ldts_alias }}" - INTERVAL '1 MICROSECOND') 
+              OVER (PARTITION BY "{{ get_value_by_column_attribute("is_hk") }}" 
+              ORDER BY "{{ datavault4coalesce.config.ldts_alias }}"), {{ datavault4coalesce__string_to_timestamp(datavault4coalesce.config.timestamp_format, datavault4coalesce.config.end_of_all_times) }})
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: d95ef8ec-3ae8-44f1-a020-0fe112239276
+          stepCounter: 111c22e2-8c8f-4fe8-a3af-057cb2d7eca9
+        config: {}
+        dataType: BOOLEAN
+        defaultValue: ""
+        description: ""
+        is_system_current_col: true
+        name: IS_CURRENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: |-
+              CASE 
+                WHEN 
+                  LEAD("{{ datavault4coalesce.config.ldts_alias }}" - INTERVAL '1 MICROSECOND') 
+                  OVER (PARTITION BY "{{ get_value_by_column_attribute("is_hk") }}" 
+                  ORDER BY "{{ datavault4coalesce.config.ldts_alias }}") IS NULL 
+                THEN TRUE 
+                ELSE FALSE 
+              END
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SOURCE
+            nodeName: SATV0_CUSTOMER_ADDRESS
+        join:
+          joinCondition: FROM {{ ref('SOURCE', 'SATV0_CUSTOMER_ADDRESS') }} "SATV0_CUSTOMER_ADDRESS"
+        name: SATV1_CUSTOMER_ADDRESS
+        noLinkRefs: []
+  name: SATV1_CUSTOMER_ADDRESS
+  overrideSQL: false
+  schema: ""
+  sqlType: SCALEFREE-DATAVAULT4COALESCE::9
+  type: sql
+  version: 1
+type: Node
