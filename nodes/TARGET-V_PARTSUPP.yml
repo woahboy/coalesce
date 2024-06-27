@@ -1,26 +1,23 @@
 fileVersion: 1
-id: d52300cd-06e6-4204-b593-418a5cf0e740
-name: STG_PARTSUPP
+id: 74e1c17c-dbcb-4166-a462-ac05c8f09da5
+name: V_PARTSUPP
 operation:
   config:
-    insertStrategy: INSERT
-    postSQL: ""
-    preSQL: ""
-    testsEnabled: true
-    truncateBefore: true
+    insertStrategy: UNION
+    selectDistinct: false
   database: ""
   deployEnabled: true
   description: Partsupp data as defined by TPC-H
   isMultisource: false
   locationName: TARGET
-  materializationType: table
+  materializationType: view
   metadata:
     appliedNodeTests: []
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 47c23331-3da7-4d6f-b6fb-bfcaca2aa1a5
-          stepCounter: d52300cd-06e6-4204-b593-418a5cf0e740
+          columnCounter: dd430b1c-424c-4887-ae56-fe2ccc5beb62
+          stepCounter: 74e1c17c-dbcb-4166-a462-ac05c8f09da5
         config: {}
         dataType: NUMBER(38,0)
         description: ""
@@ -33,8 +30,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 74dd4147-a98d-497e-a219-6989ead90504
-          stepCounter: d52300cd-06e6-4204-b593-418a5cf0e740
+          columnCounter: b5bdee2d-5fb9-4020-b88c-92738cee41e4
+          stepCounter: 74e1c17c-dbcb-4166-a462-ac05c8f09da5
         config: {}
         dataType: NUMBER(38,0)
         description: ""
@@ -47,8 +44,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: e1ad8b42-35b2-453e-9030-50f0fee8055d
-          stepCounter: d52300cd-06e6-4204-b593-418a5cf0e740
+          columnCounter: 6dbf0a16-3aa5-44b2-9fae-4e9b32a44895
+          stepCounter: 74e1c17c-dbcb-4166-a462-ac05c8f09da5
         config: {}
         dataType: NUMBER(38,0)
         description: ""
@@ -61,8 +58,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 4985da1f-23f9-4e61-ba9e-44d527d7890b
-          stepCounter: d52300cd-06e6-4204-b593-418a5cf0e740
+          columnCounter: d06e5fd8-f851-4e43-b687-cc41f86fd5d4
+          stepCounter: 74e1c17c-dbcb-4166-a462-ac05c8f09da5
         config: {}
         dataType: NUMBER(12,2)
         description: ""
@@ -75,8 +72,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 0a76e73d-d9bd-4696-8bf6-f5d4524513a3
-          stepCounter: d52300cd-06e6-4204-b593-418a5cf0e740
+          columnCounter: 5abf3fce-b5ea-4467-962f-255e8ef557a4
+          stepCounter: 74e1c17c-dbcb-4166-a462-ac05c8f09da5
         config: {}
         dataType: VARCHAR(199)
         description: ""
@@ -98,12 +95,12 @@ operation:
             nodeName: PARTSUPP
         join:
           joinCondition: FROM {{ ref('SOURCE_TPCH', 'PARTSUPP') }} "PARTSUPP"
-        name: STG_PARTSUPP
+        name: V_PARTSUPP
         noLinkRefs: []
-  name: STG_PARTSUPP
+  name: V_PARTSUPP
   overrideSQL: false
   schema: ""
-  sqlType: Stage
+  sqlType: View
   type: sql
   version: 1
 type: Node
