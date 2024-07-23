@@ -1,5 +1,136 @@
 fileVersion: 1
 id: "1"
-macroString: ""
+macroString: |-
+  {%- macro even_odd(column) -%}
+      CASE WHEN MOD({{ column }}, 2) = 0 THEN 'EVEN' ELSE 'ODD' END
+  {%- endmacro %}
+
+  {%- macro insert_audit_row() -%}
+  INSERT INTO
+    "JUSTIN_EDW"."DEV_EDW"."ETL_BATCH" (
+      "JOB_NAME",
+      "ITERATION",
+      "JOB_STATUS",
+      "START_TIME"
+    )
+  WITH 
+    counter (num_rows) AS (
+        SELECT count(*) + 1 AS num_rows 
+        FROM "JUSTIN_EDW"."DEV_EDW"."ETL_BATCH"
+        WHERE job_name = '{{node.name}}'||'_JOB')
+  SELECT 
+    '{{node.name}}'||'_JOB', 
+    num_rows, 
+    'STARTED', 
+    CURRENT_TIMESTAMP() 
+    FROM counter
+  {%- endmacro %}
+
+  {%- macro update_audit_row() -%}
+  UPDATE 
+    "JUSTIN_EDW"."DEV_EDW"."ETL_BATCH" 
+  SET 
+    END_TIME = current_timestamp(),
+    JOB_STATUS = 'FINISHED'
+  FROM (
+    WITH 
+      counter (num_rows) AS (
+        SELECT count(*) AS num_rows 
+        FROM "JUSTIN_EDW"."DEV_EDW"."ETL_BATCH" 
+        WHERE job_name = '{{node.name}}'||'_JOB') 
+      select counter.num_rows 
+      from counter) AS ctes
+  WHERE ITERATION = ctes.num_rows
+  AND JOB_NAME = '{{node.name}}'||'_JOB'
+  {%- endmacro %}
+
+  {%- macro getTitleColNameMinus1(colName) -%}
+      {{- colName[:-1]|replace('_',' ')|title|replace(' Id',' ID') -}}
+  {%- endmacro %}
+
+  {%- macro getTitleColName(colName) -%}
+      {{- colName|replace('_',' ')|title|replace(' Id',' ID') -}}
+  {%- endmacro %}
+
+  {%- macro getRecordSourceFQN() -%}
+      '"{{ storageLocations | selectattr('name', 'equalto', (sources[0].dependencies | map(attribute='node') | map(attribute='location') | map(attribute='name') | first)) | map(attribute='database') | first }}"."{{ storageLocations | selectattr('name', 'equalto', (sources[0].dependencies | map(attribute='node') | map(attribute='location') | map(attribute='name') | first)) | map(attribute='schema') | first }}"."{{sources[0].dependencies | map(attribute='node') | map(attribute='name') | first }}"'
+  {%- endmacro -%}
+
+  {%-macro pi_macro()-%}
+    '3.141592654'
+  {%- endmacro -%}
+
+  {%- macro ref_raw(location_name, node_name) -%}
+      {% raw %}{{ ref('{% endraw %}{{ location_name }}{% raw %}', '{% endraw %}{{ node_name }}{% raw %}') }}{% endraw %}
+  {%- endmacro -%}
+
+  {%- macro ref_no_link_raw(location_name, node_name) -%}
+      {% raw %}{{ ref_no_link('{% endraw %}{{ location_name }}{% raw %}', '{% endraw %}{{ node_name }}{% raw %}') }}{% endraw %}
+  {%- endmacro -%}
+
+  {%- macro ref_link_raw(location_name, node_name) -%}
+      {% raw %}{{ ref_link('{% endraw %}{{ location_name }}{% raw %}', '{% endraw %}{{ node_name }}{% raw %}') }}{% endraw %}
+  {%- endmacro -%}
+
+  {%- macro get_source_transform(col) -%}
+      {% if col.hashDetails %}
+          {{ hash(col.hashDetails.columns, algo=col.hashDetails.algorithm, datatype=col.dataType) }}
+      {% elif col.transform | trim != '' %}
+          {{ col.transform }}
+      {% elif col.sourceColumns[0].node and col.sourceColumns[0].node.name and col.sourceColumns[0].column and col.sourceColumns[0].column.name %}
+          "{{ col.sourceColumns[0].node.name }}"."{{ col.sourceColumns[0].column.name }}"
+      {% else %}
+          NULL
+      {% endif %}
+  {% endmacro -%}
+
+  {% macro stage(stage_name, continue_on_failure=true, type="sql") %}
+  coalesce_stage_start
+  name: {{ stage_name }}
+  type: {{ type }}
+  continue_on_failure: {{ continue_on_failure }}
+  code:
+  {% endmacro -%}
+
+  {%- macro get_value_by_column_attribute(column_attribute, value="name") -%}
+      {%- set filtered_columns_by_attribute = columns | selectattr(column_attribute) | list -%}
+      {%- if filtered_columns_by_attribute | length > 0 -%}
+          {{- (filtered_columns_by_attribute | first)[value] -}}
+      {%- else -%}
+          ## ERR: COLUMN_NOT_FOUND_WITH_ATTRIBUTE_{{ column_attribute }} ##
+      {%- endif -%}
+  {%- endmacro -%}
+
+  {%- macro hash(columns, algo='MD5', delimiter='||', datatype='CHAR(32)') -%}
+      {% for col in columns %}
+          {# set algo function #}
+          {% set algo_start = algo + '(' %}
+          {% set algo_end = ')' %}
+          {% if algo | upper == 'SHA256' %}
+              {% set algo_start = 'SHA2(' %}
+              {% set algo_end = ', 256)' %}
+          {% endif %}  
+          {# end set algo function #}
+
+          {%- if loop.first %}CAST( {{ algo_start }}{% endif -%}
+              NVL(CAST(
+                  {%  if col is string %} 
+                      {{ col }}
+                  {% elif col.transform | trim != '' %}
+                      {{ col.transform }}
+                  {% elif col.sourceColumns[0] %} 
+                      "{{ col.sourceColumns[0].node.name }}"."{{ col.sourceColumns[0].column.name }}"
+                  {% else %}
+                      null
+                  {%  endif %} 
+              AS VARCHAR), 'null')
+          {%- if not loop.last %} || {% if delimiter != '' %} '{{ delimiter }}' || {% endif -%} {% endif -%}
+          {%- if loop.last %}{{ algo_end }} AS {{ datatype }} ){% endif -%}
+      {% endfor %}
+  {%- endmacro -%}
+
+  {%- macro use_role(role) -%}
+      USE ROLE {{ role }}
+  {%- endmacro %}
 name: macro
 type: Macro
