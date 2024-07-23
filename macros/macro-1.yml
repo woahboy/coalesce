@@ -84,14 +84,6 @@ macroString: |-
       {% endif %}
   {% endmacro -%}
 
-  {% macro stage(stage_name, continue_on_failure=true, type="sql") %}
-  coalesce_stage_start
-  name: {{ stage_name }}
-  type: {{ type }}
-  continue_on_failure: {{ continue_on_failure }}
-  code:
-  {% endmacro -%}
-
   {%- macro get_value_by_column_attribute(column_attribute, value="name") -%}
       {%- set filtered_columns_by_attribute = columns | selectattr(column_attribute) | list -%}
       {%- if filtered_columns_by_attribute | length > 0 -%}
