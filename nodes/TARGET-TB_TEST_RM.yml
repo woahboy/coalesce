@@ -5,11 +5,16 @@ operation:
   config:
     creditQuota: 100
     frequency: MONTHLY
-    setFrequency: false
+    setFrequency: true
     startTimestamp: IMMEDIATELY
     triggers:
       items:
-        - triggerThreshold: 100
+        - triggerAction: NOTIFY
+          triggerThreshold: "75"
+        - triggerAction: SUSPEND
+          triggerThreshold: "100"
+        - triggerAction: SUSPEND_IMMEDIATE
+          triggerThreshold: "110"
   database: ""
   deployEnabled: true
   description: ""

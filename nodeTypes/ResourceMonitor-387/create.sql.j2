@@ -4,10 +4,15 @@
 
 CREATE OR REPLACE RESOURCE MONITOR {{ node.name }} 
 {%- if node.description | length > 0 %}  WITH COMMENT = '{{ node.description | escape }}'{% endif %}
-WITH
-{%- if config.creditQuota | length > 0 %} CREDIT_QUOTA = {{ config.creditQuota }} {% endif %}
-{%- if config.setFrequency -%}
-    {%- if config.frequency | length > 0 %} FREQUENCY = {{ config.frequency }} {% endif %}
+WITH 
+{% if config.creditQuota %} CREDIT_QUOTA = {{ config.creditQuota }} {% endif %}
+{%- if config.frequency %}
+    {%- if config.frequency %} FREQUENCY = {{ config.frequency }} {% endif %}
     {%- if config.startTimestamp | length > 0 %} START_TIMESTAMP = {{ config.startTimestamp }} {% endif %}
 {%- endif -%}
-;
+{%- if config.triggers -%} TRIGGERS {% endif %}
+{%- for i in config.triggers.get('items') %}
+    {% set threshold = i.triggerThreshold %}
+    {% set triggerAction = i.triggerAction %}
+    ON {{ threshold }} PERCENT DO {{ triggerAction }}
+{%- endfor -%}
