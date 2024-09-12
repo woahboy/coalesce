@@ -1,13 +1,21 @@
 fileVersion: 1
-id: 5b662a35-1bab-42bf-9fd5-a3d386397be3
-name: STG_PARTSUPP
+id: b0147900-a3e1-4fde-9daf-95dab09bf1a7
+name: ICT_PARTSUPP
 operation:
   config:
-    insertStrategy: INSERT
-    postSQL: ""
-    preSQL: ""
-    testsEnabled: true
-    truncateBefore: true
+    basename: locname
+    catint: ""
+    clusterKey: false
+    clusterKeyConfig:
+      items:
+        - columnName: null
+    clusterKeyConfigExpressions:
+      items:
+        - columnNameExpressions: null
+          sqlExpression: ex. trunc(<column_name>, -5)
+    clusterKeyExpressions: false
+    extvolume: ICEBERG_EXTERNAL_VOLUME
+    tcatalog: Snowflake
   database: ""
   deployEnabled: true
   description: Partsupp data as defined by TPC-H
@@ -19,8 +27,8 @@ operation:
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 256c3d7e-e39c-4d36-a8d7-f0f5e0f46a43
-          stepCounter: 5b662a35-1bab-42bf-9fd5-a3d386397be3
+          columnCounter: 6c467a60-779b-4f98-afb9-13bf40f067eb
+          stepCounter: b0147900-a3e1-4fde-9daf-95dab09bf1a7
         config: {}
         dataType: NUMBER(38,0)
         description: ""
@@ -33,8 +41,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 2497411a-0128-4abd-8093-a1c2c33a8dda
-          stepCounter: 5b662a35-1bab-42bf-9fd5-a3d386397be3
+          columnCounter: 8963efe5-8cf9-4d47-8403-d1b20c0ca0ab
+          stepCounter: b0147900-a3e1-4fde-9daf-95dab09bf1a7
         config: {}
         dataType: NUMBER(38,0)
         description: ""
@@ -47,8 +55,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: dbc8d5c2-3b6e-4a26-b07c-57e2be0b9fcf
-          stepCounter: 5b662a35-1bab-42bf-9fd5-a3d386397be3
+          columnCounter: 6409b77e-b162-4972-8d82-df22eaf99ae2
+          stepCounter: b0147900-a3e1-4fde-9daf-95dab09bf1a7
         config: {}
         dataType: NUMBER(38,0)
         description: ""
@@ -61,8 +69,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: caedcca8-5702-43a6-91aa-4d88afc59b86
-          stepCounter: 5b662a35-1bab-42bf-9fd5-a3d386397be3
+          columnCounter: 01814db8-572b-4cc9-85d9-c7ffffeeb968
+          stepCounter: b0147900-a3e1-4fde-9daf-95dab09bf1a7
         config: {}
         dataType: NUMBER(12,2)
         description: ""
@@ -75,8 +83,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: fb6cc0f5-6e07-44ed-9399-68c04fada651
-          stepCounter: 5b662a35-1bab-42bf-9fd5-a3d386397be3
+          columnCounter: a0f581fd-144c-4b1a-a734-9e41ffb1ae10
+          stepCounter: b0147900-a3e1-4fde-9daf-95dab09bf1a7
         config: {}
         dataType: VARCHAR(199)
         description: ""
@@ -98,12 +106,12 @@ operation:
             nodeName: PARTSUPP
         join:
           joinCondition: FROM {{ ref('SOURCE_TPCH', 'PARTSUPP') }} "PARTSUPP"
-        name: STG_PARTSUPP
+        name: ICT_PARTSUPP
         noLinkRefs: []
-  name: STG_PARTSUPP
+  name: ICT_PARTSUPP
   overrideSQL: false
   schema: ""
-  sqlType: Stage
+  sqlType: Iceberg:::305
   type: sql
   version: 1
 type: Node
