@@ -1,0 +1,110 @@
+fileVersion: 1
+id: 5e6c23b9-cd50-44b6-994f-bdc8c8de9a72
+name: TEMP_POLICY_PRODUCT_EPIC_US
+operation:
+  config:
+    insertStrategy: UNION ALL
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: true
+  locationName: TARGET
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e3cb5856-2779-41c6-a6c1-39ba2c89a9f4
+          stepCounter: 5e6c23b9-cd50-44b6-994f-bdc8c8de9a72
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: POLICY_KEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 62407e85-7431-40df-942e-a5858d004eb6
+                stepCounter: 619d49bf-7286-4b45-a40d-f45188fa1faf
+            transform: ""
+          - columnReferences:
+              - columnCounter: 7d17b635-678f-444e-b6b0-1f0814f34893
+                stepCounter: 573529a8-4c3a-431d-b909-432f99faa774
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b1c845d4-d8e8-4cd4-bdab-73b59ec6bc3d
+          stepCounter: 5e6c23b9-cd50-44b6-994f-bdc8c8de9a72
+        config: {}
+        dataType: VARCHAR(8000)
+        description: ""
+        name: PROGRAM
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 87e613b6-57cb-4563-a47b-0a117fc2527a
+                stepCounter: 619d49bf-7286-4b45-a40d-f45188fa1faf
+            transform: ""
+          - columnReferences:
+              - columnCounter: 9a644282-b098-4520-8737-3c9e6cef8497
+                stepCounter: 573529a8-4c3a-431d-b909-432f99faa774
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ed726097-1ccb-4381-882f-e91416fcf9ab
+          stepCounter: 5e6c23b9-cd50-44b6-994f-bdc8c8de9a72
+        config: {}
+        dataType: VARCHAR(8000)
+        description: ""
+        name: PRODUCT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0b715b98-6c78-48a5-942d-0b0547294358
+                stepCounter: 619d49bf-7286-4b45-a40d-f45188fa1faf
+            transform: ""
+          - columnReferences:
+              - columnCounter: 322c7cab-0224-49e4-b009-21cb9adcb0ef
+                stepCounter: 573529a8-4c3a-431d-b909-432f99faa774
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          POLICY_PRODUCT: 619d49bf-7286-4b45-a40d-f45188fa1faf
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: TARGET
+            nodeName: POLICY_PRODUCT
+        join:
+          joinCondition: |
+            FROM {{ ref('TARGET', 'POLICY_PRODUCT') }} "POLICY_PRODUCT"
+            WHERE "POLICY_PRODUCT"."POLICY_PROGRAM_PRODUCT_DISTINCT_CNT" = 1
+            OR ("POLICY_PRODUCT"."POLICY_PROGRAM_PRODUCT_DISTINCT_CNT" > 1
+                AND "POLICY_PRODUCT"."ADVANTAGE_PROGRAM_CNT" = 1
+                AND UPPER("POLICY_PRODUCT"."PROGRAM") = 'CLIENT ADVANTAGE PRODUCTS')
+        name: POLICY_PRODUCT
+        noLinkRefs: []
+      - aliases:
+          POLICY_PRODUCT_COMPUTED: 573529a8-4c3a-431d-b909-432f99faa774
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: TARGET
+            nodeName: POLICY_PRODUCT_COMPUTED
+        join:
+          joinCondition: FROM {{ ref('TARGET', 'POLICY_PRODUCT_COMPUTED') }} "POLICY_PRODUCT_COMPUTED"
+        name: POLICY_PRODUCT_COMPUTED
+        noLinkRefs: []
+  name: TEMP_POLICY_PRODUCT_EPIC_US
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node
