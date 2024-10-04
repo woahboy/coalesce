@@ -12,7 +12,7 @@ operation:
   deployEnabled: true
   description: ""
   isMultisource: false
-  locationName: TARGET
+  locationName: ETL
   materializationType: table
   metadata:
     appliedNodeTests: []
@@ -68,14 +68,14 @@ operation:
         customSQL:
           customSQL: ""
         dependencies:
-          - locationName: SOURCE_CUSTOM
+          - locationName: OS1_FDW
             nodeName: S_DIM_EPIC_PROGRAM
-          - locationName: SOURCE_CUSTOM
+          - locationName: OS1_FDW
             nodeName: S_DIM_LINE
         join:
           joinCondition: |-
-            FROM {{ ref('SOURCE_CUSTOM', 'S_DIM_LINE') }} "S_DIM_LINE"
-            INNER JOIN {{ ref('SOURCE_CUSTOM', 'S_DIM_EPIC_PROGRAM') }} "S_DIM_EPIC_PROGRAM"
+            FROM {{ ref('OS1_FDW', 'S_DIM_LINE') }} "S_DIM_LINE"
+            INNER JOIN {{ ref('OS1_FDW', 'S_DIM_EPIC_PROGRAM') }} "S_DIM_EPIC_PROGRAM"
             ON "S_DIM_LINE"."EPIC_PROGRAM_KEY" = "S_DIM_EPIC_PROGRAM"."EPIC_PROGRAM_KEY"
             AND IFNULL(UPPER(TRIM("S_DIM_EPIC_PROGRAM"."PRODUCT")), '') NOT IN ('', 'DO NOT USE')
         name: POLICY_LINE_PROGRAM

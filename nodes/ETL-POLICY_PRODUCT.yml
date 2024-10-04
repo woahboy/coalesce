@@ -12,7 +12,7 @@ operation:
   deployEnabled: true
   description: ""
   isMultisource: false
-  locationName: TARGET
+  locationName: ETL
   materializationType: table
   metadata:
     appliedNodeTests: []
@@ -107,10 +107,11 @@ operation:
         customSQL:
           customSQL: ""
         dependencies:
-          - locationName: TARGET
+          - locationName: ETL
             nodeName: POLICY_LINE_PROGRAM
         join:
-          joinCondition: FROM {{ ref('TARGET', 'POLICY_LINE_PROGRAM') }} "POLICY_LINE_PROGRAM"
+          joinCondition: |
+            FROM {{ ref('ETL', 'POLICY_LINE_PROGRAM') }} "POLICY_LINE_PROGRAM"
         name: POLICY_PRODUCT
         noLinkRefs: []
   name: POLICY_PRODUCT

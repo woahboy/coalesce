@@ -1,0 +1,54 @@
+fileVersion: 1
+id: cc32563e-15d1-415b-a421-da8bbdecd5d4
+name: POLICY_BU
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: ETL
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4e31d4d2-2a59-4f2a-8559-8bcad0fd73b8
+          stepCounter: cc32563e-15d1-415b-a421-da8bbdecd5d4
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: POLICY_KEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 40b37de8-59f7-4737-ad54-bb93ea2ddbb8
+                stepCounter: 9fc55fba-acc8-41e2-8685-897925c4b69c
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          POLICY_BASE: 9fc55fba-acc8-41e2-8685-897925c4b69c
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: ETL
+            nodeName: POLICY_BASE
+        join:
+          joinCondition: FROM {{ ref('ETL', 'POLICY_BASE') }} "POLICY_BASE"
+        name: POLICY_BU
+        noLinkRefs: []
+  name: POLICY_BU
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

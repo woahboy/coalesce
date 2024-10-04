@@ -12,7 +12,7 @@ operation:
   deployEnabled: true
   description: ""
   isMultisource: true
-  locationName: TARGET
+  locationName: ETL
   materializationType: table
   metadata:
     appliedNodeTests: []
@@ -79,11 +79,11 @@ operation:
         customSQL:
           customSQL: ""
         dependencies:
-          - locationName: TARGET
+          - locationName: ETL
             nodeName: POLICY_PRODUCT
         join:
-          joinCondition: |
-            FROM {{ ref('TARGET', 'POLICY_PRODUCT') }} "POLICY_PRODUCT"
+          joinCondition: |-
+            FROM {{ ref('ETL', 'POLICY_PRODUCT') }} "POLICY_PRODUCT"
             WHERE "POLICY_PRODUCT"."POLICY_PROGRAM_PRODUCT_DISTINCT_CNT" = 1
             OR ("POLICY_PRODUCT"."POLICY_PROGRAM_PRODUCT_DISTINCT_CNT" > 1
                 AND "POLICY_PRODUCT"."ADVANTAGE_PROGRAM_CNT" = 1
@@ -95,10 +95,10 @@ operation:
         customSQL:
           customSQL: ""
         dependencies:
-          - locationName: TARGET
+          - locationName: ETL
             nodeName: POLICY_PRODUCT_COMPUTED
         join:
-          joinCondition: FROM {{ ref('TARGET', 'POLICY_PRODUCT_COMPUTED') }} "POLICY_PRODUCT_COMPUTED"
+          joinCondition: FROM {{ ref('ETL', 'POLICY_PRODUCT_COMPUTED') }} "POLICY_PRODUCT_COMPUTED"
         name: POLICY_PRODUCT_COMPUTED
         noLinkRefs: []
   name: TEMP_POLICY_PRODUCT_EPIC_US

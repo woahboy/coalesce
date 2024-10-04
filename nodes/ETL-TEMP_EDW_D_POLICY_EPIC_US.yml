@@ -12,10 +12,19 @@ operation:
   deployEnabled: true
   description: ""
   isMultisource: false
-  locationName: TARGET
+  locationName: ETL
   materializationType: table
   metadata:
-    appliedNodeTests: []
+    appliedNodeTests:
+      - continueOnFailure: true
+        description: ""
+        name: Check Duplicate Records
+        runOrder: After
+        templateString: |-
+          SELECT COUNT(*)
+          FROM "JUSTIN_EDW"."DEV_EDW"."TEMP_EDW_D_POLICY_EPIC_US"
+          GROUP BY "ENV_SOURCE_CODE", "DATA_SOURCE_CODE", "POLICY_ID"
+          HAVING COUNT(*) > 1
     columns:
       - appliedColumnTests: {}
         columnReference:
@@ -242,7 +251,7 @@ operation:
         config: {}
         dataType: VARCHAR(255)
         description: ""
-        name: CANCELLATION_REASON_CODE
+        name: CANCEL_REASON_CODE
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -326,7 +335,7 @@ operation:
         config: {}
         dataType: VARCHAR(254)
         description: ""
-        name: BILL_TYPE
+        name: BILL_TYPE_CODE
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -825,7 +834,7 @@ operation:
         defaultValue: ""
         description: ""
         keyColumnType: None
-        name: SM_EXCLUSION_CODE
+        name: SM_EXCLUSION_IND
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -852,26 +861,6 @@ operation:
               - columnCounter: "0"
                 stepCounter: "0"
             transform: CASE WHEN DATEDIFF(d, "S_DIM_POLICY"."EFFECTIVE_DATE", "S_DIM_POLICY"."EXPIRATION_DATE") > 400 THEN TRUE ELSE FALSE END
-        systemColumnType: None
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: a3def0f5-8d00-4927-8783-4cd85a35085d
-          stepCounter: 5d744d60-4a6c-4093-a49e-d18e9aea30f9
-        config: {}
-        dataType: BOOLEAN
-        defaultValue: ""
-        description: ""
-        keyColumnType: None
-        name: MASTER_YEAR_IND
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: "0"
-                stepCounter: "0"
-            transform: "NULL"
         systemColumnType: None
       - acceptedValues:
           strictMatch: true
@@ -960,24 +949,24 @@ operation:
         customSQL:
           customSQL: ""
         dependencies:
-          - locationName: SOURCE_CUSTOM
-            nodeName: S_DIM_EMPLOYEE
-          - locationName: SOURCE_CUSTOM
-            nodeName: S_DIM_POLICY
-          - locationName: SOURCE_CUSTOM
-            nodeName: S_POLICY_PROGRAM_INPUT
-          - locationName: TARGET
+          - locationName: ETL
             nodeName: TEMP_POLICY_PRODUCT_EPIC_US
+          - locationName: OS1_FDW
+            nodeName: S_DIM_EMPLOYEE
+          - locationName: OS1_FDW
+            nodeName: S_DIM_POLICY
+          - locationName: OS1_FDW
+            nodeName: S_POLICY_PROGRAM_INPUT
         join:
           joinCondition: |-
-            FROM {{ ref('SOURCE_CUSTOM', 'S_DIM_POLICY') }} "S_DIM_POLICY"
-            LEFT OUTER JOIN {{ ref('SOURCE_CUSTOM', 'S_POLICY_PROGRAM_INPUT') }} "S_POLICY_PROGRAM_INPUT"
+            FROM {{ ref('OS1_FDW', 'S_DIM_POLICY') }} "S_DIM_POLICY"
+            LEFT OUTER JOIN {{ ref('OS1_FDW', 'S_POLICY_PROGRAM_INPUT') }} "S_POLICY_PROGRAM_INPUT"
             ON TRIM("S_DIM_POLICY"."AGENCY_SYSTEM_ORIGINAL_POLICY_ID") = "S_POLICY_PROGRAM_INPUT"."POLICY_ID"
-            LEFT OUTER JOIN {{ ref('SOURCE_CUSTOM', 'S_DIM_EMPLOYEE') }} "S_DIM_EMPLOYEE1"
+            LEFT OUTER JOIN {{ ref('OS1_FDW', 'S_DIM_EMPLOYEE') }} "S_DIM_EMPLOYEE1"
             ON "S_DIM_POLICY"."PRODUCER1_EMPLOYEE_KEY" = "S_DIM_EMPLOYEE1"."EMPLOYEE_KEY"
-            LEFT OUTER JOIN {{ ref('SOURCE_CUSTOM', 'S_DIM_EMPLOYEE') }} "S_DIM_EMPLOYEE2"
+            LEFT OUTER JOIN {{ ref('OS1_FDW', 'S_DIM_EMPLOYEE') }} "S_DIM_EMPLOYEE2"
             ON "S_DIM_POLICY"."PRODUCER2_EMPLOYEE_KEY" = "S_DIM_EMPLOYEE2"."EMPLOYEE_KEY"
-            INNER JOIN {{ ref('TARGET', 'TEMP_POLICY_PRODUCT_EPIC_US') }} "TEMP_POLICY_PRODUCT_EPIC_US"
+            INNER JOIN {{ ref('ETL', 'TEMP_POLICY_PRODUCT_EPIC_US') }} "TEMP_POLICY_PRODUCT_EPIC_US"
             ON "S_DIM_POLICY"."POLICY_KEY" = "TEMP_POLICY_PRODUCT_EPIC_US"."POLICY_KEY"
 
             WHERE "S_DIM_POLICY"."OFFICE_AGENCY_SYSTEM_KEY" = {{parameters.FDW_oas_id_EPIC_US}}
