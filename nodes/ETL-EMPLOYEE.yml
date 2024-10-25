@@ -1,0 +1,93 @@
+fileVersion: 1
+id: d19f7851-0caa-4b4e-bb8f-c37e90c5948f
+name: EMPLOYEE
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: ETL
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 41463252-5e5f-4ca6-a291-2391f7ae7462
+          stepCounter: d19f7851-0caa-4b4e-bb8f-c37e90c5948f
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: EMPLOYEE_KEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 15e9569f-94fb-4eb1-9428-431da9c51999
+                stepCounter: 1ec8abdb-0344-46af-b12c-9f43f75cd1eb
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 18925fca-9de4-4ed3-895c-9e36e7b793b9
+          stepCounter: d19f7851-0caa-4b4e-bb8f-c37e90c5948f
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: AGENCY_SYSTEM_EMPLOYEE_CODE
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 263844fe-5285-4799-8934-a5217ca89453
+                stepCounter: 1ec8abdb-0344-46af-b12c-9f43f75cd1eb
+            transform: TRIM("S_DIM_EMPLOYEE"."AGENCY_SYSTEM_EMPLOYEE_CODE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 554f7bbb-a77c-4fd9-aaef-77ea9740307d
+          stepCounter: d19f7851-0caa-4b4e-bb8f-c37e90c5948f
+        config: {}
+        dataType: VARCHAR(100)
+        description: ""
+        name: EMPLOYEE_NAME
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2269228f-9bfc-4a97-9583-6ad09fc45736
+                stepCounter: 1ec8abdb-0344-46af-b12c-9f43f75cd1eb
+            transform: IFNULL(TRIM("S_DIM_EMPLOYEE"."EMPLOYEE_NAME"), '')
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          S_DIM_EMPLOYEE: 1ec8abdb-0344-46af-b12c-9f43f75cd1eb
+          S_DIM_EXTRACT: d5c3b000-8e70-41a1-911e-1711ea6ad5d9
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: OS1_FDW
+            nodeName: S_DIM_EMPLOYEE
+          - locationName: OS1_FDW
+            nodeName: S_DIM_EXTRACT
+        join:
+          joinCondition: |-
+            FROM
+                {{ ref('OS1_FDW', 'S_DIM_EMPLOYEE') }} "S_DIM_EMPLOYEE"
+                INNER JOIN
+                {{ ref('OS1_FDW', 'S_DIM_EXTRACT') }} "S_DIM_EXTRACT"
+                ON S_DIM_EMPLOYEE.extract_key = S_DIM_EXTRACT.extract_key
+            WHERE S_DIM_EMPLOYEE.employee_key != 0
+            AND UPPER(IFNULL(TRIM(S_DIM_EMPLOYEE.employee_name), '')) NOT IN ('{ NO EMPLOYEE }', '')
+            AND IFNULL(TRIM(S_DIM_EMPLOYEE.agency_system_employee_code), '') != ''
+        name: EMPLOYEE
+        noLinkRefs: []
+  name: EMPLOYEE
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

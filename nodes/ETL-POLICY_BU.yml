@@ -31,18 +31,57 @@ operation:
               - columnCounter: 40b37de8-59f7-4737-ad54-bb93ea2ddbb8
                 stepCounter: 9fc55fba-acc8-41e2-8685-897925c4b69c
             transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f036e7aa-b0f5-412f-b1e3-bad1250d5f4f
+          stepCounter: cc32563e-15d1-415b-a421-da8bbdecd5d4
+        config: {}
+        dataType: VARCHAR(30)
+        description: ""
+        name: BU_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 18bbc978-258b-40f5-8336-2b38b970c57c
+                stepCounter: 01333038-4490-49e9-b5c4-9e026485ff25
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 50fca142-99e6-4075-9591-758836bf993f
+          stepCounter: cc32563e-15d1-415b-a421-da8bbdecd5d4
+        config: {}
+        dataType: VARCHAR(50)
+        description: ""
+        name: DEPARTMENT_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 32d5fe2f-cb8d-4e9e-848c-d421f8bcbf10
+                stepCounter: 379a3cb6-f18c-46a2-a169-0c55caf64e37
+            transform: TRIM("S_DIM_DEPARTMENT"."DEPARTMENT_CODE")
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
       - aliases:
           POLICY_BASE: 9fc55fba-acc8-41e2-8685-897925c4b69c
+          S_DEPARTMENT_TO_BU_XREF: 01333038-4490-49e9-b5c4-9e026485ff25
+          S_DIM_DEPARTMENT: 379a3cb6-f18c-46a2-a169-0c55caf64e37
         customSQL:
           customSQL: ""
         dependencies:
           - locationName: ETL
             nodeName: POLICY_BASE
+          - locationName: MDM
+            nodeName: S_DEPARTMENT_TO_BU_XREF
+          - locationName: OS1_FDW
+            nodeName: S_DIM_DEPARTMENT
         join:
-          joinCondition: FROM {{ ref('ETL', 'POLICY_BASE') }} "POLICY_BASE"
+          joinCondition: |-
+            FROM {{ ref('ETL', 'POLICY_BASE') }} "POLICY_BASE"
+            LEFT OUTER JOIN {{ ref('OS1_FDW', 'S_DIM_DEPARTMENT') }} "S_DIM_DEPARTMENT"
+            ON "POLICY_BASE"."DEPARTMENT_KEY" = "S_DIM_DEPARTMENT"."DEPARTMENT_KEY"
+            LEFT OUTER JOIN {{ ref('MDM', 'S_DEPARTMENT_TO_BU_XREF') }} "S_DEPARTMENT_TO_BU_XREF"
+            ON TRIM("S_DIM_DEPARTMENT"."DEPARTMENT_CODE") = TRIM("S_DEPARTMENT_TO_BU_XREF"."DEPARTMENT_CODE")
         name: POLICY_BU
         noLinkRefs: []
   name: POLICY_BU
