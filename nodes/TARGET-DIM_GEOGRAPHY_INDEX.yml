@@ -1,0 +1,269 @@
+fileVersion: 1
+id: 51e65155-137d-4157-a53d-0a97cdb4ea22
+name: DIM_GEOGRAPHY_INDEX
+operation:
+  config:
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+  database: ""
+  deployEnabled: true
+  description: The Geography Index table provides a unique GEO_ID with its associated GEO_NAME and LEVEL (e.g., City, CensusZipCodeTabulationArea, County, etc.). ISO codes are provided for a geography where applicable.
+  isMultisource: false
+  locationName: TARGET
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7c237619-f10e-472d-9ccb-2e062622fed5
+          stepCounter: 51e65155-137d-4157-a53d-0a97cdb4ea22
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        isSurrogateKey: true
+        name: DIM_GEOGRAPHY_INDEX_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 146c7624-203d-426e-8318-b39ce9786225
+          stepCounter: 51e65155-137d-4157-a53d-0a97cdb4ea22
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: A unique identifier for a place (a nation, state, zip-code, etc.)
+        isBusinessKey: true
+        name: GEO_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6b7cd806-1552-428d-a7ad-d52e144625c1
+                stepCounter: 4d4a67f8-9c3a-4b27-8fca-9c83ee5fcf3d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7017030c-4739-4473-b1e4-0e89d1982980
+          stepCounter: 51e65155-137d-4157-a53d-0a97cdb4ea22
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Full name of the place
+        name: GEO_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cfdf6b3f-cf51-4a23-8e10-376536e48633
+                stepCounter: 4d4a67f8-9c3a-4b27-8fca-9c83ee5fcf3d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 82fca609-549e-47df-9264-8264a8ecdb01
+          stepCounter: 51e65155-137d-4157-a53d-0a97cdb4ea22
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Geographic level or hierarchy (e.g., Country, State, County, City, Continent, CountrySubRegion, etc.)
+        name: LEVEL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b13049af-085b-4565-8712-4b2d2f93cd05
+                stepCounter: 4d4a67f8-9c3a-4b27-8fca-9c83ee5fcf3d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0338ac2a-63e7-449d-886c-57ba81afe8d3
+          stepCounter: 51e65155-137d-4157-a53d-0a97cdb4ea22
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Country name from International Organization for Standardization
+        name: ISO_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8d9c0313-d54b-4b32-9e94-cf15daedc998
+                stepCounter: 4d4a67f8-9c3a-4b27-8fca-9c83ee5fcf3d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d07f92fe-9c91-4a4d-bc44-0b5a1fd9fa69
+          stepCounter: 51e65155-137d-4157-a53d-0a97cdb4ea22
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: 2 letter country code from International Organization for Standardization
+        name: ISO_ALPHA2
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e2b4af50-be43-4743-a253-e538c3795f26
+                stepCounter: 4d4a67f8-9c3a-4b27-8fca-9c83ee5fcf3d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 311ec0fc-57b2-4b26-a898-7ba6a524ec2f
+          stepCounter: 51e65155-137d-4157-a53d-0a97cdb4ea22
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: 3 letter country code from International Organization for Standardization
+        name: ISO_ALPHA3
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0c2fe4ab-6dbe-42c4-a167-ff5b14bb5866
+                stepCounter: 4d4a67f8-9c3a-4b27-8fca-9c83ee5fcf3d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 200347c6-1860-40eb-a229-244dd8a31a17
+          stepCounter: 51e65155-137d-4157-a53d-0a97cdb4ea22
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Numeric code from International Organization for Standardization
+        name: ISO_NUMERIC_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1f707bd5-ce77-4059-bf16-295cac55e035
+                stepCounter: 4d4a67f8-9c3a-4b27-8fca-9c83ee5fcf3d
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5e8fd40a-16b5-4271-a456-aa0a11cf1ac5
+          stepCounter: 51e65155-137d-4157-a53d-0a97cdb4ea22
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Full ISO-3166 code
+        name: ISO_3166_2_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3de35254-8a4c-408e-bddd-63bfe239aca7
+                stepCounter: 4d4a67f8-9c3a-4b27-8fca-9c83ee5fcf3d
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 74590338-7cfd-418b-911d-ecfbfb13383c
+          stepCounter: 51e65155-137d-4157-a53d-0a97cdb4ea22
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        isSystemVersion: true
+        name: SYSTEM_VERSION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 41991b71-ddf8-4fd7-a986-22865c30ab01
+          stepCounter: 51e65155-137d-4157-a53d-0a97cdb4ea22
+        config: {}
+        dataType: VARCHAR
+        defaultValue: ""
+        description: ""
+        isSystemCurrentFlag: true
+        name: SYSTEM_CURRENT_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 645ca411-6601-4ef4-a6eb-a8c8b29cea2a
+          stepCounter: 51e65155-137d-4157-a53d-0a97cdb4ea22
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemStartDate: true
+        name: SYSTEM_START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 19181223-3217-4128-a66e-fc014995e58d
+          stepCounter: 51e65155-137d-4157-a53d-0a97cdb4ea22
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemEndDate: true
+        name: SYSTEM_END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST('2999-12-31 00:00:00' AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 712512ca-a687-49ff-a3e1-e3cf3339276b
+          stepCounter: 51e65155-137d-4157-a53d-0a97cdb4ea22
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: SYSTEM_CREATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 01c293b8-9211-41f8-ba35-bd3249274e0f
+          stepCounter: 51e65155-137d-4157-a53d-0a97cdb4ea22
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: SYSTEM_UPDATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: TARGET
+            nodeName: STG_GEOGRAPHY_INDEX
+        join:
+          joinCondition: FROM {{ ref('TARGET', 'STG_GEOGRAPHY_INDEX') }} "STG_GEOGRAPHY_INDEX"
+        name: DIM_GEOGRAPHY_INDEX
+        noLinkRefs: []
+  name: DIM_GEOGRAPHY_INDEX
+  overrideSQL: false
+  schema: ""
+  sqlType: Dimension
+  type: sql
+  version: 1
+type: Node

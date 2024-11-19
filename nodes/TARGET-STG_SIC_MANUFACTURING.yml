@@ -1,0 +1,219 @@
+fileVersion: 1
+id: 84338fd8-5c49-4a43-bd1e-9e1ad8d786a1
+name: STG_SIC_MANUFACTURING
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: The Geography Index table provides a unique GEO_ID with its associated GEO_NAME and LEVEL (e.g., City, CensusZipCodeTabulationArea, County, etc.). ISO codes are provided for a geography where applicable.
+  isMultisource: false
+  locationName: TARGET
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7d212dc9-4746-442b-b525-5902c5366f0f
+          stepCounter: 84338fd8-5c49-4a43-bd1e-9e1ad8d786a1
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: A unique identifier for a place (a nation, state, zip-code, etc.)
+        name: GEO_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6b7cd806-1552-428d-a7ad-d52e144625c1
+                stepCounter: 4d4a67f8-9c3a-4b27-8fca-9c83ee5fcf3d
+            transform: ""
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 817e3cfc-e365-4d9e-b628-1b64c9b2159d
+          stepCounter: 84338fd8-5c49-4a43-bd1e-9e1ad8d786a1
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Full name of the place
+        name: GEO_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cfdf6b3f-cf51-4a23-8e10-376536e48633
+                stepCounter: 4d4a67f8-9c3a-4b27-8fca-9c83ee5fcf3d
+            transform: ""
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0636d825-afc4-4d86-9567-1f6e864d1f62
+          stepCounter: 84338fd8-5c49-4a43-bd1e-9e1ad8d786a1
+        config: {}
+        dataType: VARCHAR(32)
+        description: Unique identifier assigned by Cybersyn to each company.
+        name: COMPANY_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 33bcb417-11b2-4488-ac80-f04f079e8aab
+                stepCounter: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+            transform: ""
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ce1e451b-ced4-44a4-b504-d7a720def4be
+          stepCounter: 84338fd8-5c49-4a43-bd1e-9e1ad8d786a1
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Central Index Key (CIK). Ten digit number assigned by the SEC to each registrant that submits filings.
+        name: CIK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1951602c-3ea9-4731-abc7-0518bd65e610
+                stepCounter: ca7a12f4-4328-465a-8839-c9622d24cc47
+            transform: ""
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8aaad045-f0fb-40fe-81b0-3e41257f936f
+          stepCounter: 84338fd8-5c49-4a43-bd1e-9e1ad8d786a1
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Geographic level or hierarchy (e.g., Country, State, County, City, Continent, CountrySubRegion, etc.)
+        name: LEVEL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b13049af-085b-4565-8712-4b2d2f93cd05
+                stepCounter: 4d4a67f8-9c3a-4b27-8fca-9c83ee5fcf3d
+            transform: ""
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ed8f7f70-a2f2-45d2-96d3-8e6523dd78f9
+          stepCounter: 84338fd8-5c49-4a43-bd1e-9e1ad8d786a1
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Country name from International Organization for Standardization
+        name: ISO_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8d9c0313-d54b-4b32-9e94-cf15daedc998
+                stepCounter: 4d4a67f8-9c3a-4b27-8fca-9c83ee5fcf3d
+            transform: ""
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c9b08edb-7b35-4f90-8176-1894ee37d4c0
+          stepCounter: 84338fd8-5c49-4a43-bd1e-9e1ad8d786a1
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: 2 letter country code from International Organization for Standardization
+        name: ISO_ALPHA2
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e2b4af50-be43-4743-a253-e538c3795f26
+                stepCounter: 4d4a67f8-9c3a-4b27-8fca-9c83ee5fcf3d
+            transform: ""
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 618afb92-ad0b-4f5b-90a8-a3c801163b81
+          stepCounter: 84338fd8-5c49-4a43-bd1e-9e1ad8d786a1
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: 3 letter country code from International Organization for Standardization
+        name: ISO_ALPHA3
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0c2fe4ab-6dbe-42c4-a167-ff5b14bb5866
+                stepCounter: 4d4a67f8-9c3a-4b27-8fca-9c83ee5fcf3d
+            transform: ""
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f60b8137-d2b4-4652-8491-8e5c8be2f72e
+          stepCounter: 84338fd8-5c49-4a43-bd1e-9e1ad8d786a1
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Numeric code from International Organization for Standardization
+        name: ISO_NUMERIC_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1f707bd5-ce77-4059-bf16-295cac55e035
+                stepCounter: 4d4a67f8-9c3a-4b27-8fca-9c83ee5fcf3d
+            transform: ""
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a847d470-51f8-4623-890d-f15829df240e
+          stepCounter: 84338fd8-5c49-4a43-bd1e-9e1ad8d786a1
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Full ISO-3166 code
+        name: ISO_3166_2_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3de35254-8a4c-408e-bddd-63bfe239aca7
+                stepCounter: 4d4a67f8-9c3a-4b27-8fca-9c83ee5fcf3d
+            transform: ""
+          - columnReferences: []
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          STG_GEOGRAPHY_INDEX: 4d4a67f8-9c3a-4b27-8fca-9c83ee5fcf3d
+          STG_SEC_CIK_INDEX: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+          STG_SEC_REPORT_ATTRIBUTES: ca7a12f4-4328-465a-8839-c9622d24cc47
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: TARGET
+            nodeName: STG_GEOGRAPHY_INDEX
+          - locationName: TARGET
+            nodeName: STG_SEC_CIK_INDEX
+          - locationName: TARGET
+            nodeName: STG_SEC_REPORT_ATTRIBUTES
+        join:
+          joinCondition: |-
+            FROM {{ ref('TARGET', 'STG_GEOGRAPHY_INDEX') }} "STG_GEOGRAPHY_INDEX"
+            INNER JOIN {{ ref('TARGET', 'STG_SEC_CIK_INDEX') }} "STG_SEC_CIK_INDEX"
+            ON "STG_GEOGRAPHY_INDEX"."GEO_ID" = "STG_SEC_CIK_INDEX"."STATE_GEO_ID"
+            INNER JOIN {{ ref('TARGET', 'STG_SEC_REPORT_ATTRIBUTES') }} "STG_SEC_REPORT_ATTRIBUTES"
+            ON "STG_SEC_CIK_INDEX"."CIK" = "STG_SEC_REPORT_ATTRIBUTES"."CIK"
+        name: STG_SIC_MANUFACTURING
+        noLinkRefs: []
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies: []
+        join:
+          joinCondition: ""
+        name: NEW_SOURCE
+        noLinkRefs: []
+  name: STG_SIC_MANUFACTURING
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

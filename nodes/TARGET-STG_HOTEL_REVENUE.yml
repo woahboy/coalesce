@@ -1,0 +1,86 @@
+fileVersion: 1
+id: 2ccb98d4-2bdb-4d44-8a8a-a3e94a42b8e4
+name: STG_HOTEL_REVENUE
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: The Geography Index table provides a unique GEO_ID with its associated GEO_NAME and LEVEL (e.g., City, CensusZipCodeTabulationArea, County, etc.). ISO codes are provided for a geography where applicable.
+  isMultisource: false
+  locationName: TARGET
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 78466228-d09c-499b-ac4c-332443b31a76
+          stepCounter: 2ccb98d4-2bdb-4d44-8a8a-a3e94a42b8e4
+        config: {}
+        dataType: VARCHAR(32)
+        description: Unique identifier assigned by Cybersyn to each company.
+        name: COMPANY_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 33bcb417-11b2-4488-ac80-f04f079e8aab
+                stepCounter: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+            transform: ""
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b114ab97-87f1-4b19-9434-975807674a7b
+          stepCounter: 2ccb98d4-2bdb-4d44-8a8a-a3e94a42b8e4
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Central Index Key (CIK). Ten digit number assigned by the SEC to each registrant that submits filings.
+        name: CIK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1951602c-3ea9-4731-abc7-0518bd65e610
+                stepCounter: ca7a12f4-4328-465a-8839-c9622d24cc47
+            transform: ""
+          - columnReferences: []
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          STG_SEC_CIK_INDEX: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+          STG_SEC_REPORT_ATTRIBUTES: ca7a12f4-4328-465a-8839-c9622d24cc47
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: TARGET
+            nodeName: STG_SEC_CIK_INDEX
+          - locationName: TARGET
+            nodeName: STG_SEC_REPORT_ATTRIBUTES
+        join:
+          joinCondition: |-
+            FROM {{ ref('TARGET', 'STG_SEC_CIK_INDEX') }} "STG_SEC_CIK_INDEX"
+            INNER JOIN {{ ref('TARGET', 'STG_SEC_REPORT_ATTRIBUTES') }} "STG_SEC_REPORT_ATTRIBUTES"
+            ON "STG_SEC_CIK_INDEX"."CIK" = "STG_SEC_REPORT_ATTRIBUTES"."CIK"
+        name: STG_HOTEL_REVENUE
+        noLinkRefs: []
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies: []
+        join:
+          joinCondition: ""
+        name: NEW_SOURCE
+        noLinkRefs: []
+  name: STG_HOTEL_REVENUE
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

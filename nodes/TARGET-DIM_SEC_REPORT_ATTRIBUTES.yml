@@ -1,0 +1,358 @@
+fileVersion: 1
+id: 53f79612-e03b-4d91-aaca-fa51c58b64da
+name: DIM_SEC_REPORT_ATTRIBUTES
+operation:
+  config:
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+  database: ""
+  deployEnabled: true
+  description: |-
+    Company KPIs published in SEC filings using XBRL format, provided on a monthly basis.
+
+    Provides a wide format breakdown of variables included within an SEC report by ADSH and SIK.
+
+    This table provides the parsed XBRL line items from financial statements by a unique variable ID, which are associated with a particular report. This includes detailed metadata, tags, measure descriptions, unit of measurement, associated values, report IDs, statement types, and date details.
+  isMultisource: false
+  locationName: TARGET
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: a9031eb0-e138-4c08-9129-968fa457657e
+          stepCounter: 53f79612-e03b-4d91-aaca-fa51c58b64da
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        isSurrogateKey: true
+        name: DIM_SEC_REPORT_ATTRIBUTES_KEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 49c7339e-c0a5-49ae-8fc8-6b79ba5e25c8
+          stepCounter: 53f79612-e03b-4d91-aaca-fa51c58b64da
+        config: {}
+        dataType: VARCHAR(32)
+        description: Unique identifier for each individual measure.
+        name: VARIABLE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5f2faff7-68d0-43d6-a44a-8d48ad13e1cf
+                stepCounter: ca7a12f4-4328-465a-8839-c9622d24cc47
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0e0249ea-42e7-4b8c-9277-1f9b59240050
+          stepCounter: 53f79612-e03b-4d91-aaca-fa51c58b64da
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Central Index Key (CIK). Ten digit number assigned by the SEC to each registrant that submits filings.
+        isBusinessKey: true
+        name: CIK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1951602c-3ea9-4731-abc7-0518bd65e610
+                stepCounter: ca7a12f4-4328-465a-8839-c9622d24cc47
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e50d6fcc-b546-4810-9e61-3937873c3009
+          stepCounter: 53f79612-e03b-4d91-aaca-fa51c58b64da
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Accession Number assigned to each filing in the EDGAR system. Unique identifier for each individual filing. The Accession number can be used to track all records from a single filing.
+        name: ADSH
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 54fc1c45-89c6-41a7-a674-9b9082894c03
+                stepCounter: ca7a12f4-4328-465a-8839-c9622d24cc47
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 11414746-6667-44bc-ac49-a277e4791080
+          stepCounter: 53f79612-e03b-4d91-aaca-fa51c58b64da
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: The text presented on the line item in the original filing. Also known as a "preferred" label.
+        name: MEASURE_DESCRIPTION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 19e0361d-8a99-46f6-92c1-1e4ec6d39371
+                stepCounter: ca7a12f4-4328-465a-8839-c9622d24cc47
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e32bc132-23b6-49d2-9da3-19070388076a
+          stepCounter: 53f79612-e03b-4d91-aaca-fa51c58b64da
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Unique name of the variable or measurement that pertains to the value.
+        name: TAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6080d687-956f-4140-9032-6a7904951a06
+                stepCounter: ca7a12f4-4328-465a-8839-c9622d24cc47
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 56d035c5-05af-4bcd-9fc2-44fdf8efbb19
+          stepCounter: 53f79612-e03b-4d91-aaca-fa51c58b64da
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: An identifier for the naming convention version of a given tag.
+        name: TAG_VERSION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 50f6f679-d277-4a87-94b5-a471e9f3b2a4
+                stepCounter: ca7a12f4-4328-465a-8839-c9622d24cc47
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d250928b-c382-47bb-b6d4-69ff514e18f2
+          stepCounter: 53f79612-e03b-4d91-aaca-fa51c58b64da
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: The unit of measure for the value.
+        name: UNIT_OF_MEASURE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5a0b5a7c-e257-4fc1-b952-a4e4f20074da
+                stepCounter: ca7a12f4-4328-465a-8839-c9622d24cc47
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: acb48a74-5188-4c19-9c25-d885edc2f6e0
+          stepCounter: 53f79612-e03b-4d91-aaca-fa51c58b64da
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: The value. This is not scaled, it is as found in the Interactive Data file, but is rounded to four digits to the right of the decimal point.
+        name: VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5919a1b1-9dd1-44bf-855d-08d9e0b3de8a
+                stepCounter: ca7a12f4-4328-465a-8839-c9622d24cc47
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 055a4053-9dc4-4104-a51d-46a8f2476f14
+          stepCounter: 53f79612-e03b-4d91-aaca-fa51c58b64da
+        config: {}
+        dataType: NUMBER(38,0)
+        description: Represents the report grouping. This is the sequential order of the line item in the XBRL data.
+        name: REPORT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2ec74341-f4c8-404e-b49b-dfac0fd663c8
+                stepCounter: ca7a12f4-4328-465a-8839-c9622d24cc47
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ac7ca19d-feef-4725-a00f-233b233280ce
+          stepCounter: 53f79612-e03b-4d91-aaca-fa51c58b64da
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: The financial statement location to which the value of the "report" field pertains.
+        name: STATEMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: af2c3697-8c56-49af-bf1a-b9e916e0609d
+                stepCounter: ca7a12f4-4328-465a-8839-c9622d24cc47
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 67411016-4ec0-4993-859d-6b49bd7932e9
+          stepCounter: 53f79612-e03b-4d91-aaca-fa51c58b64da
+        config: {}
+        dataType: DATE
+        description: Period start date of the value. For point-in-time values such as balance sheet items, this is the same as the period_end_date.
+        name: PERIOD_START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 01840419-978f-4caf-a0c3-8b55bd07ccdb
+                stepCounter: ca7a12f4-4328-465a-8839-c9622d24cc47
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e0f2f275-933a-4b52-8672-372511c00686
+          stepCounter: 53f79612-e03b-4d91-aaca-fa51c58b64da
+        config: {}
+        dataType: DATE
+        description: Period end date of the value.
+        name: PERIOD_END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 67d1500c-cc4e-4895-9930-518087566354
+                stepCounter: ca7a12f4-4328-465a-8839-c9622d24cc47
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f3eb8c8c-475c-44c6-be9e-c1989185cf52
+          stepCounter: 53f79612-e03b-4d91-aaca-fa51c58b64da
+        config: {}
+        dataType: NUMBER(38,0)
+        description: The count of the number of quarters represented by the data value, rounded to the nearest whole number. "0" indicates it is a point-in-time value (e.g., cash balance as of a particular date).
+        name: COVERED_QTRS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 29af753a-84e4-445f-a8f5-57e020b1cec0
+                stepCounter: ca7a12f4-4328-465a-8839-c9622d24cc47
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6f4c5780-014a-4d3f-b86b-4f94343cc012
+          stepCounter: 53f79612-e03b-4d91-aaca-fa51c58b64da
+        config: {}
+        dataType: VARIANT
+        description: "Concatenation of tag names representing the axis and members appearing in the XBRL segments. Tag names have their first characters \"Statement\", last 4 characters \"Axis\", and last 6 characters \"Member\" or \"Domain\" truncated where they appear. Namespaces and prefixes are ignored because EDGAR validation guarantees that the local-names are unique with a submission. Each dimension is represented as the pair \"{axis}={member};\" and the axes concatenated in lexical order. Example: \"LegalEntity=Xyz;Scenario=Restated;\" represents the XBRL segment with dimension LegalEntityAxis and member XyzMember, dimension StatementScenarioAxis and member RestatedMember."
+        name: METADATA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 00a0b0d3-aa53-43c2-8b75-b10e2449ee6c
+                stepCounter: ca7a12f4-4328-465a-8839-c9622d24cc47
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: abbb80d8-4f23-4aa8-9c35-121117fa9321
+          stepCounter: 53f79612-e03b-4d91-aaca-fa51c58b64da
+        config: {}
+        dataType: NUMBER
+        defaultValue: ""
+        description: ""
+        isSystemVersion: true
+        name: SYSTEM_VERSION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7cd93152-4a12-4923-9d74-009cdf8d7664
+          stepCounter: 53f79612-e03b-4d91-aaca-fa51c58b64da
+        config: {}
+        dataType: VARCHAR
+        defaultValue: ""
+        description: ""
+        isSystemCurrentFlag: true
+        name: SYSTEM_CURRENT_FLAG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: aa4443d3-430b-4f7d-aead-e8e6f7b511b7
+          stepCounter: 53f79612-e03b-4d91-aaca-fa51c58b64da
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemStartDate: true
+        name: SYSTEM_START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: c090cbb8-620f-4941-bc75-ab806cc1e3ea
+          stepCounter: 53f79612-e03b-4d91-aaca-fa51c58b64da
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemEndDate: true
+        name: SYSTEM_END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST('2999-12-31 00:00:00' AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 114b5126-8457-4dde-906e-0d6f04181587
+          stepCounter: 53f79612-e03b-4d91-aaca-fa51c58b64da
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemCreateDate: true
+        name: SYSTEM_CREATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ec8baa77-734d-4647-ab26-76dac4f6d5a8
+          stepCounter: 53f79612-e03b-4d91-aaca-fa51c58b64da
+        config: {}
+        dataType: TIMESTAMP
+        defaultValue: ""
+        description: ""
+        isSystemUpdateDate: true
+        name: SYSTEM_UPDATE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: TARGET
+            nodeName: STG_SEC_REPORT_ATTRIBUTES
+        join:
+          joinCondition: FROM {{ ref('TARGET', 'STG_SEC_REPORT_ATTRIBUTES') }} "STG_SEC_REPORT_ATTRIBUTES"
+        name: DIM_SEC_REPORT_ATTRIBUTES
+        noLinkRefs: []
+  name: DIM_SEC_REPORT_ATTRIBUTES
+  overrideSQL: false
+  schema: ""
+  sqlType: Dimension
+  type: sql
+  version: 1
+type: Node

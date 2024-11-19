@@ -1,0 +1,139 @@
+fileVersion: 1
+id: e257a899-1162-4e7f-bd12-5b5c77c402b6
+name: COMPANY_CHARACTERISTICS
+operation:
+  database: ""
+  dataset: ""
+  deployEnabled: true
+  description: |-
+    Characteristics for nearly 100k companies, including EIN, CIK, LEI, address information, industry descriptions, and more, with start and end date ranges, by Cybersyn's COMPANY_ID. This table serves as a compliment to the company_index table, which is the spine for Cybersyn data that involves company-level identifiers.
+
+    Provides a long format overview of characteristics associated with a particular COMPANY_ID.
+
+    This table includes a unique ID for each company (COMPANY_ID) and associated categorical characteristics (EIN, CIK, LEI, address information, industry descriptions, and more). A characteristic may be temporal with start and end dates indicating the range for which the data is valid.
+  locationName: SRC_SEC_FILINGS
+  metadata:
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: e8e43997-c373-4669-b29d-c0ea86ced576
+          stepCounter: e257a899-1162-4e7f-bd12-5b5c77c402b6
+        config: {}
+        dataType: VARCHAR(32)
+        defaultValue: ""
+        description: Unique identifier assigned by Cybersyn to each company.
+        name: COMPANY_ID
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 65ac5678-f806-4ece-933d-c68547630de4
+          stepCounter: e257a899-1162-4e7f-bd12-5b5c77c402b6
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: The name of the company.
+        name: COMPANY_NAME
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2d33322c-5aad-428f-aa48-a171afe2848d
+          stepCounter: e257a899-1162-4e7f-bd12-5b5c77c402b6
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: Specifies the kind of relationship or characteristic that is being reported in the VALUE field.
+        name: RELATIONSHIP_TYPE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: e9fc0bf9-8bf5-401b-8720-7da6b9f7fb36
+          stepCounter: e257a899-1162-4e7f-bd12-5b5c77c402b6
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: The value related to the relationship type or characteristics specified.
+        name: VALUE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: b237296f-f150-4837-b9e1-5cf36725ee64
+          stepCounter: e257a899-1162-4e7f-bd12-5b5c77c402b6
+        config: {}
+        dataType: DATE
+        defaultValue: ""
+        description: The beginning of characteristics taking effect for a given company. In cases where a characteristic pre-dates the beginning of the data, a start date of NULL is assigned.
+        name: RELATIONSHIP_START_DATE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: bf32cb21-d145-44ff-9683-928b8a93bbf0
+          stepCounter: e257a899-1162-4e7f-bd12-5b5c77c402b6
+        config: {}
+        dataType: DATE
+        defaultValue: ""
+        description: The ending of characteristics being valid for a given company. In cases where a characteristic is currently valid, an end date of NULL is assigned.
+        name: RELATIONSHIP_END_DATE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+    join:
+      joinCondition: FROM {{ ref('SRC_SEC_FILINGS', 'COMPANY_CHARACTERISTICS') }}
+  name: COMPANY_CHARACTERISTICS
+  schema: ""
+  sqlType: Source
+  table: COMPANY_CHARACTERISTICS
+  type: sourceInput
+  version: 1
+type: Node

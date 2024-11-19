@@ -1,0 +1,491 @@
+fileVersion: 1
+id: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+name: STG_SEC_CIK_INDEX
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: |-
+    Map between company identifiers (including Cybersyn's COMPANY_ID) and the SEC Central Index Keys (CIKs), along with geographic and industry classification details for SEC filers.
+
+    The SEC assigns a unique number, Central Index Key (CIK), to all entities (companies, individuals, and foreign governments) who file disclosures with the SEC. 
+    SIC, or Standard Industrial Classification, is a four-digit code provided by the SEC to classify the primary industry of a company. Originally developed by the U.S. government in the 1930s, SIC codes are used to categorize companies and facilitate the analysis of economic activities across government and private sectors.
+  isMultisource: false
+  locationName: TARGET
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 33bcb417-11b2-4488-ac80-f04f079e8aab
+          stepCounter: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+        config: {}
+        dataType: VARCHAR(32)
+        description: Unique identifier assigned by Cybersyn to each company.
+        name: COMPANY_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 13b0b41d-40bb-4b38-a8a3-73ca816b0878
+                stepCounter: fb7a2d7b-7303-4b1e-bc4c-5a0302eef82b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bbc97034-68e7-487d-bf7d-c55a5a31cd20
+          stepCounter: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Central Index Key (CIK). Ten digit number assigned by the SEC to each registrant that submits filings.
+        name: CIK
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 312841f9-63b3-4d60-9a34-bb80c3ae424c
+                stepCounter: fb7a2d7b-7303-4b1e-bc4c-5a0302eef82b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7f038e22-59f2-469b-a708-33b9e585fe8e
+          stepCounter: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Name of registrant. This corresponds to the name of the legal entity as of the latest filing date.
+        name: COMPANY_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 29f11d24-360c-4c37-bec2-98ef3d180d12
+                stepCounter: fb7a2d7b-7303-4b1e-bc4c-5a0302eef82b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b5f9f91a-87d5-4047-ab62-6bd058d75f57
+          stepCounter: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Employee Identification Number assigned by the Internal Revenue Service (IRS)
+        name: EIN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 979201a2-930f-456f-ad5d-2963612a7ad8
+                stepCounter: fb7a2d7b-7303-4b1e-bc4c-5a0302eef82b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0bfa0f2f-14c9-43d7-9126-dc61e675f0b5
+          stepCounter: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Standard Industrial Classification (SIC). Code assigned by the SEC indicating the registrant industry group.
+        name: SIC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a3cfeffc-0420-4503-9f1a-054ebb0754bb
+                stepCounter: fb7a2d7b-7303-4b1e-bc4c-5a0302eef82b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bd076ebd-9c94-4fbd-9d11-7e81b3193f24
+          stepCounter: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Standard Industrial Classification (SIC) code category.
+        name: SIC_CODE_CATEGORY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2eec25bc-0ab5-4f12-830e-db0f17b93553
+                stepCounter: fb7a2d7b-7303-4b1e-bc4c-5a0302eef82b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 55232a5f-6448-4a90-857e-33f5e3fe1da7
+          stepCounter: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Standard Industrial Classification (SIC) code description.
+        name: SIC_CODE_DESCRIPTION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3467ed54-e382-4143-abb5-c7a9cf5071f1
+                stepCounter: fb7a2d7b-7303-4b1e-bc4c-5a0302eef82b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9ae04844-8538-4808-b86f-24ff9baf1f90
+          stepCounter: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Classification provided by the SEC as to the type of the registrant.
+        name: SEC_FILER_CATEGORY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 30e84aa1-10a8-4829-9eb4-6f97b26c581d
+                stepCounter: fb7a2d7b-7303-4b1e-bc4c-5a0302eef82b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f84e7da2-fc11-41f4-8812-abb5e185f646
+          stepCounter: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Raw state code where the registrant was incorporated.
+        name: INCORPORATION_STATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 483ff035-6302-46b5-baea-a7864648ab8c
+                stepCounter: fb7a2d7b-7303-4b1e-bc4c-5a0302eef82b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c1d64cd5-2f05-4504-b078-4e37915bccf7
+          stepCounter: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: A unique identifier of the state where the registrant was incorporated. Joinable to the GEOGRAPHY_INDEX table
+        name: INCORPORATION_STATE_GEO_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b9ba6425-ea69-4d62-948b-be0f136af30d
+                stepCounter: fb7a2d7b-7303-4b1e-bc4c-5a0302eef82b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 678145c1-8afa-490a-8ddb-aa3c6b575b08
+          stepCounter: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Raw country code where the registrant was incorporated.
+        name: INCORPORATION_COUNTRY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b335483b-d3ac-4094-8a79-ceef27cbdf79
+                stepCounter: fb7a2d7b-7303-4b1e-bc4c-5a0302eef82b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 78c4f462-583c-42b4-81fa-c6a125ce721e
+          stepCounter: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: A unique identifier of the country where the registrant was incorporated. Joinable to the GEOGRAPHY_INDEX table
+        name: INCORPORATION_COUNTRY_GEO_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d003f140-0fba-450e-a322-79c6820adf83
+                stepCounter: fb7a2d7b-7303-4b1e-bc4c-5a0302eef82b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8a37f006-b40a-4334-8ce9-5252bbec02e1
+          stepCounter: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Fiscal year end recognized by the registrant.
+        name: FISCAL_YEAR_END
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d21a54df-73fc-4ad6-8aa0-dfe94fe7c5f7
+                stepCounter: fb7a2d7b-7303-4b1e-bc4c-5a0302eef82b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 34a05e88-0b57-467c-9440-f7654bf9be4a
+          stepCounter: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Business address line 1 of the registrant.
+        name: ADDRESS_LINE_1
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 18122008-561c-4ec9-86a8-7a6a6daae70c
+                stepCounter: fb7a2d7b-7303-4b1e-bc4c-5a0302eef82b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cb26328b-e443-418b-875a-4764a533275a
+          stepCounter: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Business address line 2 of the registrant.
+        name: ADDRESS_LINE_2
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d71abdcc-1d1a-4d85-a78b-ddcfc7913ddc
+                stepCounter: fb7a2d7b-7303-4b1e-bc4c-5a0302eef82b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: eef9927d-93fc-4bca-8780-c6b53a113b3f
+          stepCounter: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: The city of the business address of the registrant.
+        name: CITY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2bc9214f-6e72-46d8-b778-319eec14ce53
+                stepCounter: fb7a2d7b-7303-4b1e-bc4c-5a0302eef82b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c5aabc13-af35-4a6e-aa14-e316d7e32edc
+          stepCounter: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: The state or province of the business address of the registrant.
+        name: STATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b4d52500-45d0-4da9-b3e1-a193423c65a5
+                stepCounter: fb7a2d7b-7303-4b1e-bc4c-5a0302eef82b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b94d6f2a-82e4-4a60-899a-c736bbfc8143
+          stepCounter: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: A unique identifier of the state where the business is headquartered. Joinable to the GEOGRAPHY_INDEX table
+        name: STATE_GEO_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a8ffa7c4-3bb5-4f99-93fa-5ceb7dc48641
+                stepCounter: fb7a2d7b-7303-4b1e-bc4c-5a0302eef82b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3bb100bf-b070-4a8c-a111-2f7aab8f8a8a
+          stepCounter: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Raw zip code of the business address of the registrant.
+        name: ZIP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 633a723a-84f8-4156-a4b2-e639e485d2d6
+                stepCounter: fb7a2d7b-7303-4b1e-bc4c-5a0302eef82b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0b7505d2-cec2-45aa-a358-1b6d3d4f115f
+          stepCounter: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: A unique identifier of the zip where the business is headquartered. Joinable to the GEOGRAPHY_INDEX table
+        name: ZIP_GEO_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5d16111f-17f8-4d2d-9f78-fb0dbfa5de1f
+                stepCounter: fb7a2d7b-7303-4b1e-bc4c-5a0302eef82b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 42f14b2a-14a0-4b3c-b582-d72cd13e9851
+          stepCounter: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: The country of the registrant.
+        name: COUNTRY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 441e4284-f902-4266-af06-42ab1fbc5e9e
+                stepCounter: fb7a2d7b-7303-4b1e-bc4c-5a0302eef82b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fafc8432-c888-4faa-86d9-4a6265b366cf
+          stepCounter: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: A unique identifier of the country where the business is headquartered. Joinable to the GEOGRAPHY_INDEX table
+        name: COUNTRY_GEO_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2e7db4e8-5f99-4593-a9b1-e37281c2077d
+                stepCounter: fb7a2d7b-7303-4b1e-bc4c-5a0302eef82b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a836706a-5fe1-4529-81b4-886898debd5b
+          stepCounter: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Mailing address line 1 of the registrant.
+        name: MAILING_ADDRESS_LINE_1
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a2bc0cad-0c67-4474-bdab-061425da02c6
+                stepCounter: fb7a2d7b-7303-4b1e-bc4c-5a0302eef82b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0e6296f5-63a1-4275-964d-2116bead9326
+          stepCounter: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Mailing address line 2 of the registrant.
+        name: MAILING_ADDRESS_LINE_2
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b234abd9-c2ce-465d-ba97-59551cb0ecc4
+                stepCounter: fb7a2d7b-7303-4b1e-bc4c-5a0302eef82b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4c1008b7-a957-46a0-a509-d29bfa717188
+          stepCounter: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: The city of the mailing address of the registrant.
+        name: MAILING_CITY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b8bc211e-4b74-46ab-9f18-f408ca382494
+                stepCounter: fb7a2d7b-7303-4b1e-bc4c-5a0302eef82b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 70f8a756-e2e0-4217-b862-523faf544edb
+          stepCounter: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: The state or province of the mailing address of the registrant.
+        name: MAILING_STATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9912691b-3d1d-4ba7-8acf-a6380511d39b
+                stepCounter: fb7a2d7b-7303-4b1e-bc4c-5a0302eef82b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: aaa50e54-0939-4d3e-ae1b-a5faac8fa991
+          stepCounter: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: A unique identifier of the state of the mailing address. Joinable to the GEOGRAPHY_INDEX table
+        name: MAILING_STATE_GEO_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0f1a4eca-d3b2-4d55-a9e5-88855dfa69f2
+                stepCounter: fb7a2d7b-7303-4b1e-bc4c-5a0302eef82b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2dd76526-4cde-42f3-a299-d87c797e8b4d
+          stepCounter: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Raw zip code of the mailing address of the registrant.
+        name: MAILING_ZIP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 759cd957-5d9b-4958-a6b7-e3b98d2a6473
+                stepCounter: fb7a2d7b-7303-4b1e-bc4c-5a0302eef82b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6ad02869-f685-4d25-b1f7-ef8e27f14197
+          stepCounter: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: A unique identifier of the zip of the mailing address. Joinable to the GEOGRAPHY_INDEX table
+        name: MAILING_ZIP_GEO_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e9f118a1-2f4a-4294-851e-f10c521ce1de
+                stepCounter: fb7a2d7b-7303-4b1e-bc4c-5a0302eef82b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ac2d8463-bb33-497a-abd5-1ef7ecb4056b
+          stepCounter: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Raw country code of the mailing address of the registrant.
+        name: MAILING_COUNTRY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 51002027-e270-4776-86cb-4c3a2f8af9e4
+                stepCounter: fb7a2d7b-7303-4b1e-bc4c-5a0302eef82b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 82878932-7185-45b3-b3c2-ca510de81ccd
+          stepCounter: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: A unique identifier of the country of the mailing address. Joinable to the GEOGRAPHY_INDEX table
+        name: MAILING_COUNTRY_GEO_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0b5cb950-31d5-4374-a648-4222fbd741f3
+                stepCounter: fb7a2d7b-7303-4b1e-bc4c-5a0302eef82b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 39f8e7b5-8084-42f7-ac99-c52d0410ec49
+          stepCounter: f5ddd16d-08dd-4157-ba2d-d748e0fa5f7d
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: Phone number of the registrant.
+        name: PHONE_NUMBER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7a1fdd8f-b979-40cb-8a4c-4df1cc4648ba
+                stepCounter: fb7a2d7b-7303-4b1e-bc4c-5a0302eef82b
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SRC_SEC_FILINGS
+            nodeName: SEC_CIK_INDEX
+        join:
+          joinCondition: FROM {{ ref('SRC_SEC_FILINGS', 'SEC_CIK_INDEX') }} "SEC_CIK_INDEX"
+        name: STG_SEC_CIK_INDEX
+        noLinkRefs: []
+  name: STG_SEC_CIK_INDEX
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node
