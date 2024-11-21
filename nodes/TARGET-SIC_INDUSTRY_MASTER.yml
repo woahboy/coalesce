@@ -35,10 +35,8 @@ operation:
               - columnCounter: f725d9ae-62e3-4a44-8cb9-10dc97a05f97
                 stepCounter: 83fd441b-689b-447b-9106-378835051aab
             transform: ""
-          - columnReferences:
-              - columnCounter: 2027726e-b089-473b-8456-0eef32d34424
-                stepCounter: 09f1d2ea-3213-4ae8-8546-fa12f9b17cb8
-            transform: ""
+          - columnReferences: []
+            transform: "NULL"
           - columnReferences:
               - columnCounter: b78b4e7e-c7d1-40ef-8b07-0c9126532c87
                 stepCounter: 30a6bf29-5c08-4457-8a84-c97d55156016
@@ -73,10 +71,8 @@ operation:
               - columnCounter: 19d7e0f9-7786-4d98-8181-b3dd4c6dae7d
                 stepCounter: 83fd441b-689b-447b-9106-378835051aab
             transform: ""
-          - columnReferences:
-              - columnCounter: daaf69f3-ab54-45e3-a999-368b6dfdb2d2
-                stepCounter: 09f1d2ea-3213-4ae8-8546-fa12f9b17cb8
-            transform: ""
+          - columnReferences: []
+            transform: "NULL"
           - columnReferences:
               - columnCounter: 1c46170e-ff5c-4d68-8353-577c59bdd177
                 stepCounter: 30a6bf29-5c08-4457-8a84-c97d55156016
@@ -412,14 +408,14 @@ operation:
         name: INDUSTRIAL_SERVICES
         noLinkRefs: []
       - aliases:
-          STG_SIC_TECHNOLOGY: 30a6bf29-5c08-4457-8a84-c97d55156016
+          STG_SIC_REAL_ESTATE_AND_CONSTRUCTION: 83fd441b-689b-447b-9106-378835051aab
         customSQL:
           customSQL: ""
         dependencies:
           - locationName: TARGET
-            nodeName: STG_SIC_TECHNOLOGY
+            nodeName: STG_SIC_REAL_ESTATE_AND_CONSTRUCTION
         join:
-          joinCondition: FROM {{ ref('TARGET', 'STG_SIC_TECHNOLOGY') }} "STG_SIC_TECHNOLOGY"
+          joinCondition: FROM {{ ref('TARGET', 'STG_SIC_REAL_ESTATE_AND_CONSTRUCTION') }} "STG_SIC_REAL_ESTATE_AND_CONSTRUCTION"
         name: REAL_ESTATE_AND_CONSTRUCTION
         noLinkRefs: []
       - aliases:
