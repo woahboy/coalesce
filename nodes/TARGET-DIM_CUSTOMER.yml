@@ -39,6 +39,7 @@ operation:
         config: {}
         dataType: NUMBER(38,0)
         description: ""
+        isBusinessKey: true
         name: C_CUSTKEY
         nullable: false
         sourceColumnReferences:
@@ -53,6 +54,7 @@ operation:
         config: {}
         dataType: VARCHAR(25)
         description: ""
+        isChangeTracking: true
         name: C_NAME
         nullable: false
         sourceColumnReferences:
@@ -67,25 +69,12 @@ operation:
         config: {}
         dataType: VARCHAR(40)
         description: ""
+        isChangeTracking: true
         name: C_ADDRESS
         nullable: false
         sourceColumnReferences:
           - columnReferences:
               - columnCounter: 793d3331-7de7-47c0-bca1-5620f39f5f09
-                stepCounter: a881e454-c0de-4fbc-b4b0-7fee38178128
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: 95da3211-3063-47b0-b307-7ce8e60e665a
-          stepCounter: d2d8be63-69c8-4fd2-848e-1cb81d2b921a
-        config: {}
-        dataType: NUMBER(38,0)
-        description: ""
-        name: C_NATIONKEY
-        nullable: false
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: c0469033-ddc8-437e-80a9-71cc8c0dc44b
                 stepCounter: a881e454-c0de-4fbc-b4b0-7fee38178128
             transform: ""
       - appliedColumnTests: {}
@@ -274,6 +263,57 @@ operation:
         sourceColumnReferences:
           - columnReferences: []
             transform: CAST(CURRENT_TIMESTAMP AS TIMESTAMP)
+      - acceptedValues:
+          strictMatch: false
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: a781c59a-1b46-4ef4-bd64-b3cfd47f4bad
+          stepCounter: d2d8be63-69c8-4fd2-848e-1cb81d2b921a
+        config: {}
+        dataType: VARCHAR(152)
+        description: ""
+        name: R_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7d868253-3e76-4e6c-8ac2-9ade52abf541
+                stepCounter: a881e454-c0de-4fbc-b4b0-7fee38178128
+            transform: ""
+      - acceptedValues:
+          strictMatch: false
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: f8dee8b0-e296-4ae1-a2a8-8e00f03a37b8
+          stepCounter: d2d8be63-69c8-4fd2-848e-1cb81d2b921a
+        config: {}
+        dataType: VARCHAR(152)
+        description: ""
+        name: N_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 48478761-3bd4-4488-964c-c329c9dea2c7
+                stepCounter: a881e454-c0de-4fbc-b4b0-7fee38178128
+            transform: ""
+      - acceptedValues:
+          strictMatch: false
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 58da66b5-9c49-4622-b1e8-37a2015269d5
+          stepCounter: d2d8be63-69c8-4fd2-848e-1cb81d2b921a
+        config: {}
+        dataType: VARCHAR(10)
+        description: ""
+        name: C_VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 57b3ec6f-fd1c-4c21-b2b2-750a23ceea39
+                stepCounter: a881e454-c0de-4fbc-b4b0-7fee38178128
+            transform: ""
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
