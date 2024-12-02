@@ -1,0 +1,62 @@
+fileVersion: 1
+id: f2bd126e-0091-4ee6-9a0a-b864e2a29360
+name: SP_SIMPLE
+operation:
+  config:
+    SQL1: |-
+      CREATE OR REPLACE PROCEDURE "JUSTIN_EDW"."DEV_EDW".sp_concatenate_strings(
+          first_arg VARCHAR,
+          second_arg VARCHAR,
+          third_arg VARCHAR)
+        RETURNS VARCHAR
+        LANGUAGE SQL
+        AS
+        $$
+        BEGIN
+          RETURN first_arg || second_arg || third_arg;
+        END;
+        $$;
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: TARGET
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 54940f0f-f9ec-497a-8ea1-1295b2c02885
+          stepCounter: f2bd126e-0091-4ee6-9a0a-b864e2a29360
+        config: {}
+        dataType: NUMBER IDENTITY
+        defaultValue: ""
+        description: ""
+        isSurrogateKey: true
+        name: SQL_SEQ
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies: []
+        join:
+          joinCondition: ""
+        name: SP_SIMPLE
+        noLinkRefs: []
+  name: SP_SIMPLE
+  overrideSQL: false
+  schema: ""
+  sqlType: "467"
+  type: sql
+  version: 1
+type: Node
