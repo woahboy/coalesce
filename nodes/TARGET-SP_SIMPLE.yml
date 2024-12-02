@@ -1,21 +1,18 @@
 fileVersion: 1
-id: f2bd126e-0091-4ee6-9a0a-b864e2a29360
+id: 46f48b4b-6746-406a-b2fc-8e6c3b0ece09
 name: SP_SIMPLE
 operation:
   config:
     SQL1: |-
-      CREATE OR REPLACE PROCEDURE "JUSTIN_EDW"."DEV_EDW".sp_concatenate_strings(
-          first_arg VARCHAR,
-          second_arg VARCHAR,
-          third_arg VARCHAR)
-        RETURNS VARCHAR
-        LANGUAGE SQL
-        AS
-        $$
-        BEGIN
-          RETURN first_arg || second_arg || third_arg;
-        END;
-        $$;
+      CREATE OR REPLACE PROCEDURE {{this}}("MESSAGE" STRING)
+      RETURNS STRING
+      LANGUAGE SQL
+      EXECUTE AS OWNER 
+      AS '
+      begin
+          return message;
+      end;
+      ';
   database: ""
   deployEnabled: true
   description: ""
@@ -30,8 +27,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 54940f0f-f9ec-497a-8ea1-1295b2c02885
-          stepCounter: f2bd126e-0091-4ee6-9a0a-b864e2a29360
+          columnCounter: ee1cc419-2ebc-4917-9468-9bb24ab93173
+          stepCounter: 46f48b4b-6746-406a-b2fc-8e6c3b0ece09
         config: {}
         dataType: NUMBER IDENTITY
         defaultValue: ""

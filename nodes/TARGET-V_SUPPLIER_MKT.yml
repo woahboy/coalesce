@@ -1,0 +1,78 @@
+fileVersion: 1
+id: 8aa4a49f-0612-41d2-a958-93f06b8ea5e6
+name: V_SUPPLIER_MKT
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: Supplier data as defined by TPC-H
+  isMultisource: false
+  locationName: TARGET
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 500adfb9-ee20-4215-b34d-4474a156a185
+          stepCounter: 8aa4a49f-0612-41d2-a958-93f06b8ea5e6
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: S_SUPPKEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d9af19c0-26b4-4aa3-ba0b-364f16cd4c29
+                stepCounter: 50b4d39c-c136-403f-8171-00165f6a78cd
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6a02fd9b-376f-49ae-8ec8-5af329c100c4
+          stepCounter: 8aa4a49f-0612-41d2-a958-93f06b8ea5e6
+        config: {}
+        dataType: VARCHAR(25)
+        description: ""
+        name: N_NAME
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 12a21c84-c70b-4277-af5e-3cc2ddf57fcc
+                stepCounter: 50b4d39c-c136-403f-8171-00165f6a78cd
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4532a593-708e-4aa8-b55c-628eea2142ea
+          stepCounter: 8aa4a49f-0612-41d2-a958-93f06b8ea5e6
+        config: {}
+        dataType: VARCHAR(25)
+        description: ""
+        name: R_NAME
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5338a03b-e9c0-4668-b937-2e4246429c6a
+                stepCounter: 50b4d39c-c136-403f-8171-00165f6a78cd
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: TARGET
+            nodeName: DIM_DIM_SUPPLIER
+        join:
+          joinCondition: FROM {{ ref('TARGET', 'DIM_DIM_SUPPLIER') }} "DIM_DIM_SUPPLIER"
+        name: V_SUPPLIER_MKT
+        noLinkRefs: []
+  name: V_SUPPLIER_MKT
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node

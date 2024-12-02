@@ -1,0 +1,106 @@
+fileVersion: 1
+id: aef65918-513b-46d4-ab9c-b84a5ead1692
+name: V_SUPPLIER
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: Supplier data as defined by TPC-H
+  isMultisource: false
+  locationName: TARGET
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9fdfafab-fd3c-4833-8da3-251fbf91249f
+          stepCounter: aef65918-513b-46d4-ab9c-b84a5ead1692
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: S_SUPPKEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d9af19c0-26b4-4aa3-ba0b-364f16cd4c29
+                stepCounter: 50b4d39c-c136-403f-8171-00165f6a78cd
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fb573223-5421-4a50-ae62-84a4072aadc2
+          stepCounter: aef65918-513b-46d4-ab9c-b84a5ead1692
+        config: {}
+        dataType: VARCHAR(25)
+        description: ""
+        name: S_NAME
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 049c4b3e-070c-400e-925d-3715fe9f08cc
+                stepCounter: 50b4d39c-c136-403f-8171-00165f6a78cd
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 719b7df4-65f3-4d39-a3fb-67e2932af128
+          stepCounter: aef65918-513b-46d4-ab9c-b84a5ead1692
+        config: {}
+        dataType: VARCHAR(40)
+        description: ""
+        name: S_ADDRESS
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9b84d018-5799-4299-9b57-e55fca6a5a88
+                stepCounter: 50b4d39c-c136-403f-8171-00165f6a78cd
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 15dea69c-90d5-41a7-876a-cfa05d617a05
+          stepCounter: aef65918-513b-46d4-ab9c-b84a5ead1692
+        config: {}
+        dataType: VARCHAR(15)
+        description: ""
+        name: S_PHONE
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 82b1adbe-a3f5-42c0-89db-736db4862bc3
+                stepCounter: 50b4d39c-c136-403f-8171-00165f6a78cd
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3e44502a-588b-4ab2-b3a3-6e180e43cac2
+          stepCounter: aef65918-513b-46d4-ab9c-b84a5ead1692
+        config: {}
+        dataType: VARCHAR(101)
+        description: ""
+        name: S_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9f8e2a5a-5308-445c-a4df-ea63986437a3
+                stepCounter: 50b4d39c-c136-403f-8171-00165f6a78cd
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: TARGET
+            nodeName: DIM_DIM_SUPPLIER
+        join:
+          joinCondition: FROM {{ ref('TARGET', 'DIM_DIM_SUPPLIER') }} "DIM_DIM_SUPPLIER"
+        name: V_SUPPLIER
+        noLinkRefs: []
+  name: V_SUPPLIER
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node

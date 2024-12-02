@@ -1,0 +1,64 @@
+fileVersion: 1
+id: 17b6eb9d-6d53-4f4c-9cd2-0b586e7e260f
+name: V_SUPPLIER_SALES
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: Supplier data as defined by TPC-H
+  isMultisource: false
+  locationName: TARGET
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e1e040f6-7401-4bec-bff0-95144ed521b7
+          stepCounter: 17b6eb9d-6d53-4f4c-9cd2-0b586e7e260f
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: S_SUPPKEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d9af19c0-26b4-4aa3-ba0b-364f16cd4c29
+                stepCounter: 50b4d39c-c136-403f-8171-00165f6a78cd
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 81229505-692f-4b14-91a1-f061fc4e2d9a
+          stepCounter: 17b6eb9d-6d53-4f4c-9cd2-0b586e7e260f
+        config: {}
+        dataType: NUMBER(12,2)
+        description: ""
+        name: S_ACCTBAL
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d611ac3d-90fb-4891-b96b-3a9c7f8250e5
+                stepCounter: 50b4d39c-c136-403f-8171-00165f6a78cd
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: TARGET
+            nodeName: DIM_DIM_SUPPLIER
+        join:
+          joinCondition: FROM {{ ref('TARGET', 'DIM_DIM_SUPPLIER') }} "DIM_DIM_SUPPLIER"
+        name: V_SUPPLIER_SALES
+        noLinkRefs: []
+  name: V_SUPPLIER_SALES
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node
