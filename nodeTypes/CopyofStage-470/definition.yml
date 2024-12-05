@@ -1,5 +1,5 @@
 fileVersion: 1
-id: "468"
+id: "470"
 isDisabled: false
 metadata:
   defaultStorageLocation: null
@@ -19,6 +19,10 @@ metadata:
         - table
         - view
         isRequired: true
+
+      - type: toggleButton
+        attributeName: selectDistinct
+        displayName: Distinct
 
       - type: multisourceToggle
         enableIf: "{% if node.materializationType == 'table' %} true {% else %} false {% endif %}" 
@@ -58,16 +62,5 @@ metadata:
         type: textBox
         syntax: sql
         isRequired: false
-
-    mappingColumns:
-    - headerName: My Mapping Column Name
-      attributeName: myMappingColumn
-      type: textBox
-    - headerName: Tech Description
-      attributeName: techDesc
-      type: textBox
-    - headerName: Ghost Record
-      attributeName: ghostRecord
-      type: textBox
 name: Copy of Stage
 type: NodeType
