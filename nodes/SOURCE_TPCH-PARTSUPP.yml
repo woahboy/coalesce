@@ -1,11 +1,11 @@
 fileVersion: 1
-id: e7b9c8c0-52c6-4af6-be33-db8f62c53372
-name: NATION
+id: 600d1e70-df5d-4d3d-99f6-c41c257b7bbd
+name: PARTSUPP
 operation:
   database: ""
   dataset: ""
   deployEnabled: true
-  description: Nation data as defined by TPC-H
+  description: Partsupp data as defined by TPC-H
   locationName: SOURCE_TPCH
   metadata:
     columns:
@@ -14,13 +14,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 7461c69e-3ed7-427f-9124-c51a9ea0d8ce
-          stepCounter: e7b9c8c0-52c6-4af6-be33-db8f62c53372
+          columnCounter: da28a207-5f46-4d46-93e9-027969e50f0f
+          stepCounter: 600d1e70-df5d-4d3d-99f6-c41c257b7bbd
         config: {}
         dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: N_NATIONKEY
+        name: PS_PARTKEY
         nullable: false
         primaryKey: false
         sourceColumnReferences:
@@ -33,32 +33,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 52b69d8c-2fc5-40d3-955b-7d79bf748058
-          stepCounter: e7b9c8c0-52c6-4af6-be33-db8f62c53372
-        config: {}
-        dataType: VARCHAR(25)
-        defaultValue: ""
-        description: ""
-        name: N_NAME
-        nullable: false
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: a2768eef-c055-4de2-b659-2f56bd6983f2
-          stepCounter: e7b9c8c0-52c6-4af6-be33-db8f62c53372
+          columnCounter: 69f0cae5-18d9-4660-a2db-f79d150022f3
+          stepCounter: 600d1e70-df5d-4d3d-99f6-c41c257b7bbd
         config: {}
         dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: N_REGIONKEY
+        name: PS_SUPPKEY
         nullable: false
         primaryKey: false
         sourceColumnReferences:
@@ -71,13 +52,51 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 0037c841-e6dd-41e2-8b8c-0d2fa18bb205
-          stepCounter: e7b9c8c0-52c6-4af6-be33-db8f62c53372
+          columnCounter: 603432c3-8e19-4830-9b76-3021a2d5030f
+          stepCounter: 600d1e70-df5d-4d3d-99f6-c41c257b7bbd
         config: {}
-        dataType: VARCHAR(152)
+        dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: N_COMMENT
+        name: PS_AVAILQTY
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: cd1fb786-bd51-4d4a-8a39-c9ac1ea3b9b8
+          stepCounter: 600d1e70-df5d-4d3d-99f6-c41c257b7bbd
+        config: {}
+        dataType: NUMBER(12,2)
+        defaultValue: ""
+        description: ""
+        name: PS_SUPPLYCOST
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: d4eb9fc8-9463-4835-91d5-7028d6dca24d
+          stepCounter: 600d1e70-df5d-4d3d-99f6-c41c257b7bbd
+        config: {}
+        dataType: VARCHAR(199)
+        defaultValue: ""
+        description: ""
+        name: PS_COMMENT
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -86,11 +105,11 @@ operation:
         transform: ""
         uniqueKey: false
     join:
-      joinCondition: FROM {{ ref('SOURCE_TPCH', 'NATION') }}
-  name: NATION
+      joinCondition: FROM {{ ref('SOURCE_TPCH', 'PARTSUPP') }}
+  name: PARTSUPP
   schema: ""
   sqlType: Source
-  table: NATION
+  table: PARTSUPP
   type: sourceInput
   version: 1
 type: Node
