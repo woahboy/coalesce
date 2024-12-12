@@ -1,14 +1,14 @@
 fileVersion: 1
-id: SCALEFREE-DATAVAULT4COALESCE::7
+id: "476"
 isDisabled: false
 metadata:
   defaultStorageLocation: null
   error: null
   nodeMetadataSpec: |-
-    capitalized: 'DATAVAULT BY SCALEFREE: LINK'
-    short: 'LINK'
-    tagColor: 'Red'
-    plural: 'DATAVAULT BY SCALEFREE: LINKS'
+    capitalized: 'COALESCE: DV_CTE'
+    short: 'CTE'
+    tagColor: 'grey'
+    plural: 'COALESCE: DV_CTES'
 
     config:
     - groupName: Options
@@ -36,19 +36,10 @@ metadata:
         default: true
         
       - type: multisourceToggle
-      
-    - groupName: Data Vault
-      items:
-      - displayName: Link Hashkey Column
-        type: columnSelector
-        attributeName: is_Link_hk
-        isRequired: true 
 
-      - displayName: Disable High-Water-Mark?
-        type: toggleButton
-        isRequired: false
-        enableIf: 'false'
-        attributeName: disable_hwm   
-        default: true    
-name: "Datavault by Scalefree: Link"
+      - displayName: Partition Columns
+        type: columnSelector
+        attributeName: is_pt_col
+        isRequired: true   
+name: DV CTE
 type: NodeType
