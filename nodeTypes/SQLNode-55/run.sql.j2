@@ -1,7 +1,0 @@
-{{ stage('SQL AUDIT') }}
-INSERT INTO {{ ref_no_link(node.location.name, node.name) }} (SYSTEM_START_DATE) SELECT CURRENT_TIMESTAMP
-
-{% if config.SQL1 %}
-	{{ stage('SQL1') }}
-	{{ config.SQL1 }}
-{% endif %}
