@@ -1,0 +1,49 @@
+fileVersion: 1
+id: cf8e3b06-d7a3-4069-9088-e091684ec5ab
+name: V_TRUCK
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: TARGET
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns: []
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: |-
+            {{ stage('Override Create SQL') }}
+            CREATE OR REPLACE VIEW {{ ref('TARGET', 'V_TRUCK') }} AS (
+              SELECT "TRUCK_ID",
+              "MENU_TYPE_ID",
+              "PRIMARY_CITY",
+              "YEAR",
+              UPPER("MAKE") AS "MAKE",
+              UPPER("MODEL") AS "MODEL",
+              "EV_FLAG",
+              "FRANCHISE_ID",
+              "TRUCK_OPENING_DATE"
+            FROM
+              "FROSTBYTE_TASTY_BYTES"."RAW_POS"."TRUCK" "TRUCK"
+            WHERE "TRUCK_ID" IS NOT NULL AND "TRUCK_OPENING_DATE"::DATE < '2024-01-01'
+            )
+        dependencies: []
+        join:
+          joinCondition: ""
+        name: V_TRUCK
+        noLinkRefs: []
+  name: V_TRUCK
+  overrideSQL: true
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node

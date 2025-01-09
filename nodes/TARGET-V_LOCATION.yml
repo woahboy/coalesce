@@ -1,0 +1,146 @@
+fileVersion: 1
+id: c2258214-e7a2-493a-b21a-ab9f312f171c
+name: V_LOCATION
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: TARGET
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2aa962cd-eb40-4fdb-a21d-34527bd324bf
+          stepCounter: c2258214-e7a2-493a-b21a-ab9f312f171c
+        config: {}
+        dataType: NUMBER(19,0)
+        description: ""
+        name: LOCATION_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b1bcc7fa-063c-46c0-a9a2-f55baf933bd1
+                stepCounter: 08f04b3c-5a42-43fd-b2fd-95774770662b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b664eace-5dba-4c87-b419-2308951604ac
+          stepCounter: c2258214-e7a2-493a-b21a-ab9f312f171c
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: PLACEKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 056b9302-e9bd-4277-be4d-6511ba8ea277
+                stepCounter: 08f04b3c-5a42-43fd-b2fd-95774770662b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: acc547ff-3550-4c4a-be67-0214811c7e99
+          stepCounter: c2258214-e7a2-493a-b21a-ab9f312f171c
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: LOCATION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9afe4101-00ea-4ac0-a90b-336b70db07aa
+                stepCounter: 08f04b3c-5a42-43fd-b2fd-95774770662b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 01ed17bd-5e60-46e5-a8c6-cad306b57d44
+          stepCounter: c2258214-e7a2-493a-b21a-ab9f312f171c
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: CITY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 16567baa-024b-4027-8315-a5a96fb56c2d
+                stepCounter: 08f04b3c-5a42-43fd-b2fd-95774770662b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: aa26ea72-3914-42fb-8ca5-7fe8b599036a
+          stepCounter: c2258214-e7a2-493a-b21a-ab9f312f171c
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: REGION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: aa305173-3f4f-4f82-9be0-a0a86a65240e
+                stepCounter: 08f04b3c-5a42-43fd-b2fd-95774770662b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9c865d29-cf8b-4a90-bbcd-960ca8e23735
+          stepCounter: c2258214-e7a2-493a-b21a-ab9f312f171c
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: ISO_COUNTRY_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 72f3edfb-eb9d-4f88-99ec-b94887871ac1
+                stepCounter: 08f04b3c-5a42-43fd-b2fd-95774770662b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5c8ecd1c-9880-4e3a-ae38-559dc99c111c
+          stepCounter: c2258214-e7a2-493a-b21a-ab9f312f171c
+        config: {}
+        dataType: VARCHAR(16777216)
+        description: ""
+        name: COUNTRY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 38688e5e-21be-49ca-aaf2-05e35dba7812
+                stepCounter: 08f04b3c-5a42-43fd-b2fd-95774770662b
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: |-
+            {{ stage('Override Create SQL') }}
+            CREATE OR REPLACE VIEW {{ ref('TARGET', 'V_LOCATION') }} AS (
+              SELECT "LOCATION_ID",
+              "PLACEKEY",
+              "LOCATION",
+              UPPER("CITY") AS "CITY",
+              "REGION",
+              "ISO_COUNTRY_CODE",
+              "COUNTRY"
+            FROM
+              "FROSTBYTE_TASTY_BYTES"."RAW_POS"."LOCATION" "LOCATION"
+            WHERE "LOCATION_ID" IS NOT NULL
+            AND "LOCATION_ID" != 0
+            )
+        dependencies: []
+        join:
+          joinCondition: ""
+        name: V_LOCATION
+        noLinkRefs: []
+  name: V_LOCATION
+  overrideSQL: true
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node
