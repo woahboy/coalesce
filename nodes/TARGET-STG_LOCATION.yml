@@ -1,16 +1,20 @@
 fileVersion: 1
 id: c2258214-e7a2-493a-b21a-ab9f312f171c
-name: V_LOCATION
+name: STG_LOCATION
 operation:
   config:
     insertStrategy: UNION
+    postSQL: null
+    preSQL: null
     selectDistinct: false
+    testsEnabled: false
+    truncateBefore: false
   database: ""
   deployEnabled: true
   description: ""
   isMultisource: false
   locationName: TARGET
-  materializationType: view
+  materializationType: table
   metadata:
     appliedNodeTests: []
     columns:
@@ -25,8 +29,8 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: b1bcc7fa-063c-46c0-a9a2-f55baf933bd1
-                stepCounter: 08f04b3c-5a42-43fd-b2fd-95774770662b
+              - columnCounter: 32b6cb8d-9d20-42d3-93e0-e4f40531e412
+                stepCounter: 11837f3c-bb92-4e47-94bb-bf7629ff71dd
             transform: ""
       - appliedColumnTests: {}
         columnReference:
@@ -39,8 +43,8 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 056b9302-e9bd-4277-be4d-6511ba8ea277
-                stepCounter: 08f04b3c-5a42-43fd-b2fd-95774770662b
+              - columnCounter: dbba0ee9-5774-4c2e-a5eb-69a9b35a2025
+                stepCounter: 11837f3c-bb92-4e47-94bb-bf7629ff71dd
             transform: ""
       - appliedColumnTests: {}
         columnReference:
@@ -53,8 +57,8 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 9afe4101-00ea-4ac0-a90b-336b70db07aa
-                stepCounter: 08f04b3c-5a42-43fd-b2fd-95774770662b
+              - columnCounter: 47f36f03-aebe-465c-927f-43c997e1e29b
+                stepCounter: 11837f3c-bb92-4e47-94bb-bf7629ff71dd
             transform: ""
       - appliedColumnTests: {}
         columnReference:
@@ -67,9 +71,9 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 16567baa-024b-4027-8315-a5a96fb56c2d
-                stepCounter: 08f04b3c-5a42-43fd-b2fd-95774770662b
-            transform: ""
+              - columnCounter: 20a707ba-4949-4071-8fb8-ff12d0d257bc
+                stepCounter: 11837f3c-bb92-4e47-94bb-bf7629ff71dd
+            transform: UPPER("LOCATION"."CITY")
       - appliedColumnTests: {}
         columnReference:
           columnCounter: aa26ea72-3914-42fb-8ca5-7fe8b599036a
@@ -81,8 +85,8 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: aa305173-3f4f-4f82-9be0-a0a86a65240e
-                stepCounter: 08f04b3c-5a42-43fd-b2fd-95774770662b
+              - columnCounter: 16bc6f64-dd41-433e-8b6c-19ca471cf823
+                stepCounter: 11837f3c-bb92-4e47-94bb-bf7629ff71dd
             transform: ""
       - appliedColumnTests: {}
         columnReference:
@@ -95,8 +99,8 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 72f3edfb-eb9d-4f88-99ec-b94887871ac1
-                stepCounter: 08f04b3c-5a42-43fd-b2fd-95774770662b
+              - columnCounter: 74725e63-49f4-4970-8a4f-d558583349d6
+                stepCounter: 11837f3c-bb92-4e47-94bb-bf7629ff71dd
             transform: ""
       - appliedColumnTests: {}
         columnReference:
@@ -109,13 +113,14 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 38688e5e-21be-49ca-aaf2-05e35dba7812
-                stepCounter: 08f04b3c-5a42-43fd-b2fd-95774770662b
+              - columnCounter: 6507322b-cd1c-4b42-8292-98805e78c124
+                stepCounter: 11837f3c-bb92-4e47-94bb-bf7629ff71dd
             transform: ""
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
-      - aliases: {}
+      - aliases:
+          LOCATION: 11837f3c-bb92-4e47-94bb-bf7629ff71dd
         customSQL:
           customSQL: |-
             {{ stage('Override Create SQL') }}
@@ -127,20 +132,23 @@ operation:
               "REGION",
               "ISO_COUNTRY_CODE",
               "COUNTRY"
-            FROM
-              "FROSTBYTE_TASTY_BYTES"."RAW_POS"."LOCATION" "LOCATION"
+            FROM "FROSTBYTE_TASTY_BYTES"."RAW_POS"."LOCATION" "LOCATION"
             WHERE "LOCATION_ID" IS NOT NULL
             AND "LOCATION_ID" != 0
             )
-        dependencies: []
+        dependencies:
+          - locationName: SOURCE_TASTYBYTES
+            nodeName: LOCATION
         join:
-          joinCondition: ""
-        name: V_LOCATION
+          joinCondition: |-
+            FROM {{ ref('SOURCE_TASTYBYTES', 'LOCATION') }} "LOCATION"
+            WHERE "LOCATION_ID" is not null and "LOCATION_ID" != 0
+        name: STG_LOCATION
         noLinkRefs: []
-  name: V_LOCATION
-  overrideSQL: true
+  name: STG_LOCATION
+  overrideSQL: false
   schema: ""
-  sqlType: View
+  sqlType: Stage
   type: sql
   version: 1
 type: Node

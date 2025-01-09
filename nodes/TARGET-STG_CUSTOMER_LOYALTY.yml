@@ -1,0 +1,245 @@
+fileVersion: 1
+id: 83f09d9c-871b-4e69-bef9-5f12fc97b07a
+name: STG_CUSTOMER_LOYALTY
+operation:
+  config:
+    insertStrategy: UNION
+    postSQL: null
+    preSQL: null
+    selectDistinct: false
+    testsEnabled: false
+    truncateBefore: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: TARGET
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: c301b9aa-1b53-49e3-97f4-b3b2ecde48cd
+          stepCounter: 83f09d9c-871b-4e69-bef9-5f12fc97b07a
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: CUSTOMER_ID
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5b557b63-17c8-4492-89f9-b8ce21407936
+                stepCounter: 87662850-cf6f-4e9d-b9fb-1194a93a325c
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: bed72aed-3309-4c16-a7fb-9b94d16428db
+          stepCounter: 83f09d9c-871b-4e69-bef9-5f12fc97b07a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: FIRST_NAME
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b2120c83-d40f-4cd4-9229-196cf4027c24
+                stepCounter: 87662850-cf6f-4e9d-b9fb-1194a93a325c
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: a59603bb-0412-411e-ba88-a40ddd6df0ab
+          stepCounter: 83f09d9c-871b-4e69-bef9-5f12fc97b07a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: LAST_NAME
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a7d8cc16-7b56-4f6b-a3e0-aafca0878390
+                stepCounter: 87662850-cf6f-4e9d-b9fb-1194a93a325c
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 518af0af-110e-40d2-aac1-43b8b29b5dcf
+          stepCounter: 83f09d9c-871b-4e69-bef9-5f12fc97b07a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: CITY
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ba5ae9f7-8d15-4410-9fe6-01f4a8c6d30d
+                stepCounter: 87662850-cf6f-4e9d-b9fb-1194a93a325c
+            transform: UPPER("CUSTOMER_LOYALTY"."CITY")
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6d60ac21-dad8-4f17-870c-745f75e03e26
+          stepCounter: 83f09d9c-871b-4e69-bef9-5f12fc97b07a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: COUNTRY
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f5ed852e-7bb1-4895-9f40-1981f8041294
+                stepCounter: 87662850-cf6f-4e9d-b9fb-1194a93a325c
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 58140d38-d316-40eb-b9b3-ebff57761fd3
+          stepCounter: 83f09d9c-871b-4e69-bef9-5f12fc97b07a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: POSTAL_CODE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bf8d67ff-cb70-4f7d-930f-5f14ebd2e845
+                stepCounter: 87662850-cf6f-4e9d-b9fb-1194a93a325c
+            transform: LEFT("CUSTOMER_LOYALTY"."POSTAL_CODE", 5)
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 32706e0f-dc4e-4bde-b466-99c540e61c17
+          stepCounter: 83f09d9c-871b-4e69-bef9-5f12fc97b07a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: E_MAIL
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 68aa50b1-e1f0-4807-a462-a236b8033953
+                stepCounter: 87662850-cf6f-4e9d-b9fb-1194a93a325c
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 140e5925-2cb0-492b-b3f0-d478474fe89b
+          stepCounter: 83f09d9c-871b-4e69-bef9-5f12fc97b07a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: PHONE_NUMBER
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 749b44cc-cba6-4610-aae7-3a9c6d32fd5c
+                stepCounter: 87662850-cf6f-4e9d-b9fb-1194a93a325c
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2d8e4d48-2ad8-44e7-9e3a-cee342c7098d
+          stepCounter: 83f09d9c-871b-4e69-bef9-5f12fc97b07a
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: CONTACT_INFO
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: COALESCE("CUSTOMER_LOYALTY"."E_MAIL", "CUSTOMER_LOYALTY"."PHONE_NUMBER")
+        transform: ""
+        uniqueKey: false
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          CUSTOMER_LOYALTY: 87662850-cf6f-4e9d-b9fb-1194a93a325c
+        customSQL:
+          customSQL: |-
+            {{ stage('Override Create SQL') }}
+            CREATE OR REPLACE VIEW {{ ref('TARGET', 'V_CUSTOMER_LOYALTY')}} AS (
+            SELECT "CUSTOMER_ID",
+              "FIRST_NAME",
+              "LAST_NAME",
+              UPPER("CITY") AS CITY,
+              "COUNTRY",
+              LEFT("POSTAL_CODE", 5) AS POSTAL_CODE,
+              "E_MAIL",
+              "PHONE_NUMBER",
+              COALESCE("E_MAIL", "PHONE_NUMBER") AS CONTACT_INFO
+            FROM "FROSTBYTE_TASTY_BYTES"."RAW_CUSTOMER"."CUSTOMER_LOYALTY" "CUSTOMER_LOYALTY"
+            WHERE CUSTOMER_ID IS NOT NULL
+            AND (E_MAIL IS NOT NULL OR PHONE_NUMBER IS NOT NULL)
+            )
+        dependencies:
+          - locationName: SOURCE_TASTYBYTES_CUSTOMER
+            nodeName: CUSTOMER_LOYALTY
+        join:
+          joinCondition: |-
+            FROM {{ ref('SOURCE_TASTYBYTES_CUSTOMER', 'CUSTOMER_LOYALTY') }} "CUSTOMER_LOYALTY"
+            WHERE "CUSTOMER_ID" IS NOT NULL AND ("E_MAIL" IS NOT NULL OR "PHONE_NUMBER" IS NOT NULL)
+        name: STG_CUSTOMER_LOYALTY
+        noLinkRefs: []
+  name: STG_CUSTOMER_LOYALTY
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node
