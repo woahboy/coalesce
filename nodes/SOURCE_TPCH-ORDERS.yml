@@ -1,12 +1,12 @@
 fileVersion: 1
-id: 048ce7a1-a081-498d-9b8d-c1dc0504a895
-name: MENU
+id: 61eaaa28-364a-41f6-bca4-f0e655eed6d7
+name: ORDERS
 operation:
   database: ""
   dataset: ""
   deployEnabled: true
-  description: ""
-  locationName: SOURCE_TASTYBYTES
+  description: Orders data as defined by TPC-H
+  locationName: SOURCE_TPCH
   metadata:
     columns:
       - acceptedValues:
@@ -14,33 +14,14 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 4ae002e2-3395-4317-8d6a-e1ba6107320b
-          stepCounter: 048ce7a1-a081-498d-9b8d-c1dc0504a895
-        config: {}
-        dataType: NUMBER(19,0)
-        defaultValue: ""
-        description: ""
-        name: MENU_ID
-        nullable: true
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 04283898-c8bc-4d46-9fa1-d376c211c689
-          stepCounter: 048ce7a1-a081-498d-9b8d-c1dc0504a895
+          columnCounter: 52cd57fd-2524-4371-bfe3-5fa1e4dfab46
+          stepCounter: 61eaaa28-364a-41f6-bca4-f0e655eed6d7
         config: {}
         dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: MENU_TYPE_ID
-        nullable: true
+        name: O_ORDERKEY
+        nullable: false
         primaryKey: false
         sourceColumnReferences:
           - columnReferences: []
@@ -52,52 +33,14 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: d5c3f3fc-0dd6-46c0-a857-90f44a9bd395
-          stepCounter: 048ce7a1-a081-498d-9b8d-c1dc0504a895
-        config: {}
-        dataType: VARCHAR(16777216)
-        defaultValue: ""
-        description: ""
-        name: MENU_TYPE
-        nullable: true
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: d235cd18-a023-4704-a022-5c7e7b5bff4c
-          stepCounter: 048ce7a1-a081-498d-9b8d-c1dc0504a895
-        config: {}
-        dataType: VARCHAR(16777216)
-        defaultValue: ""
-        description: ""
-        name: TRUCK_BRAND_NAME
-        nullable: true
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 3dd8d299-d6ed-4f66-8960-457f23a251ba
-          stepCounter: 048ce7a1-a081-498d-9b8d-c1dc0504a895
+          columnCounter: d4f21810-7225-4bbb-8cbc-68af7e4fb81a
+          stepCounter: 61eaaa28-364a-41f6-bca4-f0e655eed6d7
         config: {}
         dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: MENU_ITEM_ID
-        nullable: true
+        name: O_CUSTKEY
+        nullable: false
         primaryKey: false
         sourceColumnReferences:
           - columnReferences: []
@@ -109,14 +52,14 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: f598753f-f033-44c2-995c-c9b7ec441ee1
-          stepCounter: 048ce7a1-a081-498d-9b8d-c1dc0504a895
+          columnCounter: 86da30b3-7ff5-4e90-8c63-acc49b4f500c
+          stepCounter: 61eaaa28-364a-41f6-bca4-f0e655eed6d7
         config: {}
-        dataType: VARCHAR(16777216)
+        dataType: VARCHAR(1)
         defaultValue: ""
         description: ""
-        name: MENU_ITEM_NAME
-        nullable: true
+        name: O_ORDERSTATUS
+        nullable: false
         primaryKey: false
         sourceColumnReferences:
           - columnReferences: []
@@ -128,14 +71,14 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 4e987a0d-5d6d-4ecd-a8a5-3b733cff97a8
-          stepCounter: 048ce7a1-a081-498d-9b8d-c1dc0504a895
+          columnCounter: 4f95fe72-3750-41a1-9143-6d75d56339ee
+          stepCounter: 61eaaa28-364a-41f6-bca4-f0e655eed6d7
         config: {}
-        dataType: VARCHAR(16777216)
+        dataType: NUMBER(12,2)
         defaultValue: ""
         description: ""
-        name: ITEM_CATEGORY
-        nullable: true
+        name: O_TOTALPRICE
+        nullable: false
         primaryKey: false
         sourceColumnReferences:
           - columnReferences: []
@@ -147,14 +90,14 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: f7e16047-3d06-47a3-8ad5-e5caddbe2437
-          stepCounter: 048ce7a1-a081-498d-9b8d-c1dc0504a895
+          columnCounter: 7ff18096-5a2f-41a8-90a0-f1655db03e93
+          stepCounter: 61eaaa28-364a-41f6-bca4-f0e655eed6d7
         config: {}
-        dataType: VARCHAR(16777216)
+        dataType: DATE
         defaultValue: ""
         description: ""
-        name: ITEM_SUBCATEGORY
-        nullable: true
+        name: O_ORDERDATE
+        nullable: false
         primaryKey: false
         sourceColumnReferences:
           - columnReferences: []
@@ -166,14 +109,14 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 9e845b17-ac12-4572-8b44-478e1a79b880
-          stepCounter: 048ce7a1-a081-498d-9b8d-c1dc0504a895
+          columnCounter: 064faade-5c3c-4f6c-9ca9-99c442388365
+          stepCounter: 61eaaa28-364a-41f6-bca4-f0e655eed6d7
         config: {}
-        dataType: NUMBER(38,4)
+        dataType: VARCHAR(15)
         defaultValue: ""
         description: ""
-        name: COST_OF_GOODS_USD
-        nullable: true
+        name: O_ORDERPRIORITY
+        nullable: false
         primaryKey: false
         sourceColumnReferences:
           - columnReferences: []
@@ -185,14 +128,14 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 3dd2ea0b-d521-4114-ad54-e4f290550312
-          stepCounter: 048ce7a1-a081-498d-9b8d-c1dc0504a895
+          columnCounter: 405dbf7d-4416-4efc-aacd-e88ed7aa26b0
+          stepCounter: 61eaaa28-364a-41f6-bca4-f0e655eed6d7
         config: {}
-        dataType: NUMBER(38,4)
+        dataType: VARCHAR(15)
         defaultValue: ""
         description: ""
-        name: SALE_PRICE_USD
-        nullable: true
+        name: O_CLERK
+        nullable: false
         primaryKey: false
         sourceColumnReferences:
           - columnReferences: []
@@ -204,14 +147,33 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: dfd35827-caef-49fb-b991-4ab283203092
-          stepCounter: 048ce7a1-a081-498d-9b8d-c1dc0504a895
+          columnCounter: ea8dd90b-b5ad-40b0-985c-c67f74c92aa6
+          stepCounter: 61eaaa28-364a-41f6-bca4-f0e655eed6d7
         config: {}
-        dataType: VARIANT
+        dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: MENU_ITEM_HEALTH_METRICS_OBJ
-        nullable: true
+        name: O_SHIPPRIORITY
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: b56f2e87-56a4-4a31-87ad-88fb425983ea
+          stepCounter: 61eaaa28-364a-41f6-bca4-f0e655eed6d7
+        config: {}
+        dataType: VARCHAR(79)
+        defaultValue: ""
+        description: ""
+        name: O_COMMENT
+        nullable: false
         primaryKey: false
         sourceColumnReferences:
           - columnReferences: []
@@ -219,11 +181,11 @@ operation:
         transform: ""
         uniqueKey: false
     join:
-      joinCondition: FROM {{ ref('SOURCE_TASTYBYTES', 'MENU') }}
-  name: MENU
+      joinCondition: FROM {{ ref('SOURCE_TPCH', 'ORDERS') }}
+  name: ORDERS
   schema: ""
   sqlType: Source
-  table: MENU
+  table: ORDERS
   type: sourceInput
   version: 1
 type: Node
