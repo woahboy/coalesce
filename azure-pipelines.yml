@@ -17,6 +17,12 @@ steps:
   inputs:
     secureFile: 'config'
 
+- task: DownloadSecureFile@1
+  name: rsa_key
+  displayName: 'Download rsa_key'
+  inputs:
+    secureFile: 'rsa_key.p8'
+
 - task: CmdLine@2
   inputs:
     script: |
@@ -24,5 +30,5 @@ steps:
       npm list -g | grep "@coalescesoftware/coa@$(coalesceCliVersion)" || npm install -g @coalescesoftware/coa@$(coalesceCliVersion);
       
       # Start refresh
-      coa plan  --config $(coaConfig.secureFilePath) --profile Azure --environmentID 5;
-      coa deploy  --config $(coaConfig.secureFilePath) --profile Azure --environmentID 5;
+      coa plan  --config $(coaConfig.secureFilePath) --profile Azure --snowflakeKeyPairKey $(rsa_key.secureFilePath) --environmentID 5;
+      coa deploy  --config $(coaConfig.secureFilePath) --profile Azure --snowflakeKeyPairKey $(rsa_key.secureFilePath) --environmentID 5;
