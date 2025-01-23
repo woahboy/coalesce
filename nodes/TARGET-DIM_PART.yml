@@ -38,7 +38,10 @@ operation:
           stepCounter: 1b691517-f2ec-4713-8bf2-7d18048bb37e
         config: {}
         dataType: NUMBER(38,0)
-        description: ""
+        description: |-
+          - Represents the primary key for the PART dimension table, derived from the STG_PART stage table.
+          - Used to uniquely identify each part and establish relationships with other tables, including FACT_LINEITEM.
+          - Enables efficient joins and data lookups, crucial for reporting and data analysis across various business metrics.
         isBusinessKey: true
         name: P_PARTKEY
         nullable: false
@@ -53,7 +56,10 @@ operation:
           stepCounter: 1b691517-f2ec-4713-8bf2-7d18048bb37e
         config: {}
         dataType: VARCHAR(55)
-        description: ""
+        description: |-
+          -  Captures the name of the part, obtained directly from the STG_PART stage table.
+          - Used for reporting, analysis, and filtering part data based on specific names, providing insights into part characteristics.
+          - Facilitates data retrieval and analysis by enabling filtering and grouping of parts based on their names.
         name: P_NAME
         nullable: false
         sourceColumnReferences:
@@ -67,7 +73,10 @@ operation:
           stepCounter: 1b691517-f2ec-4713-8bf2-7d18048bb37e
         config: {}
         dataType: VARCHAR(25)
-        description: ""
+        description: |-
+          - Identifies the manufacturer of the part, sourced from the STG_PART stage table.
+          - Facilitates analysis of parts by manufacturer, enabling insights into manufacturing trends and supplier performance.
+          - Used in reports and dashboards to track part production by specific manufacturers.
         name: P_MFGR
         nullable: false
         sourceColumnReferences:
@@ -81,7 +90,10 @@ operation:
           stepCounter: 1b691517-f2ec-4713-8bf2-7d18048bb37e
         config: {}
         dataType: VARCHAR(10)
-        description: ""
+        description: |-
+          -  Indicates the brand associated with the part, obtained from the STG_PART stage table.
+          - Enables filtering and analysis of parts by brand, providing insights into brand popularity and market trends.
+          - Used for reporting and analysis to understand consumer preferences and brand performance within specific product categories.
         name: P_BRAND
         nullable: false
         sourceColumnReferences:
@@ -95,7 +107,10 @@ operation:
           stepCounter: 1b691517-f2ec-4713-8bf2-7d18048bb37e
         config: {}
         dataType: VARCHAR(25)
-        description: ""
+        description: |-
+          -  Represents the type of the part, directly obtained from the STG_PART stage table.
+          - Used for reporting, analysis, and filtering part data based on specific types, providing insights into part categories and characteristics.
+          - Facilitates data retrieval and analysis by enabling filtering and grouping of parts based on their types.
         name: P_TYPE
         nullable: false
         sourceColumnReferences:
@@ -109,7 +124,10 @@ operation:
           stepCounter: 1b691517-f2ec-4713-8bf2-7d18048bb37e
         config: {}
         dataType: NUMBER(38,0)
-        description: ""
+        description: |-
+          -  Defines the size of the part, directly sourced from the STG_PART stage table.
+          - Used for filtering and analysis of parts based on size, providing insights into part dimensions and specifications.
+          - Facilitates data retrieval and analysis by enabling filtering and grouping of parts based on their sizes.
         name: P_SIZE
         nullable: false
         sourceColumnReferences:
@@ -123,7 +141,10 @@ operation:
           stepCounter: 1b691517-f2ec-4713-8bf2-7d18048bb37e
         config: {}
         dataType: VARCHAR(10)
-        description: ""
+        description: |-
+          -  Specifies the container type for the part, directly sourced from the STG_PART stage table.
+          - Used for reporting, analysis, and filtering part data based on specific container types, providing insights into part packaging and storage characteristics.
+          - Facilitates data retrieval and analysis by enabling filtering and grouping of parts based on their container types.
         name: P_CONTAINER
         nullable: false
         sourceColumnReferences:
@@ -137,7 +158,10 @@ operation:
           stepCounter: 1b691517-f2ec-4713-8bf2-7d18048bb37e
         config: {}
         dataType: NUMBER(12,2)
-        description: ""
+        description: |-
+          -  Indicates the retail price of the part, obtained from the STG_PART stage table.
+          - Used in reports, analyses, and calculations to understand pricing strategies and profitability of different parts.
+          - Plays a crucial role in revenue analysis and cost optimization efforts.
         name: P_RETAILPRICE
         nullable: false
         sourceColumnReferences:
@@ -151,7 +175,10 @@ operation:
           stepCounter: 1b691517-f2ec-4713-8bf2-7d18048bb37e
         config: {}
         dataType: VARCHAR(23)
-        description: ""
+        description: |-
+          -  Provides additional comments or details about the part, directly sourced from the STG_PART stage table.
+          - Used for further context and clarification when analyzing part data, enabling deeper understanding of part attributes and specifications.
+          - Can be leveraged in reports and analyses to uncover additional insights or provide contextual information.
         name: P_COMMENT
         nullable: true
         sourceColumnReferences:

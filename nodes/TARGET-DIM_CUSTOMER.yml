@@ -8,7 +8,12 @@ operation:
     testsEnabled: true
   database: ""
   deployEnabled: true
-  description: Customer data as defined by TPC-H
+  description: |-
+    1. This node serves as a central repository for customer data, drawing information from the STG_CUSTOMER stage table. It primarily aims to consolidate customer data from a single source into a structured format for downstream analysis and reporting.
+    2. The node plays a crucial role in enabling comprehensive customer insights and facilitates business intelligence applications, providing a foundation for customer relationship management, targeted marketing, and customer segmentation.
+    3. It retrieves various customer attributes like customer key, name, address, phone number, account balance, marketing segment, value segment, and associated nation, region, and their respective comments. 
+    4. It maintains a consistent schema, ensuring data uniformity across different downstream applications, and utilizes surrogate keys for efficient data linking and referencing.
+    5. It incorporates system-generated metadata columns for version tracking, change management, and data lineage, ensuring transparency and traceability within the data pipeline.
   isMultisource: false
   locationName: TARGET
   materializationType: table
@@ -38,7 +43,10 @@ operation:
           stepCounter: 6ad4d994-cb87-4521-b011-d05d78502309
         config: {}
         dataType: NUMBER(38,0)
-        description: ""
+        description: |-
+          - Represents the primary key for the STG_CUSTOMER stage table, identifying individual customer records.
+          - This column is sourced directly from the STG_CUSTOMER stage table and acts as a business key for customers.
+          - Used in downstream processes to link customer data across various tables.
         isBusinessKey: true
         name: C_CUSTKEY
         nullable: false
@@ -53,7 +61,10 @@ operation:
           stepCounter: 6ad4d994-cb87-4521-b011-d05d78502309
         config: {}
         dataType: STRING
-        description: ""
+        description: |-
+          - Represents the customer's full name, sourced directly from the STG_CUSTOMER stage table.
+          - This column is used in downstream processes to identify and report on customer information.
+          - It is subject to change tracking, capturing any modifications to the customer's name.
         isChangeTracking: true
         name: C_NAME
         nullable: false
@@ -68,7 +79,10 @@ operation:
           stepCounter: 6ad4d994-cb87-4521-b011-d05d78502309
         config: {}
         dataType: STRING
-        description: ""
+        description: |-
+          - Represents the customer's physical address, sourced from the STG_CUSTOMER stage table.
+          - This column is used in downstream processes for customer location-based reporting, segmentation, and targeted marketing efforts.
+          - It is subject to change tracking, capturing any updates to the customer's address.
         isChangeTracking: true
         name: C_ADDRESS
         nullable: false
@@ -83,7 +97,10 @@ operation:
           stepCounter: 6ad4d994-cb87-4521-b011-d05d78502309
         config: {}
         dataType: STRING
-        description: ""
+        description: |-
+          - Represents the customer's phone number, sourced directly from the STG_CUSTOMER stage table.
+          - This column is used for customer communication, support, and potential segmentation based on phone number characteristics.
+          - It is subject to change tracking, ensuring accurate record keeping of any phone number updates.
         isChangeTracking: true
         name: CUSTOMER_PHONE_NUMBER
         nullable: false
@@ -98,7 +115,10 @@ operation:
           stepCounter: 6ad4d994-cb87-4521-b011-d05d78502309
         config: {}
         dataType: NUMBER(12,2)
-        description: ""
+        description: |-
+          - Represents the current account balance of the customer, sourced from the STG_CUSTOMER stage table.
+          - Used in downstream processes for customer credit analysis, risk assessment, and potential targeted promotions based on account balance status.
+          - It is subject to change tracking, reflecting any changes in the customer's account balance.
         isChangeTracking: true
         name: C_ACCTBAL
         nullable: false
@@ -113,7 +133,10 @@ operation:
           stepCounter: 6ad4d994-cb87-4521-b011-d05d78502309
         config: {}
         dataType: STRING
-        description: ""
+        description: |-
+          - Represents the marketing segment to which the customer belongs, sourced from the STG_CUSTOMER stage table.
+          - This column is used in downstream processes for targeted marketing campaigns and segmentation analysis.
+          - It is subject to change tracking, capturing any changes in the customer's marketing segment affiliation.
         isChangeTracking: true
         name: C_MKTSEGMENT
         nullable: true
@@ -128,7 +151,10 @@ operation:
           stepCounter: 6ad4d994-cb87-4521-b011-d05d78502309
         config: {}
         dataType: STRING
-        description: ""
+        description: |-
+          - Represents the customer's value segment, sourced from the STG_CUSTOMER stage table.
+          - Used in downstream processes for targeted promotions, customer loyalty programs, and customer relationship management.
+          - It is subject to change tracking, reflecting any changes in the customer's value segment classification.
         isChangeTracking: true
         name: C_VALUE
         nullable: true
@@ -143,7 +169,10 @@ operation:
           stepCounter: 6ad4d994-cb87-4521-b011-d05d78502309
         config: {}
         dataType: STRING
-        description: ""
+        description: |-
+          - Represents any additional comments or notes associated with the customer, sourced from the STG_CUSTOMER stage table.
+          - This column can be used for internal notes, tracking specific customer interactions, or storing relevant information not captured in other fields.
+          - It is subject to change tracking, allowing for accurate record keeping of any updates to the customer's comments.
         isChangeTracking: true
         name: C_COMMENT
         nullable: true
@@ -158,7 +187,10 @@ operation:
           stepCounter: 6ad4d994-cb87-4521-b011-d05d78502309
         config: {}
         dataType: STRING
-        description: ""
+        description: |-
+          - Represents the name of the nation associated with the customer, sourced from the STG_CUSTOMER stage table.
+          - This column is used for geographic segmentation, reporting, and analysis of customer data by nation.
+          - It is used in conjunction with other geographical columns for a holistic view of customer demographics.
         name: N_NAME
         nullable: false
         sourceColumnReferences:
@@ -172,7 +204,10 @@ operation:
           stepCounter: 6ad4d994-cb87-4521-b011-d05d78502309
         config: {}
         dataType: STRING
-        description: ""
+        description: |-
+          - Represents any additional comments or notes associated with the nation, sourced from the STG_CUSTOMER stage table.
+          - This column can be used for internal notes, storing relevant information about the nation, or tracking specific nation-related activities.
+          - It is used in conjunction with other nation-related columns for comprehensive understanding.
         name: N_COMMENT
         nullable: true
         sourceColumnReferences:
@@ -186,7 +221,10 @@ operation:
           stepCounter: 6ad4d994-cb87-4521-b011-d05d78502309
         config: {}
         dataType: STRING
-        description: ""
+        description: |-
+          - Represents the name of the region associated with the customer, sourced from the STG_CUSTOMER stage table.
+          - This column is used for regional segmentation, reporting, and analysis of customer data by region.
+          - It is used in conjunction with other geographical columns for a holistic view of customer demographics.
         name: R_NAME
         nullable: false
         sourceColumnReferences:
@@ -200,7 +238,10 @@ operation:
           stepCounter: 6ad4d994-cb87-4521-b011-d05d78502309
         config: {}
         dataType: STRING
-        description: ""
+        description: |-
+          - Represents any additional comments or notes associated with the region, sourced from the STG_CUSTOMER stage table.
+          - This column can be used for internal notes, storing relevant information about the region, or tracking specific region-related activities.
+          - It is used in conjunction with other region-related columns for comprehensive understanding.
         name: R_COMMENT
         nullable: true
         sourceColumnReferences:
