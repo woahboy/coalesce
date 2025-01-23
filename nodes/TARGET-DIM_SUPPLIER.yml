@@ -38,7 +38,12 @@ operation:
           stepCounter: 2dfe12e1-0ea8-4609-bf45-d7b85e70ec8d
         config: {}
         dataType: NUMBER(38,0)
-        description: ""
+        description: |-
+          - Primary key of the Supplier dimension table, uniquely identifying each supplier record.
+          - Sourced from the STG_SUPPLIER stage table's S_SUPPKEY column. 
+          - Used to establish relationships with other tables and ensure data integrity across the data model. 
+          - Data type: NUMBER(38,0) 
+          - Nullable: False
         isBusinessKey: true
         name: S_SUPPKEY
         nullable: false
@@ -53,7 +58,12 @@ operation:
           stepCounter: 2dfe12e1-0ea8-4609-bf45-d7b85e70ec8d
         config: {}
         dataType: VARCHAR(25)
-        description: ""
+        description: |-
+          - Supplier name, representing the legal entity of the supplier. 
+          - Sourced from the STG_SUPPLIER stage table's S_NAME column. 
+          - Used in reports and dashboards to identify and filter supplier information. 
+          - Data type: VARCHAR(25) 
+          - Nullable: False
         name: S_NAME
         nullable: false
         sourceColumnReferences:
@@ -67,7 +77,12 @@ operation:
           stepCounter: 2dfe12e1-0ea8-4609-bf45-d7b85e70ec8d
         config: {}
         dataType: VARCHAR(40)
-        description: ""
+        description: |-
+          - Supplier's physical address, providing a location reference. 
+          - Sourced from the STG_SUPPLIER stage table's S_ADDRESS column. 
+          - Used for geographical analysis, supplier network mapping, and logistics optimization. 
+          - Data type: VARCHAR(40) 
+          - Nullable: False
         name: S_ADDRESS
         nullable: false
         sourceColumnReferences:
@@ -81,7 +96,12 @@ operation:
           stepCounter: 2dfe12e1-0ea8-4609-bf45-d7b85e70ec8d
         config: {}
         dataType: NUMBER(38,0)
-        description: ""
+        description: |-
+          - Foreign key referencing the NATION dimension table's N_NATIONKEY, indicating the supplier's country of origin. 
+          - Sourced from the STG_SUPPLIER stage table's S_NATIONKEY column. 
+          - Used to link supplier information with national demographics, trade regulations, and economic indicators. 
+          - Data type: NUMBER(38,0) 
+          - Nullable: False
         name: S_NATIONKEY
         nullable: false
         sourceColumnReferences:
@@ -95,7 +115,12 @@ operation:
           stepCounter: 2dfe12e1-0ea8-4609-bf45-d7b85e70ec8d
         config: {}
         dataType: VARCHAR(15)
-        description: ""
+        description: |-
+          - Supplier's contact phone number, enabling communication and direct contact. 
+          - Sourced from the STG_SUPPLIER stage table's S_PHONE column. 
+          - Used for customer service, order processing, and supplier relationship management. 
+          - Data type: VARCHAR(15) 
+          - Nullable: False
         name: S_PHONE
         nullable: false
         sourceColumnReferences:
@@ -109,7 +134,12 @@ operation:
           stepCounter: 2dfe12e1-0ea8-4609-bf45-d7b85e70ec8d
         config: {}
         dataType: NUMBER(12,2)
-        description: ""
+        description: |-
+          - Supplier's account balance, representing their financial standing. 
+          - Sourced from the STG_SUPPLIER stage table's S_ACCTBAL column. 
+          - Used in credit risk analysis, financial reporting, and supplier performance evaluation. 
+          - Data type: NUMBER(12,2) 
+          - Nullable: False
         name: S_ACCTBAL
         nullable: false
         sourceColumnReferences:
@@ -123,7 +153,12 @@ operation:
           stepCounter: 2dfe12e1-0ea8-4609-bf45-d7b85e70ec8d
         config: {}
         dataType: VARCHAR(101)
-        description: ""
+        description: |-
+          - Descriptive information about the supplier, such as special terms or unique characteristics. 
+          - Sourced from the STG_SUPPLIER stage table's S_COMMENT column. 
+          - Used in supplier profile analysis, business intelligence, and risk assessment. 
+          - Data type: VARCHAR(101) 
+          - Nullable: True
         name: S_COMMENT
         nullable: true
         sourceColumnReferences:
