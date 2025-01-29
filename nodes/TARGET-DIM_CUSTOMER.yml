@@ -38,7 +38,10 @@ operation:
           stepCounter: c1ac5215-7b76-4f16-af77-9fb7d86b816a
         config: {}
         dataType: NUMBER(38,0)
-        description: ""
+        description: |-
+          - Business key for the customer dimension, sourced from the STG_CUSTOMER table.
+          -  Used for joining DIM_CUSTOMER with fact tables containing customer information, such as sales or orders.
+          -  This field acts as a primary key for the DIM_CUSTOMER dimension table.
         isBusinessKey: true
         name: C_CUSTKEY
         nullable: false
@@ -53,7 +56,10 @@ operation:
           stepCounter: c1ac5215-7b76-4f16-af77-9fb7d86b816a
         config: {}
         dataType: VARCHAR(25)
-        description: ""
+        description: |-
+          - Customer name, sourced from the STG_CUSTOMER table.
+          -  Used in reports and analyses to filter or group customers by name.
+          -  This field is subject to change tracking, allowing you to identify updates to customer names.
         isChangeTracking: true
         name: C_NAME
         nullable: false
@@ -68,7 +74,10 @@ operation:
           stepCounter: c1ac5215-7b76-4f16-af77-9fb7d86b816a
         config: {}
         dataType: VARCHAR(40)
-        description: ""
+        description: |-
+          - Customer address, sourced from the STG_CUSTOMER table.
+          -  Used in reports and analyses to analyze customer demographics and geographical distribution.
+          -  This field is subject to change tracking, allowing you to identify updates to customer addresses.
         isChangeTracking: true
         name: C_ADDRESS
         nullable: false
@@ -83,7 +92,10 @@ operation:
           stepCounter: c1ac5215-7b76-4f16-af77-9fb7d86b816a
         config: {}
         dataType: VARCHAR(15)
-        description: ""
+        description: |-
+          - Customer phone number, sourced from the STG_CUSTOMER table.
+          -  Used for customer communication and contact purposes.
+          -  This field is subject to change tracking, allowing you to identify updates to customer phone numbers.
         isChangeTracking: true
         name: C_PHONE
         nullable: false
@@ -98,7 +110,10 @@ operation:
           stepCounter: c1ac5215-7b76-4f16-af77-9fb7d86b816a
         config: {}
         dataType: NUMBER(12,2)
-        description: ""
+        description: |-
+          - Customer account balance, sourced from the STG_CUSTOMER table.
+          -  Used to track customer financial status and analyze customer spending patterns.
+          -  This field is subject to change tracking, allowing you to identify updates to customer account balances.
         isChangeTracking: true
         name: C_ACCTBAL
         nullable: false
@@ -113,7 +128,10 @@ operation:
           stepCounter: c1ac5215-7b76-4f16-af77-9fb7d86b816a
         config: {}
         dataType: VARCHAR(10)
-        description: ""
+        description: |-
+          - Customer market segment, sourced from the STG_CUSTOMER table.
+          -  Used for marketing segmentation and targeting.
+          -  Allows for analyzing customer behavior and preferences by segment.
         isChangeTracking: true
         name: C_MKTSEGMENT
         nullable: true
@@ -128,7 +146,10 @@ operation:
           stepCounter: c1ac5215-7b76-4f16-af77-9fb7d86b816a
         config: {}
         dataType: VARCHAR(10)
-        description: ""
+        description: |-
+          - Customer value segment, sourced from the STG_CUSTOMER table.
+          -  Used to identify high-value customers and tailor marketing strategies.
+          -  Enables analysis of customer lifetime value and segmentation based on value.
         name: C_VALUE
         nullable: true
         sourceColumnReferences:
@@ -142,7 +163,10 @@ operation:
           stepCounter: c1ac5215-7b76-4f16-af77-9fb7d86b816a
         config: {}
         dataType: VARCHAR(117)
-        description: ""
+        description: |-
+          - Free-text customer comments, sourced from the STG_CUSTOMER table.
+          -  Used to capture additional customer information and insights.
+          -  This field is subject to change tracking, allowing you to identify updates to customer comments.
         isChangeTracking: true
         name: C_COMMENT
         nullable: true
@@ -157,7 +181,10 @@ operation:
           stepCounter: c1ac5215-7b76-4f16-af77-9fb7d86b816a
         config: {}
         dataType: VARCHAR(25)
-        description: ""
+        description: |-
+          - Name of the nation, sourced from the STG_CUSTOMER table.
+          -  Used to identify the customer's nation and perform geo-based analysis.
+          -  Provides insights into customer location and market penetration.
         name: N_NAME
         nullable: false
         sourceColumnReferences:
@@ -171,7 +198,9 @@ operation:
           stepCounter: c1ac5215-7b76-4f16-af77-9fb7d86b816a
         config: {}
         dataType: VARCHAR(152)
-        description: ""
+        description: |-
+          - Comments about the nation, sourced from the STG_CUSTOMER table.
+          -  Provides additional information and insights about the customer's nation.
         name: N_COMMENT
         nullable: true
         sourceColumnReferences:
@@ -185,7 +214,10 @@ operation:
           stepCounter: c1ac5215-7b76-4f16-af77-9fb7d86b816a
         config: {}
         dataType: VARCHAR(25)
-        description: ""
+        description: |-
+          - Name of the region, sourced from the STG_CUSTOMER table.
+          -  Used to identify the customer's region and perform geo-based analysis.
+          -  Provides insights into customer location and regional trends.
         name: R_NAME
         nullable: false
         sourceColumnReferences:
@@ -199,7 +231,9 @@ operation:
           stepCounter: c1ac5215-7b76-4f16-af77-9fb7d86b816a
         config: {}
         dataType: VARCHAR(152)
-        description: ""
+        description: |-
+          - Comments about the region, sourced from the STG_CUSTOMER table.
+          -  Provides additional information and insights about the customer's region.
         name: R_COMMENT
         nullable: true
         sourceColumnReferences:
