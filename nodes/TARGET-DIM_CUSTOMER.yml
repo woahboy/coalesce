@@ -8,7 +8,7 @@ operation:
     testsEnabled: true
   database: ""
   deployEnabled: true
-  description: Customer data as defined by TPC-H
+  description: 1. This node serves to create the DIM_CUSTOMER dimension table, a central repository of customer information. It gathers and consolidates customer data from the STG_CUSTOMER staging table, ensuring data consistency and integrity. 2. The node plays a crucial role in data warehousing by providing a standardized and reliable source of customer data for downstream analytical processes and reporting. It enables business users to gain insights into customer demographics, behavior, and financial status. 3. It sources data from the STG_CUSTOMER table, which holds initial customer records, and utilizes a set of transformations to create a cohesive customer dimension. Transformations include mapping business keys for identification and change tracking fields to record data modifications. 4. The DIM_CUSTOMER table serves as a foundation for joining with fact tables like sales or orders, providing a unified view of customer activities and financial information.
   isMultisource: false
   locationName: TARGET
   materializationType: table
