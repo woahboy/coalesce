@@ -8,7 +8,11 @@ operation:
     testsEnabled: true
   database: ""
   deployEnabled: true
-  description: Test one
+  description: |-
+    1. This node constructs the DIM_CUSTOMER dimension table by extracting and transforming customer data from the STG_CUSTOMER staging table. The DIM_CUSTOMER table serves as a central repository for customer information, providing a consistent and standardized view for analysis and reporting.
+    2. It aggregates customer information from a single source, facilitating efficient data access and integration within the data pipeline. It enables various downstream applications, such as customer segmentation, churn analysis, and targeted marketing campaigns.
+    3. The node uses source columns from the STG_CUSTOMER table and applies various transformations to generate the final dimension table. Key transformations include transforming the source columns to their corresponding target data types and cleaning the data by removing inconsistencies or null values.
+    4. The node includes system-generated columns for versioning, tracking current and historical data, and recording creation and update timestamps. These columns are essential for maintaining data integrity, ensuring data provenance, and managing data lifecycle.
   isMultisource: false
   locationName: TARGET
   materializationType: table
@@ -348,7 +352,24 @@ operation:
     sourceMapping:
       - aliases: {}
         customSQL:
-          customSQL: ""
+          customSQL: |-
+            {{ stage('Override Create SQL') }}
+            	CREATE OR REPLACE VIEW {{ ref('TARGET', 'DIM_CUSTOMER')}} AS (
+            		SELECT 
+             "C_CUSTKEY" AS "C_CUSTKEY",
+             "C_NAME" AS "C_NAME",
+             "C_ADDRESS" AS "C_ADDRESS",
+             "C_PHONE" AS "C_PHONE",
+             "C_ACCTBAL" AS "C_ACCTBAL",
+             "C_MKTSEGMENT" AS "C_MKTSEGMENT",
+             "C_VALUE" AS "C_VALUE",
+             "C_COMMENT" AS "C_COMMENT",
+             "N_NAME" AS "N_NAME",
+             "N_COMMENT" AS "N_COMMENT",
+             "R_NAME" AS "R_NAME",
+             "R_COMMENT" AS "R_COMMENT"
+             FROM {{ ref('TARGET', 'STG_CUSTOMER') }}
+            	)
         dependencies:
           - locationName: TARGET
             nodeName: STG_CUSTOMER
