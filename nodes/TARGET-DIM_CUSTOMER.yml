@@ -1,5 +1,5 @@
 fileVersion: 1
-id: c1ac5215-7b76-4f16-af77-9fb7d86b816a
+id: bc030c9c-604a-4224-92d2-05dce01d7e93
 name: DIM_CUSTOMER
 operation:
   config:
@@ -8,11 +8,7 @@ operation:
     testsEnabled: true
   database: ""
   deployEnabled: true
-  description: |-
-    1. This node constructs the DIM_CUSTOMER dimension table by extracting and transforming customer data from the STG_CUSTOMER staging table. The DIM_CUSTOMER table serves as a central repository for customer information, providing a consistent and standardized view for analysis and reporting.
-    2. It aggregates customer information from a single source, facilitating efficient data access and integration within the data pipeline. It enables various downstream applications, such as customer segmentation, churn analysis, and targeted marketing campaigns.
-    3. The node uses source columns from the STG_CUSTOMER table and applies various transformations to generate the final dimension table. Key transformations include transforming the source columns to their corresponding target data types and cleaning the data by removing inconsistencies or null values.
-    4. The node includes system-generated columns for versioning, tracking current and historical data, and recording creation and update timestamps. These columns are essential for maintaining data integrity, ensuring data provenance, and managing data lifecycle.
+  description: Customer data as defined by TPC-H
   isMultisource: false
   locationName: TARGET
   materializationType: table
@@ -24,8 +20,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 723fe642-580d-4645-bf72-b82fb4997c40
-          stepCounter: c1ac5215-7b76-4f16-af77-9fb7d86b816a
+          columnCounter: c3da5bb1-cef2-4cef-8b80-5a2b21f076b0
+          stepCounter: bc030c9c-604a-4224-92d2-05dce01d7e93
         config: {}
         dataType: NUMBER
         defaultValue: ""
@@ -38,220 +34,187 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 204a03b4-f628-4e4a-94d2-0ccb3ca1b099
-          stepCounter: c1ac5215-7b76-4f16-af77-9fb7d86b816a
+          columnCounter: 01cfb7cf-4b90-4c1d-a150-2b4561207dd6
+          stepCounter: bc030c9c-604a-4224-92d2-05dce01d7e93
         config: {}
         dataType: NUMBER(38,0)
-        description: |-
-          - Business key for the customer dimension, sourced from the STG_CUSTOMER table.
-          -  Used for joining DIM_CUSTOMER with fact tables containing customer information, such as sales or orders.
-          -  This field acts as a primary key for the DIM_CUSTOMER dimension table.
+        description: ""
         isBusinessKey: true
         name: C_CUSTKEY
         nullable: false
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 3a48d1ad-cecd-4418-a217-530f2ed7d5e2
-                stepCounter: a594eb17-179c-4682-8184-e664536f28fd
+              - columnCounter: 6bc02958-9c86-41b9-aa92-3a2206feeb50
+                stepCounter: 2197bb10-c411-4622-a5ae-c3958a3d86a3
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 542d1d98-d51a-430e-b010-92242abd7afe
-          stepCounter: c1ac5215-7b76-4f16-af77-9fb7d86b816a
+          columnCounter: 9accb44c-8448-46ec-b5e7-a6dedd7c4595
+          stepCounter: bc030c9c-604a-4224-92d2-05dce01d7e93
         config: {}
-        dataType: VARCHAR(25)
-        description: |-
-          - Customer name, sourced from the STG_CUSTOMER table.
-          -  Used in reports and analyses to filter or group customers by name.
-          -  This field is subject to change tracking, allowing you to identify updates to customer names.
+        dataType: STRING
+        description: ""
         isChangeTracking: true
         name: C_NAME
         nullable: false
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: ffb41226-915e-4442-9dcb-a2b3f006fa55
-                stepCounter: a594eb17-179c-4682-8184-e664536f28fd
+              - columnCounter: beabdc2c-cfcc-4a77-8293-2d4bb74e007a
+                stepCounter: 2197bb10-c411-4622-a5ae-c3958a3d86a3
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 8c0501fc-e687-458d-938f-c59d1ea979c6
-          stepCounter: c1ac5215-7b76-4f16-af77-9fb7d86b816a
+          columnCounter: 59ca9155-3554-4ea8-8315-4eb8eb9d5d30
+          stepCounter: bc030c9c-604a-4224-92d2-05dce01d7e93
         config: {}
-        dataType: VARCHAR(40)
-        description: |-
-          - Customer address, sourced from the STG_CUSTOMER table.
-          -  Used in reports and analyses to analyze customer demographics and geographical distribution.
-          -  This field is subject to change tracking, allowing you to identify updates to customer addresses.
+        dataType: STRING
+        description: ""
         isChangeTracking: true
         name: C_ADDRESS
         nullable: false
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 6958fae3-d0f2-43aa-9c7f-c71902038fe7
-                stepCounter: a594eb17-179c-4682-8184-e664536f28fd
+              - columnCounter: 69cf5688-34a1-458d-a9a6-18fee4c3c754
+                stepCounter: 2197bb10-c411-4622-a5ae-c3958a3d86a3
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: a07ebc2f-6b59-4a83-aee8-9741f4752c34
-          stepCounter: c1ac5215-7b76-4f16-af77-9fb7d86b816a
+          columnCounter: 3b4aa07e-3ba3-46d7-bf8d-202ed1db69cf
+          stepCounter: bc030c9c-604a-4224-92d2-05dce01d7e93
         config: {}
-        dataType: VARCHAR(15)
-        description: |-
-          - Customer phone number, sourced from the STG_CUSTOMER table.
-          -  Used for customer communication and contact purposes.
-          -  This field is subject to change tracking, allowing you to identify updates to customer phone numbers.
+        dataType: STRING
+        description: ""
         isChangeTracking: true
-        name: C_PHONE
+        name: CUSTOMER_PHONE_NUMBER
         nullable: false
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 75dcc3e9-26a7-404a-b9b8-943e2e7b9d82
-                stepCounter: a594eb17-179c-4682-8184-e664536f28fd
+              - columnCounter: f6c76b93-ccfe-45b2-b4d6-38efdc26580c
+                stepCounter: 2197bb10-c411-4622-a5ae-c3958a3d86a3
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 73fb1741-bbaa-44a6-b65e-d8b89694818e
-          stepCounter: c1ac5215-7b76-4f16-af77-9fb7d86b816a
+          columnCounter: a7c211ad-fb3b-4102-b7a7-4f6a4c1317dd
+          stepCounter: bc030c9c-604a-4224-92d2-05dce01d7e93
         config: {}
         dataType: NUMBER(12,2)
-        description: |-
-          - Customer account balance, sourced from the STG_CUSTOMER table.
-          -  Used to track customer financial status and analyze customer spending patterns.
-          -  This field is subject to change tracking, allowing you to identify updates to customer account balances.
+        description: ""
         isChangeTracking: true
         name: C_ACCTBAL
         nullable: false
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 66905313-d010-4a41-aac1-ffafcfbb6e95
-                stepCounter: a594eb17-179c-4682-8184-e664536f28fd
+              - columnCounter: 49fa0e90-cb0d-4508-b7fd-e68b1544e54b
+                stepCounter: 2197bb10-c411-4622-a5ae-c3958a3d86a3
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 3a2253c6-2bd1-4f05-a1ef-9655cd15150f
-          stepCounter: c1ac5215-7b76-4f16-af77-9fb7d86b816a
+          columnCounter: 69c89284-7023-4b8b-a058-9179bcd2e34a
+          stepCounter: bc030c9c-604a-4224-92d2-05dce01d7e93
         config: {}
-        dataType: VARCHAR(10)
-        description: |-
-          - Customer market segment, sourced from the STG_CUSTOMER table.
-          -  Used for marketing segmentation and targeting.
-          -  Allows for analyzing customer behavior and preferences by segment.
+        dataType: STRING
+        description: ""
         isChangeTracking: true
         name: C_MKTSEGMENT
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: e79a1591-da39-4cc4-b223-ddcee5a0681c
-                stepCounter: a594eb17-179c-4682-8184-e664536f28fd
+              - columnCounter: 1c60c53c-8320-4b99-aad7-7f04c65411cd
+                stepCounter: 2197bb10-c411-4622-a5ae-c3958a3d86a3
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: aa13a8a2-fc06-41d6-9ecc-1fd37b7175fe
-          stepCounter: c1ac5215-7b76-4f16-af77-9fb7d86b816a
+          columnCounter: 08e5569d-8428-4eb1-843d-4ffed9e82f92
+          stepCounter: bc030c9c-604a-4224-92d2-05dce01d7e93
         config: {}
-        dataType: VARCHAR(10)
-        description: |-
-          - Customer value segment, sourced from the STG_CUSTOMER table.
-          -  Used to identify high-value customers and tailor marketing strategies.
-          -  Enables analysis of customer lifetime value and segmentation based on value.
+        dataType: STRING
+        description: ""
+        isChangeTracking: true
         name: C_VALUE
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 18d7d16f-6bb6-47f2-94cf-8f35e5bbe68c
-                stepCounter: a594eb17-179c-4682-8184-e664536f28fd
+              - columnCounter: fb8db609-710a-43f6-82ef-814eab34fd83
+                stepCounter: 2197bb10-c411-4622-a5ae-c3958a3d86a3
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 1cccec16-7c92-411f-8c39-38456f312307
-          stepCounter: c1ac5215-7b76-4f16-af77-9fb7d86b816a
+          columnCounter: 97f1bf2b-7cf7-4d96-8667-e4269a4eaabf
+          stepCounter: bc030c9c-604a-4224-92d2-05dce01d7e93
         config: {}
-        dataType: VARCHAR(117)
-        description: |-
-          - Free-text customer comments, sourced from the STG_CUSTOMER table.
-          -  Used to capture additional customer information and insights.
-          -  This field is subject to change tracking, allowing you to identify updates to customer comments.
+        dataType: STRING
+        description: ""
         isChangeTracking: true
         name: C_COMMENT
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 2f110cd4-c287-40f4-89f6-46a256b2a3fb
-                stepCounter: a594eb17-179c-4682-8184-e664536f28fd
+              - columnCounter: 151e1ff6-fca8-468d-95b0-bb9e4a101a02
+                stepCounter: 2197bb10-c411-4622-a5ae-c3958a3d86a3
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 941b93aa-040b-47d9-9909-12f03d16c14e
-          stepCounter: c1ac5215-7b76-4f16-af77-9fb7d86b816a
+          columnCounter: 23b3e557-961b-4741-8021-72759ada5839
+          stepCounter: bc030c9c-604a-4224-92d2-05dce01d7e93
         config: {}
-        dataType: VARCHAR(25)
-        description: |-
-          - Name of the nation, sourced from the STG_CUSTOMER table.
-          -  Used to identify the customer's nation and perform geo-based analysis.
-          -  Provides insights into customer location and market penetration.
+        dataType: STRING
+        description: ""
         name: N_NAME
         nullable: false
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: f1b7657d-dc40-4ab3-993d-29a2eb174841
-                stepCounter: a594eb17-179c-4682-8184-e664536f28fd
+              - columnCounter: 372f538e-fade-4695-b279-15b6cb98e15d
+                stepCounter: 2197bb10-c411-4622-a5ae-c3958a3d86a3
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: a81ad009-70ba-405f-8abc-8fd1e504e1d0
-          stepCounter: c1ac5215-7b76-4f16-af77-9fb7d86b816a
+          columnCounter: f5cf1ac3-87b5-45e5-a781-6c759a6f58e6
+          stepCounter: bc030c9c-604a-4224-92d2-05dce01d7e93
         config: {}
-        dataType: VARCHAR(152)
-        description: |-
-          - Comments about the nation, sourced from the STG_CUSTOMER table.
-          -  Provides additional information and insights about the customer's nation.
+        dataType: STRING
+        description: ""
         name: N_COMMENT
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: b87e9b03-94cd-4e3e-9d3a-3fcd7c0cf500
-                stepCounter: a594eb17-179c-4682-8184-e664536f28fd
+              - columnCounter: d2851deb-d264-4ed9-be3d-ac9dcf884c29
+                stepCounter: 2197bb10-c411-4622-a5ae-c3958a3d86a3
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 11f254e6-27bb-4cfd-9939-db5219e3b861
-          stepCounter: c1ac5215-7b76-4f16-af77-9fb7d86b816a
+          columnCounter: 2555eab3-e140-4171-ac59-13b4349574ab
+          stepCounter: bc030c9c-604a-4224-92d2-05dce01d7e93
         config: {}
-        dataType: VARCHAR(25)
-        description: |-
-          - Name of the region, sourced from the STG_CUSTOMER table.
-          -  Used to identify the customer's region and perform geo-based analysis.
-          -  Provides insights into customer location and regional trends.
+        dataType: STRING
+        description: ""
         name: R_NAME
         nullable: false
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 7d6f0c51-b8e1-4934-93cf-ba5b10f1e983
-                stepCounter: a594eb17-179c-4682-8184-e664536f28fd
+              - columnCounter: e3a1565a-4720-49d5-b47f-bac4d511cdb7
+                stepCounter: 2197bb10-c411-4622-a5ae-c3958a3d86a3
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: bb58cde5-20bd-422b-8ea1-93c683796435
-          stepCounter: c1ac5215-7b76-4f16-af77-9fb7d86b816a
+          columnCounter: 072faad0-4e6f-4060-8054-f0df118f8d78
+          stepCounter: bc030c9c-604a-4224-92d2-05dce01d7e93
         config: {}
-        dataType: VARCHAR(152)
-        description: |-
-          - Comments about the region, sourced from the STG_CUSTOMER table.
-          -  Provides additional information and insights about the customer's region.
+        dataType: STRING
+        description: ""
         name: R_COMMENT
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 47b25fc2-9952-4e2a-82a8-e8360eba5225
-                stepCounter: a594eb17-179c-4682-8184-e664536f28fd
+              - columnCounter: d3ea23c6-2fdd-4717-95fe-256d0a8c4847
+                stepCounter: 2197bb10-c411-4622-a5ae-c3958a3d86a3
             transform: ""
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 3d82f8bb-7670-4fb4-8025-204561ae647c
-          stepCounter: c1ac5215-7b76-4f16-af77-9fb7d86b816a
+          columnCounter: 7f49707c-d740-4bc5-a65d-666e1c5201bc
+          stepCounter: bc030c9c-604a-4224-92d2-05dce01d7e93
         config: {}
         dataType: NUMBER
         defaultValue: ""
@@ -267,10 +230,10 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: fb1792fd-38c8-45ac-a819-bc0aef6913a3
-          stepCounter: c1ac5215-7b76-4f16-af77-9fb7d86b816a
+          columnCounter: 587a1a25-0bdb-4fe7-a60f-b6690f2d130b
+          stepCounter: bc030c9c-604a-4224-92d2-05dce01d7e93
         config: {}
-        dataType: VARCHAR
+        dataType: STRING
         defaultValue: ""
         description: ""
         isSystemCurrentFlag: true
@@ -284,8 +247,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: cbe8db74-5666-4b0d-abc2-0a235cc845b2
-          stepCounter: c1ac5215-7b76-4f16-af77-9fb7d86b816a
+          columnCounter: 54fea002-eaf5-4c29-98f7-4836cc5b336b
+          stepCounter: bc030c9c-604a-4224-92d2-05dce01d7e93
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -301,8 +264,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 45a70daf-13ef-4c94-9530-a789c05b48c4
-          stepCounter: c1ac5215-7b76-4f16-af77-9fb7d86b816a
+          columnCounter: f2f6d0ea-f8d5-4e1f-8742-da3021409c34
+          stepCounter: bc030c9c-604a-4224-92d2-05dce01d7e93
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -318,8 +281,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 6c8dc408-2f3d-4db1-a05d-d807b1bde00c
-          stepCounter: c1ac5215-7b76-4f16-af77-9fb7d86b816a
+          columnCounter: 7fb572b8-f8a0-4ec8-9f54-ddc6c01bdcd8
+          stepCounter: bc030c9c-604a-4224-92d2-05dce01d7e93
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -335,8 +298,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: f574a1e3-9fc6-465e-a61d-544aa5cde2cc
-          stepCounter: c1ac5215-7b76-4f16-af77-9fb7d86b816a
+          columnCounter: 2b7aecfe-5d7c-4797-b901-0b6637648cbe
+          stepCounter: bc030c9c-604a-4224-92d2-05dce01d7e93
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -352,24 +315,7 @@ operation:
     sourceMapping:
       - aliases: {}
         customSQL:
-          customSQL: |-
-            {{ stage('Override Create SQL') }}
-            	CREATE OR REPLACE VIEW {{ ref('TARGET', 'DIM_CUSTOMER')}} AS (
-            		SELECT 
-             "C_CUSTKEY" AS "C_CUSTKEY",
-             "C_NAME" AS "C_NAME",
-             "C_ADDRESS" AS "C_ADDRESS",
-             "C_PHONE" AS "C_PHONE",
-             "C_ACCTBAL" AS "C_ACCTBAL",
-             "C_MKTSEGMENT" AS "C_MKTSEGMENT",
-             "C_VALUE" AS "C_VALUE",
-             "C_COMMENT" AS "C_COMMENT",
-             "N_NAME" AS "N_NAME",
-             "N_COMMENT" AS "N_COMMENT",
-             "R_NAME" AS "R_NAME",
-             "R_COMMENT" AS "R_COMMENT"
-             FROM {{ ref('TARGET', 'STG_CUSTOMER') }}
-            	)
+          customSQL: ""
         dependencies:
           - locationName: TARGET
             nodeName: STG_CUSTOMER
