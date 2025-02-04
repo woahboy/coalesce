@@ -1,20 +1,23 @@
 fileVersion: 1
 id: "247"
 mappingDefinitions:
-  SOURCE:
-    database: SNOWFLAKE_SAMPLE_DATA
-    schema: TPCH_SF1
-  SRC_SEC_FILINGS:
-    database: SEC_FILINGS
-    schema: CYBERSYN
-  SRC_TPCH:
-    database: SNOWFLAKE_SAMPLE_DATA
-    schema: TPCH_SF10
-  TARGET:
+  DWH:
     database: JUSTIN_EDW
     schema: QA_EDW
-  TGT_TPCH:
+  PUBLIC:
     database: JUSTIN_EDW
-    schema: DEMO
+    schema: PUBLIC
+  SRC_FIVETRAN_RETAIL:
+    database: FIVETRAN_DATABASE
+    schema: RETAIL_DATA
+  SRC_SAMPLE:
+    database: SNOWFLAKE_SAMPLE_DATA
+    schema: TPCH_SF1
+  SRC_WEATHER:
+    database: GLOBAL_WEATHER__CLIMATE_DATA_FOR_BI
+    schema: STANDARD_TILE
+  STAGE:
+    database: JUSTIN_EDW
+    schema: PRD_ETL
 name: System Test
 type: Environment
