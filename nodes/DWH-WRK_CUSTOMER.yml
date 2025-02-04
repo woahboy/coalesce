@@ -215,7 +215,7 @@ operation:
           - locationName: SRC_SAMPLE
             nodeName: REGION
         join:
-          joinCondition: |
+          joinCondition: |-
             FROM  {{ ref('SRC_SAMPLE', 'CUSTOMER') }} CUSTOMER
             LEFT JOIN  {{ ref('SRC_SAMPLE', 'NATION') }} NATION 
             ON NATION."N_NATIONKEY" = CUSTOMER."C_NATIONKEY"
