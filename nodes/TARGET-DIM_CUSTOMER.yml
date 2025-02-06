@@ -8,7 +8,12 @@ operation:
     testsEnabled: true
   database: ""
   deployEnabled: true
-  description: Customer data as defined by TPC-H
+  description: |-
+    1. The Coalesce SQL node generates a dimension table named DIM_CUSTOMER,  which represents a denormalized view of customer data. 
+    2. The node joins and enriches data from the STG_CUSTOMER stage table, transforming it into a business-friendly format. 
+    3. Key fields include C_CUSTKEY (business key), C_NAME, C_ADDRESS, CUSTOMER_PHONE_NUMBER, C_ACCTBAL, C_MKTSEGMENT, C_VALUE, C_COMMENT, N_NAME, N_COMMENT, R_NAME, R_COMMENT. 
+    4.  Change tracking is implemented for fields that may change over time, ensuring data integrity and enabling analysis of customer trends. 
+    5. The resulting table is optimized for downstream applications, such as customer segmentation, marketing campaign targeting, and customer relationship management.
   isMultisource: false
   locationName: TARGET
   materializationType: table
