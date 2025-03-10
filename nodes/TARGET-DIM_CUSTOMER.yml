@@ -3,12 +3,19 @@ id: 7ed83272-94a5-45f6-a05d-71367bbd6d99
 name: DIM_CUSTOMER
 operation:
   config:
+    historyTable: false
     postSQL: ""
     preSQL: ""
+    tableTag: null
     testsEnabled: true
   database: ""
   deployEnabled: true
-  description: Customer data as defined by TPC-H
+  description: |-
+    1. The node serves as a data integration point for customer information, merging data from the STG_CUSTOMER stage table into the DIM_CUSTOMER dimension table.
+    2. It enables downstream applications to access comprehensive and accurate customer data for reporting, customer segmentation, and targeted marketing campaigns.
+    3.  The node retrieves customer information from the STG_CUSTOMER stage table, including C_CUSTKEY, C_NAME, C_ADDRESS, C_PHONE, C_ACCTBAL, C_MKTSEGMENT, C_VALUE, C_COMMENT, N_NAME, N_COMMENT, R_NAME, and R_COMMENT columns.
+    4. The C_CUSTKEY is marked as a business key, indicating its importance in identifying unique customers, while DIM_CUSTOMER_KEY serves as a surrogate key for the dimension table.
+    5.  The node utilizes the `CAST` transformation to convert the current timestamp into TIMESTAMP data type for `SYSTEM_START_DATE`, `SYSTEM_END_DATE`, `SYSTEM_CREATE_DATE` and `SYSTEM_UPDATE_DATE` columns.
   isMultisource: false
   locationName: TARGET
   materializationType: table
@@ -125,7 +132,7 @@ operation:
           stepCounter: 7ed83272-94a5-45f6-a05d-71367bbd6d99
         config: {}
         dataType: VARCHAR(10)
-        description: ""
+        description: "This is a combination of customer account balance and customer market segment. "
         name: C_VALUE
         nullable: true
         sourceColumnReferences:
@@ -321,7 +328,7 @@ operation:
   name: DIM_CUSTOMER
   overrideSQL: false
   schema: ""
-  sqlType: Dimension
+  sqlType: "81"
   type: sql
   version: 1
 type: Node
