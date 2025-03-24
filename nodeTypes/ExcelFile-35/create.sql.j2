@@ -2,7 +2,7 @@
 CREATE OR REPLACE PROCEDURE {{ ref_no_link(node.location.name, 'PROC_' + node.name | upper) | trim }}(INPUT_DESTINATION_TABLE STRING, SKIP_ROWS INT, USE_COLS STRING)
   returns string not null
   language python
-  runtime_version = '3.8'
+  runtime_version = '3.9'
   packages = ('snowflake-snowpark-python', 'pandas', 'openpyxl') -- openpyxl required for pandas to read xlsx
   imports = ('@{{ ref_no_link(node.location.name, config.stage | upper) | trim }}/{{ config.filename | trim }}')
   handler = 'leverage_external_mapping_file_py'
