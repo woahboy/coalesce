@@ -1,0 +1,100 @@
+fileVersion: 1
+id: cf295693-8c05-4456-8aa6-dc24c453ce23
+name: V_ORDERS
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: Orders data as defined by TPC-H
+  isMultisource: false
+  locationName: TARGET
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d54a5031-20b4-4939-8469-6c59ac99f8b9
+          stepCounter: cf295693-8c05-4456-8aa6-dc24c453ce23
+        config: {}
+        dataType: VARCHAR(25)
+        description: ""
+        name: CUSTOMER_NAME
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 73b49b49-86bc-4d9b-ada0-be5ca5804863
+                stepCounter: 4c07ce21-59e7-4ebe-b289-4ef878f530fc
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bf442b4f-4491-4b5a-a08f-31f0bf4498f9
+          stepCounter: cf295693-8c05-4456-8aa6-dc24c453ce23
+        config: {}
+        dataType: NUMBER(12,2)
+        description: ""
+        name: TOTALPRICE
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 58432eaa-f5f7-4826-bb90-ec6cd9bba031
+                stepCounter: bb7e9997-33e1-4026-83a3-785dd33cb6ca
+            transform: SUM("FCT_ORDERS"."TOTALPRICE")
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases:
+          DIM_CUSTOMER: 4c07ce21-59e7-4ebe-b289-4ef878f530fc
+          FCT_ORDERS: bb7e9997-33e1-4026-83a3-785dd33cb6ca
+        customSQL:
+          customSQL: |-
+            {{ stage('Override Create SQL') }}
+            	CREATE OR REPLACE VIEW {{ ref('TARGET', 'V_ORDERS')}} AS (
+            		SELECT 
+             "DIM_CUSTOMER_KEY" AS "DIM_CUSTOMER_KEY",
+             "C_CUSTKEY" AS "C_CUSTKEY",
+             "C_NAME" AS "C_NAME",
+             "C_ADDRESS" AS "C_ADDRESS",
+             "C_NATIONKEY" AS "C_NATIONKEY",
+             "C_PHONE" AS "C_PHONE",
+             "C_ACCTBAL" AS "C_ACCTBAL",
+             "C_MKTSEGMENT" AS "C_MKTSEGMENT",
+             "C_COMMENT" AS "C_COMMENT",
+             "SYSTEM_VERSION" AS "SYSTEM_VERSION",
+             "SYSTEM_CURRENT_FLAG" AS "SYSTEM_CURRENT_FLAG",
+             "SYSTEM_START_DATE" AS "SYSTEM_START_DATE",
+             "SYSTEM_END_DATE" AS "SYSTEM_END_DATE",
+             "SYSTEM_CREATE_DATE" AS "SYSTEM_CREATE_DATE",
+             "SYSTEM_UPDATE_DATE" AS "SYSTEM_UPDATE_DATE"
+             "O_ORDERKEY" AS "O_ORDERKEY",
+             "O_CUSTKEY" AS "O_CUSTKEY",
+             "TOTALPRICE" AS "TOTALPRICE",
+             "DIM_CUSTOMER_KEY" AS "DIM_CUSTOMER_KEY",
+             "SYSTEM_CREATE_DATE" AS "SYSTEM_CREATE_DATE",
+             "SYSTEM_UPDATE_DATE" AS "SYSTEM_UPDATE_DATE"
+             FROM {{ ref('TARGET', 'DIM_CUSTOMER') }}
+            INNER JOIN {{ ref('TARGET', 'FCT_ORDERS') }} "FCT_ORDERS"
+            ON "{{ ref('TARGET', 'DIM_CUSTOMER') }}"./*COLUMN*/ = "FCT_ORDERS"./*COLUMN*/
+            	)
+        dependencies:
+          - locationName: TARGET
+            nodeName: DIM_CUSTOMER
+          - locationName: TARGET
+            nodeName: FCT_ORDERS
+        join:
+          joinCondition: |-
+            FROM {{ ref('TARGET', 'DIM_CUSTOMER') }} "DIM_CUSTOMER"
+            INNER JOIN {{ ref('TARGET', 'FCT_ORDERS') }} "FCT_ORDERS"
+            ON "DIM_CUSTOMER"."DIM_CUSTOMER_KEY" = "FCT_ORDERS"."DIM_CUSTOMER_KEY"
+            GROUP BY "DIM_CUSTOMER"."C_NAME"
+        name: V_ORDERS
+        noLinkRefs: []
+  name: V_ORDERS
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node

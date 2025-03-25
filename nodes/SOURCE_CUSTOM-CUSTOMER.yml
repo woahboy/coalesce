@@ -1,11 +1,11 @@
 fileVersion: 1
-id: a54994e0-24eb-4f3a-bb0f-b722ca82d646
-name: NATION
+id: 68e23c9d-223e-4bc6-be98-4a19a228e12f
+name: CUSTOMER
 operation:
   database: ""
   deployEnabled: true
-  description: Nation data as defined by TPC-H
-  locationName: SOURCE_TPCH
+  description: Customer data as defined by TPC-H
+  locationName: SOURCE_CUSTOM
   metadata:
     columns:
       - acceptedValues:
@@ -13,13 +13,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 979f62e5-3b43-4ce8-8036-7f4be653f12e
-          stepCounter: a54994e0-24eb-4f3a-bb0f-b722ca82d646
+          columnCounter: 02e36d70-03ec-4a0f-b489-62d41e4cae0b
+          stepCounter: 68e23c9d-223e-4bc6-be98-4a19a228e12f
         config: {}
         dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: N_NATIONKEY
+        name: C_CUSTKEY
         nullable: false
         primaryKey: false
         sourceColumnReferences:
@@ -32,13 +32,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: ed439196-e555-4b2b-ae56-efbc4aacc7b0
-          stepCounter: a54994e0-24eb-4f3a-bb0f-b722ca82d646
+          columnCounter: df1d5b16-e116-4e7d-83b0-e51e394faa3d
+          stepCounter: 68e23c9d-223e-4bc6-be98-4a19a228e12f
         config: {}
         dataType: VARCHAR(25)
         defaultValue: ""
         description: ""
-        name: N_NAME
+        name: C_NAME
         nullable: false
         primaryKey: false
         sourceColumnReferences:
@@ -51,13 +51,32 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: ff5bff70-c25f-42e2-8fb8-38183e877684
-          stepCounter: a54994e0-24eb-4f3a-bb0f-b722ca82d646
+          columnCounter: b473a8fb-0416-4fd1-a6d1-728faee9fb38
+          stepCounter: 68e23c9d-223e-4bc6-be98-4a19a228e12f
+        config: {}
+        dataType: VARCHAR(40)
+        defaultValue: ""
+        description: ""
+        name: C_ADDRESS
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5182552a-7d5f-434b-bc07-91208fb216bc
+          stepCounter: 68e23c9d-223e-4bc6-be98-4a19a228e12f
         config: {}
         dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: N_REGIONKEY
+        name: C_NATIONKEY
         nullable: false
         primaryKey: false
         sourceColumnReferences:
@@ -70,13 +89,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 50bfeef7-a01c-434d-a734-b0d0b7c76353
-          stepCounter: a54994e0-24eb-4f3a-bb0f-b722ca82d646
+          columnCounter: 9f1fe4cb-78fb-471f-acf5-d0c8aa000eb5
+          stepCounter: 68e23c9d-223e-4bc6-be98-4a19a228e12f
         config: {}
-        dataType: VARCHAR(152)
+        dataType: VARCHAR(100)
         defaultValue: ""
         description: ""
-        name: N_COMMENT
+        name: C_PHONE
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -84,7 +103,7 @@ operation:
             transform: ""
         transform: ""
         uniqueKey: false
-  name: NATION
+  name: CUSTOMER
   schema: ""
   sqlType: Source
   type: sourceInput
