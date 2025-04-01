@@ -40,7 +40,7 @@ operation:
         dataType: NUMBER(38,0)
         description: ""
         isBusinessKey: true
-        name: C_CUSTKEY
+        name: CUSTOMER_CUSTKEY
         nullable: false
         sourceColumnReferences:
           - columnReferences:
@@ -52,7 +52,7 @@ operation:
           columnCounter: 8bcfa480-b49c-45ba-8983-6439f2e940c7
           stepCounter: e1648310-f0bf-482f-ad55-0019ad7ad809
         config: {}
-        dataType: VARCHAR(25)
+        dataType: STRING
         description: |-
           - This column represents the customer's name, sourced directly from the `C_NAME` column of the `CUSTOMER` table.
           - It provides a descriptive attribute for identifying customers.
@@ -60,7 +60,7 @@ operation:
           - It contributes to a better understanding of the customer base, allowing for targeted strategies and personalized experiences.
           - Useful in customer segmentation analysis and reporting.
         isChangeTracking: true
-        name: C_NAME
+        name: CUSTOMER_NAME
         nullable: false
         sourceColumnReferences:
           - columnReferences:
@@ -72,7 +72,7 @@ operation:
           columnCounter: 988a8a59-b74d-4838-9250-0330851c9388
           stepCounter: e1648310-f0bf-482f-ad55-0019ad7ad809
         config: {}
-        dataType: VARCHAR(40)
+        dataType: STRING
         description: |-
           - This column contains the customer's address, sourced directly from the `C_ADDRESS` column of the `CUSTOMER` table.
           - It provides location information for each customer.
@@ -80,7 +80,7 @@ operation:
           - It enables businesses to understand the spatial distribution of their customer base and optimize their operations accordingly.
           - Aids in calculating location-based metrics and creating targeted marketing strategies.
         isChangeTracking: true
-        name: C_ADDRESS
+        name: CUSTOMER_ADDRESS
         nullable: false
         sourceColumnReferences:
           - columnReferences:
@@ -92,7 +92,7 @@ operation:
           columnCounter: e6f021f3-a444-4f59-ba7e-4fbb2b82924a
           stepCounter: e1648310-f0bf-482f-ad55-0019ad7ad809
         config: {}
-        dataType: VARCHAR(15)
+        dataType: STRING
         description: |-
           - This column contains the customer's phone number, sourced directly from the `C_PHONE` column of the `CUSTOMER` table.
           - It serves as a contact detail for communication purposes.
@@ -100,7 +100,7 @@ operation:
           - It facilitates direct interaction with customers, enabling personalized support and promotional offers.
           - Useful for customer communication strategies and support services.
         isChangeTracking: true
-        name: C_PHONE
+        name: CUSTOMER_PHONE_NUMBER
         nullable: false
         sourceColumnReferences:
           - columnReferences:
@@ -120,7 +120,7 @@ operation:
           - It provides insights into customer spending behavior and potential revenue generation.
           - Aids in calculating financial metrics and assessing customer value.
         isChangeTracking: true
-        name: C_ACCTBAL
+        name: CUSTOMER_ACCTBAL
         nullable: false
         sourceColumnReferences:
           - columnReferences:
@@ -132,7 +132,7 @@ operation:
           columnCounter: c6a26804-a0df-47b0-a3f3-d3d89d2fbfe6
           stepCounter: e1648310-f0bf-482f-ad55-0019ad7ad809
         config: {}
-        dataType: VARCHAR(10)
+        dataType: STRING
         description: |-
           - This column represents the market segment to which the customer belongs, sourced directly from the `C_MKTSEGMENT` column of the `CUSTOMER` table.
           - It categorizes customers based on shared characteristics.
@@ -140,7 +140,7 @@ operation:
           - It enables businesses to tailor their offerings to specific customer groups, improving customer satisfaction and revenue generation.
           - Useful in market segmentation analysis and targeted marketing efforts.
         isChangeTracking: true
-        name: C_MKTSEGMENT
+        name: CUSTOMER_MKTSEGMENT
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -152,7 +152,7 @@ operation:
           columnCounter: 336dda87-a48e-4756-bc4b-6492ccae5a82
           stepCounter: e1648310-f0bf-482f-ad55-0019ad7ad809
         config: {}
-        dataType: VARCHAR(10)
+        dataType: STRING
         description: |-
           - This column is derived from the `CUSTOMER` table, specifically `C_ACCTBAL` and `C_MKTSEGMENT`.
           - It categorizes customers into 'High' or 'Low' value based on their account balance and market segment.
@@ -160,7 +160,7 @@ operation:
           - This column can be used for targeted marketing efforts, prioritizing high-value customers.
           - The transformation logic applied is a CASE WHEN statement that evaluates the customer's account balance and market segment.
         isChangeTracking: true
-        name: C_VALUE
+        name: CUSTOMER_VALUE
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -172,7 +172,7 @@ operation:
           columnCounter: 635dd7a8-4a69-45eb-94e5-dba963adba01
           stepCounter: e1648310-f0bf-482f-ad55-0019ad7ad809
         config: {}
-        dataType: VARCHAR(117)
+        dataType: STRING
         description: |-
           - This column contains comments about the customer, sourced directly from the `C_COMMENT` column of the `CUSTOMER` table.
           - It provides additional qualitative information about each customer.
@@ -180,7 +180,7 @@ operation:
           - It offers insights into customer preferences, issues, and overall experience.
           - Useful for sentiment analysis and personalized customer interactions.
         isChangeTracking: true
-        name: C_COMMENT
+        name: CUSTOMER_COMMENT
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -192,7 +192,7 @@ operation:
           columnCounter: aa4d64eb-7422-40ec-9588-75ef8a015c21
           stepCounter: e1648310-f0bf-482f-ad55-0019ad7ad809
         config: {}
-        dataType: VARCHAR(25)
+        dataType: STRING
         description: ""
         name: N_NAME
         nullable: false
@@ -206,7 +206,7 @@ operation:
           columnCounter: 9cea223f-2cd1-4bf1-8d4f-f8d332d22e63
           stepCounter: e1648310-f0bf-482f-ad55-0019ad7ad809
         config: {}
-        dataType: VARCHAR(152)
+        dataType: STRING
         description: ""
         name: N_COMMENT
         nullable: true
@@ -220,7 +220,7 @@ operation:
           columnCounter: 9e418c05-cbd3-4c09-9dc0-0824f8161d74
           stepCounter: e1648310-f0bf-482f-ad55-0019ad7ad809
         config: {}
-        dataType: VARCHAR(25)
+        dataType: STRING
         description: ""
         name: R_NAME
         nullable: false
@@ -234,7 +234,7 @@ operation:
           columnCounter: 6f41b8d2-b8d3-4254-803a-caea352fec77
           stepCounter: e1648310-f0bf-482f-ad55-0019ad7ad809
         config: {}
-        dataType: VARCHAR(152)
+        dataType: STRING
         description: ""
         name: R_COMMENT
         nullable: true
@@ -268,7 +268,7 @@ operation:
           columnCounter: 4caa32d0-37b0-4987-917e-657fc1f48c3e
           stepCounter: e1648310-f0bf-482f-ad55-0019ad7ad809
         config: {}
-        dataType: VARCHAR
+        dataType: STRING
         defaultValue: ""
         description: ""
         isSystemCurrentFlag: true
