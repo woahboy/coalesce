@@ -1,5 +1,5 @@
 fileVersion: 1
-id: e1648310-f0bf-482f-ad55-0019ad7ad809
+id: 61e4f0b7-f8d8-4729-9c2d-00109662b02e
 name: DIM_CUSTOMER
 operation:
   config:
@@ -20,8 +20,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 56a2a29a-aef7-4d43-be31-3d9424b75a95
-          stepCounter: e1648310-f0bf-482f-ad55-0019ad7ad809
+          columnCounter: 13a7d5e4-c9b9-434d-a50b-83cc9575df4a
+          stepCounter: 61e4f0b7-f8d8-4729-9c2d-00109662b02e
         config: {}
         dataType: NUMBER
         defaultValue: ""
@@ -34,222 +34,247 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 58d5bf26-be46-4680-829f-5a4fee6f79f3
-          stepCounter: e1648310-f0bf-482f-ad55-0019ad7ad809
+          columnCounter: 87606ec8-974e-49df-a403-b93751a96236
+          stepCounter: 61e4f0b7-f8d8-4729-9c2d-00109662b02e
         config: {}
         dataType: NUMBER(38,0)
-        description: ""
+        description: |-
+          - This column represents the customer key from the source system.
+          - It originates from the 'C_CUSTKEY' column in the 'STG_CUSTOMER' stage table, which contains the raw customer data.
+          - It serves as a business key for the customer dimension table.
+          - It is used to identify customer records and link them across different systems.
+          - No transformations applied to this column. It is directly loaded from the staging table.
         isBusinessKey: true
-        name: CUSTOMER_CUSTKEY
+        name: C_CUSTKEY
         nullable: false
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 1a5e5536-796f-4d9f-97f6-7d40c162f094
-                stepCounter: e2c901ab-2d78-46d8-9a63-7b1f5d267ec6
+              - columnCounter: 364fd68d-021d-4e99-a716-791216d638b5
+                stepCounter: 455aeb5f-31c6-4df3-96b2-7d248b5caf05
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 8bcfa480-b49c-45ba-8983-6439f2e940c7
-          stepCounter: e1648310-f0bf-482f-ad55-0019ad7ad809
+          columnCounter: 5500bf81-facd-4abf-a524-732d1576d209
+          stepCounter: 61e4f0b7-f8d8-4729-9c2d-00109662b02e
         config: {}
         dataType: STRING
         description: |-
-          - This column represents the customer's name, sourced directly from the `C_NAME` column of the `CUSTOMER` table.
-          - It provides a descriptive attribute for identifying customers.
-          - This column can be used in reports, customer profiling, and marketing campaigns.
-          - It contributes to a better understanding of the customer base, allowing for targeted strategies and personalized experiences.
-          - Useful in customer segmentation analysis and reporting.
+          - This column represents the name of the customer.
+          - The data is sourced from the 'C_NAME' column of the 'STG_CUSTOMER' table.
+          - It is used in reports and analyses to identify and segment customers.
+          - Serves as a descriptive attribute of a customer, which helps in understanding customer demographics.
+          - No transformations applied to this column. It is directly loaded from the staging table.
         isChangeTracking: true
-        name: CUSTOMER_NAME
+        name: C_NAME
         nullable: false
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: ece2cdd5-d052-4107-9355-8f450e9b1b92
-                stepCounter: e2c901ab-2d78-46d8-9a63-7b1f5d267ec6
+              - columnCounter: 2e2da10e-5086-492f-999c-3cc48ab789f1
+                stepCounter: 455aeb5f-31c6-4df3-96b2-7d248b5caf05
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 988a8a59-b74d-4838-9250-0330851c9388
-          stepCounter: e1648310-f0bf-482f-ad55-0019ad7ad809
+          columnCounter: 8a906b43-d9af-4b52-b5c4-025177208ed1
+          stepCounter: 61e4f0b7-f8d8-4729-9c2d-00109662b02e
         config: {}
         dataType: STRING
         description: |-
-          - This column contains the customer's address, sourced directly from the `C_ADDRESS` column of the `CUSTOMER` table.
-          - It provides location information for each customer.
-          - This column can be used in geographical analysis, targeted marketing campaigns, and logistics planning.
-          - It enables businesses to understand the spatial distribution of their customer base and optimize their operations accordingly.
-          - Aids in calculating location-based metrics and creating targeted marketing strategies.
+          - This column represents the address of the customer.
+          - The data is sourced from the 'C_ADDRESS' column of the 'STG_CUSTOMER' table.
+          - It is used in reports and analyses to identify and segment customers based on geography.
+          - Serves as a descriptive attribute of a customer, which helps in understanding customer demographics.
+          - No transformations applied to this column. It is directly loaded from the staging table.
         isChangeTracking: true
-        name: CUSTOMER_ADDRESS
+        name: C_ADDRESS
         nullable: false
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 24bb1c4b-31a5-487b-9f07-d026dca8d7ac
-                stepCounter: e2c901ab-2d78-46d8-9a63-7b1f5d267ec6
+              - columnCounter: 2cfccc24-bbd7-4f01-9657-525035d37d17
+                stepCounter: 455aeb5f-31c6-4df3-96b2-7d248b5caf05
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: e6f021f3-a444-4f59-ba7e-4fbb2b82924a
-          stepCounter: e1648310-f0bf-482f-ad55-0019ad7ad809
+          columnCounter: 547feddb-f294-4c89-b52c-e9a337eea9ac
+          stepCounter: 61e4f0b7-f8d8-4729-9c2d-00109662b02e
         config: {}
         dataType: STRING
         description: |-
-          - This column contains the customer's phone number, sourced directly from the `C_PHONE` column of the `CUSTOMER` table.
-          - It serves as a contact detail for communication purposes.
-          - This column can be used in customer service, marketing campaigns, and sales follow-ups.
-          - It facilitates direct interaction with customers, enabling personalized support and promotional offers.
-          - Useful for customer communication strategies and support services.
+          - This column represents the phone number of the customer.
+          - The data is sourced from the 'C_PHONE' column of the 'STG_CUSTOMER' table.
+          - It is used in reports and analyses to identify and segment customers.
+          - Serves as a descriptive attribute of a customer, which helps in understanding customer demographics.
+          - No transformations applied to this column. It is directly loaded from the staging table.
         isChangeTracking: true
         name: CUSTOMER_PHONE_NUMBER
         nullable: false
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 6b712e45-fc0c-427b-b6ce-1e7f778fcc18
-                stepCounter: e2c901ab-2d78-46d8-9a63-7b1f5d267ec6
+              - columnCounter: 08d42e85-9526-4af2-8292-00e3dc60b182
+                stepCounter: 455aeb5f-31c6-4df3-96b2-7d248b5caf05
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 446477f1-a662-4e0a-ab15-0aa0369c4b1d
-          stepCounter: e1648310-f0bf-482f-ad55-0019ad7ad809
+          columnCounter: 1a385fbf-3eae-4a16-9ccd-ba478780de5d
+          stepCounter: 61e4f0b7-f8d8-4729-9c2d-00109662b02e
         config: {}
         dataType: NUMBER(12,2)
         description: |-
-          - This column represents the customer's account balance, sourced directly from the `C_ACCTBAL` column of the `CUSTOMER` table.
-          - It reflects the financial standing of each customer.
-          - This column can be used in credit risk assessment, financial analysis, and customer segmentation.
-          - It provides insights into customer spending behavior and potential revenue generation.
-          - Aids in calculating financial metrics and assessing customer value.
+          - This column represents the account balance of the customer.
+          - The data is sourced from the 'C_ACCTBAL' column of the 'STG_CUSTOMER' table.
+          - It is used in reports and analyses to identify and segment customers based on financial standing.
+          - Serves as a descriptive attribute of a customer, which helps in understanding customer demographics.
+          - No transformations applied to this column. It is directly loaded from the staging table.
         isChangeTracking: true
-        name: CUSTOMER_ACCTBAL
+        name: C_ACCTBAL
         nullable: false
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 57fb52a1-74af-4548-8e01-4912e83879aa
-                stepCounter: e2c901ab-2d78-46d8-9a63-7b1f5d267ec6
+              - columnCounter: 4432b028-4c6e-49e1-877d-8bbf1e90205f
+                stepCounter: 455aeb5f-31c6-4df3-96b2-7d248b5caf05
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: c6a26804-a0df-47b0-a3f3-d3d89d2fbfe6
-          stepCounter: e1648310-f0bf-482f-ad55-0019ad7ad809
+          columnCounter: bd9eeea9-b3f4-495a-92d0-37cc5cd88996
+          stepCounter: 61e4f0b7-f8d8-4729-9c2d-00109662b02e
         config: {}
         dataType: STRING
         description: |-
-          - This column represents the market segment to which the customer belongs, sourced directly from the `C_MKTSEGMENT` column of the `CUSTOMER` table.
-          - It categorizes customers based on shared characteristics.
-          - This column can be used in targeted marketing campaigns, product development, and sales strategies.
-          - It enables businesses to tailor their offerings to specific customer groups, improving customer satisfaction and revenue generation.
-          - Useful in market segmentation analysis and targeted marketing efforts.
+          - This column represents the market segment to which the customer belongs.
+          - The data is sourced from the 'C_MKTSEGMENT' column of the 'STG_CUSTOMER' table.
+          - It is used for market segmentation and analysis.
+          - Helps in understanding customer behavior and preferences within different market segments.
+          - No transformations applied to this column. It is directly loaded from the staging table.
         isChangeTracking: true
-        name: CUSTOMER_MKTSEGMENT
+        name: C_MKTSEGMENT
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 401ed297-cc87-49a2-9804-6bd15253d486
-                stepCounter: e2c901ab-2d78-46d8-9a63-7b1f5d267ec6
+              - columnCounter: 6bbe6c05-626c-4f76-a7a9-3e4d8166d040
+                stepCounter: 455aeb5f-31c6-4df3-96b2-7d248b5caf05
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 336dda87-a48e-4756-bc4b-6492ccae5a82
-          stepCounter: e1648310-f0bf-482f-ad55-0019ad7ad809
+          columnCounter: 2ea84700-6133-4d50-900b-6f879df97637
+          stepCounter: 61e4f0b7-f8d8-4729-9c2d-00109662b02e
         config: {}
         dataType: STRING
         description: |-
-          - This column is derived from the `CUSTOMER` table, specifically `C_ACCTBAL` and `C_MKTSEGMENT`.
-          - It categorizes customers into 'High' or 'Low' value based on their account balance and market segment.
-          - A customer is considered 'High' value if their account balance exceeds 5000 and they belong to either the 'BUILDING' or 'HOUSEHOLD' market segments; otherwise, they are classified as 'Low' value.
-          - This column can be used for targeted marketing efforts, prioritizing high-value customers.
-          - The transformation logic applied is a CASE WHEN statement that evaluates the customer's account balance and market segment.
+          - This column represents the value of the customer.
+          - The data is sourced from the 'C_VALUE' column of the 'STG_CUSTOMER' table.
+          - It is used in reports and analyses to identify and segment customers.
+          - Serves as a descriptive attribute of a customer, which helps in understanding customer demographics.
+          - No transformations applied to this column. It is directly loaded from the staging table.
         isChangeTracking: true
-        name: CUSTOMER_VALUE
+        name: C_VALUE
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: c5b87d89-fb31-4c63-9001-a0d25df91744
-                stepCounter: e2c901ab-2d78-46d8-9a63-7b1f5d267ec6
+              - columnCounter: 4c528844-4d31-48a9-b8e2-7db83ae3ae00
+                stepCounter: 455aeb5f-31c6-4df3-96b2-7d248b5caf05
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 635dd7a8-4a69-45eb-94e5-dba963adba01
-          stepCounter: e1648310-f0bf-482f-ad55-0019ad7ad809
+          columnCounter: 2abf9151-26d5-4a02-b36e-669bfff763cc
+          stepCounter: 61e4f0b7-f8d8-4729-9c2d-00109662b02e
         config: {}
         dataType: STRING
         description: |-
-          - This column contains comments about the customer, sourced directly from the `C_COMMENT` column of the `CUSTOMER` table.
-          - It provides additional qualitative information about each customer.
-          - This column can be used in customer service, feedback analysis, and relationship management.
-          - It offers insights into customer preferences, issues, and overall experience.
-          - Useful for sentiment analysis and personalized customer interactions.
+          - This column contains descriptive comments about the customer.
+          - The data is sourced from the 'C_COMMENT' column of the 'STG_CUSTOMER' table.
+          - It provides additional context and information about the customer.
+          - It may be used for customer service or analytical purposes.
+          - No transformations applied to this column. It is directly loaded from the staging table.
         isChangeTracking: true
-        name: CUSTOMER_COMMENT
+        name: C_COMMENT
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 62ec0a8d-d22e-4cd6-abe6-6982bf6e4dc1
-                stepCounter: e2c901ab-2d78-46d8-9a63-7b1f5d267ec6
+              - columnCounter: 3378fe08-fc71-4115-9bbc-0c4ed347e20e
+                stepCounter: 455aeb5f-31c6-4df3-96b2-7d248b5caf05
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: aa4d64eb-7422-40ec-9588-75ef8a015c21
-          stepCounter: e1648310-f0bf-482f-ad55-0019ad7ad809
+          columnCounter: 90c14fbc-7786-4868-a416-c61c9ddab338
+          stepCounter: 61e4f0b7-f8d8-4729-9c2d-00109662b02e
         config: {}
         dataType: STRING
-        description: ""
+        description: |-
+          - This column represents the name of the nation.
+          - The data is sourced from the 'N_NAME' column of the 'STG_CUSTOMER' table.
+          - It is used in reports and analyses to identify customers based on their nation.
+          - Serves as a descriptive attribute of a customer, which helps in understanding customer demographics.
+          - No transformations applied to this column. It is directly loaded from the staging table.
         name: N_NAME
         nullable: false
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 045ab77e-1ba6-4c74-a0ed-163220630281
-                stepCounter: e2c901ab-2d78-46d8-9a63-7b1f5d267ec6
+              - columnCounter: a5daa2e1-10b5-4506-b8a2-18590909b2d9
+                stepCounter: 455aeb5f-31c6-4df3-96b2-7d248b5caf05
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 9cea223f-2cd1-4bf1-8d4f-f8d332d22e63
-          stepCounter: e1648310-f0bf-482f-ad55-0019ad7ad809
+          columnCounter: ef797fe5-8448-4060-8ec4-b481c0eeee78
+          stepCounter: 61e4f0b7-f8d8-4729-9c2d-00109662b02e
         config: {}
         dataType: STRING
-        description: ""
+        description: |-
+          - This column contains descriptive comments about the nation.
+          - The data is sourced from the 'N_COMMENT' column of the 'STG_CUSTOMER' table.
+          - It provides additional context and information about the nation.
+          - It may be used for customer service or analytical purposes.
+          - No transformations applied to this column. It is directly loaded from the staging table.
         name: N_COMMENT
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 2b557a52-2e63-44d4-94af-bef21e4b9450
-                stepCounter: e2c901ab-2d78-46d8-9a63-7b1f5d267ec6
+              - columnCounter: 9c21887f-9c15-4266-88c2-12ed5a841c2e
+                stepCounter: 455aeb5f-31c6-4df3-96b2-7d248b5caf05
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 9e418c05-cbd3-4c09-9dc0-0824f8161d74
-          stepCounter: e1648310-f0bf-482f-ad55-0019ad7ad809
+          columnCounter: 973e0e1d-7c21-4b52-a4ec-1f22a90e8825
+          stepCounter: 61e4f0b7-f8d8-4729-9c2d-00109662b02e
         config: {}
         dataType: STRING
-        description: ""
+        description: |-
+          - This column represents the name of the region.
+          - The data is sourced from the 'R_NAME' column of the 'STG_CUSTOMER' table.
+          - It is used in reports and analyses to identify customers based on their region.
+          - Serves as a descriptive attribute of a customer, which helps in understanding customer demographics.
+          - No transformations applied to this column. It is directly loaded from the staging table.
         name: R_NAME
         nullable: false
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 5613fce9-fa25-41b3-8bab-414368f1547b
-                stepCounter: e2c901ab-2d78-46d8-9a63-7b1f5d267ec6
+              - columnCounter: 1abc4c57-ca49-4926-93b6-2f4f8f0e4697
+                stepCounter: 455aeb5f-31c6-4df3-96b2-7d248b5caf05
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 6f41b8d2-b8d3-4254-803a-caea352fec77
-          stepCounter: e1648310-f0bf-482f-ad55-0019ad7ad809
+          columnCounter: 45d89232-b49e-4029-8add-e577d0d310b9
+          stepCounter: 61e4f0b7-f8d8-4729-9c2d-00109662b02e
         config: {}
         dataType: STRING
-        description: ""
+        description: |-
+          - This column contains descriptive comments about the region.
+          - The data is sourced from the 'R_COMMENT' column of the 'STG_CUSTOMER' table.
+          - It provides additional context and information about the region.
+          - It may be used for customer service or analytical purposes.
+          - No transformations applied to this column. It is directly loaded from the staging table.
         name: R_COMMENT
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 11f9a55d-0c04-469e-9ad0-ca4ad6ca58f9
-                stepCounter: e2c901ab-2d78-46d8-9a63-7b1f5d267ec6
+              - columnCounter: b2f69589-470e-4ef3-80de-7c966cc69128
+                stepCounter: 455aeb5f-31c6-4df3-96b2-7d248b5caf05
             transform: ""
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: d1bf0c0b-cd85-41ad-90f9-6f37309d6246
-          stepCounter: e1648310-f0bf-482f-ad55-0019ad7ad809
+          columnCounter: d6d78d83-08bf-4871-af70-95bfe6bc89a8
+          stepCounter: 61e4f0b7-f8d8-4729-9c2d-00109662b02e
         config: {}
         dataType: NUMBER
         defaultValue: ""
@@ -265,8 +290,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 4caa32d0-37b0-4987-917e-657fc1f48c3e
-          stepCounter: e1648310-f0bf-482f-ad55-0019ad7ad809
+          columnCounter: 25b6c47a-9d2b-4f2e-a091-a7343cdc2a41
+          stepCounter: 61e4f0b7-f8d8-4729-9c2d-00109662b02e
         config: {}
         dataType: STRING
         defaultValue: ""
@@ -282,8 +307,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 07ef882d-b0a4-4f3b-9873-0ee4400ebb51
-          stepCounter: e1648310-f0bf-482f-ad55-0019ad7ad809
+          columnCounter: 832027e1-4e45-4b02-a349-6331eadf4457
+          stepCounter: 61e4f0b7-f8d8-4729-9c2d-00109662b02e
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -299,8 +324,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: fcf2df20-f7f5-438c-9682-c33e304a3aae
-          stepCounter: e1648310-f0bf-482f-ad55-0019ad7ad809
+          columnCounter: 24539992-7d95-496a-a76f-f8f45375ec46
+          stepCounter: 61e4f0b7-f8d8-4729-9c2d-00109662b02e
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -316,8 +341,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: f7d5067e-4990-4d74-ba36-cba30ff89ac0
-          stepCounter: e1648310-f0bf-482f-ad55-0019ad7ad809
+          columnCounter: fa1041c8-5de7-41f2-a475-370175317119
+          stepCounter: 61e4f0b7-f8d8-4729-9c2d-00109662b02e
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -333,8 +358,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: c7759531-62e1-4039-9be2-5db48c57934e
-          stepCounter: e1648310-f0bf-482f-ad55-0019ad7ad809
+          columnCounter: 6d1b6c1d-8eb3-4e7c-bf34-a647bbb6c6b9
+          stepCounter: 61e4f0b7-f8d8-4729-9c2d-00109662b02e
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
