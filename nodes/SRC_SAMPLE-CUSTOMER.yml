@@ -3,7 +3,6 @@ id: 98b543c6-e281-4c6f-aacc-053b45f26165
 name: CUSTOMER
 operation:
   database: ""
-  dataset: ""
   deployEnabled: true
   description: Customer data as defined by TPC-H
   locationName: SRC_SAMPLE
@@ -161,12 +160,9 @@ operation:
             transform: ""
         transform: ""
         uniqueKey: false
-    join:
-      joinCondition: FROM {{ ref('SRC_SAMPLE', 'CUSTOMER') }}
   name: CUSTOMER
   schema: ""
   sqlType: Source
-  table: CUSTOMER
   type: sourceInput
   version: 1
 type: Node
