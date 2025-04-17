@@ -1,0 +1,106 @@
+fileVersion: 1
+id: 2f1919cb-ec61-46ac-9244-f8d8ae723c46
+name: V_PARTSUPP
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: Partsupp data as defined by TPC-H
+  isMultisource: false
+  locationName: TARGET
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5d45f52c-ae13-47ab-865a-18465bd2af27
+          stepCounter: 2f1919cb-ec61-46ac-9244-f8d8ae723c46
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: PS_PARTKEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cc530a84-4d24-47c0-b919-c0f132a9cbeb
+                stepCounter: 74a9a5a0-bdd4-4a22-8ee4-09b4de1dddd1
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6fa7434f-ac3c-4626-9fb4-7a8fdd3f7966
+          stepCounter: 2f1919cb-ec61-46ac-9244-f8d8ae723c46
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: PS_SUPPKEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2234f0d1-1896-4472-94c2-8c7220972e9e
+                stepCounter: 74a9a5a0-bdd4-4a22-8ee4-09b4de1dddd1
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7059d15c-ae74-40bd-8781-236421aa0bc2
+          stepCounter: 2f1919cb-ec61-46ac-9244-f8d8ae723c46
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: PS_AVAILQTY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c22c59d6-ac9b-4736-8e91-c23cc9a8ba46
+                stepCounter: 74a9a5a0-bdd4-4a22-8ee4-09b4de1dddd1
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c95cbda1-4679-4fc7-b7c0-324b1e878454
+          stepCounter: 2f1919cb-ec61-46ac-9244-f8d8ae723c46
+        config: {}
+        dataType: NUMBER(12,2)
+        description: ""
+        name: PS_SUPPLYCOST
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 33560da5-0bdb-4f1a-8510-592e4da5049e
+                stepCounter: 74a9a5a0-bdd4-4a22-8ee4-09b4de1dddd1
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: abd26821-1e22-4a74-822e-46fd40889a0c
+          stepCounter: 2f1919cb-ec61-46ac-9244-f8d8ae723c46
+        config: {}
+        dataType: VARCHAR(199)
+        description: ""
+        name: PS_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a42e27df-61fa-4ba5-aab5-56db3e9b263c
+                stepCounter: 74a9a5a0-bdd4-4a22-8ee4-09b4de1dddd1
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs: []
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SOURCE_TPCH
+            nodeName: PARTSUPP
+        join:
+          joinCondition: FROM {{ ref('SOURCE_TPCH', 'PARTSUPP') }} "PARTSUPP"
+        name: V_PARTSUPP
+        noLinkRefs: []
+  name: V_PARTSUPP
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node
