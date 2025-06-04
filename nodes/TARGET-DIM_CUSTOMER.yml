@@ -125,7 +125,11 @@ operation:
           stepCounter: 9d29355e-ada4-4b8a-8c89-8183fb5c60c7
         config: {}
         dataType: VARCHAR
-        description: ""
+        description: |-
+          - This column represents a specific value associated with the customer, the meaning of which should be documented in the data dictionary.
+          - It is sourced from the `C_VALUE` column in the `STG_CUSTOMER` staging table.
+          - Depending on its specific meaning, it can be used for various analyses, such as identifying high-value customers or tracking specific customer behaviors.
+          - The specific use case depends on the business context and the definition of 'C_VALUE'.
         name: C_VALUE
         nullable: true
         sourceColumnReferences:
