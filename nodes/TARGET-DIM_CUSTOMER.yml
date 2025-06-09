@@ -8,7 +8,7 @@ operation:
     testsEnabled: true
   database: ""
   deployEnabled: true
-  description: Staging table for customer data with nation and region details
+  description: Creates or replaces the DIM_CUSTOMER dimension table and merges data from the STG_CUSTOMER staging table into it, handling Type 2 dimension changes and non-Type 2 column updates.
   isMultisource: false
   locationName: TARGET
   materializationType: table
@@ -83,7 +83,11 @@ operation:
           stepCounter: 31b82ad4-0c3f-484d-bca0-f3a16f2e1349
         config: {}
         dataType: VARCHAR
-        description: ""
+        description: |-
+          - This column stores the phone number of the customer, sourced from the 'C_PHONE' column in the 'STG_CUSTOMER' staging table.
+          - It serves as a contact method and can be used for communication purposes.
+          - The phone number is a descriptive attribute that helps in reaching out to customers.
+          - It is utilized in customer service applications and marketing campaigns.
         name: C_PHONE
         nullable: true
         sourceColumnReferences:
