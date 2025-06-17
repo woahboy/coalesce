@@ -1,14 +1,16 @@
 fileVersion: 1
-id: 31b82ad4-0c3f-484d-bca0-f3a16f2e1349
+id: fd55e2e6-38ca-4845-9e45-531e356ce9fd
 name: DIM_CUSTOMER
 operation:
   config:
+    historyTable: true
     postSQL: ""
     preSQL: ""
+    tableTag: null
     testsEnabled: true
   database: ""
   deployEnabled: true
-  description: Creates or replaces the DIM_CUSTOMER dimension table and merges data from the STG_CUSTOMER staging table into it, handling Type 2 dimension changes and non-Type 2 column updates.
+  description: Customer data as defined by TPC-H
   isMultisource: false
   locationName: TARGET
   materializationType: table
@@ -20,8 +22,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 7dcaf1d6-ea76-4b53-baea-017b19e0880d
-          stepCounter: 31b82ad4-0c3f-484d-bca0-f3a16f2e1349
+          columnCounter: 6637f46d-3f70-442f-ac01-1086b5cfe44a
+          stepCounter: fd55e2e6-38ca-4845-9e45-531e356ce9fd
         config: {}
         dataType: NUMBER
         defaultValue: ""
@@ -34,191 +36,210 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 4449541c-4804-472e-bd45-603a6ea06842
-          stepCounter: 31b82ad4-0c3f-484d-bca0-f3a16f2e1349
+          columnCounter: 0e02bac8-8817-4dc4-bf22-9e88489f751b
+          stepCounter: fd55e2e6-38ca-4845-9e45-531e356ce9fd
         config: {}
-        dataType: NUMBER
+        dataType: NUMBER(38,0)
         description: ""
         isBusinessKey: true
-        name: C_CUSTKEY
-        nullable: true
+        name: CUSTOMER_CUSTKEY
+        nullable: false
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 75322001-f0ae-45f6-b497-0c59a9d96202
-                stepCounter: 4e11f20a-1465-4e83-828f-addc45206395
+              - columnCounter: 5cd542c8-04c5-48d5-a6c9-0d94e6228113
+                stepCounter: 439ffa4f-68c4-463d-b268-2978ce785798
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: c3c11bc2-5f3d-4245-b2d9-d368eb118361
-          stepCounter: 31b82ad4-0c3f-484d-bca0-f3a16f2e1349
+          columnCounter: 7112b117-37d2-4866-a4d3-a6a86490a3d6
+          stepCounter: fd55e2e6-38ca-4845-9e45-531e356ce9fd
         config: {}
-        dataType: VARCHAR
-        description: ""
-        isChangeTracking: true
-        name: C_NAME
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 337585bc-066e-429d-b3f1-3a62dc449771
-                stepCounter: 4e11f20a-1465-4e83-828f-addc45206395
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: 60771291-75af-4ac6-90c5-629d29fc2e87
-          stepCounter: 31b82ad4-0c3f-484d-bca0-f3a16f2e1349
-        config: {}
-        dataType: VARCHAR
-        description: ""
-        isChangeTracking: true
-        name: C_ADDRESS
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 460ec8fd-343a-4e31-8371-1d40730e240a
-                stepCounter: 4e11f20a-1465-4e83-828f-addc45206395
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: 99513675-422f-4e91-a948-d2ab0514ca43
-          stepCounter: 31b82ad4-0c3f-484d-bca0-f3a16f2e1349
-        config: {}
-        dataType: VARCHAR
+        dataType: VARCHAR(25)
         description: |-
-          - This column stores the phone number of the customer, sourced from the 'C_PHONE' column in the 'STG_CUSTOMER' staging table.
-          - It serves as a contact method and can be used for communication purposes.
-          - The phone number is a descriptive attribute that helps in reaching out to customers.
-          - It is utilized in customer service applications and marketing campaigns.
-        name: C_PHONE
-        nullable: true
+          - This column represents the customer's name.
+          - It is sourced directly from the 'C_NAME' column of the 'CUSTOMER' table in the 'SOURCE_TPCH' source.
+          - The 'C_NAME' is used for customer identification and personalized interactions.
+          - It can be used in reports, customer relationship management (CRM) systems, and marketing campaigns.
+        isChangeTracking: true
+        name: CUSTOMER_NAME
+        nullable: false
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 143856ea-4c5c-499c-85dc-5e8b0e8eb52d
-                stepCounter: 4e11f20a-1465-4e83-828f-addc45206395
+              - columnCounter: 15dd1e69-e8d4-40db-9610-c468f13a32a6
+                stepCounter: 439ffa4f-68c4-463d-b268-2978ce785798
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 2faf555d-27ea-4a5a-b223-64718f5d2abf
-          stepCounter: 31b82ad4-0c3f-484d-bca0-f3a16f2e1349
+          columnCounter: 7452e907-f7dd-4635-b8c0-fdcb56d1001f
+          stepCounter: fd55e2e6-38ca-4845-9e45-531e356ce9fd
         config: {}
-        dataType: NUMBER
-        description: ""
-        name: C_ACCTBAL
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: 39bb989a-d967-4dd7-b449-c2e1d7f7efc2
-                stepCounter: 4e11f20a-1465-4e83-828f-addc45206395
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: 05e7af98-bf5b-44fa-9c70-9fc780530787
-          stepCounter: 31b82ad4-0c3f-484d-bca0-f3a16f2e1349
-        config: {}
-        dataType: VARCHAR
-        description: ""
-        name: C_MKTSEGMENT
-        nullable: true
-        sourceColumnReferences:
-          - columnReferences:
-              - columnCounter: eeb48bea-a841-44bf-a953-753bf4827ba7
-                stepCounter: 4e11f20a-1465-4e83-828f-addc45206395
-            transform: ""
-      - appliedColumnTests: {}
-        columnReference:
-          columnCounter: 50f83a1a-79d9-4b20-b3c3-bfd11597e8f5
-          stepCounter: 31b82ad4-0c3f-484d-bca0-f3a16f2e1349
-        config: {}
-        dataType: VARCHAR
+        dataType: VARCHAR(40)
         description: |-
-          -	This column stores a value associated with the customer.
-          -	It is sourced from the 'C_VALUE' column in the 'STG_CUSTOMER' staging table.
-          -	The exact meaning of this column depends on the source system and business context.
-          -	It could represent a customer's lifetime value, potential revenue, or other relevant metric.
-          -	Further investigation of the source system may be required to fully understand its purpose.
-        name: C_VALUE
-        nullable: true
+          - This column stores the address of the customer.
+          - It comes directly from the 'C_ADDRESS' column in the 'CUSTOMER' table from the 'SOURCE_TPCH' source.
+          - It is used for location-based analysis, shipping information, and marketing campaigns.
+          - Analyzing customer distribution across different regions can inform business decisions.
+        isChangeTracking: true
+        name: CUSTOMER_ADDRESS
+        nullable: false
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 0ce13a69-f0c5-4e41-8546-f64dc6c5e1e8
-                stepCounter: 4e11f20a-1465-4e83-828f-addc45206395
+              - columnCounter: 9767b3a1-e6cd-4941-8cff-9c5891b37820
+                stepCounter: 439ffa4f-68c4-463d-b268-2978ce785798
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 197e9c42-384f-460a-84af-8b1f3eb36cba
-          stepCounter: 31b82ad4-0c3f-484d-bca0-f3a16f2e1349
+          columnCounter: e3ae1b1c-9eca-483e-8fa6-d014c0f21247
+          stepCounter: fd55e2e6-38ca-4845-9e45-531e356ce9fd
         config: {}
-        dataType: VARCHAR
-        description: ""
-        name: C_COMMENT
-        nullable: true
+        dataType: VARCHAR(15)
+        description: |-
+          - This column stores the phone number of the customer.
+          - It is sourced directly from the 'C_PHONE' column of the 'CUSTOMER' table in the 'SOURCE_TPCH' source.
+          - The phone number is used for customer contact and communication purposes.
+          - It can be used in customer service, marketing campaigns, and sales follow-up activities.
+        name: CUSTOMER_PHONE
+        nullable: false
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: ea81ed0d-e5ce-460b-b646-60742ae2acfa
-                stepCounter: 4e11f20a-1465-4e83-828f-addc45206395
+              - columnCounter: 0b4c6368-72e8-4a24-b4f5-539cc7d0b2cd
+                stepCounter: 439ffa4f-68c4-463d-b268-2978ce785798
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: c7102d8c-f3b3-4f63-bbac-c9b5fa7f15a8
-          stepCounter: 31b82ad4-0c3f-484d-bca0-f3a16f2e1349
+          columnCounter: aec0073a-47c4-4895-92c1-01c85b0c53ba
+          stepCounter: fd55e2e6-38ca-4845-9e45-531e356ce9fd
         config: {}
-        dataType: VARCHAR
+        dataType: NUMBER(12,2)
+        description: |-
+          - This column represents the account balance of the customer.
+          - It is sourced directly from the 'C_ACCTBAL' column of the 'CUSTOMER' table in the 'SOURCE_TPCH' source.
+          - It represents customer's financial value to the business and informs credit risk assessment.
+          - It is essential for financial analysis, customer segmentation, and credit risk assessment.
+        name: CUSTOMER_ACCTBAL
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3e318e68-74a9-4ff1-a98f-be9996f74f7b
+                stepCounter: 439ffa4f-68c4-463d-b268-2978ce785798
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9fed4c89-c5f6-42e1-9574-13eaf7c136a4
+          stepCounter: fd55e2e6-38ca-4845-9e45-531e356ce9fd
+        config: {}
+        dataType: VARCHAR(10)
+        description: |-
+          - This column represents the market segment to which the customer belongs.
+          - It is sourced directly from the 'C_MKTSEGMENT' column of the 'CUSTOMER' table in the 'SOURCE_TPCH' source.
+          - It is a descriptive attribute that enables targeted marketing and sales strategies.
+          - Analyzing performance across different market segments can optimize resource allocation and improve business outcomes.
+        name: CUSTOMER_MKTSEGMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8b9edef3-c215-4080-903c-53787639d177
+                stepCounter: 439ffa4f-68c4-463d-b268-2978ce785798
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ba75587c-7684-4bcc-a014-2030b17bdebd
+          stepCounter: fd55e2e6-38ca-4845-9e45-531e356ce9fd
+        config: {}
+        dataType: VARCHAR(10)
+        description: |-
+          - This column categorizes customers into 'High' or 'Low' value based on their account balance and market segment.
+          - It is derived from the 'C_ACCTBAL' and 'C_MKTSEGMENT' columns of the 'CUSTOMER' table in the 'SOURCE_TPCH' source.
+          - The transformation logic is: CASE WHEN "CUSTOMER"."C_ACCTBAL" > 5000 AND "CUSTOMER"."C_MKTSEGMENT" IN ('BUILDING', 'HOUSEHOLD') THEN 'High' ELSE 'Low' END.
+          - It helps to prioritize customer engagement efforts.
+        name: CUSTOMER_VALUE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 700ad190-266e-45e1-8687-3ef13584e737
+                stepCounter: 439ffa4f-68c4-463d-b268-2978ce785798
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 04edaabe-f330-4697-8b8a-210cd23c4f78
+          stepCounter: fd55e2e6-38ca-4845-9e45-531e356ce9fd
+        config: {}
+        dataType: VARCHAR(117)
+        description: |-
+          - This column stores additional comments or notes about the customer.
+          - It is sourced directly from the 'C_COMMENT' column of the 'CUSTOMER' table in the 'SOURCE_TPCH' source.
+          - This is a descriptive attribute that can provide valuable context for customer interactions and analysis.
+          - It allows for capturing specific details or observations about individual customers.
+        name: CUSTOMER_COMMENT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 086012ac-9efe-4339-b00e-accfaac82b61
+                stepCounter: 439ffa4f-68c4-463d-b268-2978ce785798
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5d31bd35-c0a5-40ad-9ab8-c081083e747d
+          stepCounter: fd55e2e6-38ca-4845-9e45-531e356ce9fd
+        config: {}
+        dataType: VARCHAR(25)
         description: ""
         name: N_NAME
-        nullable: true
+        nullable: false
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: fbd169a9-4f10-4cb6-9bbd-a0a42ce0c424
-                stepCounter: 4e11f20a-1465-4e83-828f-addc45206395
+              - columnCounter: 818282c3-ca7a-4952-a5fc-27c823872dc7
+                stepCounter: 439ffa4f-68c4-463d-b268-2978ce785798
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 5884d7b2-b24e-46ee-958d-1c2f50f360cc
-          stepCounter: 31b82ad4-0c3f-484d-bca0-f3a16f2e1349
+          columnCounter: 850e49ab-ea32-4771-a2fd-eb97461bf0f1
+          stepCounter: fd55e2e6-38ca-4845-9e45-531e356ce9fd
         config: {}
-        dataType: VARCHAR
+        dataType: VARCHAR(152)
         description: ""
         name: N_COMMENT
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 2513c1d9-2c87-4583-8a1c-eb18acf76e45
-                stepCounter: 4e11f20a-1465-4e83-828f-addc45206395
+              - columnCounter: d409cd6c-7536-478e-938c-98571488ca60
+                stepCounter: 439ffa4f-68c4-463d-b268-2978ce785798
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 60092eb2-0f99-4834-89f4-d8b93f362a95
-          stepCounter: 31b82ad4-0c3f-484d-bca0-f3a16f2e1349
+          columnCounter: 504fb34b-47d4-450e-be72-4e6e1dcc464d
+          stepCounter: fd55e2e6-38ca-4845-9e45-531e356ce9fd
         config: {}
-        dataType: VARCHAR
+        dataType: VARCHAR(25)
         description: ""
         name: R_NAME
-        nullable: true
+        nullable: false
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 21b49977-af3b-476e-ae5d-3f4bdbdcd9ad
-                stepCounter: 4e11f20a-1465-4e83-828f-addc45206395
+              - columnCounter: e9d055ce-a417-452e-bf04-abc4a259b0e6
+                stepCounter: 439ffa4f-68c4-463d-b268-2978ce785798
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: bbfdc474-7fac-4975-9055-0947d6690e4e
-          stepCounter: 31b82ad4-0c3f-484d-bca0-f3a16f2e1349
+          columnCounter: ce0c1c77-752b-4275-a964-db7d54d43959
+          stepCounter: fd55e2e6-38ca-4845-9e45-531e356ce9fd
         config: {}
-        dataType: VARCHAR
+        dataType: VARCHAR(152)
         description: ""
         name: R_COMMENT
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 625c557c-de67-41ce-8ac8-2215489782bb
-                stepCounter: 4e11f20a-1465-4e83-828f-addc45206395
+              - columnCounter: ed5ade2c-09de-4b04-92b7-7cef2ad2b0be
+                stepCounter: 439ffa4f-68c4-463d-b268-2978ce785798
             transform: ""
       - acceptedValues:
           strictMatch: true
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 7fdc6983-292e-4a9e-880d-e45009a320ca
-          stepCounter: 31b82ad4-0c3f-484d-bca0-f3a16f2e1349
+          columnCounter: 0d78f8e8-97fd-4c60-9bb1-596bde96fdd7
+          stepCounter: fd55e2e6-38ca-4845-9e45-531e356ce9fd
         config: {}
         dataType: NUMBER
         defaultValue: ""
@@ -234,8 +255,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 3a9aca92-55ef-410e-8ba8-ef8222409319
-          stepCounter: 31b82ad4-0c3f-484d-bca0-f3a16f2e1349
+          columnCounter: 04a94aa9-abe1-45d7-a269-a91634011dc5
+          stepCounter: fd55e2e6-38ca-4845-9e45-531e356ce9fd
         config: {}
         dataType: VARCHAR
         defaultValue: ""
@@ -251,8 +272,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 2ed7ffc1-b6d8-446b-a906-8ac7effa4810
-          stepCounter: 31b82ad4-0c3f-484d-bca0-f3a16f2e1349
+          columnCounter: 82dcc71a-63ca-46e3-98ae-1c11857e9c5f
+          stepCounter: fd55e2e6-38ca-4845-9e45-531e356ce9fd
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -268,8 +289,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 6bc26933-f257-4005-a291-236d4790fdb5
-          stepCounter: 31b82ad4-0c3f-484d-bca0-f3a16f2e1349
+          columnCounter: 514a5512-40f1-4337-9dfd-f9fb1793ba30
+          stepCounter: fd55e2e6-38ca-4845-9e45-531e356ce9fd
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -285,8 +306,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: d2c13267-0de7-4878-9fe1-6b74e1851005
-          stepCounter: 31b82ad4-0c3f-484d-bca0-f3a16f2e1349
+          columnCounter: 456279d9-107f-4e62-a673-bc2020bab0cf
+          stepCounter: fd55e2e6-38ca-4845-9e45-531e356ce9fd
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -302,8 +323,8 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 9bd1448c-b662-4991-a7a6-933095171f4a
-          stepCounter: 31b82ad4-0c3f-484d-bca0-f3a16f2e1349
+          columnCounter: 54bdc35f-b12b-406d-81f3-441e7093f060
+          stepCounter: fd55e2e6-38ca-4845-9e45-531e356ce9fd
         config: {}
         dataType: TIMESTAMP
         defaultValue: ""
@@ -330,7 +351,7 @@ operation:
   name: DIM_CUSTOMER
   overrideSQL: false
   schema: ""
-  sqlType: Dimension
+  sqlType: "81"
   type: sql
   version: 1
 type: Node
