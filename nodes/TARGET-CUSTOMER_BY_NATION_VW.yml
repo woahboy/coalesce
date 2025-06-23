@@ -1,0 +1,71 @@
+fileVersion: 1
+id: 6ac8cd3a-760b-4eb0-8a5c-8ff4c92d9053
+name: CUSTOMER_BY_NATION_VW
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: View providing a breakdown of customers by nation
+  isMultisource: false
+  locationName: TARGET
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b95d1f20-894e-45cc-8234-f0705aea8d04
+          stepCounter: 6ac8cd3a-760b-4eb0-8a5c-8ff4c92d9053
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: NATION_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0f72c050-9865-438e-81c8-d7462c282e79
+                stepCounter: 6b8e930a-1393-4697-be31-3e2b6a8e5357
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9dc55c0f-7fe9-4977-b88c-41047f869e29
+          stepCounter: 6ac8cd3a-760b-4eb0-8a5c-8ff4c92d9053
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: CUSTOMER_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ddbc7791-1a8c-4a50-8dc6-3d6a1b15cec3
+                stepCounter: 3d5d38e8-2a28-45c7-8d8a-399f233b32e1
+            transform: COUNT(CUSTOMER.C_CUSTKEY)
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          CUSTOMER: 3d5d38e8-2a28-45c7-8d8a-399f233b32e1
+          NATION: 6b8e930a-1393-4697-be31-3e2b6a8e5357
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SOURCE_TPCH
+            nodeName: CUSTOMER
+          - locationName: SOURCE_TPCH
+            nodeName: NATION
+        join:
+          joinCondition: FROM {{ ref('SOURCE_TPCH', 'CUSTOMER') }} "CUSTOMER" JOIN {{ ref('SOURCE_TPCH', 'NATION') }} "NATION" ON CUSTOMER.C_NATIONKEY = NATION.N_NATIONKEY GROUP BY NATION.N_NAME
+        name: CUSTOMER_BY_NATION_VW
+        noLinkRefs: []
+  name: CUSTOMER_BY_NATION_VW
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node
