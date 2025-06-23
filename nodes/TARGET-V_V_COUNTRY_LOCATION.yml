@@ -1,0 +1,157 @@
+fileVersion: 1
+id: 6e48b484-550d-4f0b-957c-2df19a5e12cb
+name: V_V_COUNTRY_LOCATION
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: ""
+  isMultisource: false
+  locationName: TARGET
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests:
+          hasNull: false
+        columnReference:
+          columnCounter: 4564a11c-9afa-403d-860e-3ae0b365a329
+          stepCounter: 6e48b484-550d-4f0b-957c-2df19a5e12cb
+        config: {}
+        dataType: STRING
+        description: ""
+        name: ISO_CURRENCY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e0969250-1bd1-4d81-910e-4103f53c28a6
+                stepCounter: d11d2a45-a029-402d-a752-1a290f7afcca
+            transform: ""
+      - appliedColumnTests:
+          hasNull: true
+        columnReference:
+          columnCounter: 24c38932-004e-4b36-81f6-c513ff1b4e63
+          stepCounter: 6e48b484-550d-4f0b-957c-2df19a5e12cb
+        config: {}
+        dataType: STRING
+        description: ""
+        name: CITY_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7a782b33-8932-4e6f-b76a-766bf3091482
+                stepCounter: d11d2a45-a029-402d-a752-1a290f7afcca
+            transform: ""
+      - appliedColumnTests:
+          hasNull: false
+        columnReference:
+          columnCounter: 3abed782-8a17-43aa-a05f-2c29bd5a3107
+          stepCounter: 6e48b484-550d-4f0b-957c-2df19a5e12cb
+        config: {}
+        dataType: STRING
+        description: ""
+        name: CITY_POPULATION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 02a0caae-6c07-4279-aaee-e2f729689f82
+                stepCounter: d11d2a45-a029-402d-a752-1a290f7afcca
+            transform: ""
+      - appliedColumnTests:
+          hasNull: false
+        columnReference:
+          columnCounter: 9b0b9a63-ee87-4d3d-a437-5f9afb07eede
+          stepCounter: 6e48b484-550d-4f0b-957c-2df19a5e12cb
+        config: {}
+        dataType: STRING
+        description: ""
+        name: LOCATION_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 42c12cc5-0a47-4f75-99c2-360cfcc4b3ee
+                stepCounter: d11d2a45-a029-402d-a752-1a290f7afcca
+            transform: ""
+      - appliedColumnTests:
+          hasNull: false
+        columnReference:
+          columnCounter: 5551d412-8614-4242-af0e-467b49732607
+          stepCounter: 6e48b484-550d-4f0b-957c-2df19a5e12cb
+        config: {}
+        dataType: STRING
+        description: ""
+        name: PLACEKEY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0ddc23bc-f329-49ca-a2c1-ad13c018a108
+                stepCounter: d11d2a45-a029-402d-a752-1a290f7afcca
+            transform: ""
+      - appliedColumnTests:
+          hasNull: false
+        columnReference:
+          columnCounter: 67f47887-509c-4ee8-96a6-2d76ac6a0c1f
+          stepCounter: 6e48b484-550d-4f0b-957c-2df19a5e12cb
+        config: {}
+        dataType: STRING
+        description: ""
+        name: LOCATION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 28a3b893-2223-4457-9c97-652039dcfd70
+                stepCounter: d11d2a45-a029-402d-a752-1a290f7afcca
+            transform: ""
+      - appliedColumnTests:
+          hasNull: false
+        columnReference:
+          columnCounter: ebdc17ec-a24b-4515-aa1b-d16b98c68b5f
+          stepCounter: 6e48b484-550d-4f0b-957c-2df19a5e12cb
+        config: {}
+        dataType: STRING
+        description: ""
+        name: CITY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5bdd89ad-b2f8-439c-b34d-1b6d5f8e990f
+                stepCounter: d11d2a45-a029-402d-a752-1a290f7afcca
+            transform: ""
+      - appliedColumnTests:
+          hasNull: false
+        columnReference:
+          columnCounter: d8132f91-36c7-4e97-914f-f73c739c2f6d
+          stepCounter: 6e48b484-550d-4f0b-957c-2df19a5e12cb
+        config: {}
+        dataType: STRING
+        description: ""
+        name: REGION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b574caa9-3f23-4e7a-a70a-235ad087634b
+                stepCounter: d11d2a45-a029-402d-a752-1a290f7afcca
+            transform: ""
+    cteString: ""
+    enabledColumnTestIDs:
+      - hasNull
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: TARGET
+            nodeName: V_COUNTRY_LOCATION
+        join:
+          joinCondition: FROM {{ ref('TARGET', 'V_COUNTRY_LOCATION') }} "V_COUNTRY_LOCATION"
+        name: V_V_COUNTRY_LOCATION
+        noLinkRefs: []
+  name: V_V_COUNTRY_LOCATION
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node
