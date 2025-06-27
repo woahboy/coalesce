@@ -1,13 +1,13 @@
 fileVersion: 1
-id: 6ac8cd3a-760b-4eb0-8a5c-8ff4c92d9053
-name: CUSTOMER_BY_NATION_VW
+id: 967b0d10-4fb9-4616-acee-6487f3ab343d
+name: V_CUSTOMER_BREAKDOWN_BY_NATION
 operation:
   config:
     insertStrategy: UNION
-    selectDistinct: false
+    selectDistinct: true
   database: ""
   deployEnabled: true
-  description: View providing a breakdown of customers by nation
+  description: View providing a customer breakdown by nation
   isMultisource: false
   locationName: TARGET
   materializationType: view
@@ -16,12 +16,12 @@ operation:
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: b95d1f20-894e-45cc-8234-f0705aea8d04
-          stepCounter: 6ac8cd3a-760b-4eb0-8a5c-8ff4c92d9053
+          columnCounter: 7b654e27-7af2-403c-adaa-93ecd2b8d3ce
+          stepCounter: 967b0d10-4fb9-4616-acee-6487f3ab343d
         config: {}
         dataType: VARCHAR
         description: ""
-        name: NATION_NAME
+        name: N_NAME
         nullable: true
         sourceColumnReferences:
           - columnReferences:
@@ -30,8 +30,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 9dc55c0f-7fe9-4977-b88c-41047f869e29
-          stepCounter: 6ac8cd3a-760b-4eb0-8a5c-8ff4c92d9053
+          columnCounter: 5060beaa-1dd2-47cd-a0e0-d4026a6082a0
+          stepCounter: 967b0d10-4fb9-4616-acee-6487f3ab343d
         config: {}
         dataType: NUMBER
         description: ""
@@ -60,9 +60,9 @@ operation:
             nodeName: NATION
         join:
           joinCondition: FROM {{ ref('SOURCE_TPCH', 'CUSTOMER') }} "CUSTOMER" JOIN {{ ref('SOURCE_TPCH', 'NATION') }} "NATION" ON CUSTOMER.C_NATIONKEY = NATION.N_NATIONKEY GROUP BY NATION.N_NAME
-        name: CUSTOMER_BY_NATION_VW
+        name: V_CUSTOMER_BREAKDOWN_BY_NATION
         noLinkRefs: []
-  name: CUSTOMER_BY_NATION_VW
+  name: V_CUSTOMER_BREAKDOWN_BY_NATION
   overrideSQL: false
   schema: ""
   sqlType: View
