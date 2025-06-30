@@ -6,11 +6,12 @@ operation:
     insertStrategy: INSERT
     postSQL: ""
     preSQL: ""
+    selectDistinct: true
     testsEnabled: true
     truncateBefore: true
   database: ""
   deployEnabled: true
-  description: Customer data as defined by TPC-H
+  description: Creates the STG_CUSTOMER stage table, truncates it, and then populates it with data derived from the CUSTOMER, NATION, and REGION tables. It also derives a C_VALUE column based on C_ACCTBAL and C_MKTSEGMENT.
   isMultisource: false
   locationName: TARGET
   materializationType: table
@@ -107,7 +108,11 @@ operation:
           stepCounter: f3f8a38f-bf86-440a-864c-629f3360429b
         config: {}
         dataType: VARCHAR(10)
-        description: ""
+        description: |
+          - This column is derived from the 'CUSTOMER' table, specifically from 'C_ACCTBAL' and 'C_MKTSEGMENT' columns.
+          - It categorizes customers into 'High' or 'Low' value segments based on their account balance and market segment.
+          - Customers with an account balance greater than 5000 and belonging to either 'BUILDING' or 'HOUSEHOLD' market segments are classified as 'High' value; otherwise, they are 'Low'.
+          - This derived column is used for customer segmentation and targeted marketing strategies.
         name: C_VALUE
         nullable: true
         sourceColumnReferences:
@@ -213,7 +218,7 @@ operation:
   name: STG_CUSTOMER
   overrideSQL: false
   schema: ""
-  sqlType: Stage
+  sqlType: "530"
   type: sql
   version: 1
 type: Node
