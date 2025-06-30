@@ -1,0 +1,68 @@
+fileVersion: 1
+id: d8ba0582-d735-487e-8c6a-f501dd2372b9
+name: V_CUSTOMER_BY_NATION
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: View summarizing customers by nation
+  isMultisource: false
+  locationName: TARGET
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7ce105ec-5684-45ca-aa3c-a4620d65de99
+          stepCounter: d8ba0582-d735-487e-8c6a-f501dd2372b9
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: N_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 72ddb569-e028-4fca-8432-97515cbc6619
+                stepCounter: f3f8a38f-bf86-440a-864c-629f3360429b
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: aa847ab1-5f51-4c2b-b0ab-0581c714b086
+          stepCounter: d8ba0582-d735-487e-8c6a-f501dd2372b9
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: CUSTOMER_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8ad249e9-5a60-4037-ab39-d40c2049de0f
+                stepCounter: f3f8a38f-bf86-440a-864c-629f3360429b
+            transform: COUNT(STG_CUSTOMER.C_CUSTKEY)
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          STG_CUSTOMER: f3f8a38f-bf86-440a-864c-629f3360429b
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: TARGET
+            nodeName: STG_CUSTOMER
+        join:
+          joinCondition: FROM {{ ref('TARGET', 'STG_CUSTOMER') }} "STG_CUSTOMER" GROUP BY N_NAME
+        name: V_CUSTOMER_BY_NATION
+        noLinkRefs: []
+  name: V_CUSTOMER_BY_NATION
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node
