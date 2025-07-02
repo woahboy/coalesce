@@ -1,0 +1,104 @@
+fileVersion: 1
+id: 37f850e1-12c6-4b41-bb75-21d9740f202b
+name: V_CUSTOMER_NATION_BREAKDOWN
+operation:
+  config:
+    insertStrategy: UNION
+    selectDistinct: false
+  database: ""
+  deployEnabled: true
+  description: View providing a breakdown of customers by nation
+  isMultisource: false
+  locationName: TARGET
+  materializationType: view
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: acf63393-4f41-466a-ab66-c5f45d2fef6c
+          stepCounter: 37f850e1-12c6-4b41-bb75-21d9740f202b
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: NATION_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e6d899f3-a873-479e-b2c8-8f781ae4551e
+                stepCounter: bbaac291-781e-44b6-92c9-676a990db434
+            transform: ""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9ab90f9f-0482-4a77-a78f-df4c99c4e14a
+          stepCounter: 37f850e1-12c6-4b41-bb75-21d9740f202b
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: CUSTOMER_COUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0e4bb243-d740-4828-b4ad-d651a1bdf014
+                stepCounter: a2675981-c3ea-4bdf-8ca0-77073f9e3475
+            transform: COUNT(CUSTOMER.C_CUSTKEY)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9938cd8c-623a-486a-bd54-679806968840
+          stepCounter: 37f850e1-12c6-4b41-bb75-21d9740f202b
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: TOTAL_ACCOUNT_BALANCE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 55768617-6484-46c4-a4d7-9816feb8501f
+                stepCounter: a2675981-c3ea-4bdf-8ca0-77073f9e3475
+            transform: SUM(CUSTOMER.C_ACCTBAL)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f77f1aed-03b5-4e61-8c71-805f41f4c94e
+          stepCounter: 37f850e1-12c6-4b41-bb75-21d9740f202b
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: AVERAGE_ACCOUNT_BALANCE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 55768617-6484-46c4-a4d7-9816feb8501f
+                stepCounter: a2675981-c3ea-4bdf-8ca0-77073f9e3475
+            transform: AVG(CUSTOMER.C_ACCTBAL)
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          CUSTOMER: a2675981-c3ea-4bdf-8ca0-77073f9e3475
+          NATION: bbaac291-781e-44b6-92c9-676a990db434
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SOURCE_TPCH
+            nodeName: CUSTOMER
+          - locationName: SOURCE_TPCH
+            nodeName: NATION
+        join:
+          joinCondition: |-
+            FROM {{ ref('SOURCE_TPCH', 'CUSTOMER') }} "CUSTOMER"
+            JOIN
+              {{ ref('SOURCE_TPCH', 'NATION') }} "NATION" ON CUSTOMER.C_NATIONKEY = NATION.N_NATIONKEY
+            GROUP BY
+              NATION.N_NAME
+        name: V_CUSTOMER_NATION_BREAKDOWN
+        noLinkRefs: []
+  name: V_CUSTOMER_NATION_BREAKDOWN
+  overrideSQL: false
+  schema: ""
+  sqlType: View
+  type: sql
+  version: 1
+type: Node
