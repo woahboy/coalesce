@@ -1,3 +1,6 @@
+{%- if desiredState == undefined %}
+  DROP DYNAMIC TABLE {{ ref_no_link(currentState.node.location.name, currentState.node.name) }}
+{%- else %}
 {#- Convenience variables for advanced deploy #}
 {#- These can be easily changed when changing deploy strategy #}
 {%- set config = desiredState.config %}
@@ -27,9 +30,6 @@
 {%- set dtLagNumber = config.lagSpec.get('items') | map(attribute='lagNumber') | first %}
 {%- set dtLagType = config.lagSpec.get('items') | map(attribute='lagType') | first %}
 {%- set currentFlag = 'IS_CURRENT' %}
-{%- if desiredState == undefined %}
-  DROP DYNAMIC TABLE {{ ref_no_link(currentState.node.location.name, currentState.node.name) }}
-{%- else %}
 {{- stage('Create Dynamic Table') }}
 CREATE OR REPLACE DYNAMIC TABLE {{ ref_no_link(locationName, nodeName) }}
 	LAG = '{{ dtLagNumber }} {{ dtLagType }}'
