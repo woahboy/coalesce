@@ -1,13 +1,13 @@
 fileVersion: 1
-id: 63080376-f7b8-4238-b69f-42141e8ba4aa
+id: d9847090-f3cc-4ce9-9bf4-8e5e2bb26ef1
 name: CUSTOMER_BREAKDOWN_BY_NATION
 operation:
   config:
     insertStrategy: UNION
-    selectDistinct: true
+    selectDistinct: false
   database: ""
   deployEnabled: true
-  description: View showing customer breakdown by nation
+  description: View providing a customer breakdown by nation.
   isMultisource: false
   locationName: TARGET
   materializationType: view
@@ -16,8 +16,8 @@ operation:
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: c1e9a103-524c-4e7a-8c44-e7046aa70cfc
-          stepCounter: 63080376-f7b8-4238-b69f-42141e8ba4aa
+          columnCounter: c707d681-69e8-498b-b467-e7eb1f3718ac
+          stepCounter: d9847090-f3cc-4ce9-9bf4-8e5e2bb26ef1
         config: {}
         dataType: VARCHAR
         description: ""
@@ -30,8 +30,8 @@ operation:
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 13e999e3-b7ff-4693-bd73-ec079800f4ac
-          stepCounter: 63080376-f7b8-4238-b69f-42141e8ba4aa
+          columnCounter: 73a58b3c-be3a-444e-abba-1dfc923aa4ad
+          stepCounter: d9847090-f3cc-4ce9-9bf4-8e5e2bb26ef1
         config: {}
         dataType: NUMBER
         description: ""
@@ -59,12 +59,7 @@ operation:
           - locationName: SOURCE_TPCH
             nodeName: NATION
         join:
-          joinCondition: |-
-            FROM {{ ref('SOURCE_TPCH', 'CUSTOMER') }} CUSTOMER
-            JOIN
-                {{ ref('SOURCE_TPCH', 'NATION') }} NATION ON CUSTOMER.C_NATIONKEY = NATION.N_NATIONKEY
-            GROUP BY
-                NATION.N_NAME
+          joinCondition: FROM {{ ref('SOURCE_TPCH', 'CUSTOMER') }} "CUSTOMER" JOIN {{ ref('SOURCE_TPCH', 'NATION') }} "NATION" ON CUSTOMER.C_NATIONKEY = NATION.N_NATIONKEY GROUP BY NATION.N_NAME
         name: CUSTOMER_BREAKDOWN_BY_NATION
         noLinkRefs: []
   name: CUSTOMER_BREAKDOWN_BY_NATION
