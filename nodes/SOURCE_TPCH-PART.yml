@@ -1,10 +1,10 @@
 fileVersion: 1
-id: a13b85fc-1d8b-4e82-b981-186239bb78cb
-name: CUSTOMER
+id: 1b6b5b8b-d7f1-42f6-8a01-f78bab7c879d
+name: PART
 operation:
   database: ""
   deployEnabled: true
-  description: Customer data as defined by TPC-H
+  description: Part data as defined by TPC-H
   locationName: SOURCE_TPCH
   metadata:
     columns:
@@ -13,13 +13,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: b9f144dc-09a8-4656-93d3-c942b8775ba9
-          stepCounter: a13b85fc-1d8b-4e82-b981-186239bb78cb
+          columnCounter: 3ebc316c-e530-4c5d-9845-2418021ff7eb
+          stepCounter: 1b6b5b8b-d7f1-42f6-8a01-f78bab7c879d
         config: {}
         dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: C_CUSTKEY
+        name: P_PARTKEY
         nullable: false
         primaryKey: false
         sourceColumnReferences:
@@ -32,13 +32,32 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 3be9035f-dab6-4323-b25f-b9fa23bc1a12
-          stepCounter: a13b85fc-1d8b-4e82-b981-186239bb78cb
+          columnCounter: 80456039-0305-41a1-86d9-e35fb89b2f47
+          stepCounter: 1b6b5b8b-d7f1-42f6-8a01-f78bab7c879d
+        config: {}
+        dataType: VARCHAR(55)
+        defaultValue: ""
+        description: ""
+        name: P_NAME
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: d221f2a7-151b-43c0-b16b-a719133b5dd4
+          stepCounter: 1b6b5b8b-d7f1-42f6-8a01-f78bab7c879d
         config: {}
         dataType: VARCHAR(25)
         defaultValue: ""
         description: ""
-        name: C_NAME
+        name: P_MFGR
         nullable: false
         primaryKey: false
         sourceColumnReferences:
@@ -51,90 +70,14 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: f24f4f87-4d0d-4745-9b2c-827d04f38fcf
-          stepCounter: a13b85fc-1d8b-4e82-b981-186239bb78cb
-        config: {}
-        dataType: VARCHAR(40)
-        defaultValue: ""
-        description: ""
-        name: C_ADDRESS
-        nullable: false
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: a1338644-82e4-40b1-9dcd-313f4dddfaec
-          stepCounter: a13b85fc-1d8b-4e82-b981-186239bb78cb
-        config: {}
-        dataType: NUMBER(38,0)
-        defaultValue: ""
-        description: ""
-        name: C_NATIONKEY
-        nullable: false
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 29b3fe8c-2121-4eab-b79b-912e34a55e9c
-          stepCounter: a13b85fc-1d8b-4e82-b981-186239bb78cb
-        config: {}
-        dataType: VARCHAR(15)
-        defaultValue: ""
-        description: ""
-        name: C_PHONE
-        nullable: false
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: a8548f52-ad7a-4dfc-a434-487cac85093b
-          stepCounter: a13b85fc-1d8b-4e82-b981-186239bb78cb
-        config: {}
-        dataType: NUMBER(12,2)
-        defaultValue: ""
-        description: ""
-        name: C_ACCTBAL
-        nullable: false
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: b883d373-7e6c-4f85-804d-414ed30c6a6b
-          stepCounter: a13b85fc-1d8b-4e82-b981-186239bb78cb
+          columnCounter: a341bc83-0af7-4d5d-b4c5-330eb8a12081
+          stepCounter: 1b6b5b8b-d7f1-42f6-8a01-f78bab7c879d
         config: {}
         dataType: VARCHAR(10)
         defaultValue: ""
         description: ""
-        name: C_MKTSEGMENT
-        nullable: true
+        name: P_BRAND
+        nullable: false
         primaryKey: false
         sourceColumnReferences:
           - columnReferences: []
@@ -146,13 +89,89 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 1f80559f-3930-4c50-a56e-ecef29097315
-          stepCounter: a13b85fc-1d8b-4e82-b981-186239bb78cb
+          columnCounter: 1fc2bca8-12fd-45e8-a622-b45014740bd4
+          stepCounter: 1b6b5b8b-d7f1-42f6-8a01-f78bab7c879d
         config: {}
-        dataType: VARCHAR(117)
+        dataType: VARCHAR(25)
         defaultValue: ""
         description: ""
-        name: C_COMMENT
+        name: P_TYPE
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: b11c0a49-2679-481f-ba9b-84c3971a2232
+          stepCounter: 1b6b5b8b-d7f1-42f6-8a01-f78bab7c879d
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: P_SIZE
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: c08a5c26-0893-4a1b-ab1e-c25b5fded479
+          stepCounter: 1b6b5b8b-d7f1-42f6-8a01-f78bab7c879d
+        config: {}
+        dataType: VARCHAR(10)
+        defaultValue: ""
+        description: ""
+        name: P_CONTAINER
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 81296b05-6d52-42c1-959f-11d2f5afb150
+          stepCounter: 1b6b5b8b-d7f1-42f6-8a01-f78bab7c879d
+        config: {}
+        dataType: NUMBER(12,2)
+        defaultValue: ""
+        description: ""
+        name: P_RETAILPRICE
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: dd249bc7-74ed-450b-b7f0-4749254a4708
+          stepCounter: 1b6b5b8b-d7f1-42f6-8a01-f78bab7c879d
+        config: {}
+        dataType: VARCHAR(23)
+        defaultValue: ""
+        description: ""
+        name: P_COMMENT
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -160,7 +179,7 @@ operation:
             transform: ""
         transform: ""
         uniqueKey: false
-  name: CUSTOMER
+  name: PART
   schema: ""
   sqlType: Source
   type: sourceInput

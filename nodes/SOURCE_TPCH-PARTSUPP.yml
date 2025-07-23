@@ -1,10 +1,10 @@
 fileVersion: 1
-id: 8baab3a7-21a4-4e27-b237-b8c4420d42cc
-name: NATION
+id: 79f00a60-8244-476a-b7fe-545b5417503d
+name: PARTSUPP
 operation:
   database: ""
   deployEnabled: true
-  description: Nation data as defined by TPC-H
+  description: Partsupp data as defined by TPC-H
   locationName: SOURCE_TPCH
   metadata:
     columns:
@@ -13,13 +13,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: b22f0af0-6e02-4692-85f9-fcf0c7380341
-          stepCounter: 8baab3a7-21a4-4e27-b237-b8c4420d42cc
+          columnCounter: dafeeee0-01c4-4a0b-b71d-3b44dc3a15dd
+          stepCounter: 79f00a60-8244-476a-b7fe-545b5417503d
         config: {}
         dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: N_NATIONKEY
+        name: PS_PARTKEY
         nullable: false
         primaryKey: false
         sourceColumnReferences:
@@ -32,32 +32,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 477ee830-be81-4e20-9e35-fc4378b6606d
-          stepCounter: 8baab3a7-21a4-4e27-b237-b8c4420d42cc
-        config: {}
-        dataType: VARCHAR(25)
-        defaultValue: ""
-        description: ""
-        name: N_NAME
-        nullable: false
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 854047d0-5baf-4ab4-a17e-9015d4af8dba
-          stepCounter: 8baab3a7-21a4-4e27-b237-b8c4420d42cc
+          columnCounter: ba5084f6-36a3-4990-8362-c640a20915e4
+          stepCounter: 79f00a60-8244-476a-b7fe-545b5417503d
         config: {}
         dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: N_REGIONKEY
+        name: PS_SUPPKEY
         nullable: false
         primaryKey: false
         sourceColumnReferences:
@@ -70,13 +51,51 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 72f5446f-7e1e-478b-8133-b8fdc0f0e12d
-          stepCounter: 8baab3a7-21a4-4e27-b237-b8c4420d42cc
+          columnCounter: 80830f2d-b50c-4a1f-944c-a5687857400e
+          stepCounter: 79f00a60-8244-476a-b7fe-545b5417503d
         config: {}
-        dataType: VARCHAR(152)
+        dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: N_COMMENT
+        name: PS_AVAILQTY
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ef23ef71-95a9-4a63-ab8a-90e116c68b73
+          stepCounter: 79f00a60-8244-476a-b7fe-545b5417503d
+        config: {}
+        dataType: NUMBER(12,2)
+        defaultValue: ""
+        description: ""
+        name: PS_SUPPLYCOST
+        nullable: false
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: f0dc0997-e394-4e34-9c96-74277729970d
+          stepCounter: 79f00a60-8244-476a-b7fe-545b5417503d
+        config: {}
+        dataType: VARCHAR(199)
+        defaultValue: ""
+        description: ""
+        name: PS_COMMENT
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -84,7 +103,7 @@ operation:
             transform: ""
         transform: ""
         uniqueKey: false
-  name: NATION
+  name: PARTSUPP
   schema: ""
   sqlType: Source
   type: sourceInput

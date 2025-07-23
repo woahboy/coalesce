@@ -1,17 +1,16 @@
 fileVersion: 1
-id: 8ab5780f-fa63-4c80-9b87-858b2e706d42
+id: 2367185b-cca5-4f45-988b-4272a77e8656
 name: STG_CUSTOMER
 operation:
   config:
     insertStrategy: INSERT
     postSQL: ""
     preSQL: ""
-    selectDistinct: true
     testsEnabled: true
     truncateBefore: true
   database: ""
   deployEnabled: true
-  description: Creates the STG_CUSTOMER table and truncates it. Then, populates it with data from the CUSTOMER, NATION, and REGION tables, joining them to derive customer information, nation details, and region specifics, and applying a transformation to classify customers based on their account balance and market segment.
+  description: Customer data as defined by TPC-H
   isMultisource: false
   locationName: TARGET
   materializationType: table
@@ -20,8 +19,8 @@ operation:
     columns:
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 0c583cd0-25ee-42b5-9f46-0ad2d8792890
-          stepCounter: 8ab5780f-fa63-4c80-9b87-858b2e706d42
+          columnCounter: bd9c9be7-b85a-4455-b826-a961e2ab19ff
+          stepCounter: 2367185b-cca5-4f45-988b-4272a77e8656
         config: {}
         dataType: NUMBER(38,0)
         description: ""
@@ -29,152 +28,111 @@ operation:
         nullable: false
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 9027be25-1e62-402d-addc-1e6cf80abba2
-                stepCounter: 8a5e76b9-f233-45d6-aed1-fe3147c373c6
+              - columnCounter: b9f144dc-09a8-4656-93d3-c942b8775ba9
+                stepCounter: a13b85fc-1d8b-4e82-b981-186239bb78cb
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: a6f1c855-01f5-410b-b13e-6fe9a55711b6
-          stepCounter: 8ab5780f-fa63-4c80-9b87-858b2e706d42
+          columnCounter: e32021e4-09b3-4ecd-89e9-59ef0a386aea
+          stepCounter: 2367185b-cca5-4f45-988b-4272a77e8656
         config: {}
         dataType: VARCHAR(25)
-        description: |-
-          - Populated directly from the 'C_NAME' column of the 'CUSTOMER' table in the 'SOURCE_TPCH' source.
-          - Contains the name of the customer.
-          - Used in reports, customer profiling, and marketing campaigns.
-          - It helps in personalizing customer interactions and analyzing customer demographics.
-          - The datatype is VARCHAR(25), which means it is a string that can store up to 25 characters.
-          - No transformations are applied to the source column to generate this column.
+        description: ""
         name: C_NAME
         nullable: false
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 82a47a1b-f1ff-45ed-be4c-fd4be7070618
-                stepCounter: 8a5e76b9-f233-45d6-aed1-fe3147c373c6
+              - columnCounter: 3be9035f-dab6-4323-b25f-b9fa23bc1a12
+                stepCounter: a13b85fc-1d8b-4e82-b981-186239bb78cb
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: b07250a9-d487-4105-9f0e-19f92445e7fb
-          stepCounter: 8ab5780f-fa63-4c80-9b87-858b2e706d42
+          columnCounter: 0a533cb8-8776-41a3-9b87-2a26c4df1051
+          stepCounter: 2367185b-cca5-4f45-988b-4272a77e8656
         config: {}
         dataType: VARCHAR(40)
-        description: |-
-          - Directly sourced from the 'C_ADDRESS' column in the 'CUSTOMER' table within the 'SOURCE_TPCH' source.
-          - Stores the address of the customer.
-          - This is crucial for logistics, targeted marketing, and geographic analysis.
-          - It enables businesses to understand the distribution of their customer base.
-          - The datatype is VARCHAR(40), which means it is a string that can store up to 40 characters.
-          - No transformations are applied to the source column to generate this column.
+        description: ""
         name: C_ADDRESS
         nullable: false
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: df0885f3-aff6-48d2-85f0-9b5004df36f2
-                stepCounter: 8a5e76b9-f233-45d6-aed1-fe3147c373c6
+              - columnCounter: f24f4f87-4d0d-4745-9b2c-827d04f38fcf
+                stepCounter: a13b85fc-1d8b-4e82-b981-186239bb78cb
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 2dcc0735-b2e5-4bdd-b942-b47aeedd4622
-          stepCounter: 8ab5780f-fa63-4c80-9b87-858b2e706d42
+          columnCounter: 308d931f-b691-4275-b81b-1cc0e4716608
+          stepCounter: 2367185b-cca5-4f45-988b-4272a77e8656
         config: {}
         dataType: VARCHAR(15)
-        description: |-
-          - Extracted from the 'C_PHONE' column of the 'CUSTOMER' table from the 'SOURCE_TPCH' source.
-          - Represents the customer's phone number.
-          - Essential for customer communication, support services, and marketing outreach.
-          - Aids in tracking customer interactions and preferences.
-          - The datatype is VARCHAR(15), which means it is a string that can store up to 15 characters.
-          - No transformations are applied to the source column to generate this column.
+        description: ""
         name: C_PHONE
         nullable: false
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: a8b5be7a-8d99-49c0-90d0-1699fc16bead
-                stepCounter: 8a5e76b9-f233-45d6-aed1-fe3147c373c6
+              - columnCounter: 29b3fe8c-2121-4eab-b79b-912e34a55e9c
+                stepCounter: a13b85fc-1d8b-4e82-b981-186239bb78cb
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: db177b11-12ec-41a5-8104-c67a00c4e5bf
-          stepCounter: 8ab5780f-fa63-4c80-9b87-858b2e706d42
+          columnCounter: 1185dd45-5e9d-46ed-95f8-c96d00006ead
+          stepCounter: 2367185b-cca5-4f45-988b-4272a77e8656
         config: {}
         dataType: NUMBER(12,2)
-        description: |-
-          - Derived from the 'C_ACCTBAL' column in the 'CUSTOMER' table from the 'SOURCE_TPCH' source.
-          - Indicates the customer's account balance.
-          - Used in financial analysis, credit risk assessment, and customer segmentation based on financial standing.
-          - It plays a vital role in determining customer lifetime value.
-          - The datatype is NUMBER(12,2), which means it is a numeric value with a precision of 12 and scale of 2.
-          - No transformations are applied to the source column to generate this column.
+        description: ""
         name: C_ACCTBAL
         nullable: false
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 67f79612-c006-4680-89a1-eeac126819c8
-                stepCounter: 8a5e76b9-f233-45d6-aed1-fe3147c373c6
+              - columnCounter: a8548f52-ad7a-4dfc-a434-487cac85093b
+                stepCounter: a13b85fc-1d8b-4e82-b981-186239bb78cb
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: feec4337-cdc6-4cbe-ae6e-64b64caf54f0
-          stepCounter: 8ab5780f-fa63-4c80-9b87-858b2e706d42
+          columnCounter: 762e644b-dfdd-40d7-b4f9-5b85df50fa26
+          stepCounter: 2367185b-cca5-4f45-988b-4272a77e8656
         config: {}
         dataType: VARCHAR(10)
-        description: |-
-          - Taken directly from the 'C_MKTSEGMENT' column of the 'CUSTOMER' table in the 'SOURCE_TPCH' source.
-          - Represents the market segment to which the customer belongs.
-          - Important for targeted marketing, sales strategies, and understanding customer demographics.
-          - Enables businesses to tailor their products and services to specific market niches.
-          - The datatype is VARCHAR(10), which means it is a string that can store up to 10 characters.
-          - No transformations are applied to the source column to generate this column.
+        description: ""
         name: C_MKTSEGMENT
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 95ebfa80-2b81-4412-bfd8-00f3a95534ec
-                stepCounter: 8a5e76b9-f233-45d6-aed1-fe3147c373c6
+              - columnCounter: b883d373-7e6c-4f85-804d-414ed30c6a6b
+                stepCounter: a13b85fc-1d8b-4e82-b981-186239bb78cb
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 1c2b8038-f661-47ac-b0a1-bae8fc7ddbb2
-          stepCounter: 8ab5780f-fa63-4c80-9b87-858b2e706d42
+          columnCounter: 99df18a6-c1b2-4276-bad1-81c55947a715
+          stepCounter: 2367185b-cca5-4f45-988b-4272a77e8656
         config: {}
-        dataType: STRING
-        description: |-
-          - Calculated based on the 'C_ACCTBAL' and 'C_MKTSEGMENT' columns from the 'CUSTOMER' table in the 'SOURCE_TPCH' source.
-          - Classifies customers as 'High' or 'Low' value based on their account balance and market segment.
-          - Used for customer segmentation, targeted marketing, and prioritizing customer service efforts.
-          - The transformation logic assigns 'High' if the account balance is over 5000 and the market segment is 'BUILDING' or 'HOUSEHOLD', otherwise 'Low'.
-          - This allows for customized strategies based on customer value.
+        dataType: VARCHAR(10)
+        description: ""
         name: C_VALUE
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 95ebfa80-2b81-4412-bfd8-00f3a95534ec
-                stepCounter: 8a5e76b9-f233-45d6-aed1-fe3147c373c6
+              - columnCounter: b883d373-7e6c-4f85-804d-414ed30c6a6b
+                stepCounter: a13b85fc-1d8b-4e82-b981-186239bb78cb
             transform: CASE WHEN "CUSTOMER"."C_ACCTBAL" > 5000 AND "CUSTOMER"."C_MKTSEGMENT" IN ('BUILDING', 'HOUSEHOLD') THEN 'High' ELSE 'Low' END
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 8deb9a4a-9d02-4e4b-a759-4f5d9f1579cf
-          stepCounter: 8ab5780f-fa63-4c80-9b87-858b2e706d42
+          columnCounter: 05a967d4-c26f-4e5e-a6ce-439f409cbb02
+          stepCounter: 2367185b-cca5-4f45-988b-4272a77e8656
         config: {}
         dataType: VARCHAR(117)
-        description: |-
-          - Directly sourced from the 'C_COMMENT' column in the 'CUSTOMER' table within the 'SOURCE_TPCH' source.
-          - Contains descriptive comments about the customer.
-          - Useful for understanding customer behavior, feedback analysis, and identifying specific customer needs or issues.
-          - It aids in improving customer satisfaction and personalizing customer interactions.
-          - The datatype is VARCHAR(117), which means it is a string that can store up to 117 characters.
-          - No transformations are applied to the source column to generate this column.
+        description: ""
         name: C_COMMENT
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 9dacfa2c-6ab6-43aa-acb6-c6d402daed93
-                stepCounter: 8a5e76b9-f233-45d6-aed1-fe3147c373c6
+              - columnCounter: 1f80559f-3930-4c50-a56e-ecef29097315
+                stepCounter: a13b85fc-1d8b-4e82-b981-186239bb78cb
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 6f0b4aa0-018d-412c-98ca-a09b7976b8c5
-          stepCounter: 8ab5780f-fa63-4c80-9b87-858b2e706d42
+          columnCounter: 08580683-714e-49cb-a00a-cc1a77f1bb7c
+          stepCounter: 2367185b-cca5-4f45-988b-4272a77e8656
         config: {}
         dataType: VARCHAR(25)
         description: ""
@@ -182,13 +140,13 @@ operation:
         nullable: false
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 8e5892bb-4003-44f5-8fdc-2557590ef303
-                stepCounter: 02e215b4-b263-45f2-b9aa-36735b39b271
+              - columnCounter: 477ee830-be81-4e20-9e35-fc4378b6606d
+                stepCounter: 8baab3a7-21a4-4e27-b237-b8c4420d42cc
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: ea2df93f-a6c7-46aa-b971-1c8fb122bfc8
-          stepCounter: 8ab5780f-fa63-4c80-9b87-858b2e706d42
+          columnCounter: fbde416c-5722-48fd-adf8-820bec23bdb0
+          stepCounter: 2367185b-cca5-4f45-988b-4272a77e8656
         config: {}
         dataType: VARCHAR(152)
         description: ""
@@ -196,13 +154,13 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: aff96348-1fb2-4440-b284-64fa34ed2bb5
-                stepCounter: 02e215b4-b263-45f2-b9aa-36735b39b271
+              - columnCounter: 72f5446f-7e1e-478b-8133-b8fdc0f0e12d
+                stepCounter: 8baab3a7-21a4-4e27-b237-b8c4420d42cc
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: bd628325-3ff1-44c0-baf9-151d2dea2868
-          stepCounter: 8ab5780f-fa63-4c80-9b87-858b2e706d42
+          columnCounter: 226c6d4d-754e-4632-a29b-bed3f6f97f64
+          stepCounter: 2367185b-cca5-4f45-988b-4272a77e8656
         config: {}
         dataType: VARCHAR(25)
         description: ""
@@ -210,13 +168,13 @@ operation:
         nullable: false
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: eef41fce-dc8f-4b1b-b9c5-910627dfa53c
-                stepCounter: 3d286cb0-fa94-4c25-9df7-34d107f1ad32
+              - columnCounter: 7352a415-d457-4c7e-adb6-8fd3a2de6b86
+                stepCounter: ed1bae48-d867-494c-bba5-dfc9af8b32b8
             transform: ""
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 99abdf33-05fb-4171-8f8b-5ab7e3b6ecc5
-          stepCounter: 8ab5780f-fa63-4c80-9b87-858b2e706d42
+          columnCounter: 6884cbd3-69ff-4f91-b9a1-6d209240bd7d
+          stepCounter: 2367185b-cca5-4f45-988b-4272a77e8656
         config: {}
         dataType: VARCHAR(152)
         description: ""
@@ -224,16 +182,33 @@ operation:
         nullable: true
         sourceColumnReferences:
           - columnReferences:
-              - columnCounter: 24d5654e-fab6-4ed4-b534-a69ed7cee9d0
-                stepCounter: 3d286cb0-fa94-4c25-9df7-34d107f1ad32
+              - columnCounter: 41416e03-193d-4e9f-9c6a-990ed815480f
+                stepCounter: ed1bae48-d867-494c-bba5-dfc9af8b32b8
+            transform: ""
+      - acceptedValues:
+          strictMatch: false
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: d6f7087f-ae87-4360-96ce-50d64489546e
+          stepCounter: 2367185b-cca5-4f45-988b-4272a77e8656
+        config: {}
+        dataType: NUMBER(38,0)
+        description: ""
+        name: C_NATIONKEY
+        nullable: false
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a1338644-82e4-40b1-9dcd-313f4dddfaec
+                stepCounter: a13b85fc-1d8b-4e82-b981-186239bb78cb
             transform: ""
     cteString: ""
     enabledColumnTestIDs: []
     sourceMapping:
       - aliases:
-          CUSTOMER: 8a5e76b9-f233-45d6-aed1-fe3147c373c6
-          NATION: 02e215b4-b263-45f2-b9aa-36735b39b271
-          REGION: 3d286cb0-fa94-4c25-9df7-34d107f1ad32
+          CUSTOMER: a13b85fc-1d8b-4e82-b981-186239bb78cb
+          NATION: 8baab3a7-21a4-4e27-b237-b8c4420d42cc
+          REGION: ed1bae48-d867-494c-bba5-dfc9af8b32b8
         customSQL:
           customSQL: ""
         dependencies:
@@ -255,7 +230,7 @@ operation:
   name: STG_CUSTOMER
   overrideSQL: false
   schema: ""
-  sqlType: "534"
+  sqlType: Stage
   type: sql
   version: 1
 type: Node
